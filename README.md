@@ -14,11 +14,11 @@
   - "htmlname".js 으로 작성
 
 - scss/ : html 디렉토리의 html과 매칭되는 scss
-  - "htmlname".scss 로 작성
   - _mixin.scss : 믹스인 모아두기
   - _global.scss : 공통으로 사용되는 부분 모으기
   - _variable.scss : 변수들 모아두기
   - style.scss : _mixin,_global,_variable 다 모아서 처리
+  - "htmlname".scss 로 작성
 
 ```bash
 기본포맷
@@ -35,9 +35,9 @@
 │    ├── common.js
 │    └── pagename.js
 └── scss
-     ├── pagename.scss
+     ├── _variable.scss
      ├── _mixin.scss 
      ├── _global.scss
-     ├── _variable.scss
-     └── style.scss
+     ├── style.scss
+     └── pagename.scss
 ```

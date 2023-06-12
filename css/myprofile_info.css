@@ -40,27 +40,12 @@
   -o-object-fit: cover;
      object-fit: cover;
 }
-.my-profile-container .follow-container {
+.my-profile-container .follow-wrap {
   position: absolute;
   top: 65px;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  -webkit-box-ordinal-group: 0;
-      -ms-flex-order: -1;
-          order: -1;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 188px;
-}
-.my-profile-container .follow-container .follow-wrap {
+  -webkit-transform: translateX(calc(-50% + 24px + 94px));
+          transform: translateX(calc(-50% + 24px + 94px));
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -68,21 +53,26 @@
   -webkit-box-direction: reverse;
       -ms-flex-direction: column-reverse;
           flex-direction: column-reverse;
+  -webkit-box-ordinal-group: 0;
+      -ms-flex-order: -1;
+          order: -1;
 }
-.my-profile-container .follow-container .follow-wrap p {
+.my-profile-container .follow-wrap p {
   margin-top: 6px;
   font-size: 0.5rem;
   color: #767676;
 }
-.my-profile-container .follow-container .follow-wrap > strong {
+.my-profile-container .follow-wrap > strong {
   font-size: 1.125rem;
   font-weight: 700;
-}
-.my-profile-container .follow-container .follow-wrap .follower {
-  color: #000;
-}
-.my-profile-container .follow-container .follow-wrap .following {
   color: #767676;
+}
+.my-profile-container .follow-wrap:nth-of-type(1) {
+  -webkit-transform: translateX(calc(-50% - 24px - 94px));
+          transform: translateX(calc(-50% - 24px - 94px));
+}
+.my-profile-container .follow-wrap:nth-of-type(1) > strong {
+  color: #000;
 }
 .my-profile-container .profile-name {
   display: block;

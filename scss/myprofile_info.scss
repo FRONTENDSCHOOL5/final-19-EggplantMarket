@@ -1,6 +1,10 @@
 @import "global";
 @import "variables";
 
+// 질문
+// 일단 px->rem으로 변경
+// 폰트만 건들여야할까?
+
 .my-profile-container {
     position: relative;
     text-align: center;
@@ -26,34 +30,30 @@
         }
     }
 
-    .follow-container {
+    .follow-wrap{
         position: absolute;
         top: 65px;
         left: 50%;
-        transform: translateX(-50%);
-        order: -1;
+        transform: translateX(calc(-50% + 24px + 94px));
         display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 188px;
-        .follow-wrap{
-            display: flex;
-            flex-direction: column-reverse;
-            p {
-                margin-top: 6px;
-                font-size: 0.5rem;
-                color: $gray300-color;
-            }
-            & > strong {
-                font-size: 1.125rem;
-                font-weight: 700;
-            }
-            .follower{
-                color: $black-color;
-            }
-            .following{
-                color: $gray300-color;
-            }
+        flex-direction: column-reverse;
+        order: -1;
+        p {
+            margin-top: 6px;
+            font-size: 0.5rem;
+            color: $gray300-color;
+        }
+        & > strong {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: $gray300-color;
+        }
+    }
+
+    .follow-wrap:nth-of-type(1){
+        transform: translateX(calc(-50% - 24px - 94px));
+        & > strong {
+            color: $black-color;
         }
     }
 
@@ -104,7 +104,3 @@
         }
     }
 }
-
-// 질문
-// 일단 px->rem으로 변경
-// 폰트만 건들여야할까?

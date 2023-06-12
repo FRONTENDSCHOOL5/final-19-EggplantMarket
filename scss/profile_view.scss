@@ -1,0 +1,62 @@
+@import './_global.scss';
+
+.post-tab {
+    height: 44px;
+    padding: 9px 21px;
+    border-top: 1px solid #DBDBDB;
+    border-bottom: 1px solid #DBDBDB;
+}
+
+.tab-btn-wrap {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        border: none;
+        background-color: inherit;
+        width: 26px;
+        height: 26px;
+        margin-left: 16px;
+        background-repeat: no-repeat;
+    }
+
+    .btn-post-list {
+        background-image: url('../assets/icon/icon-post-list-off.svg');
+    }
+
+    .btn-post-list.on {
+        background-image: url('../assets/icon/icon-post-list-on.svg');
+    }
+
+    .btn-post-album {
+        background-image: url('../assets/icon/icon-post-album-off.svg');
+    }
+
+    .btn-post-album.on {
+        background-image: url('../assets/icon/icon-post-album-on.svg');
+    }
+}
+
+.post-sec {
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+
+    .post-album {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .post-album-item {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+    }
+}

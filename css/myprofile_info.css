@@ -11,13 +11,44 @@
 }
 
 .my-profile-container {
+  position: relative;
   text-align: center;
   padding-top: 1.875rem;
 }
 .my-profile-container a {
   text-decoration: none;
 }
-.my-profile-container .profile-top-wrap {
+.my-profile-container .my-profile-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.my-profile-container .img-crop {
+  margin: 0 auto;
+  width: 110px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.my-profile-container .img-crop img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.my-profile-container .follow-container {
+  position: absolute;
+  top: 65px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-box-ordinal-group: 0;
+      -ms-flex-order: -1;
+          order: -1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -27,27 +58,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 37px;
+  gap: 188px;
 }
-.my-profile-container .profile-top-wrap a {
-  font-size: 1.125rem;
-  font-weight: 700;
-}
-.my-profile-container .profile-top-wrap .img-crop {
-  max-width: 110px;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  overflow: hidden;
-}
-.my-profile-container .profile-top-wrap .img-crop img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.my-profile-container .profile-top-wrap .follow-wrap {
+.my-profile-container .follow-container .follow-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -56,15 +69,19 @@
       -ms-flex-direction: column-reverse;
           flex-direction: column-reverse;
 }
-.my-profile-container .profile-top-wrap .follow-wrap p {
+.my-profile-container .follow-container .follow-wrap p {
   margin-top: 6px;
   font-size: 0.5rem;
   color: #767676;
 }
-.my-profile-container .profile-top-wrap .follower a {
+.my-profile-container .follow-container .follow-wrap > strong {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+.my-profile-container .follow-container .follow-wrap .follower {
   color: #000;
 }
-.my-profile-container .profile-top-wrap .following a {
+.my-profile-container .follow-container .follow-wrap .following {
   color: #767676;
 }
 .my-profile-container .profile-name {
@@ -73,11 +90,6 @@
   font-weight: 700;
   margin-top: 1rem;
   margin-bottom: 0.625rem;
-}
-.my-profile-container > p {
-  color: #767676;
-  font-size: 0.875rem;
-  font-weight: 300;
 }
 .my-profile-container .profile-id {
   font-size: 0.75rem;
@@ -97,9 +109,7 @@
 .my-profile-container .btn-wrap :first-child {
   margin-right: 12px;
 }
-.my-profile-container .link-btn {
-  margin: 0;
-  padding: 0;
+.my-profile-container .btn-wrap .btn-link {
   background-color: white;
   border: 1px solid #dbdbdb;
   color: #767676;

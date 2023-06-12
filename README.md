@@ -17,8 +17,9 @@
   - _mixin.scss : 믹스인 모아두기
   - _global.scss : 공통으로 사용되는 부분 모으기
   - _variable.scss : 변수들 모아두기
-  - style.scss : _mixin,_global,_variable 다 모아서 처리
   - "htmlname".scss 로 작성
+    - 필요시 mixin, global, variable 임포트
+    - ex) @import "mixin";
 
 ```bash
 기본포맷
@@ -38,6 +39,5 @@
      ├── _variable.scss
      ├── _mixin.scss 
      ├── _global.scss
-     ├── style.scss
      └── pagename.scss
 ```

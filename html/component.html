@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>component</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/component.css">
+</head>
+
+<body>
+    <!-- 기본상단 -->
+    <p>기본상단</p>
+    <header class="top nav-basic">
+        <button class="btn-back"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+        <button class="btn-option"><img src="../assets/icon/icon- more-vertical.svg" alt="더보기 버튼"></button>
+    </header>
+
+    <!-- 검색상단 -->
+    <p>검색상단</p>
+    <header class="top nav-search">
+        <button class="btn-back"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+        <label for="inp-search" class="a11y-hidden">계정 검색하기</label>
+        <input type="text" id="inp-search" placeholder="계정 검색">
+    </header>
+
+    <!-- 홈상단 -->
+    <p>홈상단</p>
+    <header class="top nav-main">
+        <p class="title-main">가지마켙 피드</p>
+        <a href="#"><img src="../assets/icon/icon-search.svg" alt="검색 아이콘 클릭 시 검색페이지로 이동"></a>
+    </header>
+
+    <!-- 팔로우페이지 상단 -->
+    <p>팔로우페이지상단</p>
+    <header class="top nav-upload">
+        <button class="btn-back"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+        <button class="size-ms btn-save" disabled>저장<strong class="a11y-hidden">하기 버튼</strong></button>
+    </header>
+
+    <!-- 판매 채팅 상단 -->
+    <p>판매 채팅 상단</p>
+    <header class="top nav-chat">
+        <section class="front">
+            <button class="btn-back"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+            <p class="title-chat"><strong class="a11y-hidden">대화상대</strong>애월읍 위니브 가지밭</p>
+        </section>
+        <button class="btn-option"><img src="../assets/icon/icon- more-vertical.svg" alt="더보기 버튼"></button>
+    </header>
+
+    <!-- 하단 탭 메뉴 -->
+    <p>하단 탭 메뉴</p>
+    <nav class="tab-menu">
+        <ul class="tab-item-list">
+            <li class="tab-item-home">
+                <a href="#">
+                    <img src="../assets/icon/icon-home.svg" alt="홈으로 이동">홈<strong class="a11y-hidden">화면으로 이동</strong>
+                </a>
+            </li>
+            <li class="tab-item-chat">
+                <a href="#">
+                    <img src="../assets/icon/icon-message-circle.svg" alt="채팅페이지로 이동">채팅<strong class="a11y-hidden">화면으로
+                        이동</strong>
+                </a>
+            </li>
+            <li class="tab-item-follow">
+                <a href="#">
+                    <img src="../assets/icon/icon-edit.svg" alt="게시물페이지로 이동">게시물 작성<strong class="a11y-hidden">화면으로
+                        이동</strong>
+                </a>
+            </li>
+            <li class="tab-item-more">
+                <a href="#">
+                    <img src="../assets/icon/icon-user.svg" alt="프로필페이지로 이동">프로필<strong class="a11y-hidden">화면으로
+                        이동</strong>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- 댓글창 -->
+    <p>댓글창</p>
+    <section class="comment">
+        <section class="front">
+            <img src="../assets/basic-profile.png" alt="프로필사진">
+            <label for="commemt-input" class="a11y-hidden"><strong class="a11y-hidden">게시물에 대한</strong>댓글 입력</label>
+            <input type="text" id="commemt-input" placeholder="댓글 입력하기...">
+        </section>
+        <button type="submit" class="btn-comment" disabled>게시</button>
+    </section>
+
+    <!-- 삭제모달창 -->
+    <p>삭제모달창</p>
+    <section class="delete-alert">
+        <div class="modal-content">
+            <h2 class="modal-title a11y-hidden">삭제 확인</h2>
+            <p class="modal-description">상품을 삭제할까요?</p>
+            <div class="modal-actions">
+                <button class="cancel-button">취소</button>
+                <button class="delete-button">삭제</button>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+
+</html>

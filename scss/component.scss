@@ -1,0 +1,165 @@
+@import 'global';
+@import 'variables';
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $gray100-color;
+}
+.nav{
+    &-search, &-main, &-upload{
+        padding: 13px 16px;
+    }
+    &-basic, &-chat{
+        padding: 13px 12px 13px 16px;
+    }
+}
+.nav-search{
+    #inp-search{
+        flex-grow: 1;
+        margin-left: 20px;
+        padding: 7px 0px 7px 16px;
+        border-radius: 32px;
+    }
+}
+.nav-main{
+    .title-main{
+        font-size: map-get($font-sizes,"size18");
+    }
+}
+
+.nav-upload{
+    padding: 8px 16px;
+}
+
+.front{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tab-menu{
+    border-top: 1px solid $gray100-color;
+    .tab-item-list{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        li{
+            a{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                color: $gray300-color;
+                width: 84px;
+                font-size: map-get($font-sizes, "size10");
+                margin-bottom: 6px;
+                img{
+                    width: 24px;
+                    margin: 12px 30px 4px;
+                }
+            }
+
+        }
+    }
+}
+
+.comment{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $gray100-color;
+    padding: 13px 16px 12px 16px;
+    button{
+        font-size: 14px;
+    }
+}
+
+.delete-alert{
+    // 모달창 완성 후
+    position: fixed;
+    /* top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+    .modal-content{
+        width: 272px; // 폰트 변경 후 252px로 변경
+        background-color: #fff;
+        border-radius: 10px;
+        text-align: center;
+        .modal-description {
+            padding: 22px 61px;
+            font-size: map-get($font-sizes, "size16");
+            border-bottom: 1px solid $gray100-color;
+        }
+        .modal-actions {
+            display: flex;
+            justify-content: center;
+            .cancel-button {
+                flex-grow: 1;
+                padding: 14px 50px;
+                font-size: map-get($font-sizes, "size14");
+                border-right: 1px solid $gray100-color;
+            }
+            .delete-button {
+                flex-grow: 1;
+                color: $highlight-color;
+                font-size: map-get($font-sizes, "size14");
+                padding: 14px 50px;
+            }
+        }
+    }
+}
+
+/* button */
+.size-l, .size-m, .size-ms, .size-s {
+    background-color: $enabled-color;
+    color: #FFFFFF;
+}
+.size-l:disabled, .size-m:disabled, .size-ms:disabled, .size-s:disabled {
+    background-color: $disabled-color;
+    color: #FFFFFF;
+}
+
+.size{
+    &-l{
+        width: 322px;
+        padding: 13px 0px;
+        border-radius: 44px;
+        font-size: map-get( $font-sizes, "size14" );
+    }
+    &-m{
+        width: 120px;
+        padding: 8px 0px;
+        border-radius: 30px;
+        font-size: map-get( $font-sizes, "size14" );
+    }
+    &-ms{
+        width: 90px;
+        padding: 7px 0px;
+        border-radius: 32px;
+        font-size: map-get( $font-sizes, "size14" );
+    }
+    &-s{
+        width: 56px;
+        padding: 7px 0px;
+        border-radius: 26px;
+        font-size: map-get( $font-sizes, "size12" );
+    }
+}
+
+.btn-unfollow-m{
+    background: #FFFFFF;
+    color: $gray300-color;
+    border: 1px solid $gray100-color;
+}
+
+.btn-cancle{
+    background: #FFFFFF;
+    color: $gray300-color;
+    border: 1px solid $gray100-color;
+}

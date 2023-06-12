@@ -1,0 +1,219 @@
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+button {
+  border: none;
+  background-color: initial;
+  padding: 0px;
+}
+
+input {
+  border: none;
+}
+
+a {
+  color: initial;
+  text-decoration: initial;
+}
+
+.top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.nav-search, .nav-main, .nav-upload {
+  padding: 13px 16px;
+}
+.nav-basic, .nav-chat {
+  padding: 13px 12px 13px 16px;
+}
+
+.nav-search #inp-search {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin-left: 20px;
+  padding: 7px 0px 7px 16px;
+  border-radius: 32px;
+}
+
+.nav-main .title-main {
+  font-size: 18px;
+}
+
+.nav-upload {
+  padding: 8px 16px;
+}
+
+.front {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.tab-menu {
+  border-top: 1px solid #dbdbdb;
+}
+.tab-menu .tab-item-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.tab-menu .tab-item-list li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #767676;
+  width: 84px;
+  font-size: 10px;
+  margin-bottom: 6px;
+}
+.tab-menu .tab-item-list li a img {
+  width: 24px;
+  margin: 12px 30px 4px;
+}
+
+.comment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid #dbdbdb;
+  padding: 13px 16px 12px 16px;
+}
+.comment button {
+  font-size: 14px;
+}
+
+.delete-alert {
+  position: fixed;
+  /* top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+.delete-alert .modal-content {
+  width: 272px;
+  background-color: #fff;
+  border-radius: 10px;
+  text-align: center;
+}
+.delete-alert .modal-content .modal-description {
+  padding: 22px 61px;
+  font-size: 16px;
+  border-bottom: 1px solid #dbdbdb;
+}
+.delete-alert .modal-content .modal-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.delete-alert .modal-content .modal-actions .cancel-button {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  padding: 14px 50px;
+  font-size: 14px;
+  border-right: 1px solid #dbdbdb;
+}
+.delete-alert .modal-content .modal-actions .delete-button {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  color: #9747FF;
+  font-size: 14px;
+  padding: 14px 50px;
+}
+
+/* button */
+.size-l, .size-m, .size-ms, .size-s {
+  background-color: #635CA5;
+  color: #FFFFFF;
+}
+
+.size-l:disabled, .size-m:disabled, .size-ms:disabled, .size-s:disabled {
+  background-color: #BCADDC;
+  color: #FFFFFF;
+}
+
+.size-l {
+  width: 322px;
+  padding: 13px 0px;
+  border-radius: 44px;
+  font-size: 14px;
+}
+.size-m {
+  width: 120px;
+  padding: 8px 0px;
+  border-radius: 30px;
+  font-size: 14px;
+}
+.size-ms {
+  width: 90px;
+  padding: 7px 0px;
+  border-radius: 32px;
+  font-size: 14px;
+}
+.size-s {
+  width: 56px;
+  padding: 7px 0px;
+  border-radius: 26px;
+  font-size: 12px;
+}
+
+.btn-unfollow-m {
+  background: #FFFFFF;
+  color: #767676;
+  border: 1px solid #dbdbdb;
+}
+
+.btn-cancle {
+  background: #FFFFFF;
+  color: #767676;
+  border: 1px solid #dbdbdb;
+}

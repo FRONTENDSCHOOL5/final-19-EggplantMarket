@@ -142,6 +142,16 @@ img {
 /* font */
 @font-face {
   font-family: Spoqa Han Sans Neo;
+  src: url("../font/SpoqaHanSansNeo-Thin.woff") format("woff");
+  font-weight: 100;
+}
+@font-face {
+  font-family: Spoqa Han Sans Neo;
+  src: url("../font/SpoqaHanSansNeo-Light.woff") format("woff");
+  font-weight: 300;
+}
+@font-face {
+  font-family: Spoqa Han Sans Neo;
   src: url("../font/SpoqaHanSansNeo-Regular.woff") format("woff");
   font-weight: 400;
 }
@@ -154,4 +164,8 @@ img {
   font-family: Spoqa Han Sans Neo;
   src: url("../font/SpoqaHanSansNeo-Bold.woff") format("woff");
   font-weight: 700;
+}
+
+body{
+  font-family: 'Spoqa Han Sans Neo';
 }

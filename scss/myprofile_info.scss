@@ -1,0 +1,98 @@
+@import "global";
+@import "variables";
+
+.my-profile-container {
+    text-align: center;
+    padding-top: 1.875rem;
+
+    a {
+        text-decoration: none;
+    }
+
+    .profile-top-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        a {
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+
+        .img-crop {
+            margin : {
+                left: 37px;
+                right: 37px;
+            }
+        }
+        .follow-wrap{
+            display: flex;
+            flex-direction: column-reverse;
+            p {
+                margin-top: 6px;
+                font-size: 0.5rem;
+                color: $gray300-color;
+            }
+        }
+
+        .follower a{
+            color: $black-color;
+        }
+        .following a{
+            color: $gray300-color;
+        }
+    }
+    .profile-name {
+        display: block;
+        font-size: 1rem;
+        font-weight: 700;
+        margin : {
+            top: 1rem;
+            bottom: .625rem;
+        }
+    }
+    & > p {
+        color: $gray300-color;
+        font-size: 0.875rem;
+        font-weight: 300;
+    }
+    .profile-id {
+        font-size: 0.75rem;
+    }
+    .profile-id::before {
+        content: "@ ";
+    }
+    .profile-intro {
+        font-size: 0.875rem;
+        margin: {
+            top: 1rem;
+            bottom: 1.5rem;
+        }
+    }
+
+    .btn-wrap {
+        font-size: 0;
+        line-height: 0;
+        :first-child {
+            margin-right: 12px;
+        }
+    }
+    .link-btn {
+        // 버튼 초기화
+        margin: 0;
+        padding: 0;
+        background-color: white;
+
+        // 스타일
+        border: 1px solid $gray100-color;
+        color: $gray300-color;
+        border-radius: 30px;
+        padding: 0.5rem 1.7rem;
+        font-size: 14px;
+        font-weight: 500;
+    }
+}
+
+// 질문
+// 일단 px->rem으로 변경
+// 폰트만 건들여야할까?

@@ -13,19 +13,16 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
+        gap: 37px;
         a {
             font-size: 1.125rem;
             font-weight: 700;
         }
 
         .img-crop {
-            width: 110px;
+            max-width: 110px;
+            flex-shrink: 0;
             aspect-ratio: 1/1;
-            margin : {
-                left: 37px;
-                right: 37px;
-            }
             border-radius: 50%;
             overflow: hidden;
             img {

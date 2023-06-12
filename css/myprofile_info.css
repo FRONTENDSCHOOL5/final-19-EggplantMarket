@@ -27,16 +27,17 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  gap: 37px;
 }
 .my-profile-container .profile-top-wrap a {
   font-size: 1.125rem;
   font-weight: 700;
 }
 .my-profile-container .profile-top-wrap .img-crop {
-  width: 110px;
+  max-width: 110px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
   aspect-ratio: 1/1;
-  margin-left: 37px;
-  margin-right: 37px;
   border-radius: 50%;
   overflow: hidden;
 }

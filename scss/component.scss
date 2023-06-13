@@ -1,6 +1,9 @@
 @import 'global';
 @import 'variables';
 
+.home-post, .home-post-onlytext{
+    margin-top: 20px;
+}
 .top{
     display: flex;
     justify-content: space-between;
@@ -112,6 +115,51 @@
                 padding: 14px 50px;
             }
         }
+    }
+}
+
+/* 게시물 */
+.user-follow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .front{
+        gap: 12px;
+        .profile-img{
+            width: 52px;
+        }
+        .user-info{
+            .user-id{
+                color: $gray300-color;
+                margin-top: 2px;
+            }
+        }
+    }
+}
+
+.post-edit{
+    margin: 16px auto 16px 54px;
+    .post-text{
+        margin-bottom: 16px;
+        line-height: 18px;
+    }
+    .post-img{
+        margin-bottom: 12px;
+    }
+    .post-icon{
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+        gap: 6px;
+        color: $gray300-color;
+        font-size: map-get( $font-sizes, "size12" );
+        .btn-comment{
+            margin-left: 10px;
+        }
+    }
+    .post-date{
+        color: $gray300-color;
+        font-size: map-get( $font-sizes, "size10" );
     }
 }
 

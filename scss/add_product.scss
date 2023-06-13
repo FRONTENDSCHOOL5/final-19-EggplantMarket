@@ -1,0 +1,63 @@
+@import "variables";
+@import "global";
+
+
+main{
+    min-width: calc(390px + 68px);
+    padding: 0 34px;
+}
+
+form{
+    min-width: 390px;
+    max-width: 40%;
+    margin: 0 auto;
+
+    color: $gray300-color;
+    font-size: .75rem;
+
+    & > label{
+        display: block;
+        margin-bottom: 2px;
+    }
+    & > input {
+        display: block;
+        width: 100%;
+
+        margin-bottom: 16px;
+
+        border: none;
+        border-bottom: 1px solid $gray100-color;
+        padding: 8px 0
+    }
+    & > input::placeholder{
+        font-size: .875rem;
+        color: $gray100-color;
+    }
+}
+
+
+.product-img {
+    border-radius: 20px;
+    background: #f2f2f2;
+    position: relative;
+    aspect-ratio: 5/3;
+    .btn-upload {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+    }
+    margin: {
+        top: 18px;
+        bottom: 30px
+    };
+}
+
+#product-img-upload {
+    display: none;
+}
+
+.upload-img:hover{
+    circle {
+        fill: $enabled-color;
+    }
+}

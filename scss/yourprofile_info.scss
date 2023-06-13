@@ -77,30 +77,33 @@
     .profile-intro {
         font-size: 0.875rem;
         margin: {
-            top: 1rem;
-            bottom: 1.5rem;
+            top: 16px;
+            bottom: 24px;
         }
     }
 
     .btn-wrap {
         font-size: 0;
         line-height: 0;
-        & :first-child {
-            margin-right: 12px;
+        button{
+            border: none;
+            background: none;
         }
-        
-        .btn-link {
-            // 버튼 초기화
-            background-color: white;
-        
-            // 스타일
-            border: 1px solid $gray100-color;
-            color: $gray300-color;
-            border-radius: 30px;
-            padding: 0.5rem 1.7rem;
-
-            font-size: 14px;
-            font-weight: 500;
+        .circle{
+            border: 1px solid $gray300-color;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            background: no-repeat center center;;
+        }
+        .btn-chat{
+            background-image: url(../assets//icon/icon-message-circle.svg)
+        }
+        .btn-share{
+            background-image: url(../assets//icon/icon-share.svg);
+        }
+        & :nth-child(2) {
+            margin: 0 12px;
         }
     }
 }

@@ -5,49 +5,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사용자 프로필 - 팔로워</title>
+    <title>팔로워 | 사용자 프로필</title>
 
     <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/component.css">
     <link rel="stylesheet" href="../css/profile_follow.css">
 </head>
 
 <body>
-    <ul class="follower-list">
-        <li class="follower-item">
-            <a class="user-info-wrap" href="#">
-                <div class="img-cover"><img src="../assets/profile_imgs/user1.jpg" alt=""></div>
-                <div class="user-info">
-                    <strong class="user-name"><span class="a11y-hidden">사용자 이름</span>애월읍 한라봉 최고 맛집</strong>
-                    <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>정성을 다해 농사짓는 한라봉 정성을 다해 농사짓는 한라봉 정성을 다해 농사짓는
-                        한라봉</p>
-                </div>
-            </a>
-            <!-- 공통 컴포넌트로 바꾸기 -->
-            <button class="btn-follow">팔로우</button>
-        </li>
-        <li class="follower-item">
-            <a class="user-info-wrap" href="#">
-                <div class="img-cover"><img src="../assets/profile_imgs/user2.jpg" alt=""></div>
-                <div class="user-info">
-                    <strong class="user-name"><span class="a11y-hidden">사용자 이름</span>한라봉의 신</strong>
-                    <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>30년 노하우로 정성스럽게 농사지은 노지30년 노하우로 정성스럽게 농사지은
-                        노지30년 노하우로 정성스럽게 농사지은 노지</p>
-                </div>
-            </a>
-            <!-- 공통 컴포넌트로 바꾸기 -->
-            <button class="btn-follow cancel">취소</button>
+    <header class="top nav-chat">
+        <h1 class="a11y-hidden">팔로워 목록</h1>
+        <button class="btn-back"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+        <p class="title-chat">Follower</p>
+    </header>
+    <main>
+        <ul class="follower-list">
+            <li class="follower-item">
+                <a class="user-info-wrap" href="#">
+                    <div class="img-cover"><img src="../assets/profile_imgs/user1.jpg" alt=""></div>
+                    <div class="user-info">
+                        <strong class="user-name"><span class="a11y-hidden">사용자 이름</span>애월읍 한라봉 최고 맛집</strong>
+                        <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>정성을 다해 농사짓는 한라봉 정성을 다해 농사짓는 한라봉
+                            정성을 다해 농사짓는
+                            한라봉</p>
+                        </div>
+                        </a>
+                <button class="btn-follow">팔로우</button>
+                </li>
+                <li class="follower-item">
+                    <a class="user-info-wrap" href="#">
+                        <div class="img-cover"><img src="../assets/profile_imgs/user2.jpg" alt=""></div>
+                        <div class="user-info">
+                            <strong class="user-name"><span class="a11y-hidden">사용자 이름</span>한라봉의 신</strong>
+                        <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>30년 노하우로 정성스럽게 농사지은 노지30년 노하우로
+                            정성스럽게 농사지은
+                            노지30년 노하우로 정성스럽게 농사지은 노지</p>
+                        </div>
+                        </a>
+                        <button class="btn-follow cancel">취소</button>
             </li>
             <li class="follower-item">
                 <a class="user-info-wrap" href="#">
                     <div class="img-cover"><img src="../assets/profile_imgs/user3.jpg" alt=""></div>
                     <div class="user-info">
                         <strong class="user-name"><span class="a11y-hidden">사용자 이름</span>한라봉의 신</strong>
-                        <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>30년 노하우로 정성스럽게 농사지은 노지30년 노하우로 정성스럽게
+                        <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>30년 노하우로 정성스럽게 농사지은 노지30년 노하우로
+                            정성스럽게
                             농사지은
                             노지30년 노하우로 정성스럽게 농사지은 노지</p>
                     </div>
                 </a>
-                <!-- 공통 컴포넌트로 바꾸기 -->
                 <button class="btn-follow cancel">취소</button>
             </li>
             <li class="follower-item">
@@ -58,7 +65,6 @@
                         <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>가지농장 컬렉터 i love eggplant</p>
                     </div>
                 </a>
-                <!-- 공통 컴포넌트로 바꾸기 -->
                 <button class="btn-follow cancel">취소</button>
             </li>
             <li class="follower-item">
@@ -69,7 +75,6 @@
                         <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>30년 노하우로 정성스럽게 농사지은 노지</p>
                     </div>
                 </a>
-                <!-- 공통 컴포넌트로 바꾸기 -->
                 <button class="btn-follow">팔로우</button>
             </li>
             <li class="follower-item">
@@ -80,10 +85,37 @@
                         <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>30년 노하우로 정성스럽게 농사지은 노지</p>
                     </div>
                 </a>
-                <!-- 공통 컴포넌트로 바꾸기 -->
                 <button class="btn-follow">팔로우</button>
-        </li>
-    </ul>
+                </li>
+                </ul>
+                </main>
+                <footer>
+                    <nav class="tab-menu">
+                        <p class="a11y-hidden">하단 탭 메뉴</p>
+                        <ul class="tab-item-list">
+                            <li class="tab-item-home">
+                                <a href="#">
+                                    <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
+                                </a>
+                            </li>
+                            <li class="tab-item-chat">
+                                <a href="#">
+                                    <p>채팅<span class="a11y-hidden">화면으로 이동</span></p>
+                                </a>
+                            </li>
+                            <li class="tab-item-follow">
+                                <a href="#">
+                                    <p>게시물 작성<span class="a11y-hidden">화면으로 이동</span></p>
+                                </a>
+                            </li>
+                            <li class="tab-item-more">
+                                <a href="#">
+                                    <p>프로필<span class="a11y-hidden">화면으로 이동</span></p>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </footer>
 </body>
 
 </html>

@@ -13,7 +13,7 @@
 .profile-container {
   position: relative;
   text-align: center;
-  padding-top: 1.875rem;
+  padding-top: 30px;
 }
 .profile-container a {
   text-decoration: none;
@@ -44,8 +44,8 @@
   position: absolute;
   top: 65px;
   left: 50%;
-  -webkit-transform: translateX(calc(-50% + 24px + 94px));
-          transform: translateX(calc(-50% + 24px + 94px));
+  -webkit-transform: translateX(calc(-50% + 1.5rem + 94px));
+          transform: translateX(calc(-50% + 1.5rem + 94px));
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -68,8 +68,8 @@
   color: #767676;
 }
 .profile-container .follow-wrap:nth-of-type(1) {
-  -webkit-transform: translateX(calc(-50% - 24px - 94px));
-          transform: translateX(calc(-50% - 24px - 94px));
+  -webkit-transform: translateX(calc(-50% - 1.5rem - 94px));
+          transform: translateX(calc(-50% - 1.5rem - 94px));
 }
 .profile-container .follow-wrap:nth-of-type(1) > strong {
   color: #000;
@@ -78,8 +78,8 @@
   display: block;
   font-size: 1rem;
   font-weight: 700;
-  margin-top: 1rem;
-  margin-bottom: 0.625rem;
+  margin-top: 16px;
+  margin-bottom: 10px;
 }
 .profile-container .profile-id {
   font-size: 0.75rem;
@@ -89,8 +89,8 @@
 }
 .profile-container .profile-intro {
   font-size: 0.875rem;
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
+  margin-top: 16px;
+  margin-bottom: 24px;
 }
 .profile-container .btn-wrap {
   font-size: 0;
@@ -104,7 +104,7 @@
   border: 1px solid #dbdbdb;
   color: #767676;
   border-radius: 30px;
-  padding: 0.5rem 1.7rem;
-  font-size: 14px;
+  padding: 8px 27px;
+  font-size: 0.875rem;
   font-weight: 500;
 }

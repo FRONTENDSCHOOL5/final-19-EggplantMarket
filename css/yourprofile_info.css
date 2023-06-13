@@ -13,7 +13,7 @@
 .profile-container {
   position: relative;
   text-align: center;
-  padding-top: 1.875rem;
+  padding-top: 30px;
 }
 .profile-container a {
   text-decoration: none;
@@ -78,8 +78,8 @@
   display: block;
   font-size: 1rem;
   font-weight: 700;
-  margin-top: 1rem;
-  margin-bottom: 0.625rem;
+  margin-top: 16px;
+  margin-bottom: 10px;
 }
 .profile-container .profile-id {
   font-size: 0.75rem;

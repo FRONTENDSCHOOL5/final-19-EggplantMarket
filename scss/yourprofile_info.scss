@@ -8,7 +8,7 @@
 .profile-container {
     position: relative;
     text-align: center;
-    padding-top: 1.875rem;
+    padding-top: 30px;
 
     a {
         text-decoration: none;
@@ -40,7 +40,7 @@
         order: -1;
         p {
             margin-top: 6px;
-            font-size: 0.5rem;
+            font-size: .5rem;
             color: $gray300-color;
         }
         & > strong {
@@ -62,20 +62,20 @@
         font-size: 1rem;
         font-weight: 700;
         margin : {
-            top: 1rem;
-            bottom: .625rem;
+            top: 16px;
+            bottom: 10px;
         }
     }
 
     .profile-id {
-        font-size: 0.75rem;
+        font-size: .75rem;
     }
     .profile-id::before {
         content: "@ ";
     }
 
     .profile-intro {
-        font-size: 0.875rem;
+        font-size: .875rem;
         margin: {
             top: 16px;
             bottom: 24px;

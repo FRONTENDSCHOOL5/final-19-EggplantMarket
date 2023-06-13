@@ -8,7 +8,7 @@
 .profile-container {
     position: relative;
     text-align: center;
-    padding-top: 1.875rem;
+    padding-top: 30px;
 
     a {
         text-decoration: none;
@@ -34,13 +34,13 @@
         position: absolute;
         top: 65px;
         left: 50%;
-        transform: translateX(calc(-50% + 24px + 94px));
+        transform: translateX(calc(-50% + 1.5rem + 94px));
         display: flex;
         flex-direction: column-reverse;
         order: -1;
         p {
             margin-top: 6px;
-            font-size: 0.5rem;
+            font-size: .5rem;
             color: $gray300-color;
         }
         & > strong {
@@ -51,7 +51,7 @@
     }
 
     .follow-wrap:nth-of-type(1){
-        transform: translateX(calc(-50% - 24px - 94px));
+        transform: translateX(calc(-50% - 1.5rem - 94px));
         & > strong {
             color: $black-color;
         }
@@ -62,23 +62,23 @@
         font-size: 1rem;
         font-weight: 700;
         margin : {
-            top: 1rem;
-            bottom: .625rem;
+            top: 16px;
+            bottom: 10px;
         }
     }
 
     .profile-id {
-        font-size: 0.75rem;
+        font-size: .75rem;
     }
     .profile-id::before {
         content: "@ ";
     }
 
     .profile-intro {
-        font-size: 0.875rem;
+        font-size: .875rem;
         margin: {
-            top: 1rem;
-            bottom: 1.5rem;
+            top: 16px;
+            bottom: 24px;
         }
     }
 
@@ -97,9 +97,9 @@
             border: 1px solid $gray100-color;
             color: $gray300-color;
             border-radius: 30px;
-            padding: 0.5rem 1.7rem;
+            padding: 8px 27px;
 
-            font-size: 14px;
+            font-size: .875rem;
             font-weight: 500;
         }
     }

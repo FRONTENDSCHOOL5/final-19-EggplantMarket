@@ -155,3 +155,7 @@ img {
   src: url("../font/SpoqaHanSansNeo-Bold.woff") format("woff");
   font-weight: 700;
 }
+
+body{
+  font-family: 'Spoqa Han Sans Neo';
+}

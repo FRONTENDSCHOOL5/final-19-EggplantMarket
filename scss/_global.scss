@@ -10,3 +10,14 @@
   padding: 0;
   position: absolute;
 }
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

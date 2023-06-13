@@ -1,0 +1,46 @@
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+form textarea {
+  margin-top: 20px;
+  border: none;
+  resize: none;
+  width: 60vw;
+}
+form img {
+  width: 75vw;
+  height: 220px;
+  border-radius: 10px;
+}
+
+.user-profile {
+  display: inline-block;
+  margin: 10px;
+}
+
+.input-file-btn {
+  margin-top: 10px;
+  width: 50px;
+  height: 50px;
+  margin-left: auto;
+  cursor: pointer;
+}
+.input-file-btn img {
+  width: 50px;
+  height: 50px;
+}

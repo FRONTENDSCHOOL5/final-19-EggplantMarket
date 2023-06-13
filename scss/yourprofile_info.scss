@@ -1,0 +1,109 @@
+@import "global";
+@import "variables";
+
+// 질문
+// 일단 px->rem으로 변경
+// 폰트만 건들여야할까?
+
+.profile-container {
+    position: relative;
+    text-align: center;
+    padding-top: 30px;
+
+    a {
+        text-decoration: none;
+    }
+    .profile-header{
+        display: flex;
+        flex-direction: column;
+    }
+    .img-crop {
+        margin: 0 auto;
+        width: 110px;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .follow-wrap{
+        position: absolute;
+        top: 65px;
+        left: 50%;
+        transform: translateX(calc(-50% + 24px + 94px));
+        display: flex;
+        flex-direction: column-reverse;
+        order: -1;
+        p {
+            margin-top: 6px;
+            font-size: .5rem;
+            color: $gray300-color;
+        }
+        & > strong {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: $gray300-color;
+        }
+    }
+
+    .follow-wrap:nth-of-type(1){
+        transform: translateX(calc(-50% - 24px - 94px));
+        & > strong {
+            color: $black-color;
+        }
+    }
+
+    .profile-name {
+        display: block;
+        font-size: 1rem;
+        font-weight: 700;
+        margin : {
+            top: 16px;
+            bottom: 10px;
+        }
+    }
+
+    .profile-id {
+        font-size: .75rem;
+    }
+    .profile-id::before {
+        content: "@ ";
+    }
+
+    .profile-intro {
+        font-size: .875rem;
+        margin: {
+            top: 16px;
+            bottom: 24px;
+        }
+    }
+
+    .btn-wrap {
+        font-size: 0;
+        line-height: 0;
+        button{
+            border: none;
+            background: none;
+        }
+        .circle{
+            border: 1px solid $gray300-color;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            background: no-repeat center center;;
+        }
+        .btn-chat{
+            background-image: url(../assets//icon/icon-message-circle.svg)
+        }
+        .btn-share{
+            background-image: url(../assets//icon/icon-share.svg);
+        }
+        & :nth-child(2) {
+            margin: 0 12px;
+        }
+    }
+}

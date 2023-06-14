@@ -1,0 +1,105 @@
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+button {
+  border: none;
+  background-color: initial;
+  padding: 0px;
+}
+
+input {
+  border: none;
+}
+
+a {
+  color: initial;
+  text-decoration: initial;
+}
+
+.follow-list {
+  padding: 24px 16px;
+}
+.follow-list li:first-child {
+  margin-top: 0;
+}
+.follow-list .follow-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 50px;
+  margin-top: 16px;
+}
+.follow-list .follow-item .user-img {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  margin-right: 12px;
+}
+.follow-list .follow-item .user-info {
+  width: calc(100% - 130px);
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+  margin-right: 12px;
+}
+.follow-list .follow-item .user-info .user-name {
+  display: inline-block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  line-height: 18px;
+  font-size: 14px;
+}
+.follow-list .follow-item .user-info .user-intro {
+  font-weight: 400;
+  line-height: 15px;
+  font-size: 12px;
+  color: #767676;
+}
+
+.btn-follow {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-preferred-size: 56px;
+      flex-basis: 56px;
+  height: 28px;
+  margin-left: auto;
+  color: #FFFFFF;
+  background-color: #635CA5;
+  border-radius: 26px;
+}
+
+.btn-follow.opposite {
+  color: #767676;
+  background-color: #FFFFFF;
+  border: 1px solid #dbdbdb;
+}
+
+.img-cover {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.img-cover img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}

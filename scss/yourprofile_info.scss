@@ -1,9 +1,22 @@
 @import "global";
 @import "variables";
 
-// 질문
-// 일단 px->rem으로 변경
-// 폰트만 건들여야할까?
+.img-crop {
+    margin: 0 auto;
+    width: 110px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+main {
+    min-width: 390px
+}
 
 .profile-container {
     position: relative;
@@ -16,18 +29,6 @@
     .profile-header{
         display: flex;
         flex-direction: column;
-    }
-    .img-crop {
-        margin: 0 auto;
-        width: 110px;
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-        overflow: hidden;
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
     }
 
     .follow-wrap{
@@ -85,10 +86,6 @@
     .btn-wrap {
         font-size: 0;
         line-height: 0;
-        button{
-            border: none;
-            background: none;
-        }
         .circle{
             border: 1px solid $gray300-color;
             border-radius: 50%;
@@ -96,6 +93,10 @@
             height: 34px;
             background: no-repeat center center;;
         }
+
+        display: flex;
+        justify-content: center;
+        
         .btn-chat{
             background-image: url(../assets//icon/icon-message-circle.svg)
         }
@@ -106,4 +107,10 @@
             margin: 0 12px;
         }
     }
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }

@@ -1,0 +1,62 @@
+@import "global";
+@import "variables";
+
+main {
+    min-width: 390px
+}
+
+.product{
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+    text-align: left;
+
+    &-container{
+        padding: 20px 0;
+        h2{
+            margin-bottom: 16px;
+            font-weight: 700;
+            margin-left: 18px;
+        }
+        position:relative;
+    }
+
+    &-list{
+        display: flex;
+        overflow-x: scroll;
+        &::-webkit-scrollbar{
+            display: none;
+        }
+        >:first-child{
+            margin-left: 18px;
+        }
+        >:last-child{
+            margin-right: 18px;
+        }
+    }
+
+    &-img{
+        width: inherit;
+        order: -1;
+        border-radius: 8px;
+    }
+
+    // 길면?
+    &-name{
+        width: inherit;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+        word-break:break-all;
+
+        margin:7px 0;
+    }
+    &-item + &-item{
+        margin-left: 5px;
+    }
+
+    &-price{
+        color: $price-color;
+        font-weight: 700;
+    }
+}

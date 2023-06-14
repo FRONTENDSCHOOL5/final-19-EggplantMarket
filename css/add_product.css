@@ -25,9 +25,13 @@ a {
   text-decoration: initial;
 }
 
-main {
+body {
   min-width: 458px;
+}
+
+main {
   padding: 0 34px;
+  margin-top: 30px;
 }
 
 form {

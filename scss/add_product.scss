@@ -1,10 +1,12 @@
 @import "variables";
 @import "global";
 
-
-main{
+body{
     min-width: calc(390px + 68px);
+}
+main{
     padding: 0 34px;
+    margin-top: 30px;
 }
 
 form{

@@ -1,0 +1,67 @@
+@import "variables";
+@import "global";
+
+body{
+    background-color: $enabled-color;
+    position: relative;
+    text-align: center;
+}
+
+.back{
+    height: calc(100vh - 310px);
+    background-image: url(../assets/symbol-logo.svg);
+    background-repeat: no-repeat;
+    background-position: 98% 98%;    
+}
+
+.login{
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    background-color: white;
+    border-radius: 20px 20px 0 0 ;
+    padding : 50px 34px 82px;
+    min-width: 390px;
+    width: 100%;
+
+    position: fixed;
+    bottom: 0;
+}
+
+.domain{
+    display: block;
+    border: 1px solid $gray300-color;
+    border-radius: 44px;
+    font-size: .875rem;
+    padding: 13px;
+
+    + .domain {
+        margin-top: 10px;
+    }
+    background: {
+        repeat : no-repeat;
+        position: 10px center;
+    };
+
+    &.kakao{
+        border-color: #F2C94C;
+        background-image: url(../assets/message-circle.svg);
+    }
+    &.google{
+        background-image: url(../assets/Google__G__Logo\ 2.svg);
+    }
+    &.facebook{
+        border-color: #2D9CDB;
+        background-image: url(../assets/facebook.svg);
+    }
+}
+
+.email {
+    font-size: .75rem;
+    margin-top: 20px;
+    color: $gray300-color;
+
+    span{
+        margin: 0 12px;
+    }
+}

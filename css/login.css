@@ -35,7 +35,7 @@ body {
   height: calc(100vh - 310px);
   background-image: url(../assets/symbol-logo.svg);
   background-repeat: no-repeat;
-  background-position: 98% 90%;
+  background-position: 98% 98%;
 }
 
 .login {

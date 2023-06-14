@@ -2,15 +2,17 @@
 @import "global";
 
 body{
-    min-width: calc(390px + 68px);
+    min-width: 390px;
 }
 main{
+    width: inherit;
     padding: 0 34px;
     margin-top: 30px;
+    box-sizing: border-box;
 }
 
 form{
-    min-width: 390px;
+    min-width: calc(390px - 34px * 2);
     max-width: 40%;
     margin: 0 auto;
 

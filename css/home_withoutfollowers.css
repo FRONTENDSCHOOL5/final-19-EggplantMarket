@@ -1,0 +1,78 @@
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+button {
+  border: none;
+  background-color: initial;
+  padding: 0px;
+}
+
+input {
+  border: none;
+}
+
+a {
+  color: initial;
+  text-decoration: initial;
+}
+
+.main-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.main-container p,
+.main-container div,
+.main-container a {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.main-container p {
+  font-size: 14px;
+  color: #767676;
+}
+
+.home-background {
+  background-image: url("../assets/symbol-logo-gray.svg");
+  background-size: contain;
+  width: 72px;
+  height: 100px;
+}
+
+.search-btn {
+  background-color: #635CA5;
+  color: #FFFFFF;
+  font-weight: 500;
+  text-align: center;
+  width: 120px;
+  padding: 13px 0px;
+  border-radius: 44px;
+  font-size: 14px;
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}

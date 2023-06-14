@@ -1,0 +1,99 @@
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+button {
+  border: none;
+  background-color: initial;
+  padding: 0px;
+}
+
+input {
+  border: none;
+}
+
+a {
+  color: initial;
+  text-decoration: initial;
+}
+
+main {
+  padding: 24px 16px;
+}
+
+.user-chat-list {
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.user-chat-list .profile-img {
+  -webkit-box-ordinal-group: 1;
+      -ms-flex-order: 0;
+          order: 0;
+  margin-right: 12px;
+}
+.user-chat-list .user-info {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  width: 100%;
+  overflow: hidden;
+  margin-right: 13px;
+}
+.user-chat-list .user-info .user-name {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  margin-bottom: 4px;
+}
+.user-chat-list .user-info .chat-content {
+  display: block;
+  color: #767676;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.user-chat-list .chat-date {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+  margin-left: auto;
+  font-size: 10px;
+  color: #dbdbdb;
+}
+
+.user-img {
+  position: relative;
+}
+.user-img .profile-dot {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 12px;
+  height: 12px;
+  background-color: #635CA5;
+  border-radius: 50%;
+  z-index: 4;
+}
+
+.tab-menu .tab-item-list li:nth-child(2) a::before {
+  background-image: url("../assets/icon/icon-message-circle-fill.svg");
+}

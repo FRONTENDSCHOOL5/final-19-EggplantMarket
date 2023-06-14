@@ -22,9 +22,9 @@
     <!-- 검색상단 -->
     <header class="top nav-search">
         <h1 class="a11y-hidden">검색상단</h1>
-        <button class="btn-back"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
         <label for="inp-search" class="a11y-hidden">계정 검색하기</label>
         <input type="text" id="inp-search" placeholder="계정 검색">
+        <button class="btn-back"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
     </header>
 
     <!-- 홈상단 -->
@@ -49,33 +49,6 @@
         <button class="btn-option"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
     </header>
 
-    <!-- 하단 탭 메뉴 -->
-    <nav class="tab-menu">
-        <p class="a11y-hidden">하단 탭 메뉴</p>
-        <ul class="tab-item-list">
-            <li class="tab-item-home">
-                <a href="#">
-                    <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
-                </a>
-            </li>
-            <li class="tab-item-chat">
-                <a href="#">
-                    <p>채팅<span class="a11y-hidden">화면으로 이동</span></p>
-                </a>
-            </li>
-            <li class="tab-item-follow">
-                <a href="#">
-                    <p>게시물 작성<span class="a11y-hidden">화면으로 이동</span></p>
-                </a>
-            </li>
-            <li class="tab-item-more">
-                <a href="#">
-                    <p>프로필<span class="a11y-hidden">화면으로 이동</span></p>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
     <!-- 댓글창 -->
     <section class="comment">
         <h2 class="a11y-hidden">댓글창</h2>
@@ -92,12 +65,40 @@
             <h2 class="modal-title a11y-hidden">삭제 확인</h2>
             <p class="modal-description">상품을 삭제할까요?</p>
             <div class="modal-actions">
-                <button class="left-button">취소</button>
                 <button class="right-button">삭제</button>
+                <button class="left-button">취소</button>
             </div>
         </div>
     </article>
 
+    <!-- 하단 탭 메뉴 -->
+    <footer>
+        <nav class="tab-menu">
+            <p class="a11y-hidden">하단 탭 메뉴</p>
+            <ul class="tab-item-list">
+                <li class="tab-item-home">
+                    <a href="#">
+                        <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
+                    </a>
+                </li>
+                <li class="tab-item-chat">
+                    <a href="#">
+                        <p>채팅<span class="a11y-hidden">화면으로 이동</span></p>
+                    </a>
+                </li>
+                <li class="tab-item-follow">
+                    <a href="#">
+                        <p>게시물 작성<span class="a11y-hidden">화면으로 이동</span></p>
+                    </a>
+                </li>
+                <li class="tab-item-more">
+                    <a href="#">
+                        <p>프로필<span class="a11y-hidden">화면으로 이동</span></p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
 </body>
 
 

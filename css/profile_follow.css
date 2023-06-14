@@ -31,25 +31,25 @@ a {
   text-decoration: initial;
 }
 
-.follower-list {
+.follow-list {
   padding: 24px 16px;
 }
-.follower-list li:first-child {
+.follow-list li:first-child {
   margin-top: 0;
 }
-.follower-list .follower-item {
+.follow-list .follow-item {
   position: relative;
   height: 50px;
   margin-top: 16px;
 }
-.follower-list .follower-item .user-info-wrap {
+.follow-list .follow-item .user-info-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: calc(100% - 68px);
   height: 100%;
 }
-.follower-list .follower-item .user-info-wrap .img-cover {
+.follow-list .follow-item .user-info-wrap .img-cover {
   -ms-flex-negative: 0;
       flex-shrink: 0;
   display: inline-block;
@@ -59,13 +59,13 @@ a {
   overflow: hidden;
   margin-right: 12px;
 }
-.follower-list .follower-item .user-info-wrap .img-cover img {
+.follow-list .follow-item .user-info-wrap .img-cover img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.follower-list .follower-item .user-info-wrap .user-info {
+.follow-list .follow-item .user-info-wrap .user-info {
   width: calc(100% - 62px);
   height: 100%;
   display: -webkit-box;
@@ -79,18 +79,18 @@ a {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
 }
-.follower-list .follower-item .user-info-wrap .user-info .user-name {
+.follow-list .follow-item .user-info-wrap .user-info .user-name {
   font-weight: 500;
   line-height: 18px;
   font-size: 14px;
 }
-.follower-list .follower-item .user-info-wrap .user-info .user-intro {
+.follow-list .follow-item .user-info-wrap .user-info .user-intro {
   font-weight: 400;
   line-height: 15px;
   font-size: 12px;
   color: #767676;
 }
-.follower-list .follower-item .btn-follow {
+.follow-list .follow-item .btn-follow {
   position: absolute;
   top: 50%;
   right: 0;
@@ -103,7 +103,7 @@ a {
   background-color: #635CA5;
   color: #FFFFFF;
 }
-.follower-list .follower-item .btn-follow.cancel {
+.follow-list .follow-item .btn-follow.cancel {
   background: #FFFFFF;
   color: #767676;
   border: 1px solid #dbdbdb;

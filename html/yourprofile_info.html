@@ -6,11 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>userprofile_info</title>
         <link rel="stylesheet" href="../css/reset.css">
+        <link rel="stylesheet" href="../css/component.css">
         <link rel="stylesheet" href="../css/yourprofile_info.css">
     </head>
     <body>
-        <header>
+        <header class="top nav-basic">
             <h1 class="a11y-hidden">사용자 프로필 화면</h1>
+            <button class="btn-back"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+            <button class="btn-option"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
         </header>
         <main>
             <section class="profile-container">
@@ -50,6 +53,31 @@
             </section>
         </main>
         <footer>
+            <nav class="tab-menu">
+                <p class="a11y-hidden">하단 탭 메뉴</p>
+                <ul class="tab-item-list">
+                    <li class="tab-item-home">
+                        <a href="#">
+                            <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
+                        </a>
+                    </li>
+                    <li class="tab-item-chat">
+                        <a href="#">
+                            <p>채팅<span class="a11y-hidden">화면으로 이동</span></p>
+                        </a>
+                    </li>
+                    <li class="tab-item-follow">
+                        <a href="#">
+                            <p>게시물 작성<span class="a11y-hidden">화면으로 이동</span></p>
+                        </a>
+                    </li>
+                    <li class="tab-item-more">
+                        <a href="#">
+                            <p>프로필<span class="a11y-hidden">화면으로 이동</span></p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </footer>
         <script></script>
     </body>

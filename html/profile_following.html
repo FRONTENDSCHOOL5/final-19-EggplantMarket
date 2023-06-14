@@ -8,14 +8,21 @@
     <title>팔로잉 | 사용자 프로필</title>
 
     <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/component.css">
     <link rel="stylesheet" href="../css/profile_follow.css">
 </head>
 
 <body>
+    <header class="top nav-chat">
+        <h1 class="a11y-hidden">팔로잉 목록</h1>
+        <button class="btn-back"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+        <p class="title-chat">Following</p>
+    </header>
+    <main>
     <ul class="follow-list">
         <li class="follow-item">
             <a class="user-info-wrap" href="#">
-                <div class="img-cover"><img src="../assets/profile_imgs/user1.jpg" alt=""></div>
+                <div class="img-cover"><img src="../assets/profile_imgs/user6.jpg" alt=""></div>
                 <div class="user-info">
                     <strong class="user-name"><span class="a11y-hidden">사용자 이름</span>애월읍 한라봉 최고 맛집</strong>
                     <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>정성을 다해 농사짓는 한라봉 정성을 다해 농사짓는
@@ -23,12 +30,11 @@
                         한라봉</p>
                 </div>
             </a>
-            <!-- 공통 컴포넌트로 바꾸기 -->
-            <button class="btn-follow cancel">취소</button>
+            <button class="btn-follow opposite">팔로잉</button>
         </li>
         <li class="follow-item">
             <a class="user-info-wrap" href="#">
-                <div class="img-cover"><img src="../assets/profile_imgs/user2.jpg" alt=""></div>
+                <div class="img-cover"><img src="../assets/profile_imgs/user5.jpg" alt=""></div>
                 <div class="user-info">
                     <strong class="user-name"><span class="a11y-hidden">사용자 이름</span>한라봉의 신</strong>
                     <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>30년 노하우로 정성스럽게 농사지은 노지30년 노하우로
@@ -36,12 +42,11 @@
                         노지30년 노하우로 정성스럽게 농사지은 노지</p>
                 </div>
             </a>
-            <!-- 공통 컴포넌트로 바꾸기 -->
-            <button class="btn-follow cancel">취소</button>
+            <button class="btn-follow">팔로우</button>
         </li>
         <li class="follow-item">
             <a class="user-info-wrap" href="#">
-                <div class="img-cover"><img src="../assets/profile_imgs/user3.jpg" alt=""></div>
+                <div class="img-cover"><img src="../assets/profile_imgs/user4.jpg" alt=""></div>
                 <div class="user-info">
                     <strong class="user-name"><span class="a11y-hidden">사용자 이름</span>한라봉의 신</strong>
                     <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>30년 노하우로 정성스럽게 농사지은 노지30년 노하우로
@@ -50,43 +55,67 @@
                         노지30년 노하우로 정성스럽게 농사지은 노지</p>
                 </div>
             </a>
-            <!-- 공통 컴포넌트로 바꾸기 -->
-            <button class="btn-follow cancel">취소</button>
+            <button class="btn-follow opposite">팔로잉</button>
         </li>
         <li class="follow-item">
             <a class="user-info-wrap" href="#">
-                <div class="img-cover"><img src="../assets/profile_imgs/user4.jpg" alt=""></div>
+                <div class="img-cover"><img src="../assets/profile_imgs/user3.jpg" alt=""></div>
                 <div class="user-info">
                     <strong class="user-name"><span class="a11y-hidden">사용자 이름</span>나 가지 좋아하네</strong>
                     <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>가지농장 컬렉터 i love eggplant</p>
                 </div>
             </a>
-            <!-- 공통 컴포넌트로 바꾸기 -->
-            <button class="btn-follow cancel">취소</button>
+            <button class="btn-follow opposite">팔로잉</button>
         </li>
         <li class="follow-item">
             <a class="user-info-wrap" href="#">
-                <div class="img-cover"><img src="../assets/profile_imgs/user5.jpg" alt=""></div>
+                <div class="img-cover"><img src="../assets/profile_imgs/user2.jpg" alt=""></div>
                 <div class="user-info">
                     <strong class="user-name"><span class="a11y-hidden">사용자 이름</span>한라봉의 신</strong>
                     <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>30년 노하우로 정성스럽게 농사지은 노지</p>
                 </div>
             </a>
-            <!-- 공통 컴포넌트로 바꾸기 -->
-            <button class="btn-follow cancel">취소</button>
+            <button class="btn-follow opposite">팔로잉</button>
         </li>
         <li class="follow-item">
             <a class="user-info-wrap" href="#">
-                <div class="img-cover"><img src="../assets/profile_imgs/user6.jpg" alt=""></div>
+                <div class="img-cover"><img src="../assets/profile_imgs/user1.jpg" alt=""></div>
                 <div class="user-info">
                     <strong class="user-name"><span class="a11y-hidden">사용자 이름</span>한라봉의 신</strong>
                     <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>30년 노하우로 정성스럽게 농사지은 노지</p>
                 </div>
             </a>
-            <!-- 공통 컴포넌트로 바꾸기 -->
-            <button class="btn-follow cancel">취소</button>
-        </li>
-    </ul>
+            <button class="btn-follow">팔로우</button>
+            </li>
+            </ul>
+            </main>
+            <footer>
+                <nav class="tab-menu">
+                    <p class="a11y-hidden">하단 탭 메뉴</p>
+                    <ul class="tab-item-list">
+                        <li class="tab-item-home">
+                            <a href="#">
+                                <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
+                            </a>
+                        </li>
+                        <li class="tab-item-chat">
+                            <a href="#">
+                                <p>채팅<span class="a11y-hidden">화면으로 이동</span></p>
+                            </a>
+                        </li>
+                        <li class="tab-item-follow">
+                            <a href="#">
+                                <p>게시물 작성<span class="a11y-hidden">화면으로 이동</span></p>
+                            </a>
+                        </li>
+                        <li class="tab-item-more">
+                            <a href="#">
+                                <p>프로필<span class="a11y-hidden">화면으로 이동</span></p>
+                            </a>
+                        </li>
+                    </ul>
+    </nav>
+    </footer>
 </body>
 
 </html>

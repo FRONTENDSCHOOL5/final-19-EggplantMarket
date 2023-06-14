@@ -103,7 +103,7 @@ a {
   background-color: #635CA5;
   color: #FFFFFF;
 }
-.follow-list .follow-item .btn-follow.cancel {
+.follow-list .follow-item .btn-follow.opposite {
   background: #FFFFFF;
   color: #767676;
   border: 1px solid #dbdbdb;

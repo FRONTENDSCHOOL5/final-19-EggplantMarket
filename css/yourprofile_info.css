@@ -31,6 +31,24 @@ a {
   text-decoration: initial;
 }
 
+.img-crop {
+  margin: 0 auto;
+  width: 110px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.img-crop img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+main {
+  min-width: 390px;
+}
+
 .profile-container {
   position: relative;
   text-align: center;
@@ -47,19 +65,6 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-}
-.profile-container .img-crop {
-  margin: 0 auto;
-  width: 110px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  overflow: hidden;
-}
-.profile-container .img-crop img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 .profile-container .follow-wrap {
   position: absolute;
@@ -116,10 +121,12 @@ a {
 .profile-container .btn-wrap {
   font-size: 0;
   line-height: 0;
-}
-.profile-container .btn-wrap button {
-  border: none;
-  background: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .profile-container .btn-wrap .circle {
   border: 1px solid #767676;
@@ -136,4 +143,10 @@ a {
 }
 .profile-container .btn-wrap :nth-child(2) {
   margin: 0 12px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

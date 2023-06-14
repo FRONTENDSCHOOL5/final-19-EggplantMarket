@@ -86,10 +86,6 @@ main {
     .btn-wrap {
         font-size: 0;
         line-height: 0;
-        button{
-            border: none;
-            background: none;
-        }
         .circle{
             border: 1px solid $gray300-color;
             border-radius: 50%;
@@ -97,6 +93,10 @@ main {
             height: 34px;
             background: no-repeat center center;;
         }
+
+        display: flex;
+        justify-content: center;
+        
         .btn-chat{
             background-image: url(../assets//icon/icon-message-circle.svg)
         }

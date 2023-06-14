@@ -115,10 +115,12 @@ main {
 .profile-container .btn-wrap {
   font-size: 0;
   line-height: 0;
-}
-.profile-container .btn-wrap button {
-  border: none;
-  background: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .profile-container .btn-wrap .circle {
   border: 1px solid #767676;

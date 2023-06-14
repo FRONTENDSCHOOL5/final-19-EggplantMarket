@@ -1,0 +1,82 @@
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+button {
+  border: none;
+  background-color: initial;
+  padding: 0px;
+}
+
+input {
+  border: none;
+}
+
+a {
+  color: initial;
+  text-decoration: initial;
+}
+
+body {
+  background-color: #635CA5;
+  position: relative;
+  text-align: center;
+}
+
+.back {
+  height: calc(100vh - 310px);
+  background-image: url(../assets/symbol-logo.svg);
+  background-repeat: no-repeat;
+  background-position: 98% 98%;
+}
+
+.login {
+  background-color: white;
+  border-radius: 20px 20px 0 0;
+  padding: 50px 34px 82px;
+  min-width: 390px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.domain {
+  display: block;
+  border: 1px solid #767676;
+  border-radius: 44px;
+  font-size: 0.875rem;
+  padding: 13px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+.domain + .domain {
+  margin-top: 10px;
+}
+.domain.kakao {
+  border-color: #F2C94C;
+  background-image: url(../assets/message-circle.svg);
+}
+.domain.google {
+  background-image: url(../assets/Google__G__Logo\ 2.svg);
+}
+.domain.facebook {
+  border-color: #2D9CDB;
+  background-image: url(../assets/facebook.svg);
+}
+
+.email {
+  font-size: 0.75rem;
+  margin-top: 20px;
+  color: #767676;
+}
+.email span {
+  margin: 0 12px;
+}

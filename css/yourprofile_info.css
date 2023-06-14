@@ -10,6 +10,21 @@
   position: absolute;
 }
 
+button {
+  border: none;
+  background-color: initial;
+  padding: 0px;
+}
+
+input {
+  border: none;
+}
+
+a {
+  color: initial;
+  text-decoration: initial;
+}
+
 .profile-container {
   position: relative;
   text-align: center;

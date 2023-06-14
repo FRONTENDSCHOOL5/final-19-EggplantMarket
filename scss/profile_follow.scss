@@ -9,74 +9,65 @@ margin-top: 0;
 }
 
 .follow-item {
-position: relative;
+display: flex;
+    align-items: center;
     height: 50px;
     margin-top: 16px;
 
-// 1. (사용자 사진, 계정이름, 소개) 왼쪽 부분
-.user-info-wrap {
-        display: flex; // a태그 inline 요소 -> block 요소 + 정렬
-        width: calc(100% - 68px);
-        height: 100%;
-
-.img-cover {
-// 재사용되는 코드
-    flex-shrink: 0;
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 12px;
-
-img {
-width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+.user-img {
+        flex-shrink: 0;
+margin-right: 12px;
 }
 
 .user-info {
-    width: calc(100% - 62px);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+width: calc(100% - 130px);
+    flex-shrink: 1;
+    margin-right: 12px;
 
 .user-name {
+display: inline-block;
+    margin-bottom: 6px;
 font-weight: 500;
-    line-height: 18px;
+line-height: 18px;
     font-size: map-get($font-sizes, "size14");
 }
 
 .user-intro {
-    font-weight: 400;
+font-weight: 400;
     line-height: 15px;
     font-size: map-get($font-sizes, "size12");
     color: $gray300-color;
 }
 }
 }
-// 2. (팔로우 및 취소 버튼) 오른쪽 부분
-// 추후 mixin으로 변경
+}
 .btn-follow {
-position: absolute;
-    top: 50%;
-    right: 0;
-    width: 56px;
+flex-shrink: 0;
+    flex-basis: 56px;
     height: 28px;
-    transform: translateY(-50%);
+margin-left: auto;
 
-border: none;
-border-radius: 26px;
+color: #FFFFFF;
     background-color: $enabled-color;
-    color: #FFFFFF;
+border-radius: 26px;
 }
 
 .btn-follow.opposite {
-    background: #FFFFFF;
-    color: $gray300-color;
-    border: 1px solid $gray100-color;
+color: $gray300-color;
+background-color: #FFFFFF;
+border: 1px solid $gray100-color;
 }
+// 재사용되는 코드
+.img-cover {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
 }
 }

@@ -38,73 +38,68 @@ a {
   margin-top: 0;
 }
 .follow-list .follow-item {
-  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   height: 50px;
   margin-top: 16px;
 }
-.follow-list .follow-item .user-info-wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: calc(100% - 68px);
-  height: 100%;
-}
-.follow-list .follow-item .user-info-wrap .img-cover {
+.follow-list .follow-item .user-img {
   -ms-flex-negative: 0;
       flex-shrink: 0;
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  overflow: hidden;
   margin-right: 12px;
 }
-.follow-list .follow-item .user-info-wrap .img-cover img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+.follow-list .follow-item .user-info {
+  width: calc(100% - 130px);
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+  margin-right: 12px;
 }
-.follow-list .follow-item .user-info-wrap .user-info {
-  width: calc(100% - 62px);
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-}
-.follow-list .follow-item .user-info-wrap .user-info .user-name {
+.follow-list .follow-item .user-info .user-name {
+  display: inline-block;
+  margin-bottom: 6px;
   font-weight: 500;
   line-height: 18px;
   font-size: 14px;
 }
-.follow-list .follow-item .user-info-wrap .user-info .user-intro {
+.follow-list .follow-item .user-info .user-intro {
   font-weight: 400;
   line-height: 15px;
   font-size: 12px;
   color: #767676;
 }
-.follow-list .follow-item .btn-follow {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  width: 56px;
+
+.btn-follow {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-preferred-size: 56px;
+      flex-basis: 56px;
   height: 28px;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  border: none;
-  border-radius: 26px;
-  background-color: #635CA5;
+  margin-left: auto;
   color: #FFFFFF;
+  background-color: #635CA5;
+  border-radius: 26px;
 }
-.follow-list .follow-item .btn-follow.opposite {
-  background: #FFFFFF;
+
+.btn-follow.opposite {
   color: #767676;
+  background-color: #FFFFFF;
   border: 1px solid #dbdbdb;
+}
+
+.img-cover {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.img-cover img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }

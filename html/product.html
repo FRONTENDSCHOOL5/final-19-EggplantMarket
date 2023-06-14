@@ -11,16 +11,17 @@
 </head>
 <body>
     <header class="top nav-upload">
-        <h1 class="a11y-hidden">팔로우페이지상단</h1>
+        <h1 class="a11y-hidden">상품 등록 상단</h1>
         <button class="btn-back"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
         <button class="size-ms btn-save" form="upload-product" disabled>저장<span class="a11y-hidden">버튼</span></button>
     </header>
     <main>
         <form action="" id="upload-product">
             
-            <h2>이미지 등록</h2>
+            <h2>상품 등록</h2>
             
-            <div class="product-img">
+            <article class="product-img">
+                
                 <label class="btn-upload" for="product-img-upload">
                     <span class="a11y-hidden">상품 이미지 업로드 버튼</span>
                     <svg class="upload-img" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +32,7 @@
                     </svg>                            
                 </label>
                 <input id="product-img-upload" type="file">
-            </div>
+            </article>
             
             <label for="product-name">상품명</label>
             <input id="product-name" type="text" placeholder="2~15자 이내여야 합니다.">

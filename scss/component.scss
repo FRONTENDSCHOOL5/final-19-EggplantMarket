@@ -37,7 +37,11 @@
     }
 }
 .nav-search{
+    .btn-button{
+        order: 0;
+    }
     #inp-search{
+        order: 1;
         flex-grow: 1;
         margin-left: 20px;
         border-radius: 32px;
@@ -60,89 +64,6 @@
     .title-chat{
         font-size: map-get($font-sizes,"size14");
         font-weight: 500;
-    }
-}
-
-.tab-menu{
-    border-top: 1px solid $gray100-color;
-    .tab-item-list{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        li{
-            a{  
-                width: 84px;
-                display: inline-block;
-                position: relative;
-                font-size: map-get($font-sizes, "size10");
-                color: $gray300-color;
-                text-align: center;
-            }
-            p {
-                font-weight: 400;
-                padding-top: 40px;
-                margin: 0;
-                position: relative;
-                top: 100%;
-                left: 2%;
-            }
-        }
-        li:first-child {
-            a::before{
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 40%;
-                width: 20px;
-                height: 100%;
-                background-image: url("../assets/icon/icon-home.svg");
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: contain;
-            }
-        }
-        li:nth-child(2) {
-            a::before{
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 40%;
-                width: 20px;
-                height: 100%;
-                background-image: url("../assets/icon/icon-message-circle.svg");
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: contain;
-            }
-        }
-        li:nth-child(3) {
-            a::before{
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 40%;
-                width: 20px;
-                height: 100%;
-                background-image: url("../assets/icon/icon-edit.svg");
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: contain;
-            }
-        }
-        li:nth-child(4) {
-            a::before{
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 40%;
-                width: 20px;
-                height: 100%;
-                background-image: url("../assets/icon/icon-user.svg");
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: contain;
-            }
-        }
     }
 }
 
@@ -182,23 +103,26 @@
             border-bottom: 0.5px solid $gray100-color;
             font-weight: 500;
         }
-        .modal-actions {
-            display: flex;
-            justify-content: center;
-            font-weight: 400;
-            .left-button {
-                width: 126px;
-                padding: 14px 48px;
-                font-size: map-get($font-sizes, "size14");
-                border-right: 0.5px solid $gray100-color;
-            }
-            .right-button {
-                width: 126px;
-                padding: 14px 49px;
-                color: $highlight-color;
-                font-size: map-get($font-sizes, "size14");
-            }
-        }
+    }
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    font-weight: 400;
+    .left-button {
+        order: 0;
+        width: 126px;
+        padding: 14px 48px;
+        font-size: map-get($font-sizes, "size14");
+        border-right: 0.5px solid $gray100-color;
+    }
+    .right-button {
+        order: 1;
+        width: 126px;
+        padding: 14px 49px;
+        color: $highlight-color;
+        font-size: map-get($font-sizes, "size14");
     }
 }
 
@@ -229,21 +153,24 @@
     .user-info{
         order: 1;
         margin-right: auto;
-        .user-name{
-            font-size: map-get($font-sizes, "size14" );
-            font-weight: 500;
-            line-height: 18px;
-        }
-        .user-id{
-            color: $gray300-color;
-            font-size: map-get($font-sizes, "size12" );
-            font-weight: 400;
-            margin-top: 2px;
-        }
     }
     .btn-option{
         order: 2;
         margin-left: auto;
+    }
+}
+
+.user-info{
+    .user-name{
+        font-size: map-get($font-sizes, "size14" );
+        font-weight: 500;
+        line-height: 18px;
+    }
+    .user-id{
+        color: $gray300-color;
+        font-size: map-get($font-sizes, "size12" );
+        font-weight: 400;
+        margin-top: 2px;
     }
 }
 
@@ -253,8 +180,18 @@
         margin-bottom: 16px;
         line-height: 18px;
     }
-    .post-img{
-        margin-bottom: 12px;
+.img-cover {
+    max-width: 304px;
+    margin-bottom: 12px;
+border-radius: 10px;
+    overflow: hidden;
+
+    .post-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
     }
     .post-icon{
         display: flex;
@@ -271,7 +208,7 @@
         color: $gray300-color;
         font-size: map-get( $font-sizes, "size10" );
     }
-}
+
 
 /* button */
 .size-l, .size-m, .size-ms, .size-s {
@@ -314,14 +251,71 @@
     }
 }
 
-.btn-unfollow-m{
+.cancle{
     background: #FFFFFF;
     color: $gray300-color;
     border: 1px solid $gray100-color;
 }
 
-.btn-cancle{
-    background: #FFFFFF;
-    color: $gray300-color;
-    border: 1px solid $gray100-color;
+// 푸터 - 하단 탭 메뉴
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.tab-item-list{
+    border-top: 0.5px solid $gray100-color;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    li{
+        a{  
+            top: 0;
+            width: 84px;
+            display: inline-block;
+            font-size: map-get($font-sizes, "size10");
+            color: $gray300-color;
+            text-align: center;
+            background-repeat: no-repeat;
+            background-position: 50% 40%;
+            background-size: 20px 20px;
+        }
+        p {
+            font-weight: 400;
+            padding-top: 40px;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+    }
+    li:first-child {
+        a{
+            background-image: url("../assets/icon/icon-home.svg");
+        }
+        a:hover{
+            background-image: url("../assets/icon/icon-home-fill.svg");
+        }
+    }
+    li:nth-child(2) {
+        a{
+            background-image: url("../assets/icon/icon-message-circle.svg");
+        }
+        a:hover{
+            background-image: url("../assets/icon/icon-message-circle-fill.svg");
+        }
+    }
+    li:nth-child(3) {
+        a{
+            background-image: url("../assets/icon/icon-edit.svg");
+        }
+    }
+    li:nth-child(4) {
+        a{
+            background-image: url("../assets/icon/icon-user.svg");
+        }
+        a:hover{
+            background-image: url("../assets/icon/icon-user-fill.svg");
+        }
+    }
 }

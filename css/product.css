@@ -26,16 +26,19 @@ a {
 }
 
 body {
-  min-width: 458px;
+  min-width: 390px;
 }
 
 main {
+  width: inherit;
   padding: 0 34px;
   margin-top: 30px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 form {
-  min-width: 390px;
+  min-width: 322px;
   max-width: 40%;
   margin: 0 auto;
   color: #767676;

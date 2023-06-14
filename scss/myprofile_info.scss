@@ -5,7 +5,25 @@
 // 일단 px->rem으로 변경
 // 폰트만 건들여야할까?
 
+.img-crop {
+    margin: 0 auto;
+    width: 110px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+main {
+    min-width: 390px
+}
+
 .profile-container {
+    
     position: relative;
     text-align: center;
     padding-top: 30px;
@@ -16,18 +34,6 @@
     .profile-header{
         display: flex;
         flex-direction: column;
-    }
-    .img-crop {
-        margin: 0 auto;
-        width: 110px;
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-        overflow: hidden;
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
     }
 
     .follow-wrap{
@@ -103,4 +109,10 @@
             font-weight: 500;
         }
     }
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }

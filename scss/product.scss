@@ -17,7 +17,7 @@ form{
     margin: 0 auto;
 
     color: $gray300-color;
-    font-size: .75rem;
+    font-size: map-get($font-sizes,"size12");
 
     & > label{
         display: block;
@@ -34,7 +34,7 @@ form{
         padding: 8px 0
     }
     & > input::placeholder{
-        font-size: .875rem;
+        font-size: map-get($font-sizes,"size14");
         color: $gray100-color;
     }
 }
@@ -42,7 +42,7 @@ form{
 
 .product-img {
     border-radius: 20px;
-    background: #f2f2f2;
+    background: $gray-color;
     position: relative;
     aspect-ratio: 5/3;
     .btn-upload {

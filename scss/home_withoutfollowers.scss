@@ -11,7 +11,7 @@
     }
 
     p {
-        font-size: 14px;
+        font-size: map-get($font-sizes,"size14");
         color: $gray300-color;
     }
 
@@ -33,14 +33,14 @@
 }
 
 .search-btn {
-    background-color: #635CA5;
-    color: #FFFFFF;
+    background-color: $enabled-color;
+    color: $white-color;
     font-weight: 500;
     text-align: center;
     width: 120px;
     padding: 13px 0px;
     border-radius: 44px;
-    font-size: 14px;
+    font-size: map-get($font-sizes,"size14");
 }
 
 footer {

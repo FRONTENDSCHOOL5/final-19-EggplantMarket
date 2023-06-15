@@ -2,61 +2,63 @@
 @import 'variables';
 
 .follow-list {
-padding: 24px 16px;
+    padding: 24px 16px;
 
-li:first-child {
-margin-top: 0;
+    li:first-child {
+        margin-top: 0;
+    }
+
+    .follow-item {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        margin-top: 16px;
+
+        .user-img {
+            flex-shrink: 0;
+            margin-right: 12px;
+        }
+
+        .user-info {
+            width: calc(100% - 130px);
+            flex-shrink: 1;
+            margin-right: 12px;
+
+            .user-name {
+                display: inline-block;
+                margin-bottom: 6px;
+                font-weight: 500;
+                line-height: 18px;
+                font-size: map-get($font-sizes, "size14");
+            }
+
+            .user-intro {
+                font-weight: 400;
+                line-height: 15px;
+                font-size: map-get($font-sizes, "size12");
+                color: $gray300-color;
+            }
+        }
+    }
 }
 
-.follow-item {
-display: flex;
-    align-items: center;
-    height: 50px;
-    margin-top: 16px;
-
-.user-img {
-        flex-shrink: 0;
-margin-right: 12px;
-}
-
-.user-info {
-width: calc(100% - 130px);
-    flex-shrink: 1;
-    margin-right: 12px;
-
-.user-name {
-display: inline-block;
-    margin-bottom: 6px;
-font-weight: 500;
-line-height: 18px;
-    font-size: map-get($font-sizes, "size14");
-}
-
-.user-intro {
-font-weight: 400;
-    line-height: 15px;
-    font-size: map-get($font-sizes, "size12");
-    color: $gray300-color;
-}
-}
-}
-}
 .btn-follow {
-flex-shrink: 0;
+    flex-shrink: 0;
     flex-basis: 56px;
     height: 28px;
-margin-left: auto;
+    margin-left: auto;
 
-color: #FFFFFF;
+    color: $white-color;
     background-color: $enabled-color;
-border-radius: 26px;
+    border-radius: 26px;
 }
 
 .btn-follow.opposite {
-color: $gray300-color;
-background-color: #FFFFFF;
-border: 1px solid $gray100-color;
+    color: $gray300-color;
+    background-color: $white-color;
+    border: 1px solid $gray100-color;
 }
+
 // 재사용되는 코드
 .img-cover {
     display: inline-block;
@@ -69,5 +71,5 @@ border: 1px solid $gray100-color;
         width: 100%;
         height: 100%;
         object-fit: cover;
-}
+    }
 }

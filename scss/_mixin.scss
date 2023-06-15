@@ -1,1 +1,4 @@
 // 믹스인
+@mixin bg-icon($name, $path:"../assets/icon/", $format: "svg"){
+    background-image: url("#{$path}#{$name}.#{$format}");
+}

@@ -98,7 +98,7 @@ main {
           transform: translateX(calc(-50% - 1.5rem - 94px));
 }
 .profile-container .follow-wrap:nth-of-type(1) > strong {
-  color: #000;
+  color: #000000;
 }
 .profile-container .profile-name {
   display: block;
@@ -126,8 +126,8 @@ main {
   margin-right: 12px;
 }
 .profile-container .btn-wrap .btn-link {
-  background-color: white;
-  border: 1px solid #dbdbdb;
+  background-color: #FFFFFF;
+  border: 1px solid #DBDBDB;
   color: #767676;
   border-radius: 30px;
   padding: 8px 27px;

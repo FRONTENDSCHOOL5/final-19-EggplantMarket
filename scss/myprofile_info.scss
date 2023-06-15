@@ -1,9 +1,6 @@
 @import "global";
 @import "variables";
 
-// 질문
-// 일단 px->rem으로 변경
-// 폰트만 건들여야할까?
 
 .img-crop {
     margin: 0 auto;
@@ -50,7 +47,7 @@ main {
             color: $gray300-color;
         }
         & > strong {
-            font-size: 1.125rem;
+            font-size: map-get($font-sizes,"size18");
             font-weight: 700;
             color: $gray300-color;
         }
@@ -65,7 +62,7 @@ main {
 
     .profile-name {
         display: block;
-        font-size: 1rem;
+        font-size: map-get($font-sizes,"size16");
         font-weight: 700;
         margin : {
             top: 16px;
@@ -74,14 +71,14 @@ main {
     }
 
     .profile-id {
-        font-size: .75rem;
+        font-size: map-get($font-sizes,"size12");
     }
     .profile-id::before {
         content: "@ ";
     }
 
     .profile-intro {
-        font-size: .875rem;
+        font-size: map-get($font-sizes,"size14");
         margin: {
             top: 16px;
             bottom: 24px;
@@ -97,7 +94,7 @@ main {
         
         .btn-link {
             // 버튼 초기화
-            background-color: white;
+            background-color: $white-color;
         
             // 스타일
             border: 1px solid $gray100-color;
@@ -105,7 +102,7 @@ main {
             border-radius: 30px;
             padding: 8px 27px;
 
-            font-size: .875rem;
+            font-size: map-get($font-sizes,"size14");
             font-weight: 500;
         }
     }

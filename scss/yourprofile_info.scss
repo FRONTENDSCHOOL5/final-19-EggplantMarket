@@ -1,5 +1,6 @@
 @import "global";
 @import "variables";
+@import "mixin";
 
 .img-crop {
     margin: 0 auto;
@@ -45,7 +46,7 @@ main {
             color: $gray300-color;
         }
         & > strong {
-            font-size: 1.125rem;
+            font-size: map-get($font-sizes,"size18");
             font-weight: 700;
             color: $gray300-color;
         }
@@ -60,7 +61,7 @@ main {
 
     .profile-name {
         display: block;
-        font-size: 1rem;
+        font-size: map-get($font-sizes,"size16");
         font-weight: 700;
         margin : {
             top: 16px;
@@ -69,14 +70,14 @@ main {
     }
 
     .profile-id {
-        font-size: .75rem;
+        font-size: map-get($font-sizes,"size12");
     }
     .profile-id::before {
         content: "@ ";
     }
 
     .profile-intro {
-        font-size: .875rem;
+        font-size: map-get($font-sizes,"size14");
         margin: {
             top: 16px;
             bottom: 24px;
@@ -98,10 +99,10 @@ main {
         justify-content: center;
         
         .btn-chat{
-            background-image: url(../assets//icon/icon-message-circle.svg)
+            @include bg-icon(icon-message-circle);
         }
         .btn-share{
-            background-image: url(../assets//icon/icon-share.svg);
+            @include bg-icon(icon-share)
         }
         & :nth-child(2) {
             margin: 0 12px;

@@ -2,10 +2,10 @@
 @import 'variables';
 
 .top{
-    background-color: #FFFFFF;
+    background-color: $white-color;
 }
 body{
-    background-color: #f2f2f2;
+    background-color: $gray-color;
 }
 
 
@@ -47,7 +47,6 @@ main{
     .chat-time{
         font-size: map-get($font-sizes, size10 );
         color: $gray300-color;
-        // bottom: 0;
         padding-bottom: 5px;
         align-self: flex-end;  
     }
@@ -59,7 +58,7 @@ main{
     }
     .content-text{
         border-radius: 0px 12px 12px 12px;
-        background-color: #FFFFFF;
+        background-color: $white-color;
     }
     .chat-time{
         margin-left: 6px;
@@ -70,7 +69,7 @@ main{
     justify-content:flex-end;
     .content-text{
         order: 1;
-        color: #FFFFFF;
+        color: $white-color;
         margin: 0 16px 0 12px;
         border-radius: 12px 0px 12px 12px;
         background-color: $enabled-color;
@@ -94,7 +93,7 @@ main{
 }
 
 .comment{
-    background-color: #FFFFFF;
+    background-color: $white-color;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -105,7 +104,7 @@ main{
 
 // 모달창 부분
 .post-modal{
-    background-color: #FFFFFF;
+    background-color: $white-color;
     position: fixed;
     bottom: 0;
     width: 100%;

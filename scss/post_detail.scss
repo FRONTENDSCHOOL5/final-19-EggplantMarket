@@ -8,15 +8,15 @@ main {
 .user-comment-info {
     display: flex;
     .user-name {
-        font-size: .875rem;
-        color: #000000;
+        font-size: map-get($font-sizes,"size14");
+        color: $black-color;
     }
 }
 
 .comment-time {
     margin-left: 6px;
-    font-size: 10px;
-    color: #767676;
+    font-size: map-get($font-sizes,"size10");
+    color: $gray300-color;
     margin-top: auto;
 }
 
@@ -29,11 +29,11 @@ main {
     .comment-text{
         margin-bottom: 16px;
         line-height: 18px;
-        font-size: 14px;
+        font-size: map-get($font-sizes,"size14");
         color: #333333;
     }
 }
 
 .home-post {
-    border-bottom: 1px solid #DBDBDB;
+    border-bottom: 1px solid $gray100-color;
 }

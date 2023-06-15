@@ -10,6 +10,12 @@
   position: absolute;
 }
 
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 button {
   border: none;
   background-color: initial;
@@ -53,33 +59,33 @@ form > input {
   width: 100%;
   margin-bottom: 16px;
   border: none;
-  border-bottom: 1px solid #dbdbdb;
+  border-bottom: 1px solid #DBDBDB;
   padding: 8px 0;
 }
 form > input::-webkit-input-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #DBDBDB;
 }
 form > input::-moz-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #DBDBDB;
 }
 form > input:-ms-input-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #DBDBDB;
 }
 form > input::-ms-input-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #DBDBDB;
 }
 form > input::placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #DBDBDB;
 }
 
 .product-img {
   border-radius: 20px;
-  background: #f2f2f2;
+  background: #F2F2F2;
   position: relative;
   aspect-ratio: 5/3;
   margin-top: 18px;

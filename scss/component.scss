@@ -9,6 +9,7 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid $gray100-color;
+    background-color: $white-color;
 }
 .nav{
     &-upload{
@@ -46,7 +47,7 @@
         margin-left: 20px;
         border-radius: 32px;
         padding: 7px 0px 7px 16px;
-        background-color: #F2F2F2;
+        background-color: $gray-color;
         line-height: 18px;
     }
     input::placeholder{
@@ -73,8 +74,9 @@
     align-items: center;
     border-bottom: 1px solid $gray100-color;
     padding: 13px 16px 12px 16px;
+    background-color: $white-color;
     button{
-        font-size: 14px;
+        font-size: map-get($font-sizes,"size14");
     }
     input::placeholder{
         color: $gray200-color;
@@ -94,7 +96,7 @@
     align-items: center; */
     .modal-content{
         width: 252px;
-        background-color: #fff;
+        background-color: $white-color;
         border-radius: 10px;
         text-align: center;
         .modal-description {
@@ -213,11 +215,11 @@ border-radius: 10px;
 /* button */
 .size-l, .size-m, .size-ms, .size-s {
     background-color: $enabled-color;
-    color: #FFFFFF;
+    color: $white-color;
 }
 .size-l:disabled, .size-m:disabled, .size-ms:disabled, .size-s:disabled {
     background-color: $disabled-color;
-    color: #FFFFFF;
+    color: $white-color;
 }
 
 .size{
@@ -252,7 +254,7 @@ border-radius: 10px;
 }
 
 .cancle{
-    background: #FFFFFF;
+    background: $white-color;
     color: $gray300-color;
     border: 1px solid $gray100-color;
 }
@@ -269,7 +271,7 @@ footer{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: white;
+    background-color: $white-color;
     li{
         a{  
             top: 0;

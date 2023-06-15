@@ -98,7 +98,7 @@ main {
           transform: translateX(calc(-50% - 24px - 94px));
 }
 .profile-container .follow-wrap:nth-of-type(1) > strong {
-  color: #000;
+  color: #000000;
 }
 .profile-container .profile-name {
   display: block;

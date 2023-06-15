@@ -47,7 +47,7 @@ main {
 
 .comment-time {
   margin-left: 6px;
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #767676;
   margin-top: auto;
 }
@@ -62,7 +62,7 @@ main {
 .comment-edit .comment-text {
   margin-bottom: 16px;
   line-height: 18px;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #333333;
 }
 

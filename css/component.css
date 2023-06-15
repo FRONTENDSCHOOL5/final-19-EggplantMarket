@@ -46,7 +46,8 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-bottom: 1px solid #dbdbdb;
+  border-bottom: 1px solid #DBDBDB;
+  background-color: #FFFFFF;
 }
 
 .nav-upload {
@@ -132,11 +133,12 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-bottom: 1px solid #dbdbdb;
+  border-bottom: 1px solid #DBDBDB;
   padding: 13px 16px 12px 16px;
+  background-color: #FFFFFF;
 }
 .comment button {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 .comment input::-webkit-input-placeholder {
   color: #C4C4C4;
@@ -167,14 +169,14 @@ a {
 }
 .modal-background .modal-content {
   width: 252px;
-  background-color: #fff;
+  background-color: #FFFFFF;
   border-radius: 10px;
   text-align: center;
 }
 .modal-background .modal-content .modal-description {
   padding: 22px 61px;
   font-size: 1rem;
-  border-bottom: 0.5px solid #dbdbdb;
+  border-bottom: 0.5px solid #DBDBDB;
   font-weight: 500;
 }
 
@@ -194,7 +196,7 @@ a {
   width: 126px;
   padding: 14px 48px;
   font-size: 0.875rem;
-  border-right: 0.5px solid #dbdbdb;
+  border-right: 0.5px solid #DBDBDB;
 }
 .modal-actions .right-button {
   -webkit-box-ordinal-group: 2;
@@ -352,7 +354,7 @@ a {
 .cancle {
   background: #FFFFFF;
   color: #767676;
-  border: 1px solid #dbdbdb;
+  border: 1px solid #DBDBDB;
 }
 
 footer {
@@ -362,7 +364,7 @@ footer {
 }
 
 .tab-item-list {
-  border-top: 0.5px solid #dbdbdb;
+  border-top: 0.5px solid #DBDBDB;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -371,7 +373,7 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: white;
+  background-color: #FFFFFF;
 }
 .tab-item-list li a {
   top: 0;

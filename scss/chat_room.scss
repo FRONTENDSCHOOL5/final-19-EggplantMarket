@@ -71,6 +71,7 @@ main{
     .content-text{
         order: 1;
         color: #FFFFFF;
+        margin: 0 16px 0 12px;
         border-radius: 12px 0px 12px 12px;
         background-color: $enabled-color;
     }
@@ -85,6 +86,7 @@ main{
     img{
         order: 1;
         max-width: 240px;
+        margin: 0 16px 0 12px;
     }
     .content-text{
         order: 0;

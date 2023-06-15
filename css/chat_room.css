@@ -106,6 +106,7 @@ main {
       -ms-flex-order: 1;
           order: 1;
   color: #FFFFFF;
+  margin: 0 16px 0 12px;
   border-radius: 12px 0px 12px 12px;
   background-color: #635CA5;
 }
@@ -126,6 +127,7 @@ main {
       -ms-flex-order: 1;
           order: 1;
   max-width: 240px;
+  margin: 0 16px 0 12px;
 }
 .my-chat-img .content-text {
   -webkit-box-ordinal-group: 1;

@@ -1,0 +1,39 @@
+@import "global";
+@import "variables";
+
+main {
+    margin: 0 .9375rem
+}
+
+.user-comment-info {
+    display: flex;
+    .user-name {
+        font-size: .875rem;
+        color: #000000;
+    }
+}
+
+.comment-time {
+    margin-left: 6px;
+    font-size: 10px;
+    color: #767676;
+    margin-top: auto;
+}
+
+.post-comment {
+    margin-top: 20px;
+}
+
+.comment-edit {
+    margin: 10px auto 16px 54px;
+    .comment-text{
+        margin-bottom: 16px;
+        line-height: 18px;
+        font-size: 14px;
+        color: #333333;
+    }
+}
+
+.home-post {
+    border-bottom: 1px solid #DBDBDB;
+}

@@ -373,7 +373,21 @@ footer {
           align-items: center;
   background-color: white;
 }
+.tab-item-list li {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
 .tab-item-list li a {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   top: 0;
   width: 84px;
   display: inline-block;
@@ -390,16 +404,19 @@ footer {
   padding-bottom: 10px;
   text-align: center;
 }
+.tab-item-list li:hover {
+  background-color: #F1F1F1;
+}
 .tab-item-list li:first-child a {
   background-image: url("../assets/icon/icon-home.svg");
 }
-.tab-item-list li:first-child a:hover {
+.tab-item-list li:first-child a.here {
   background-image: url("../assets/icon/icon-home-fill.svg");
 }
 .tab-item-list li:nth-child(2) a {
   background-image: url("../assets/icon/icon-message-circle.svg");
 }
-.tab-item-list li:nth-child(2) a:hover {
+.tab-item-list li:nth-child(2) a.here {
   background-image: url("../assets/icon/icon-message-circle-fill.svg");
 }
 .tab-item-list li:nth-child(3) a {
@@ -408,6 +425,6 @@ footer {
 .tab-item-list li:nth-child(4) a {
   background-image: url("../assets/icon/icon-user.svg");
 }
-.tab-item-list li:nth-child(4) a:hover {
+.tab-item-list li:nth-child(4) a.here {
   background-image: url("../assets/icon/icon-user-fill.svg");
 }

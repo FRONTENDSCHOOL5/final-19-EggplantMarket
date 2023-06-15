@@ -271,7 +271,11 @@ footer{
     align-items: center;
     background-color: white;
     li{
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
         a{  
+            flex-grow: 1;
             top: 0;
             width: 84px;
             display: inline-block;
@@ -288,12 +292,15 @@ footer{
             padding-bottom: 10px;
             text-align: center;
         }
+        &:hover{
+            background-color: #F1F1F1;
+        }
     }
     li:first-child {
         a{
             background-image: url("../assets/icon/icon-home.svg");
         }
-        a:hover{
+        a.here{
             background-image: url("../assets/icon/icon-home-fill.svg");
         }
     }
@@ -301,7 +308,7 @@ footer{
         a{
             background-image: url("../assets/icon/icon-message-circle.svg");
         }
-        a:hover{
+        a.here{
             background-image: url("../assets/icon/icon-message-circle-fill.svg");
         }
     }
@@ -314,7 +321,7 @@ footer{
         a{
             background-image: url("../assets/icon/icon-user.svg");
         }
-        a:hover{
+        a.here{
             background-image: url("../assets/icon/icon-user-fill.svg");
         }
     }

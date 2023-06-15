@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>component</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/component.css">
+</head>
+
+<body>
+    <!-- header에 작성된 h1에는 각 페이지의 title을 작성해주시면 됩니다.-->
+    <!-- 기본상단 -->
+    <header class="top nav-basic">
+        <h1 class="a11y-hidden">기본상단</h1>
+        <button class="btn-back" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+        <button class="btn-option" tabindex="0"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
+    </header>
+
+    <!-- 검색상단 -->
+    <header class="top nav-search">
+        <h1 class="a11y-hidden">검색상단</h1>
+        <label for="inp-search" class="a11y-hidden">계정 검색하기</label>
+        <input type="text" id="inp-search" placeholder="계정 검색" tabindex="0">
+        <button class="btn-back" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+    </header>
+
+    <!-- 홈상단 -->
+    <header class="top nav-main">
+        <h1 class="a11y-hidden">홈상단</h1>
+        <p class="title-main" tabindex="0">가지마켙 피드</p>
+        <a href="#" tabindex="0"><img src="../assets/icon/icon-search.svg" alt="검색 아이콘 클릭 시 검색페이지로 이동"></a>
+    </header>
+
+    <!-- 팔로우페이지 상단 -->
+    <header class="top nav-upload">
+        <h1 class="a11y-hidden">팔로우페이지상단</h1>
+        <button class="btn-back" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+        <button class="size-ms btn-save" tabindex="0" disabled>저장<span class="a11y-hidden">버튼</span></button>
+    </header>
+
+    <!-- 판매 채팅 상단 -->
+    <header class="top nav-chat">
+        <h1 class="a11y-hidden">판매 채팅 상단</h1>
+        <p class="title-chat" tabindex="0"><span class="a11y-hidden">대화상대: </span>애월읍 위니브 가지밭</p>
+        <button class="btn-back" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+        <button class="btn-option" tabindex="0"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
+    </header>
+
+    <!-- 댓글창 -->
+    <section class="comment">
+        <h2 class="a11y-hidden">댓글창</h2>
+        <img class="profile-img" src="../assets/basic-profile.png" alt="프로필사진">
+        <label for="commemt-input" class="a11y-hidden"><span class="a11y-hidden">게시물에 대한</span>댓글 입력</label>
+        <input type="text" id="commemt-input" placeholder="댓글 입력하기..." tabindex="0">
+        <button type="submit" class="btn-comment" tabindex="0" disabled>게시</button>
+    </section>
+
+    <!-- 삭제모달창 -->
+    <article class="modal-background">
+        <p class="a11y-hidden">삭제모달창</p>
+        <div class="modal-content">
+            <h2 class="modal-title a11y-hidden">삭제 확인</h2>
+            <p class="modal-description" tabindex="0">상품을 삭제할까요?</p>
+            <div class="modal-actions">
+                <button class="right-button" tabindex="0">삭제</button>
+                <button class="left-button" tabindex="0">취소</button>
+            </div>
+        </div>
+    </article>
+
+    <main>
+        <h1>asd</h1>
+    </main>
+    <!-- 하단 탭 메뉴 -->
+    <footer>
+        <nav class="tab-menu">
+            <p class="a11y-hidden">하단 탭 메뉴</p>
+            <ul class="tab-item-list">
+                <li class="tab-item-home">
+                    <a href="#" tabindex="0">
+                        <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
+                    </a>
+                </li>
+                <li class="tab-item-chat">
+                    <a href="#" tabindex="0">
+                        <p>채팅<span class="a11y-hidden">화면으로 이동</span></p>
+                    </a>
+                </li>
+                <li class="tab-item-follow">
+                    <a href="#" tabindex="0">
+                        <p>게시물 작성<span class="a11y-hidden">화면으로 이동</span></p>
+                    </a>
+                </li>
+                <li class="tab-item-more">
+                    <a href="#" tabindex="0">
+                        <p>프로필<span class="a11y-hidden">화면으로 이동</span></p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+
+
+</html>

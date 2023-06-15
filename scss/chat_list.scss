@@ -1,5 +1,6 @@
 @import 'global';
 @import 'variables';
+@import 'mixin';
 
 .chat-list{
     padding: 24px 16px;
@@ -58,7 +59,7 @@
 .tab-item-list{
     li:nth-child(2) {
         a{
-            background-image: url("../assets/icon/icon-message-circle-fill.svg");
+            @include bg-icon(icon-message-circle-fill);
         }
     }    
 }

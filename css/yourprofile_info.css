@@ -136,10 +136,10 @@ main {
   background: no-repeat center center;
 }
 .profile-container .btn-wrap .btn-chat {
-  background-image: url(../assets//icon/icon-message-circle.svg);
+  background-image: url("../assets/icon/icon-message-circle.svg");
 }
 .profile-container .btn-wrap .btn-share {
-  background-image: url(../assets//icon/icon-share.svg);
+  background-image: url("../assets/icon/icon-share.svg");
 }
 .profile-container .btn-wrap :nth-child(2) {
   margin: 0 12px;

@@ -1,4 +1,6 @@
-@import './_global.scss';
+@import 'global';
+@import 'mixin';
+@import 'variables';
 
 // 게시글 보기 탭
 .post-tab {
@@ -22,19 +24,19 @@
     }
 
     .btn-post-list {
-        background-image: url('../assets/icon/icon-post-list-off.svg');
+        @include bg-icon(icon-post-list-off);
     }
 
     .btn-post-list.on {
-        background-image: url('../assets/icon/icon-post-list-on.svg');
+        @include bg-icon(icon-post-list-on);
     }
 
     .btn-post-album {
-        background-image: url('../assets/icon/icon-post-album-off.svg');
+        @include bg-icon(icon-post-album-off);
     }
 
     .btn-post-album.on {
-        background-image: url('../assets/icon/icon-post-album-on.svg');
+        @include bg-icon(icon-post-album-on);
     }
 }
 

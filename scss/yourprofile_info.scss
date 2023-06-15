@@ -1,5 +1,6 @@
 @import "global";
 @import "variables";
+@import "mixin";
 
 .img-crop {
     margin: 0 auto;
@@ -98,10 +99,10 @@ main {
         justify-content: center;
         
         .btn-chat{
-            background-image: url(../assets//icon/icon-message-circle.svg)
+            @include bg-icon(icon-message-circle);
         }
         .btn-share{
-            background-image: url(../assets//icon/icon-share.svg);
+            @include bg-icon(icon-share)
         }
         & :nth-child(2) {
             margin: 0 12px;

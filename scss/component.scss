@@ -1,5 +1,6 @@
 @import 'global';
 @import 'variables';
+@import 'mixin';
 
 .home-post, .home-post-onlytext{
     margin-top: 20px;
@@ -293,31 +294,31 @@ footer{
     }
     li:first-child {
         a{
-            background-image: url("../assets/icon/icon-home.svg");
+            @include bg-icon(icon-home);
         }
         a:hover{
-            background-image: url("../assets/icon/icon-home-fill.svg");
+            @include bg-icon(icon-home-fill);
         }
     }
     li:nth-child(2) {
         a{
-            background-image: url("../assets/icon/icon-message-circle.svg");
+            @include bg-icon(icon-message-circle);
         }
         a:hover{
-            background-image: url("../assets/icon/icon-message-circle-fill.svg");
+            @include bg-icon(icon-message-circle-fill);
         }
     }
     li:nth-child(3) {
         a{
-            background-image: url("../assets/icon/icon-edit.svg");
+            @include bg-icon(icon-edit);
         }
     }
     li:nth-child(4) {
         a{
-            background-image: url("../assets/icon/icon-user.svg");
+            @include bg-icon(icon-user)
         }
         a:hover{
-            background-image: url("../assets/icon/icon-user-fill.svg");
+            @include bg-icon(icon-user-fill)
         }
     }
 }

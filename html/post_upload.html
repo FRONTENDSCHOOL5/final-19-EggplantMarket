@@ -14,7 +14,7 @@
 <body>
     <header class="top nav-upload">
         <h1 class="a11y-hidden">게시물 업로드 페이지상단</h1>
-        <button class="btn-back" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+        <button class="btn-back" onclick="history.back()" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
         <button class="size-ms btn-save" tabindex="0" disabled>업로드<span class="a11y-hidden">버튼</span></button>
     </header>
     <main>
@@ -24,12 +24,12 @@
         <form>
             <h2 class="a11y-hidden">게시글 입력창</h2>
             <!-- JS로 입력값에 따라 TextArea 높이 자동조절 기능 추후 구현 -->
-            <textarea placeholder="게시글 입력하기.."></textarea>
+            <textarea placeholder="게시글 입력하기.." tabindex="1"></textarea>
             <!-- JS로 file 입력 받을시 프리뷰 띄워주는 기능 추후 구현 -->
             <!-- 우선은 preview none 처리해둠 -->
             <img id="preview" src="/assets/eggplants/eggplant1.jpg" alt="이미지 미리보기" style="display: none;">
             <!-- input(type='file') 로 처리시 버튼모양 디자인을 위해 label 달아서 구현 -->
-            <label class="input-file-btn" for="input-file">
+            <label class="input-file-btn" for="input-file" tabindex="1">
                 <img src="/assets/upload-file.svg" alt="">
             </label>
             <input type="file" id="input-file" accept="img/*" required multiple style="display: none;">

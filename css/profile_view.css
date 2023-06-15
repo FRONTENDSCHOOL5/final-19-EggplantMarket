@@ -10,6 +10,12 @@
   position: absolute;
 }
 
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 button {
   border: none;
   background-color: initial;
@@ -65,7 +71,6 @@ a {
   width: 100%;
   height: 100vh;
   padding: 16px;
-  overflow-y: scroll;
 }
 .post-sec .post-list li:first-child > section:first-child {
   margin-top: 0;

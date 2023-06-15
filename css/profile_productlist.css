@@ -10,6 +10,12 @@
   position: absolute;
 }
 
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 button {
   border: none;
   background-color: initial;
@@ -43,6 +49,8 @@ main {
 .product-container {
   padding: 20px 0;
   position: relative;
+  border-top: 1px solid #DBDBDB;
+  border-bottom: 1px solid #DBDBDB;
 }
 .product-container h2 {
   margin-bottom: 16px;

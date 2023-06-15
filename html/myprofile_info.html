@@ -7,13 +7,15 @@
         <title>myprofile_info</title>
         <link rel="stylesheet" href="../css/reset.css">
         <link rel="stylesheet" href="../css/component.css">
-        <link rel="stylesheet" href="../css/myprofile_info.css">
+        <link rel="stylesheet" href="../css/profile_info.css">
+        <link rel="stylesheet" href="../css/profile_productlist.css">
+        <link rel="stylesheet" href="../css/profile_view.css">
     </head>
     <body>
         <header class="top nav-basic">
             <h1 class="a11y-hidden">내 프로필 화면</h1>
-            <button class="btn-back"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
-            <button class="btn-option"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
+            <button class="btn-back" onclick="history.back()" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+            <button class="btn-option" tabindex="0"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
         </header>
         <main>
             <section class="profile-container">
@@ -27,11 +29,11 @@
                     <strong class="profile-name">사용자 이름</strong>
                     <strong class="profile-id">아이디</strong>
                     <p class="profile-intro">소개</p>
-                    <a class="follow-wrap" href="#">
+                    <a class="follow-wrap" href="./profile_follower.html">
                         <p>followers</p>
                         <strong class="follower">0<span class="a11y-hidden">명</span></strong>
                     </a>
-                    <a class="follow-wrap" href="#">
+                    <a class="follow-wrap" href="./profile_following.html">
                         <p>followings</p>
                         <strong class="following">0<span class="a11y-hidden">명</span></strong>
                     </a>
@@ -40,37 +42,201 @@
                 <!-- 추후에 a태그로 변경해야할수도 있음 -->
                 <!-- <a class='link-btn' href="#">프로필 수정</a>
                 <a href="#">상품 등록</a> -->
-                <div class="btn-wrap">
-                    <button class="btn-link" type="button" onclick="location.href = `/#`">
+                <div class="btn-wrap-my">
+                    <button class="btn-link" type="button" onclick="location.href = `./#`">
                         프로필 수정<span class="a11y-hidden">버튼</span>
                     </button>
-                    <button class="btn-link" type="button" onclick="location.href = `/1`">
+                    <button class="btn-link" type="button" onclick="location.href = `./product.html`">
                         상품 등록<span class="a11y-hidden">버튼</span>
                     </button>
                 </div>
             </section>
+            <section class="product-container">
+                <h2>판매 중인 상품</h2>
+                <ul class="product-list">
+                    <li class="product-item">
+                        <button class="product" >
+                            <strong class="product-name">상품상품상품상품상품상품상품상</strong>
+                            <img class="product-img" src="../assets/eggplant-gb3f103477_1280.jpg" alt="">
+                            <strong class="product-price"><span class="price">0000</span>원</strong>
+                        </button>
+                    </li>
+                    <li class="product-item">
+                        <button class="product" >
+                            <strong class="product-name">상품상품상품상품상품상품상품상</strong>
+                            <img class="product-img" src="../assets/eggplant-gb3f103477_1280.jpg" alt="">
+                            <strong class="product-price"><span class="price">0000</span>원</strong>
+                        </button>
+                    </li>
+                    <li class="product-item">
+                        <button class="product" >
+                            <strong class="product-name">상품상품상품상품상품상품상품상</strong>
+                            <img class="product-img" src="../assets/eggplant-gb3f103477_1280.jpg" alt="">
+                            <strong class="product-price"><span class="price">0000</span>원</strong>
+                        </button>
+                    </li>
+                    <li class="product-item">
+                        <button class="product" >
+                            <strong class="product-name">상품상품상품상품상품상품상품상</strong>
+                            <img class="product-img" src="../assets/eggplant-gb3f103477_1280.jpg" alt="">
+                            <strong class="product-price"><span class="price">0000</span>원</strong>
+                        </button>
+                    </li>
+                    <li class="product-item">
+                        <button class="product" >
+                            <strong class="product-name">상품상품상품상품상품상품상품상</strong>
+                            <img class="product-img" src="../assets/eggplant-gb3f103477_1280.jpg" alt="">
+                            <strong class="product-price"><span class="price">0000</span>원</strong>
+                        </button>
+                    </li>
+                    <li class="product-item">
+                        <button class="product" >
+                            <strong class="product-name">상품상품상품상품상품상품상품상</strong>
+                            <img class="product-img" src="../assets/eggplant-gb3f103477_1280.jpg" alt="">
+                            <strong class="product-price"><span class="price">0000</span>원</strong>
+                        </button>
+                    </li>
+                    <li class="product-item">
+                        <button class="product" >
+                            <strong class="product-name">상품상품상품상품상품상품상품상</strong>
+                            <img class="product-img" src="../assets/eggplant-gb3f103477_1280.jpg" alt="">
+                            <strong class="product-price"><span class="price">0000</span>원</strong>
+                        </button>
+                    </li>
+                    <li class="product-item">
+                        <button class="product" >
+                            <strong class="product-name">상품상품상품상품상품상품상품상</strong>
+                            <img class="product-img" src="../assets/eggplant-gb3f103477_1280.jpg" alt="">
+                            <strong class="product-price"><span class="price">0000</span>원</strong>
+                        </button>
+                    </li>
+                    <li class="product-item">
+                        <button class="product" >
+                            <strong class="product-name">상품상품상품상품상품상품상품상</strong>
+                            <img class="product-img" src="../assets/eggplant-gb3f103477_1280.jpg" alt="">
+                            <strong class="product-price"><span class="price">0000</span>원</strong>
+                        </button>
+                    </li>
+                    <li class="product-item">
+                        <button class="product" >
+                            <strong class="product-name">상품상품상품상품상품상품상품상</strong>
+                            <img class="product-img" src="../assets/eggplant-gb3f103477_1280.jpg" alt="">
+                            <strong class="product-price"><span class="price">0000</span>원</strong>
+                        </button>
+                    </li>
+                    
+                </ul>
+            </section>
+            <!-- 게시글 보기 탭 -->
+            <section>
+                <section class="post-tab">
+                    <h3 class="a11y-hidden">게시글 보기 유형 고르기</h3>
+                    <div class="tab-btn-wrap">
+                        <button class="btn-post-list on"><span class="a11y-hidden">목록형</span></button>
+                        <button class="btn-post-album"><span class="a11y-hidden">앨범형</span></button>
+                    </div>
+                </section>
+                <!-- // 게시글 보기 탭 -->
+                <!-- 게시글 보기 -->
+                <section class="post-sec">
+                    <h3 class="a11y-hidden">게시글</h3>
+                    <!-- 목록형 -->
+                    <ul class="post-list hidden">
+                        <li>
+                            <section class="home-post">
+                                <h2 class="a11y-hidden">사진과 글을 함께 올리는 게시물</h2>
+                                <section class="user-follow">
+                                    <h3 class="a11y-hidden">유저정보</h3>
+                                    <img class="profile-img" src="../assets/basic-profile.png" alt="프로필사진">
+                                    <div class="user-info">
+                                        <p class="user-name"><em>애월읍</em> 위니브 가지밭</p>
+                                        <p class="user-id">@weniv_Eggplant</p>
+                                    </div>
+                                    <button class="btn-option"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
+                                </section>
+                                <section class="post-edit">
+                                    <h4 class="a11y-hidden">게시물의 사진과 내용</h4>
+                                    <p class="post-text">옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게
+                                        뛰노는
+                                        인생의 힘있다.</p>
+                                    <div class="img-cover">
+                                        <img class="post-img" src="../assets/img-post.svg" alt="게시물 사진">
+                                    </div>
+                                    <div class="post-icon">
+                                        <img class="btn-like" src="../assets/icon/icon-heart.svg" alt="좋아요 버튼"><span>58</span>
+                                        <img class="btn-comment" src="../assets/icon/icon-message-circle.svg" alt="댓글 버튼"><span>12</span>
+                                    </div>
+                                    <p class="post-date">2023년 06월 23일</p>
+                                </section>
+                            </section>
+                        </li>
+                        <li>
+                            <section class="home-post-onlytext">
+                                <h2 class="a11y-hidden">글만 올리는 게시물</h2>
+                                <section class="user-follow">
+                                    <h3 class="a11y-hidden">유저정보</h3>
+                                    <img class="profile-img" src="../assets/basic-profile.png" alt="프로필사진">
+                                    <div class="user-info">
+                                        <p class="user-name"><em>애월읍</em> 위니브 가지밭</p>
+                                        <p class="user-id">@weniv_Eggplant</p>
+                                    </div>
+                                    <button class="btn-option"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
+                                </section>
+                                <section class="post-edit">
+                                    <h4 class="a11y-hidden">게시물의 내용</h4>
+                                    <p class="post-text">옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게
+                                        뛰노는
+                                        인생의 힘있다.</p>
+                                    <div class="post-icon">
+                    
+                                        <img class="btn-like" src="../assets/icon/icon-heart.svg" alt="좋아요 버튼"><span>58</span>
+                                        <img class="btn-comment" src="../assets/icon/icon-message-circle.svg" alt="댓글 버튼"><span>12</span>
+                                    </div>
+                                    <p class="post-date">2023년 06월 23일</p>
+                                </section>
+                            </section>
+                        </li>
+                    </ul>
+                    <!-- // 목록형 -->
+                    <!-- 앨범형 -->
+                    <ul class="post-album">
+                        <li class="post-album-item"><a href="./post_detail.html"><img src="../assets/eggplants/eggplant1.jpg" alt=""></a></li>
+                        <li class="post-album-item"><a href="./post_detail.html"><img src="../assets/eggplants/eggplant2.jpg" alt=""></a></li>
+                        <li class="post-album-item"><a href="./post_detail.html"><img src="../assets/eggplants/eggplant3.jpg" alt=""></a></li>
+                        <li class="post-album-item"><a href="./post_detail.html"><img src="../assets/eggplants/eggplant4.jpg" alt=""></a></li>
+                        <li class="post-album-item"><a href="./post_detail.html"><img src="../assets/eggplants/eggplant5.jpg" alt=""></a></li>
+                        <li class="post-album-item"><a href="./post_detail.html"><img src="../assets/eggplants/eggplant1.jpg" alt=""></a></li>
+                        <li class="post-album-item"><a href="./post_detail.html"><img src="../assets/eggplants/eggplant2.jpg" alt=""></a></li>
+                        <li class="post-album-item"><a href="./post_detail.html"><img src="../assets/eggplants/eggplant3.jpg" alt=""></a></li>
+                        <li class="post-album-item"><a href="./post_detail.html"><img src="../assets/eggplants/eggplant4.jpg" alt=""></a></li>
+                        <li class="post-album-item"><a href="./post_detail.html"><img src="../assets/eggplants/eggplant5.jpg" alt=""></a></li>
+                    </ul>
+                    <!-- // 앨범형 -->
+    
+                </section>
+            </p>
         </main>
         <footer>
             <nav class="tab-menu">
                 <p class="a11y-hidden">하단 탭 메뉴</p>
                 <ul class="tab-item-list">
                     <li class="tab-item-home">
-                        <a href="#">
+                        <a href="./home_withfollowers.html" tabindex="0">
                             <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
                         </a>
                     </li>
                     <li class="tab-item-chat">
-                        <a href="#">
+                        <a href="./chat_list.html" tabindex="0">
                             <p>채팅<span class="a11y-hidden">화면으로 이동</span></p>
                         </a>
                     </li>
                     <li class="tab-item-follow">
-                        <a href="#">
+                        <a href="./post_upload.html" tabindex="0">
                             <p>게시물 작성<span class="a11y-hidden">화면으로 이동</span></p>
                         </a>
                     </li>
-                    <li class="tab-item-more">
-                        <a href="#">
+                    <li class="tab-item-more here">
+                        <a class="here" href="./myprofile_info.html" tabindex="0">
                             <p>프로필<span class="a11y-hidden">화면으로 이동</span></p>
                         </a>
                     </li>

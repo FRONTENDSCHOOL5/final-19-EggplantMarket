@@ -133,7 +133,7 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-bottom: 1px solid #DBDBDB;
+  border-top: 1px solid #DBDBDB;
   padding: 13px 16px 12px 16px;
   background-color: #FFFFFF;
 }

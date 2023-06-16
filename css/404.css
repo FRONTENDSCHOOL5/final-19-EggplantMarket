@@ -1,0 +1,58 @@
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+button {
+  border: none;
+  background-color: initial;
+  padding: 0px;
+}
+
+input {
+  border: none;
+}
+
+a {
+  color: initial;
+  text-decoration: initial;
+}
+
+.error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.error > * {
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+.error .desc {
+  margin-bottom: 20px;
+  color: #767676;
+  padding-top: 250px;
+  background: url(../assets/icon/icon-404.svg) no-repeat center/contain;
+}
+.error .btn-back {
+  padding: 13px 26px;
+  background-color: #635CA5;
+  border: none;
+  border-radius: 44px;
+  color: #fff;
+}

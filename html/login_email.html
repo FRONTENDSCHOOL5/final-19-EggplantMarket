@@ -8,26 +8,21 @@
     <title>login-email</title>
 
     <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <style>
-        .join {
-            text-decoration: none;
-            color: var(--gray300-color);
-        }
-    </style>
+    <link rel="stylesheet" href="../css/login_email.css">
 </head>
 
 <body>
     <main class="login">
-        <h1>로그인</h1>
+        <h1 class="title">로그인</h1>
         <form>
             <label for="email">이메일</label>
             <input type="email" id="email">
             <label for="pw">비밀번호</label>
             <input type="password" id="pw">
-            <button>로그인</button>
-            <a class="join" href="./join_membership.html">이메일로 회원가입</a>
-        </form>
+            <strong class="warning-msg">*이메일 또는 비밀번호가 일치하지 않습니다.</strong>
+            <button class="size-l" disabled>로그인</button>
+            </form>
+            <div class="email-join"><a class="join" href="./join_membership.html">이메일로 회원가입</a></div>
     </main>
 </body>
 

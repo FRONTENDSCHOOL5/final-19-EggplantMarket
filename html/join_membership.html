@@ -8,97 +8,7 @@
     <title>join_membership</title>
 
     <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <style>
-        /* 임시 */
-        .profile-setting {
-            margin-top: 100px;
-        }
-
-        .join-email,
-        .profile-setting,
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        h2 {
-            font-size: 24px;
-        }
-
-        .join-email {
-            margin: 10px;
-        }
-
-        .join-email h2 {
-            margin-bottom: 30px;
-        }
-
-        .profile-setting h2 {
-            margin-bottom: 12px;
-        }
-
-        .profile-img-setting {
-            margin: 30px 0;
-        }
-
-        /* 프로필 이미지 원 모양으로 자르기 */
-        .profile-img-wrap {
-            border-radius: 50%;
-            overflow: hidden;
-        }
-
-        button {
-            border: solid 1px;
-            border-radius: 44px;
-        }
-
-        label {
-            color: #767676;
-            font-size: 12px;
-        }
-
-        input {
-            border: none;
-            border-bottom: 1px solid #DBDBDB;
-            outline: none;
-            padding: 8px;
-        }
-
-        input:focus {
-            border-color: var(--highlight-color);
-        }
-
-        strong {
-            color: red;
-        }
-
-        .btn-upload {
-            position: absolute;
-            border: none;
-            background-color: transparent;
-
-        }
-
-        .btn-next {
-            border: none;
-            background-color: var(--enabled-color);
-            color: white;
-            margin-top: 30px;
-            padding: 13px;
-        }
-
-        .btn-next:disabled {
-            background-color: var(--disabled-color);
-        }
-
-
-        label {
-            text-align: start;
-        }
-    </style>
-
+    <link rel="stylesheet" href="../css/join_membership.css">
 </head>
 
 <body>
@@ -106,50 +16,66 @@
         <h1 class="a11y-hidden">회원가입</h1>
         <!-- join-email -->
         <section class="join-email">
-            <h2>이메일로 회원가입</h2>
+            <h2 class="title">이메일로 회원가입</h2>
             <form>
-                <label for="email">이메일</label>
-                <input type="email" id="email" placeholder="이메일 주소를 입력해 주세요.">
-                <strong>*이미 가입된 이메일 주소입니다.</strong>
-                <label for="pw">비밀번호</label>
-                <input type="password" id="pw" placeholder="비밀번호를 설정해 주세요.">
-                <strong>*비밀번호는 6자 이상이어야 합니다.</strong>
-                <button class='btn-next' disabled>다음</button>
-
+                <fieldset>
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" placeholder="이메일 주소를 입력해 주세요.">
+                    <strong class="warning-msg">*이미 가입된 이메일 주소입니다.</strong>
+                    </fieldset>
+                    <fieldset>
+                        <label for="pw">비밀번호</label>
+                        <input type="password" id="pw" placeholder="비밀번호를 설정해 주세요.">
+                    <strong class="warning-msg">*비밀번호는 6자 이상이어야 합니다.</strong>
+                    </fieldset>
+                    <button class='size-l btn-next' disabled>다음</button>
             </form>
         </section>
         <!-- // join-email -->
         <!-- profile-setting -->
         <section class="profile-setting">
-            <h2>프로필 설정</h2>
+            <h2 class="title">프로필 설정</h2>
             <p>나중에 언제든지 변경할 수 있습니다.</p>
-            <section class="profile-img-setting">
-                <h3 class="a11y-hidden">프로필 이미지 설정</h3>
-                <div class="profile-img-wrap">
-                    <img src="../assets/basic-profile-img.png" alt="기본 프로필 이미지">
-                </div>
-            </section>
-            <button class="btn-upload"><img src="../assets/img-button.svg" alt="프로필 설정 버튼"></button>
             <form>
-                <!-- <fieldset> -->
-                <label for="username">사용자 이름</label>
-                <input type="text" id="username" placeholder="2~10자 이내여야 합니다.">
-                <!-- </fieldset> -->
-                <!-- <fieldset> -->
-                <label for="userid">계정 ID</label>
-                <input type="text" id="userid" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다.">
-                <strong>*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.</strong>
-                <!-- </fieldset> -->
-                <!-- <fieldset> -->
-                <label for="userinfo">소개</label>
-                <input type="text" id="userinfo" placeholder="자신과 판매할 상품에 대해 소개해 주세요!">
-                <!-- </fieldset> -->
-                <button class='btn-next' type="submit" onclick="location.href = '../home.html';" disabled>가지마켙
+                <section class="profile-img">
+                    <h3 class="a11y-hidden">프로필 이미지 설정</h3>
+                    <div class="img-cover">
+                        <img src="../assets/basic-profile-img.png" alt="기본 프로필 이미지">
+                    </div>
+                    <label class="btn-upload" for="btn-upload">
+                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="18" cy="18" r="18" fill="#C4C4C4" />
+                            <path
+                                d="M24.4167 9.75H11.5833C10.5708 9.75 9.75 10.5708 9.75 11.5833V24.4167C9.75 25.4292 10.5708 26.25 11.5833 26.25H24.4167C25.4292 26.25 26.25 25.4292 26.25 24.4167V11.5833C26.25 10.5708 25.4292 9.75 24.4167 9.75Z"
+                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M14.7915 16.1665C15.5509 16.1665 16.1665 15.5509 16.1665 14.7915C16.1665 14.0321 15.5509 13.4165 14.7915 13.4165C14.0321 13.4165 13.4165 14.0321 13.4165 14.7915C13.4165 15.5509 14.0321 16.1665 14.7915 16.1665Z"
+                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M26.2502 20.7498L21.6668 16.1665L11.5835 26.2498" stroke="white" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </label>
+                </section>
+                <input type='file' id='btn-upload' class="btn-upload">
+                <fieldset>
+                    <label for="username">사용자 이름</label>
+                    <input type="text" id="username" placeholder="2~10자 이내여야 합니다.">
+                </fieldset>
+                <fieldset>
+                    <label for="userid">계정 ID</label>
+                    <input type="text" id="userid" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다.">
+                    <strong class="warning-msg">*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.</strong>
+                    <!-- <strong class="warning-msg">*이미 사용 중인 ID입니다.</strong> -->
+                    </fieldset>
+                    <fieldset>
+                        <label for="userinfo">소개</label>
+                        <input type="text" id="userinfo" placeholder="자신과 판매할 상품에 대해 소개해 주세요!">
+                </fieldset>
+                <button class='size-l btn-next' type="submit" onclick="location.href = '../home.html';" disabled>가지마켙
                     시작하기</button>
             </form>
         </section>
         <!-- // profile-setting -->
-
     </main>
 </body>
 

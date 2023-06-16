@@ -104,11 +104,12 @@ form > input::placeholder {
   color: #FFFFFF;
 }
 
-.warning-msg {
+[class^=warning-msg] {
   color: #EB5757;
   font-size: 12px;
   display: block;
   margin-top: 6px;
+  display: none;
 }
 
 .email-join {

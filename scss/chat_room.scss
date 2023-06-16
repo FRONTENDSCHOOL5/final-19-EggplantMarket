@@ -1,0 +1,127 @@
+@import 'global';
+@import 'variables';
+
+.top{
+    background-color: #FFFFFF;
+}
+body{
+    background-color: #f2f2f2;
+}
+
+
+.img-cover {
+    display: inline-block;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    overflow: hidden;
+    
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+}
+}
+
+main{
+    position: fixed;
+    width: 100%;
+    bottom: 73px;
+}
+
+.chat-content{
+    display: flex;
+    margin-top: 10px;
+    .user-img {
+        flex-shrink: 0; 
+    }
+    .content-text{
+        max-width: 100%;
+        padding: 12px;
+        font-weight: 400;
+        font-size: map-get($font-sizes, size14 );
+        line-height: 
+        17.53px;
+        border: 1px solid $gray200-color;
+    }
+    .chat-time{
+        font-size: map-get($font-sizes, size10 );
+        color: $gray300-color;
+        // bottom: 0;
+        padding-bottom: 5px;
+        align-self: flex-end;  
+    }
+}
+
+.follow-chat{
+    .user-img{
+        margin: 0 12px 0 16px;
+    }
+    .content-text{
+        border-radius: 0px 12px 12px 12px;
+        background-color: #FFFFFF;
+    }
+    .chat-time{
+        margin-left: 6px;
+    }
+}
+
+.my-chat{
+    justify-content:flex-end;
+    .content-text{
+        order: 1;
+        color: #FFFFFF;
+        margin: 0 16px 0 12px;
+        border-radius: 12px 0px 12px 12px;
+        background-color: $enabled-color;
+    }
+    .chat-time{
+        order: 0;
+        margin-right: 6px;
+    }
+}
+
+.my-chat-img{
+    justify-content:flex-end;
+    img{
+        order: 1;
+        max-width: 240px;
+        margin: 0 16px 0 12px;
+    }
+    .content-text{
+        order: 0;
+    }
+}
+
+.comment{
+    background-color: #FFFFFF;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    img{
+        width: 36px;
+    }
+}
+
+// 모달창 부분
+.post-modal{
+    background-color: #FFFFFF;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 14px;
+    margin-bottom: 10px;
+    border-radius: 20px 20px 0 0;
+    .modal-content{
+        padding: 14px 26px 0px;
+        font-size: map-get($font-sizes, size14);
+        font-weight: 400;
+        line-height: 18px;
+    }
+    .post-modal-bar{
+        background-color: $gray100-color;
+        width: 50px;
+        height: 4px;
+        margin: 16px auto;
+    }
+}

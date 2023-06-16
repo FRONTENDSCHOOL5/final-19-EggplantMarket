@@ -1,0 +1,71 @@
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+button {
+  border: none;
+  background-color: initial;
+  padding: 0px;
+}
+
+input {
+  border: none;
+}
+
+a {
+  color: initial;
+  text-decoration: initial;
+}
+
+main {
+  margin: 0 0.9375rem;
+}
+
+.user-comment-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.user-comment-info .user-name {
+  font-size: 0.875rem;
+  color: #000000;
+}
+
+.comment-time {
+  margin-left: 6px;
+  font-size: 10px;
+  color: #767676;
+  margin-top: auto;
+}
+
+.post-comment {
+  margin-top: 20px;
+}
+
+.comment-edit {
+  margin: 10px auto 16px 54px;
+}
+.comment-edit .comment-text {
+  margin-bottom: 16px;
+  line-height: 18px;
+  font-size: 14px;
+  color: #333333;
+}
+
+.home-post {
+  border-bottom: 1px solid #DBDBDB;
+}

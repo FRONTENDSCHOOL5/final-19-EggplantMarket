@@ -1,0 +1,50 @@
+@import "global";
+@import "variables";
+
+.main-container {
+
+    p,
+    div,
+    a {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    p {
+        font-size: 14px;
+        color: $gray300-color;
+    }
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position : absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.home-background {
+    background-image: url("../assets/symbol-logo-gray.svg");
+    background-size: contain;
+    width: 72px;
+    height: 100px;
+}
+
+.search-btn {
+    background-color: #635CA5;
+    color: #FFFFFF;
+    font-weight: 500;
+    text-align: center;
+    width: 120px;
+    padding: 13px 0px;
+    border-radius: 44px;
+    font-size: 14px;
+}
+
+footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}

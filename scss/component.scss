@@ -30,10 +30,12 @@
     .title-chat, #commemt-input{
         order: 1;
         margin-right: auto;
+        flex-grow: 1;
     }
     .btn-option, .btn-comment{
         order: 2;
         margin-left: auto;
+        flex-basis: 8%;
     }
 }
 .nav-search{
@@ -143,9 +145,21 @@
 
 /* 게시물 */
 .user-follow{
+    height: 42px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .img-cover {
+        height: 100%;
+        overflow: hidden;
+
+        img {
+            height: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+    }
     .profile-img{
         order: 0;
         margin-right: 12px;
@@ -154,9 +168,19 @@
         order: 1;
         margin-right: auto;
     }
-    .btn-option{
-        order: 2;
-        margin-left: auto;
+}
+
+.home-post{
+    position: relative;
+    .btn-option {
+        width: 24px;
+        position: absolute;
+        top: 0;
+        left: calc(100% - 25px);
+        transform: translate(0, 40%);
+        img{
+            width: 100%;
+        }
     }
 }
 
@@ -176,6 +200,7 @@
 
 .post-edit{
     margin: 16px auto 16px 54px;
+    padding-bottom: 5px;
     .post-text{
         margin-bottom: 16px;
         line-height: 18px;
@@ -183,7 +208,7 @@
 .img-cover {
     max-width: 304px;
     margin-bottom: 12px;
-border-radius: 10px;
+    border-radius: 10px;
     overflow: hidden;
 
     .post-img {
@@ -194,14 +219,18 @@ border-radius: 10px;
 }
     }
     .post-icon{
+        margin-right: 6px;
         display: flex;
         align-items: center;
-        margin-bottom: 16px;
         gap: 6px;
+        margin-bottom: 16px;
         color: $gray300-color;
         font-size: map-get( $font-sizes, "size12" );
-        .btn-comment{
-            margin-left: 10px;
+        &>*{
+            display: flex;
+            align-items: center; 
+            gap: 6px;
+            color: inherit;
         }
     }
     .post-date{
@@ -262,6 +291,7 @@ footer{
     position: fixed;
     bottom: 0;
     width: 100%;
+    background-color: white;
 }
 
 .tab-item-list{
@@ -271,7 +301,11 @@ footer{
     align-items: center;
     background-color: white;
     li{
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
         a{  
+            flex-grow: 1;
             top: 0;
             width: 84px;
             display: inline-block;
@@ -288,12 +322,15 @@ footer{
             padding-bottom: 10px;
             text-align: center;
         }
+        &:hover{
+            background-color: #F1F1F1;
+        }
     }
     li:first-child {
         a{
             background-image: url("../assets/icon/icon-home.svg");
         }
-        a:hover{
+        a.here{
             background-image: url("../assets/icon/icon-home-fill.svg");
         }
     }
@@ -301,7 +338,7 @@ footer{
         a{
             background-image: url("../assets/icon/icon-message-circle.svg");
         }
-        a:hover{
+        a.here{
             background-image: url("../assets/icon/icon-message-circle-fill.svg");
         }
     }
@@ -314,7 +351,7 @@ footer{
         a{
             background-image: url("../assets/icon/icon-user.svg");
         }
-        a:hover{
+        a.here{
             background-image: url("../assets/icon/icon-user-fill.svg");
         }
     }

@@ -33,6 +33,7 @@ a {
 
 main {
   margin: 0 0.9375rem;
+  margin-bottom: 61px;
 }
 
 .user-comment-info {
@@ -68,4 +69,8 @@ main {
 
 .home-post {
   border-bottom: 1px solid #DBDBDB;
+}
+
+.user-comment-info {
+  margin-right: auto;
 }

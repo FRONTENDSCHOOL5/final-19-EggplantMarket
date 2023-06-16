@@ -11,11 +11,12 @@ main {
 form {
     display: flex;
     flex-direction: column;
+    
     textarea {
         margin-top: 20px;
         border: none;
         resize: none;
-        width: 60vw;
+        width: 75vw;
     }
     img {
         width: 75vw;

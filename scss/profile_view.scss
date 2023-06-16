@@ -41,30 +41,27 @@
 // 게시글 목록 섹션
 .post-sec {
     width: 100%;
-    height: 100vh;
     padding: 16px;
 
     // overflow-y: scroll;
     
     
-        .post-list {
-    
-            // 목록형 최상단 게시글 마진 삭제
-            li:first-child>section:first-child {
-                margin-top: 0;
-            }
+    .post-list {
+        // 목록형 최상단 게시글 마진 삭제
+        li:first-child>section:first-child {
+            margin-top: 0;
         }
+    }
     .post-album {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 8px;
     }
 
-.post-list.hidden,
-.post-album.hidden {
-    display: none;
-}
-
+    .post-list.hidden,
+    .post-album.hidden {
+        display: none;
+    }
 }
 
 // 재사용 코드
@@ -73,9 +70,19 @@
     height: 100%;
     overflow: hidden;
 
+    a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+    }
+    
+    a:focus{
+        border: 4px solid currentColor;
+    }
+
     img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
     }
 }

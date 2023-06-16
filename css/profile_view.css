@@ -69,7 +69,6 @@ a {
 
 .post-sec {
   width: 100%;
-  height: 100vh;
   padding: 16px;
 }
 .post-sec .post-list li:first-child > section:first-child {
@@ -89,6 +88,14 @@ a {
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+.post-album-item a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.post-album-item a:focus {
+  border: 4px solid currentColor;
 }
 .post-album-item img {
   width: 100%;

@@ -70,12 +70,17 @@ a {
       -ms-flex-order: 1;
           order: 1;
   margin-right: auto;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 .nav-chat .btn-option, .nav-chat .btn-comment, .comment .btn-option, .comment .btn-comment {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
   margin-left: auto;
+  -ms-flex-preferred-size: 8%;
+      flex-basis: 8%;
 }
 
 .nav-search .btn-button {
@@ -227,6 +232,7 @@ a {
 
 /* 게시물 */
 .user-follow {
+  height: 42px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -236,6 +242,16 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+.user-follow .img-cover {
+  height: 100%;
+  overflow: hidden;
+}
+.user-follow .img-cover img {
+  height: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .user-follow .profile-img {
   -webkit-box-ordinal-group: 1;
@@ -249,11 +265,20 @@ a {
           order: 1;
   margin-right: auto;
 }
-.user-follow .btn-option {
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
-  margin-left: auto;
+
+.home-post {
+  position: relative;
+}
+.home-post .btn-option {
+  width: 24px;
+  position: absolute;
+  top: 0;
+  left: calc(100% - 25px);
+  -webkit-transform: translate(0, 40%);
+          transform: translate(0, 40%);
+}
+.home-post .btn-option img {
+  width: 100%;
 }
 
 .user-info .user-name {
@@ -270,6 +295,7 @@ a {
 
 .post-edit {
   margin: 16px auto 16px 54px;
+  padding-bottom: 5px;
 }
 .post-edit .post-text {
   margin-bottom: 16px;
@@ -289,19 +315,27 @@ a {
 }
 
 .post-icon {
+  margin-right: 6px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-bottom: 16px;
   gap: 6px;
+  margin-bottom: 16px;
   color: #767676;
   font-size: 0.75rem;
 }
-.post-icon .btn-comment {
-  margin-left: 10px;
+.post-icon > * {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 6px;
+  color: inherit;
 }
 
 .post-date {
@@ -359,6 +393,7 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+  background-color: white;
 }
 
 .tab-item-list {

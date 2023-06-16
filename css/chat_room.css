@@ -80,6 +80,7 @@ main {
 .chat-content .chat-time {
   font-size: 0.625rem;
   color: #767676;
+  margin-right: 16px;
   padding-bottom: 5px;
   -ms-flex-item-align: end;
       align-self: flex-end;

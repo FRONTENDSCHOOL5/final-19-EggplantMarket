@@ -56,6 +56,7 @@ main {
           flex-direction: column;
   gap: 6px;
   background-color: #F2F2F2;
+  padding-bottom: 61px;
 }
 main > section {
   background-color: white;

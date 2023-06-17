@@ -1,9 +1,8 @@
 @import 'variables';
 @import 'global';
 
-// 임시 간격
 .profile-setting {
-    margin-top: 100px;
+    display: none;
 }
 
 .join {
@@ -98,11 +97,11 @@ form {
         outline: none;
     }
 
-    .warning-msg {
+[class^=warning-msg] {
         color: $warning-color-text;
         font-size: 12px;
-        display: block;
         margin-top: 6px;
+        display: none;
     }
 }
 

@@ -32,7 +32,7 @@ a {
 }
 
 .profile-setting {
-  margin-top: 100px;
+  display: none;
 }
 
 .join {
@@ -128,11 +128,11 @@ form input:focus {
   border-bottom: 1px solid #9747FF;
   outline: none;
 }
-form .warning-msg {
+form [class^=warning-msg] {
   color: #EB5757;
   font-size: 12px;
-  display: block;
   margin-top: 6px;
+  display: none;
 }
 
 button {

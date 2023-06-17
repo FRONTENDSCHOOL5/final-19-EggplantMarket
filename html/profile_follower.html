@@ -15,42 +15,42 @@
 <body>
     <header class="top nav-chat">
         <h1 class="a11y-hidden">팔로워 목록 페이지</h1>
-        <button class="btn-back"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+        <button class="btn-back" onclick="history.back()" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
         <p class="title-chat">Follower</p>
     </header>
     <main>
         <ul class="follow-list">
             <li class="follow-item">
-                <a class="user-img img-cover" href="#">
+                <a class="user-img img-cover" href="./profile_info.html" tabindex="1">
                     <img src="../assets/profile_imgs/user1.jpg" alt="사용자 이미지">
                 </a>
                 <div class="user-info">
                     <strong class="user-name">
-                        <a href="#"><span class="a11y-hidden">사용자 이름</span>애월읍 가지 최고
+                        <a href="./profile_info.html" tabindex="1"><span class="a11y-hidden">사용자 이름,</span>애월읍 가지 최고
                             맛집</a>
                     </strong>
                     <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>정성을 다해 농사짓는 가지</p>
-                    </div>
-                <button class="btn-follow">팔로우<span class="a11y-hidden">하기 버튼</span></button>
-                </li>
-                <li class="follow-item">
-                <a class="user-img img-cover" href="#">
+                </div>
+                <button class="btn-follow" tabindex="1">팔로우<span class="a11y-hidden">하기 버튼</span></button>
+            </li>
+            <li class="follow-item">
+                <a class="user-img img-cover" href="./profile_info.html" tabindex="1">
                     <img src="../assets/profile_imgs/user2.jpg" alt="사용자 이미지">
                 </a>
                 <div class="user-info">
-                    <a href="#">
-                        <strong class="user-name"><span class="a11y-hidden">사용자 이름</span>가지의 품격 - 애월읍</strong>
+                    <a href="./profile_info.html" tabindex="1">
+                        <strong class="user-name"><span class="a11y-hidden">사용자 이름,</span>가지의 품격 - 애월읍</strong>
                     </a>
                     <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>제주 가지밭, 하우스 가지 판매합니다.</p>
                     </div>
-                <button class="btn-follow opposite">삭제<span class="a11y-hidden">하기 버튼</span></button>
+                <button class="btn-follow opposite" tabindex="1">삭제<span class="a11y-hidden">하기 버튼</span></button>
             </li>
-            <li class="follow-item">
-                <a class="user-img img-cover" href="#">
+            <!-- <li class="follow-item">
+                <a class="user-img img-cover" href="./profile_info.html">
                     <img src="../assets/profile_imgs/user3.jpg" alt="사용자 이미지">
                 </a>
                 <div class="user-info">
-                    <a href="#">
+                    <a href="./profile_info.html">
                         <strong class="user-name"><span class="a11y-hidden">사용자 이름</span>가지의 신</strong>
                     </a>
                     <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>30년 노하우로 정성스럽게 농사지은 가지</p>
@@ -58,11 +58,11 @@
                 <button class="btn-follow opposite">삭제<span class="a11y-hidden">하기 버튼</span></button>
             </li>
             <li class="follow-item">
-                <a class="user-img img-cover" href="#">
+                <a class="user-img img-cover" href="./profile_info.html">
                     <img src="../assets/profile_imgs/user4.jpg" alt="사용자 이미지">
                 </a>
                 <div class="user-info">
-                    <a href="#">
+                    <a href="./profile_info.html">
                         <strong class="user-name"><span class="a11y-hidden">사용자 이름</span>나 가지 좋아하네</strong>
                     </a>
                     <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>가지밭 컬렉터 i love eggplant</p>
@@ -70,59 +70,32 @@
                 <button class="btn-follow opposite">삭제<span class="a11y-hidden">하기 버튼</span></button>
             </li>
             <li class="follow-item">
-                <a class="user-img img-cover" href="#">
+                <a class="user-img img-cover" href="./profile_info.html">
                     <img src="../assets/profile_imgs/user5.jpg" alt="사용자 이미지">
                 </a>
                 <div class="user-info">
                     <strong class="user-name">
-                        <a href="#"><span class="a11y-hidden">사용자 이름</span>제주 감자, 가지 판매</a>
+                        <a href="./profile_info.html"><span class="a11y-hidden">사용자 이름</span>제주 감자, 가지 판매</a>
                     </strong>
                     <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span></p>
                     </div>
                 <button class="btn-follow">팔로우<span class="a11y-hidden">하기 버튼</span></button>
             </li>
             <li class="follow-item">
-                <a class="user-img img-cover" href="#">
+                <a class="user-img img-cover" href="./profile_info.html">
                     <img src="../assets/profile_imgs/user6.jpg" alt="사용자 이미지">
                 </a>
                 <div class="user-info">
                     <strong class="user-name">
-                        <a href="#"><span class="a11y-hidden">사용자 이름</span>가지 가지 하네
+                        <a href="./profile_info.html"><span class="a11y-hidden">사용자 이름</span>가지 가지 하네
                             맛집</a>
                     </strong>
                     <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>저희 가지농장으로 놀러오세요~!
                     </p>
                     </div>
                 <button class="btn-follow">팔로우<span class="a11y-hidden">하기 버튼</span></button>
-                </li>
-                </ul>
-                </main>
-                <footer>
-                    <nav class="tab-menu">
-                        <p class="a11y-hidden">하단 탭 메뉴</p>
-                        <ul class="tab-item-list">
-                            <li class="tab-item-home">
-                                <a href="#">
-                                    <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
-                                </a>
-                            </li>
-                            <li class="tab-item-chat">
-                                <a href="#">
-                                    <p>채팅<span class="a11y-hidden">화면으로 이동</span></p>
-                                </a>
-                            </li>
-                            <li class="tab-item-follow">
-                                <a href="#">
-                                    <p>게시물 작성<span class="a11y-hidden">화면으로 이동</span></p>
-                                </a>
-                            </li>
-                            <li class="tab-item-more">
-                                <a href="#">
-                                    <p>프로필<span class="a11y-hidden">화면으로 이동</span></p>
-                                </a>
-                            </li>
-                        </ul>
-                        </nav>
-                        </footer>
-
+            </li> -->
+            </ul>
+        </main>
+    </body>
 </html>

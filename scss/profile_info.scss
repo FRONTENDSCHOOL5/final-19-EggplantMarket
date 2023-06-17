@@ -1,6 +1,10 @@
 @import "global";
 @import "variables";
 
+// 질문
+// 일단 px->rem으로 변경
+// 폰트만 건들여야할까?
+
 .img-crop {
     margin: 0 auto;
     width: 110px;
@@ -15,13 +19,28 @@
 }
 
 main {
-    min-width: 390px
+    min-width: 390px;
+    display:flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: #F2F2F2;
+    padding-bottom: 61px;
+    & > section {
+        background-color: white;
+    }
 }
 
 .profile-container {
+    border: 1px solid #DBDBDB;
+    border-top: 0;
     position: relative;
     text-align: center;
-    padding-top: 30px;
+    padding: {
+        top : 30px;
+        bottom : 26px;
+        right: 50px;
+        left: 50px;
+    }
 
     a {
         text-decoration: none;
@@ -35,7 +54,7 @@ main {
         position: absolute;
         top: 65px;
         left: 50%;
-        transform: translateX(calc(-50% + 24px + 94px));
+        transform: translateX(calc(-50% + 1.5rem + 94px));
         display: flex;
         flex-direction: column-reverse;
         order: -1;
@@ -52,7 +71,7 @@ main {
     }
 
     .follow-wrap:nth-of-type(1){
-        transform: translateX(calc(-50% - 24px - 94px));
+        transform: translateX(calc(-50% - 1.5rem - 94px));
         & > strong {
             color: $black-color;
         }
@@ -83,7 +102,29 @@ main {
         }
     }
 
-    .btn-wrap {
+    .btn-wrap-my {
+        font-size: 0;
+        line-height: 0;
+        & :first-child {
+            margin-right: 12px;
+        }
+        
+        .btn-link {
+            // 버튼 초기화
+            background-color: white;
+        
+            // 스타일
+            border: 1px solid $gray100-color;
+            color: $gray300-color;
+            border-radius: 30px;
+            padding: 8px 27px;
+
+            font-size: .875rem;
+            font-weight: 500;
+        }
+    }
+
+    .btn-wrap-your {
         font-size: 0;
         line-height: 0;
         .circle{
@@ -107,10 +148,6 @@ main {
             margin: 0 12px;
         }
     }
+
 }
 
-footer{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}

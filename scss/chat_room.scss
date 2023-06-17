@@ -47,7 +47,7 @@ main{
     .chat-time{
         font-size: map-get($font-sizes, size10 );
         color: $gray300-color;
-        // bottom: 0;
+        margin-right: 16px;
         padding-bottom: 5px;
         align-self: flex-end;  
     }

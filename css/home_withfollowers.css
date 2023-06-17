@@ -10,6 +10,12 @@
   position: absolute;
 }
 
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 button {
   border: none;
   background-color: initial;
@@ -27,6 +33,7 @@ a {
 
 main {
   margin: 0 0.9375rem;
+  margin-bottom: 65px;
 }
 
 footer {

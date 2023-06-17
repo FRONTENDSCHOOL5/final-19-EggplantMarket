@@ -8,10 +8,12 @@ main {
 .product{
     display: flex;
     flex-direction: column;
-    width: 140px;
+    width: 24vw;
+    min-width: 140px;
     text-align: left;
 
     &-container{
+        overflow: hidden;
         padding: 20px 0;
         h2{
             margin-bottom: 16px;
@@ -19,10 +21,12 @@ main {
             margin-left: 18px;
         }
         position:relative;
+        border-top: 1px solid #DBDBDB;
+        border-bottom: 1px solid #DBDBDB;
     }
 
     &-list{
-        display: flex;
+        white-space: nowrap;
         overflow-x: scroll;
         &::-webkit-scrollbar{
             display: none;
@@ -36,20 +40,23 @@ main {
     }
 
     &-img{
-        width: inherit;
+        width: 100%;
         order: -1;
         border-radius: 8px;
     }
 
     // 길면?
     &-name{
-        width: inherit;
+        width: 100%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis; 
         word-break:break-all;
 
         margin:7px 0;
+    }
+    &-item{
+        display: inline-block;
     }
     &-item + &-item{
         margin-left: 5px;

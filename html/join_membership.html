@@ -62,25 +62,26 @@
                 <input type='file' id='btn-upload' class="btn-upload">
                 <fieldset>
                     <label for="username">사용자 이름</label>
-                    <input type="text" id="username" placeholder="2~10자 이내여야 합니다.">
+                    <input type="text" id="username" minlength="2" maxlength="10" placeholder="2~10자 이내여야 합니다.">
+                    <strong class="warning-msg-username">*2~10자 이내여야 합니다.</strong>
                 </fieldset>
                 <fieldset>
                     <label for="userid">계정 ID</label>
-                    <input type="text" id="userid" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다.">
-                    <strong class="warning-msg">*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.</strong>
-                    <!-- <strong class="warning-msg">*이미 사용 중인 ID입니다.</strong> -->
+                    <input type="text" id="userid" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다." pattern="^[0-9a-zA-Z._]*$">
+                    <strong class="warning-msg-userid"></strong>
                     </fieldset>
                     <fieldset>
                         <label for="userinfo">소개</label>
                         <input type="text" id="userinfo" placeholder="자신과 판매할 상품에 대해 소개해 주세요!">
                 </fieldset>
-                <button class='size-l btn-next' type="submit" onclick="location.href = '../home.html';" disabled>가지마켙
+                <button id="submit-btn" class='size-l btn-next' type="submit" onclick="location.href = '../home.html';" disabled>가지마켙
                     시작하기</button>
             </form>
         </section>
         <!-- // profile-setting -->
     </main>
     <script src="../js/join.js"></script>
+    <script src="../js/setProfile.js"></script>
 </body>
 
 </html>

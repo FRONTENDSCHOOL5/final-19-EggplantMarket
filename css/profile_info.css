@@ -175,6 +175,12 @@ main > section {
 .profile-container .btn-wrap-your .btn-share {
   background-image: url(../assets//icon/icon-share.svg);
 }
-.profile-container .btn-wrap-your :nth-child(2) {
+.profile-container .btn-wrap-your .size-m {
   margin: 0 12px;
+  height: 34px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.profile-container .btn-wrap-your .size-m.hidden {
+  display: none;
 }

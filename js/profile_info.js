@@ -1,12 +1,15 @@
 
+
+
+const url = "https://api.mandarin.weniv.co.kr",
+    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OGQ4MDU2YjJjYjIwNTY2MzM4MWQzNSIsImV4cCI6MTY5MjE3OTIwMywiaWF0IjoxNjg2OTk1MjAzfQ.GEfv4S1mZV1VQC2lVN1HebucHOSencMXhcn802YBblc"
+
 /**
  * 분기1
  * 내 프로필인지 다른 사람 프로필인지 체크
  */
 
 
-const url = "https://api.mandarin.weniv.co.kr",
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OGQ4MDU2YjJjYjIwNTY2MzM4MWQzNSIsImV4cCI6MTY5MjE3OTIwMywiaWF0IjoxNjg2OTk1MjAzfQ.GEfv4S1mZV1VQC2lVN1HebucHOSencMXhcn802YBblc"
 async function Load(url,token, accountName) { 
     try{
     const res = await fetch(url+`/profile/${accountName}`, {
@@ -45,7 +48,9 @@ function introUpdate(profile_data){
     intro = document.querySelector('.profile-intro'),
     followerElement = document.querySelector('.follower'),
     followingElement = document.querySelector('.following'),
-    profileImg = document.querySelector('.img-crop img');
+    profileImg = document.querySelector('.img-crop img'),
+    followBtn = document.querySelector('.btn-follow'),
+    unFollowBtn = document.querySelector('.btn-follow.cancle');
 
 
     userName.appendChild(document.createTextNode(profile_data.username))
@@ -56,6 +61,8 @@ function introUpdate(profile_data){
     followerElement.textContent = profile_data.followerCount;
     followingElement.textContent = profile_data.followingCount;
     profileImg.src=`${profile_data.image}`
+
+    profile_data.isfollow ? followBtn.classList.add('hidden') : unFollowBtn.classList.add('hidden')
 }
 
 function productUpdate(product_data,count){
@@ -82,14 +89,13 @@ function productUpdate(product_data,count){
 async function run(url,token,accountName) {
     const profile_data = await Load(url, token,accountName);
     const product_data = await ProductLoad(url, token,accountName )
-
     await introUpdate(profile_data.profile)
     await productUpdate(product_data.product,product_data.data)
 }
 
 run(url,token,'testtestabc')
 
-btnPosts = document.querySelectorAll('.tab-btn-wrap > button')
+const btnPosts = document.querySelectorAll('.tab-btn-wrap > button')
 btnPosts.forEach((item,idx,array)=>{
     posts = document.querySelectorAll('.post-sec > ul')
     item.addEventListener('click',()=>{
@@ -101,3 +107,34 @@ btnPosts.forEach((item,idx,array)=>{
         }
     })
 })
+
+// 팔로우버튼
+(function (url,token){
+
+    const followBtns = document.querySelectorAll('.btn-wrap-your > .btn-follow')
+
+    followBtns.forEach((item,idx,arr)=>{
+        item.addEventListener('click', async ()=>{
+            arr[idx].classList.add('hidden')
+            arr[(idx+1)%2].classList.remove('hidden');
+
+            const METHOD = item.classList.contains('cancle') ? 'DELETE' : 'POST',
+                ACTION = item.classList.contains('cancle') ? 'unfollow' : 'follow'
+            
+            const accountName = document.querySelector('.profile-id').childNodes[1].textContent
+            
+            let res = await fetch(url+`/profile/${accountName}/${ACTION}`, {
+                method: METHOD,
+                headers : {
+                    "Authorization" : `Bearer ${token}`,
+                    "Content-type" : "application/json"
+                }
+            });
+            
+            const resJson = await res.json()
+            
+            document.querySelector('.follower').textContent = resJson.profile.followerCount;
+        })
+    })
+}(url,token))
+

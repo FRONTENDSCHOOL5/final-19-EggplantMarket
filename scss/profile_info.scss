@@ -144,10 +144,14 @@ main {
         .btn-share{
             background-image: url(../assets//icon/icon-share.svg);
         }
-        & :nth-child(2) {
+        .size-m {
             margin: 0 12px;
+            height: 34px;
+            box-sizing: border-box;
+            &.hidden{
+                display: none;
+            }
         }
     }
-
 }
 

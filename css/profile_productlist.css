@@ -78,6 +78,7 @@ main {
       -ms-flex-order: -1;
           order: -1;
   border-radius: 8px;
+  aspect-ratio: 14/9;
 }
 .product-name {
   width: 100%;

@@ -43,6 +43,8 @@ main {
         width: 100%;
         order: -1;
         border-radius: 8px;
+        // object-fit: cover;
+        aspect-ratio: 14/9;
     }
 
     // 길면?

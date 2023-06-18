@@ -16,7 +16,7 @@ async function Load(url,token, accountName) {
                     }
                 });
     const resJson = await res.json();
-
+    console.log(resJson)
     return resJson
 } catch(err){
     console.error(err);
@@ -44,7 +44,8 @@ function introUpdate(profile_data){
     accountName = document.querySelector('.profile-id'),
     intro = document.querySelector('.profile-intro'),
     followerElement = document.querySelector('.follower'),
-    followingElement = document.querySelector('.following');
+    followingElement = document.querySelector('.following'),
+    profileImg = document.querySelector('.img-crop img');
 
 
     userName.appendChild(document.createTextNode(profile_data.username))
@@ -54,10 +55,28 @@ function introUpdate(profile_data){
     }
     followerElement.textContent = profile_data.followerCount;
     followingElement.textContent = profile_data.followingCount;
+    profileImg.src=`${profile_data.image}`
 }
 
-function productUpdate(){
+function productUpdate(product_data,count){
+    if(count==0){
+        document.querySelector('.product-container').style.display='none'
+    }
 
+    const productList = document.querySelector('.product-list')
+
+    product_data.forEach(item => {
+        
+        const productItem = document.createElement('li')
+        productItem.classList.add('product-item')
+        productItem.innerHTML = `
+            <button class="product" tabindex="1">
+                <strong class="product-name"><span class="a11y-hidden">상품 이름,</span>${item.itemName}</strong>
+                <img class="product-img" src="${item.itemImage}" alt="">
+                <strong class="product-price"><span class="a11y-hidden">금액,</span><span class="price">${Number(item.price).toLocaleString()}</span>원</strong>
+            </button>`
+        productList.appendChild(productItem)
+    })
 }
 
 async function run(url,token,accountName) {
@@ -65,7 +84,20 @@ async function run(url,token,accountName) {
     const product_data = await ProductLoad(url, token,accountName )
 
     await introUpdate(profile_data.profile)
-    
+    await productUpdate(product_data.product,product_data.data)
 }
 
-run(url,token,'weniv_won')
+run(url,token,'testtestabc')
+
+btnPosts = document.querySelectorAll('.tab-btn-wrap > button')
+btnPosts.forEach((item,idx,array)=>{
+    posts = document.querySelectorAll('.post-sec > ul')
+    item.addEventListener('click',()=>{
+        if(!item.classList.contains('on')){
+            item.classList.add('on')
+            array[(idx+1)%2].classList.remove('on')
+            posts[idx].classList.remove('hidden')
+            posts[(idx+1)%2].classList.add('hidden')
+        }
+    })
+})

@@ -90,3 +90,29 @@
 .post-container{
     background-color: white;
 }
+
+.btn-like:hover{
+    svg {
+        fill : #F26E22;
+        path {
+            stroke :#F26E22;
+        }
+    }
+}
+
+.btn-like.like{
+    svg {
+        fill : #F26E22;
+        path {
+            stroke :#F26E22;
+        }
+    }
+    &:hover{
+        svg {
+            fill : none;
+            path {
+                stroke :#767676;
+            }
+        }
+    }
+}

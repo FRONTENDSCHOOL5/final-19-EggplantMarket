@@ -107,3 +107,23 @@ a {
 .post-container {
   background-color: white;
 }
+
+.btn-like:hover svg {
+  fill: #F26E22;
+}
+.btn-like:hover svg path {
+  stroke: #F26E22;
+}
+
+.btn-like.like svg {
+  fill: #F26E22;
+}
+.btn-like.like svg path {
+  stroke: #F26E22;
+}
+.btn-like.like:hover svg {
+  fill: none;
+}
+.btn-like.like:hover svg path {
+  stroke: #767676;
+}

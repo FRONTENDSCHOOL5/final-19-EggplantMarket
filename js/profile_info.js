@@ -1,6 +1,12 @@
 const url = "https://api.mandarin.weniv.co.kr",
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OGQ4MDU2YjJjYjIwNTY2MzM4MWQzNSIsImV4cCI6MTY5MjE3OTIwMywiaWF0IjoxNjg2OTk1MjAzfQ.GEfv4S1mZV1VQC2lVN1HebucHOSencMXhcn802YBblc"
+    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OGQ4MDU2YjJjYjIwNTY2MzM4MWQzNSIsImV4cCI6MTY5MjE3OTIwMywiaWF0IjoxNjg2OTk1MjAzfQ.GEfv4S1mZV1VQC2lVN1HebucHOSencMXhcn802YBblc",
+    myAccountName = 'oxxun21',
+    profileAccountName = 'yoon';
 
+    // testtestabc
+    // yoon
+    // weniv_won
+    // oxxun21
 /**
  * 분기1
  * 내 프로필인지 다른 사람 프로필인지 체크
@@ -122,13 +128,13 @@ function postUpdate(post_data){
                     <h2 class="a11y-hidden">사진과 글을 함께 올리는 게시물</h2>
                     <section class="user-follow">
                         <h3 class="a11y-hidden">유저정보</h3>
-                        <a class="profile-img img-cover" href="./profile_info.html" tabindex="1">
+                        <div class="profile-img img-cover"tabindex="1">
                             <img src="${item.author.image}" alt="프로필사진">
-                        </a>
-                        <a class="user-info" href="./profile_info.html" tabindex="1">
+                        </div>
+                        <div class="user-info" tabindex="1">
                             <p class="user-name">${item.author.username}</p>
                             <p class="user-id">@ ${item.author.accountname}</p>
-                        </a>
+                        </div>
                     </section>
                     <section class="post-edit">
                         <h4 class="a11y-hidden">게시물의 사진과 내용</h4>
@@ -179,6 +185,17 @@ function postUpdate(post_data){
 
 
 async function run(url,token,accountName) {
+    if (myAccountName !== profileAccountName){
+        document.querySelector('.btn-wrap-your').style.display='flex'
+        document.querySelector('.btn-wrap-my').style.display='none'
+        document.querySelector('li.tab-item-more a').classList.remove('here')
+        document.querySelector('li.tab-item-home a').classList.add('here')
+    }else{
+        document.querySelector('.btn-wrap-your').style.display='none'
+        document.querySelector('.btn-wrap-my').style.display='block'
+        document.querySelector('li.tab-item-more a').classList.add('here')
+        document.querySelector('li.tab-item-home a').classList.remove('here')
+    }
     const profileData = await Load(url, token,accountName);
     const productData = await ProductLoad(url, token,accountName )
     const postData = await postLoad(url,token,accountName)
@@ -187,10 +204,6 @@ async function run(url,token,accountName) {
     await postUpdate(postData.post)
     document.querySelector('body').style.display = 'block'
 };
-
-document.querySelector('body').style.display = 'none'
-run(url,token,'testtestabc');
-
 
 // 게시글 토글
 (function  () {
@@ -237,3 +250,6 @@ run(url,token,'testtestabc');
         })
     })
 }(url,token));
+
+document.querySelector('body').style.display = 'none'
+run(url,token,profileAccountName);

@@ -1,0 +1,153 @@
+@import 'variables';
+@import 'global';
+
+.profile-setting {
+    // display: none;
+}
+
+.join {
+    padding: 34px;
+}
+
+h2,
+p {
+    text-align: center;
+}
+
+.title {
+    font-size: 24px;
+}
+
+.join-email form {
+    margin-top: 40px;
+}
+
+.profile-setting {
+    form {
+        margin-top: 30px;
+    }
+
+    .title {
+        margin-bottom: 12px;
+    }
+}
+
+// form
+form {
+    min-width: calc(390px - 30px * 2);
+    max-width: 40%;
+    margin: 0 auto;
+
+    color: $gray300-color;
+    font-size: .75rem;
+
+    .profile-img {
+        position: relative;
+        width: 110px;
+        margin: 0 auto 30px;
+
+        .img-cover {
+            width: 110px;
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                    object-fit: cover;
+                }
+        }
+    }
+
+    &>fieldset {
+        margin-bottom: 16px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 2px;
+        text-align: start;
+    }
+
+    label.btn-upload {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        border: none;
+        background-color: transparent;
+        margin: 0;
+
+        svg>circle {
+            fill: $active-color;
+        }
+    }
+
+    input {
+        display: block;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid $gray100-color;
+        padding: 8px 0
+    }
+
+    input.btn-upload {
+        display: none;
+    }
+
+    input::placeholder {
+        font-size: .875rem;
+        color: $gray100-color;
+    }
+
+    input:focus {
+        border-bottom: 1px solid $highlight-color;
+        outline: none;
+    }
+
+[class^=warning-msg] {
+        color: $warning-color-text;
+        font-size: 12px;
+        margin-top: 6px;
+        display: none;
+    }
+}
+
+
+// button
+button {
+    display: block;
+    border: solid 1px;
+    border-radius: 44px;
+    margin: 0 auto;
+}
+
+.size-l {
+    margin-top: 30px;
+    background-color: $enabled-color;
+    color: #FFFFFF;
+    font-weight: 500;
+    width: 100%;
+    padding: 13px 0px;
+    border-radius: 44px;
+    font-size: map-get($font-sizes, "size14");
+}
+
+.size-l:disabled {
+    background-color: $disabled-color;
+    color: #FFFFFF;
+}
+
+.btn-next {
+    border: none;
+    background-color: $enabled-color;
+    color: white;
+    margin-top: 30px;
+    padding: 13px;
+}
+
+.btn-next:disabled {
+    background-color: $disabled-color;
+}
+
+.btn-upload {
+    cursor: pointer;
+}

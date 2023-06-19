@@ -31,36 +31,41 @@ a {
   text-decoration: initial;
 }
 
-body {
-  min-width: 390px;
+.login {
+  padding: 30px;
+}
+.login .title {
+  text-align: center;
+  font-size: 24px;
 }
 
-main {
-  width: inherit;
-  padding: 0 34px;
-  margin-top: 30px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+.join {
+  color: #767676;
+  font-size: 0.75rem;
+  display: inline-block;
+  margin: 20px auto 0;
 }
 
 form {
-  min-width: 322px;
+  min-width: 330px;
   max-width: 40%;
   margin: 0 auto;
+  margin-top: 40px;
   color: #767676;
   font-size: 0.75rem;
 }
 form > label {
   display: block;
   margin-bottom: 2px;
+  margin-top: 16px;
 }
 form > input {
   display: block;
   width: 100%;
-  margin-bottom: 16px;
   border: none;
   border-bottom: 1px solid #dbdbdb;
   padding: 8px 0;
+  margin-bottom: 16p;
 }
 form > input::-webkit-input-placeholder {
   font-size: 0.875rem;
@@ -83,24 +88,35 @@ form > input::placeholder {
   color: #dbdbdb;
 }
 
-.product-img {
-  border-radius: 20px;
-  background: #f2f2f2;
-  position: relative;
-  aspect-ratio: 5/3;
-  margin-top: 18px;
-  margin-bottom: 30px;
-}
-.product-img .btn-upload {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
+.size-l {
+  margin-top: 30px;
+  background-color: #635CA5;
+  color: #FFFFFF;
+  font-weight: 500;
+  width: 100%;
+  padding: 13px 0px;
+  border-radius: 44px;
+  font-size: 0.875rem;
 }
 
-#product-img-upload {
+.size-l:disabled {
+  background-color: #BCADDC;
+  color: #FFFFFF;
+}
+
+[class^=warning-msg] {
+  color: #EB5757;
+  font-size: 12px;
+  display: block;
+  margin-top: 6px;
   display: none;
 }
 
-.upload-img:hover circle {
-  fill: #635CA5;
+.email-join {
+  text-align: center;
+}
+
+input:focus {
+  border-bottom: 1px solid #9747FF;
+  outline: none;
 }

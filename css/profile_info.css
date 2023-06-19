@@ -34,13 +34,13 @@ a {
 .img-crop {
   margin: 0 auto;
   width: 110px;
-  aspect-ratio: 1/1;
   border-radius: 50%;
   overflow: hidden;
 }
 .img-crop img {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
 }

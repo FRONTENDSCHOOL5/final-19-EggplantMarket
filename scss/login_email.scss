@@ -1,0 +1,84 @@
+@import 'global';
+@import 'variables';
+
+.login {
+    padding: 30px;
+
+    .title {
+        text-align: center;
+        font-size: 24px;
+    }
+}
+
+.join {
+    color: $gray300-color;
+    font-size: .75rem;
+    display: inline-block;
+    margin: 20px auto 0;
+}
+
+form {
+    min-width: calc(390px - 30px * 2);
+    max-width: 40%;
+    margin: 0 auto;
+    margin-top: 40px;
+
+    color: $gray300-color;
+    font-size: .75rem;
+
+    &>label {
+        display: block;
+        margin-bottom: 2px;
+        margin-top: 16px
+    }
+
+    &>input {
+        display: block;
+        width: 100%;
+
+        border: none;
+        border-bottom: 1px solid $gray100-color;
+        padding: 8px 0;
+        margin-bottom: 16p;
+    }
+
+
+    &>input::placeholder {
+        font-size: .875rem;
+        color: $gray100-color;
+    }
+}
+
+// button
+.size-l {
+    margin-top: 30px;
+    background-color: $enabled-color;
+    color: #FFFFFF;
+    font-weight: 500;
+    width: 100%;
+    padding: 13px 0px;
+    border-radius: 44px;
+    font-size: map-get($font-sizes, "size14");
+}
+
+.size-l:disabled {
+    background-color: $disabled-color;
+    color: #FFFFFF;
+}
+
+[class^="warning-msg"] {
+    color: $warning-color-text;
+    font-size: 12px;
+    display: block;
+    margin-top: 6px;
+    display: none;
+}
+
+.email-join {
+    text-align: center;
+}
+
+input:focus {
+    border-bottom: 1px solid $highlight-color;
+    outline: none;
+}

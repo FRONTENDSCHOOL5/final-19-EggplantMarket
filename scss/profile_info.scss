@@ -17,17 +17,20 @@
         object-fit: cover;
     }
 }
+body{
+    height: calc(100% + 61px);
+    background-color: white;
+}
 
 main {
     min-width: 390px;
-    display:flex;
-    flex-direction: column;
-    gap: 6px;
-    background-color: #F2F2F2;
-    padding-bottom: 61px;
     & > section {
         background-color: white;
     }
+    background-color: #f2f2f2;
+}
+header{
+    background-color: white;
 }
 
 .profile-container {
@@ -155,3 +158,10 @@ main {
     }
 }
 
+.content-wrap {
+    margin-top: 6px;
+    min-height: calc(100vh - 6px - 61px - 360px);
+    background-color: #f2f2f2;
+    margin-bottom: 61px;
+    // box-sizing: border-box;
+}

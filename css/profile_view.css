@@ -103,3 +103,7 @@ a {
   -o-object-fit: cover;
      object-fit: cover;
 }
+
+.post-container {
+  background-color: white;
+}

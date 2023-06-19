@@ -1,40 +1,54 @@
 main {
+  padding: 20px 16px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  max-width: 800px;
+  margin: auto;
 }
 
 form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+form > * {
+  display: block;
 }
 form textarea {
-  margin-top: 20px;
+  margin: 12px;
   border: none;
   resize: none;
-  width: 75vw;
 }
-form img {
-  width: 75vw;
-  height: 220px;
+form .img-cover {
+  width: 50vw;
+  max-width: 304px;
+  min-width: 168px;
+  aspect-ratio: 304/228;
   border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+form .img-cover img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+form .img-cover button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .user-profile {
   display: inline-block;
-  margin: 10px;
 }
 
 .input-file-btn {
-  margin-top: 10px;
   width: 50px;
   height: 50px;
   margin-left: auto;
@@ -43,4 +57,25 @@ form img {
 .input-file-btn img {
   width: 50px;
   height: 50px;
+}
+
+.upload-imgs-list {
+  white-space: nowrap;
+  overflow-x: scroll;
+  margin-top: 16px;
+  margin-left: 12px;
+  margin-bottom: 10px;
+}
+.upload-imgs-list > li {
+  display: inline-block;
+  margin-right: 8px;
+}
+.upload-imgs-list::-webkit-scrollbar {
+  display: none;
+}
+
+.btn-remove {
+  background-image: url("../assets/icon/x.svg");
+  width: 22px;
+  height: 22px;
 }

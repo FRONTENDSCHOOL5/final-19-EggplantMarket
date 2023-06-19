@@ -1,33 +1,52 @@
-nav {
-    // box-shadow: 0px 0px 7px gray inset;
-}
-
 main {
-    // box-shadow: 0px 0px 7px rgb(81, 139, 232) inset;
+    padding: 20px 16px;
     display: flex;
     justify-content: center;
+    max-width: 800px;
+        margin: auto;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
+    width: 100%;
+    
+        &>* {
+            display: block;
+        }
     
     textarea {
-        margin-top: 20px;
+        margin: 12px;
         border: none;
         resize: none;
-        width: 75vw;
     }
-    img {
-        width: 75vw;
-        height: 220px;
-        border-radius: 10px;
+overflow: hidden;
+
+.img-cover {
+    // 크기조절
+    width: 50vw;
+    max-width: 304px;
+    min-width: 168px;
+    aspect-ratio: 304/228;
+    border-radius: 10px;
+    overflow: hidden;
+
+    position: relative;
+img {
+    width: 100%;
+        height: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+    }
+    
+    button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
     }
 }
 
 .user-profile {
     display: inline-block;
-    margin: 10px;
 }
 
 .input-file-btn {
@@ -35,9 +54,34 @@ form {
         width: 50px;
         height: 50px;
     }
-    margin-top: 10px;
+
     width: 50px;
     height: 50px;
     margin-left: auto;
     cursor: pointer;
+}
+.upload-imgs-list {
+    white-space: nowrap;
+    overflow-x: scroll;
+
+    margin: {
+        top: 16px;
+        left: 12px;
+        bottom: 10px;
+    }
+
+    &>li {
+        display: inline-block;
+        margin-right: 8px;
+    }
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.btn-remove {
+    background-image: url('../assets/icon/x.svg');
+    width: 22px;
+    height: 22px;
 }

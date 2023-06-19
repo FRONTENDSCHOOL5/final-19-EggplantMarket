@@ -26,8 +26,14 @@ form {
         margin: 0 auto 30px;
 
         .img-cover {
+            width: 110px;
             border-radius: 50%;
             overflow: hidden;
+            img {
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                    object-fit: cover;
+                }
         }
     }
 

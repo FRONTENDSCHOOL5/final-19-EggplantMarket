@@ -11,9 +11,9 @@ let validUserName = false;
 
 inpsProfile.forEach(item => {
     item.addEventListener('change', async () => {
-        await validate(item);
+        await validateProfile(item);
 
-        // 사용자이름 길이 맞고 && => 버튼 활성화
+        // 사용자이름 길이 맞고 && 계정ID 형식 맞고 사용가능한 ID면 => 버튼 활성화
         if (validAccountName && validUserName) {
             console.log('다 통과했는디')
             submitButton.disabled = false;
@@ -23,7 +23,7 @@ inpsProfile.forEach(item => {
     })
 })
 
-async function validate(target) {
+async function validateProfile(target) {
 
     // 사용자이름 validation
     if (target.id === 'username') {
@@ -64,8 +64,8 @@ async function validate(target) {
 // 다음버튼 누르면 프로필설정 폼으로 변경
 submitButton.addEventListener('click', async (e) => {
     e.preventDefault()
-    console.log('회원가입 완료')
     await SubmitJoinForm();
+    console.log('회원가입 완료')
 })
 
 
@@ -83,7 +83,7 @@ async function validateUserId() {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ ...accountNameData })
+        body: JSON.stringify(accountNameData)
     })
     const json = await res.json();
     return json;
@@ -93,6 +93,9 @@ async function SubmitJoinForm() {
     const url = "https://api.mandarin.weniv.co.kr";
     const reqPath = "/user"
 
+    // 이미지 넣기
+    const fileName = await postImg()
+
     const data = {
         "user": {
             "username": userNameInp.value,
@@ -100,7 +103,7 @@ async function SubmitJoinForm() {
             "password": pw.value,
             "accountname": acNameInp.value,
             "intro": introInp.value,
-            "image": '' // 예시) https://api.mandarin.weniv.co.kr/1641906557953.png
+            "image": 'https://mandarin.api.weniv.co.kr/' + fileName
         }
     }
 
@@ -109,9 +112,46 @@ async function SubmitJoinForm() {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ ...data })
+        body: JSON.stringify(data)
     })
 
     const json = await res.json();
     return json;
 }
+
+async function postImg() {
+    const formData = new FormData();
+    const reqPath = "/image/uploadfile";
+    if (document.querySelector('#btn-upload').files[0]) {
+        formData.append("image", document.querySelector('#btn-upload').files[0])
+        const res = await fetch("https://api.mandarin.weniv.co.kr" + reqPath, {
+            method: "POST",
+            body: formData
+        });
+        const json = await res.json();
+
+        return json.filename;
+    } else {
+        return "1687141773353.png";
+        // 기본 이미지
+    }
+}
+
+(function () {
+    const uploadInp = document.querySelector('#btn-upload')
+    console.log(uploadInp.files);
+
+    uploadInp.addEventListener('change', (e) => readURL(e.target));
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.querySelector('.img-cover img').src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            document.querySelector('.img-cover img').src = "../assets/basic-profile-img.png";
+        }
+    }
+})()

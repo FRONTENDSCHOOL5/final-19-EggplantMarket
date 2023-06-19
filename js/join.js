@@ -10,7 +10,7 @@ let validEmail = false;
 
 inps.forEach(item => {
     item.addEventListener('change', async () => {
-        await validate(item)
+        await validateJoin(item)
 
         // email 형식에 맞고 가입 가능한 이메일 && pw 길이 맞으면 => 버튼 활성화
         if (validEmail && validPw) {
@@ -22,7 +22,7 @@ inps.forEach(item => {
     })
 })
 
-async function validate(target) {
+async function validateJoin(target) {
 
     // email validation
     if (target.type === 'email') {
@@ -74,8 +74,30 @@ async function validateEmail() {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ ...emailData })
+        body: JSON.stringify(emailData)
     })
     const json = await res.json();
     return json;
 }
+
+// // SUCCESS
+// // 사용 가능한 이메일인 경우
+// {
+//     "message": "사용 가능한 이메일 입니다."
+// }
+
+// // 가입한 이메일이 있는 경우
+// {
+//     "message": "이미 가입된 이메일 주소 입니다."
+// }
+
+// 이메일 형식에 맞지 않는 경우
+// {
+//     "message": "잘못된 이메일 형식입니다.",
+//     "status" : 422
+// }
+
+// // FAIL
+// {
+//     "message": "잘못된 접근입니다."
+// }

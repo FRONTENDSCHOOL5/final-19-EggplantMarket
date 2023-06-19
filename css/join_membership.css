@@ -68,8 +68,15 @@ form .profile-img {
   margin: 0 auto 30px;
 }
 form .profile-img .img-cover {
+  width: 110px;
   border-radius: 50%;
   overflow: hidden;
+}
+form .profile-img .img-cover img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 form > fieldset {
   margin-bottom: 16px;

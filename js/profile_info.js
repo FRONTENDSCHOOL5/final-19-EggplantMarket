@@ -1,6 +1,3 @@
-
-
-
 const url = "https://api.mandarin.weniv.co.kr",
     token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OGQ4MDU2YjJjYjIwNTY2MzM4MWQzNSIsImV4cCI6MTY5MjE3OTIwMywiaWF0IjoxNjg2OTk1MjAzfQ.GEfv4S1mZV1VQC2lVN1HebucHOSencMXhcn802YBblc"
 
@@ -10,20 +7,21 @@ const url = "https://api.mandarin.weniv.co.kr",
  */
 
 
-async function Load(url,token, accountName) { 
+async function Load(url, token, accountName) { 
     try{
-    const res = await fetch(url+`/profile/${accountName}`, {
-                    method: "GET",
-                    headers : {
-                        "Authorization" : `Bearer ${token}`
-                    }
-                });
-    const resJson = await res.json();
-    console.log(resJson)
-    return resJson
-} catch(err){
-    console.error(err);
-}}
+        const res = await fetch(url+`/profile/${accountName}`, {
+                        method: "GET",
+                        headers : {
+                            "Authorization" : `Bearer ${token}`
+                        }
+                    });
+        const resJson = await res.json();
+        console.log(resJson)
+        return resJson
+    } catch(err){
+        console.error(err);
+    }
+}
 
 async function ProductLoad(url,token, accountName) { 
     try{
@@ -91,22 +89,26 @@ async function run(url,token,accountName) {
     const product_data = await ProductLoad(url, token,accountName )
     await introUpdate(profile_data.profile)
     await productUpdate(product_data.product,product_data.data)
-}
+};
 
-run(url,token,'testtestabc')
+run(url,token,'testtestabc');
 
-const btnPosts = document.querySelectorAll('.tab-btn-wrap > button')
-btnPosts.forEach((item,idx,array)=>{
-    posts = document.querySelectorAll('.post-sec > ul')
-    item.addEventListener('click',()=>{
-        if(!item.classList.contains('on')){
-            item.classList.add('on')
-            array[(idx+1)%2].classList.remove('on')
-            posts[idx].classList.remove('hidden')
-            posts[(idx+1)%2].classList.add('hidden')
-        }
+
+// 게시글 토글
+(function  () {
+    const btnPosts = document.querySelectorAll('.tab-btn-wrap > button')
+    btnPosts.forEach((item,idx,array)=>{
+        posts = document.querySelectorAll('.post-sec > ul')
+        item.addEventListener('click',()=>{
+            if(!item.classList.contains('on')){
+                item.classList.add('on')
+                array[(idx+1)%2].classList.remove('on')
+                posts[idx].classList.remove('hidden')
+                posts[(idx+1)%2].classList.add('hidden')
+            }
+        })
     })
-})
+}());
 
 // 팔로우버튼
 (function (url,token){
@@ -136,5 +138,4 @@ btnPosts.forEach((item,idx,array)=>{
             document.querySelector('.follower').textContent = resJson.profile.followerCount;
         })
     })
-}(url,token))
-
+}(url,token));

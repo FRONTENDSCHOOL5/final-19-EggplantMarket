@@ -1,6 +1,6 @@
 const url = "https://api.mandarin.weniv.co.kr",
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OGQ4MDU2YjJjYjIwNTY2MzM4MWQzNSIsImV4cCI6MTY5MjE3OTIwMywiaWF0IjoxNjg2OTk1MjAzfQ.GEfv4S1mZV1VQC2lVN1HebucHOSencMXhcn802YBblc",
-    myAccountName = 'oxxun21',
+    token = localStorage.getItem("user-token"),
+    myAccountName = localStorage.getItem("user-accountname"),
     profileAccountName = 'yoon';
 
     // testtestabc
@@ -178,7 +178,7 @@ function postUpdate(post_data){
 
             const userId = document.createElement('p');
             userId.classList.add('user-id');
-            userId.textContent = `@ ${item.author.accountname}`;
+            userId.textContent = `${item.author.accountname}`;
 
             userInfoDiv.appendChild(userName);
             userInfoDiv.appendChild(userId);

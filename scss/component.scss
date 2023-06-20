@@ -195,6 +195,9 @@
         font-size: map-get($font-sizes, "size12" );
         font-weight: 400;
         margin-top: 2px;
+        &:before{
+            content : '@ '
+        }
     }
 }
 

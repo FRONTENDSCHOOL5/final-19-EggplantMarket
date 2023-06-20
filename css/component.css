@@ -293,6 +293,9 @@ a {
   font-weight: 400;
   margin-top: 2px;
 }
+.user-info .user-id:before {
+  content: "@ ";
+}
 
 .post-edit {
   margin: 16px auto 16px 54px;

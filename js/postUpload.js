@@ -74,3 +74,65 @@ function isValid() {
 }
 
 // ---- end of 버튼 활성화 ----
+
+
+// --- start of 게시글 작성하기 ---
+
+uploadButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+    await submitPostForm();
+    console.log('게시글 작성 완료');
+})
+
+// 작성 완료된 게시글 내용 post요청
+async function submitPostForm() {
+    const token = localStorage.getItem('user-token');
+
+    const url = "https://api.mandarin.weniv.co.kr";
+    const reqPath = "/post"
+
+    // 서버에 이미지 저장하고 가져오기
+    const fileName = await postImg();
+
+    const data = {
+        "post": {
+            "content": contentInp.value,
+            "image": fileName
+        }
+    }
+
+    const res = await fetch(url + reqPath, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+
+    const json = await res.json();
+    return json;
+}
+
+// 입력된 이미지 서버에 올리기
+async function postImg() {
+    const formData = new FormData();
+    const reqPath = "/image/uploadfile";
+    if (document.querySelector('#input-file').files && document.querySelector('#input-file').files[0]) {
+        console.log(document.querySelector('#input-file').files[0]);
+        formData.append("image", document.querySelector('#input-file').files[0])
+        const res = await fetch("https://api.mandarin.weniv.co.kr" + reqPath, {
+            method: "POST",
+            body: formData
+        });
+        const json = await res.json();
+
+        console.log(json.filename)
+
+        return 'https://mandarin.api.weniv.co.kr/' + json.filename;
+    } else {
+        return '';
+    }
+}
+
+// --- end of 게시글 작성하기 ---

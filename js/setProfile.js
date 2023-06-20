@@ -104,7 +104,7 @@ async function SubmitJoinForm() {
             "password": pw.value,
             "accountname": acNameInp.value,
             "intro": introInp.value,
-            "image": 'https://api.mandarin.weniv.co.kr' + fileName
+            "image": 'https://api.mandarin.weniv.co.kr/' + fileName
         }
     }
 

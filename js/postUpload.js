@@ -3,23 +3,22 @@ const imglist = document.querySelector('.upload-imgs-list');
 const contentInp = document.querySelector('textarea');
 const imgInp = document.querySelector('#input-file');
 
+// ---- start of 버튼 활성화 ----
+
 let validContent = false;
 let validImg = false;
 
-// 텍스트입력
+// 텍스트 입력
 contentInp.addEventListener('change', () => {
-    console.log(contentInp.value)
     // 텍스트 입력되면 valid
     if (contentInp.value !== '') {
         validContent = true;
-        console.log('contentInp : ', validContent);
     } else {
         validContent = false;
-        console.log('contentInp : ', validContent);
     }
 });
 
-// 이미지 추가
+// 이미지 입력
 (function () {
     imgInp.addEventListener('change', (e) => readURL(e.target));
 
@@ -29,7 +28,6 @@ contentInp.addEventListener('change', () => {
 
             // 이미지 입력되면 valid
             validImg = true;
-            console.log('validImg : ', validImg);
 
             var reader = new FileReader();
             reader.addEventListener('load', function (e) {
@@ -65,12 +63,14 @@ imgInp.addEventListener('change', isValid);
 contentInp.addEventListener('change', isValid);
 
 function isValid() {
-    console.log('contentInp : ', validContent, 'validImg : ', validImg);
+    // console.log('contentInp : ', validContent, 'validImg : ', validImg);
     if (validImg || validContent) {
-        console.log('둘중하나는 입력됨');
+        // console.log('둘중하나는 입력됨');
         uploadButton.disabled = false;
     } else {
-        console.log('둘 다 입력안됨');
+        // console.log('둘 다 입력안됨');
         uploadButton.disabled = true;
     }
 }
+
+// ---- end of 버튼 활성화 ----

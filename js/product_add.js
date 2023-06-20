@@ -1,5 +1,5 @@
 const submitButton = document.querySelector('.btn-save');
-const inpsProfile = document.querySelectorAll('#upload-product input');
+const inpsProduct = document.querySelectorAll('#upload-product input');
 const imgInp = document.querySelector('#product-img-upload');
 const produceName = document.querySelector('#product-name');
 const productPrice = document.querySelector('#product-price');
@@ -16,7 +16,7 @@ let validItemPrice = false;
 let validItemLink = false;
 let validImage = false;
 
-inpsProfile.forEach(item => {
+inpsProduct.forEach(item => {
     item.addEventListener('change', async () => {
         await validateProfile(item);
 

@@ -118,8 +118,7 @@ async function submitPostForm() {
 async function postImg() {
     const formData = new FormData();
     const reqPath = "/image/uploadfile";
-    if (document.querySelector('#input-file').files && document.querySelector('#input-file').files[0]) {
-        console.log(document.querySelector('#input-file').files[0]);
+    if (document.querySelector('#input-file').files[0]) {
         formData.append("image", document.querySelector('#input-file').files[0])
         const res = await fetch("https://api.mandarin.weniv.co.kr" + reqPath, {
             method: "POST",
@@ -129,7 +128,7 @@ async function postImg() {
 
         console.log(json.filename)
 
-        return 'https://mandarin.api.weniv.co.kr/' + json.filename;
+        return 'https://api.mandarin.weniv.co.kr' + json.filename;
     } else {
         return '';
     }

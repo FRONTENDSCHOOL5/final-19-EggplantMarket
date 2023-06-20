@@ -47,8 +47,6 @@ async function login() {
         "user": {
             "email": email.value,
             "password": pw.value
-            // "email": 'suritest@test.com',
-            // "password": 'suritest'
         }
     }
     const res = await fetch(url + reqPath, {
@@ -63,7 +61,8 @@ async function login() {
 
     if (json.status !== 422) { // 로그인 성공
         console.log(json.user.token)
-        localStorage.setItem("user", json.user.token);
+        localStorage.setItem("user-token", json.user.token);
+        localStorage.setItem("user-accountname", json.user.accountname);
         location.href = './home.html';
     } else {
         document.querySelector('.warning-msg-2').style.display = 'block';

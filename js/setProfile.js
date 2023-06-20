@@ -61,11 +61,12 @@ async function validateProfile(target) {
     }
 }
 
-// 다음버튼 누르면 프로필설정 폼으로 변경
+// 가지마켓시작하기버튼 누르면 회원가입 완료 및 로그인 화면으로 이동
 submitButton.addEventListener('click', async (e) => {
     e.preventDefault()
     await SubmitJoinForm();
     console.log('회원가입 완료')
+    location.href = './login.html';
 })
 
 
@@ -103,7 +104,7 @@ async function SubmitJoinForm() {
             "password": pw.value,
             "accountname": acNameInp.value,
             "intro": introInp.value,
-            "image": 'https://mandarin.api.weniv.co.kr/' + fileName
+            "image": 'https://api.mandarin.weniv.co.kr/' + fileName
         }
     }
 

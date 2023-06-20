@@ -104,7 +104,7 @@ function productUpdate(product_data,count){
             const button = document.createElement('button')
             button.classList.add('product')
             button.setAttribute('tabindex','1')
-            button.setAttribute('itemid', `${item.id}`)
+            button.setAttribute('data-productId', `${item.id}`)
 
             const productName = document.createElement('strong')
             productName.className='product-name'
@@ -378,16 +378,20 @@ async function run(url,token,accountName) {
                 ACTION = item.classList.contains('cancle') ? 'unfollow' : 'follow'
             
             const accountName = document.querySelector('.profile-id').childNodes[1].textContent
+            let resJson
+            try {
+                let res = await fetch(url+`/profile/${accountName}/${ACTION}`, {
+                    method: METHOD,
+                    headers : {
+                        "Authorization" : `Bearer ${token}`,
+                        "Content-type" : "application/json"
+                    }
+                });
             
-            let res = await fetch(url+`/profile/${accountName}/${ACTION}`, {
-                method: METHOD,
-                headers : {
-                    "Authorization" : `Bearer ${token}`,
-                    "Content-type" : "application/json"
-                }
-            });
-            
-            const resJson = await res.json()
+                resJson = await res.json()
+            } catch(err) {
+                console.log(err)
+            }
             
             document.querySelector('.follower').textContent = resJson.profile.followerCount;
             arr[idx].classList.add('hidden')

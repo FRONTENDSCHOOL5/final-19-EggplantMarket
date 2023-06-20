@@ -18,18 +18,21 @@ form > * {
   display: block;
 }
 form textarea {
+  width: calc(100% - 24px);
   margin: 12px;
   border: none;
   resize: none;
 }
 form .img-cover {
-  width: 50vw;
+  width: 30vw;
   max-width: 304px;
   min-width: 168px;
   aspect-ratio: 304/228;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+  -webkit-box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 form .img-cover img {
   width: 100%;

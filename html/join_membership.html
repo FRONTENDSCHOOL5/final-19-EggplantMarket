@@ -23,12 +23,12 @@
                     <label for="email">이메일</label>
                     <input type="email" id="email" placeholder="이메일 주소를 입력해 주세요.">
                     <strong class="warning-msg-email"></strong>
-                    </fieldset>
-                    <fieldset>
-                        <label for="pw">비밀번호</label>
+                </fieldset>
+                <fieldset>
+                    <label for="pw">비밀번호</label>
                     <input type="password" id="pw" minlength="6" placeholder="비밀번호를 설정해 주세요.">
                     <strong class="warning-msg-pw">*비밀번호는 6자 이상이어야 합니다.</strong>
-                    </fieldset>
+                </fieldset>
                 <button id="next-btn" class='size-l btn-next' disabled>다음</button>
             </form>
         </section>
@@ -67,14 +67,16 @@
                 </fieldset>
                 <fieldset>
                     <label for="userid">계정 ID</label>
-                    <input type="text" id="userid" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다." pattern="^[0-9a-zA-Z._]*$">
+                    <input type="text" id="userid" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
+                        pattern="^[0-9a-zA-Z._]*$">
                     <strong class="warning-msg-userid"></strong>
-                    </fieldset>
-                    <fieldset>
-                        <label for="userinfo">소개</label>
-                        <input type="text" id="userinfo" placeholder="자신과 판매할 상품에 대해 소개해 주세요!">
                 </fieldset>
-                <button id="submit-btn" class='size-l btn-next' type="submit" onclick="location.href = '../login.html';" disabled>가지마켙
+                <fieldset>
+                    <label for="userinfo">소개</label>
+                    <input type="text" id="userinfo" placeholder="자신과 판매할 상품에 대해 소개해 주세요!">
+                </fieldset>
+                <button id="submit-btn" class='size-l btn-next' type="submit" onclick="location.href = './login.html';"
+                    disabled>가지마켙
                     시작하기</button>
             </form>
         </section>

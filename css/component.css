@@ -246,6 +246,7 @@ a {
 .user-follow .img-cover {
   height: 100%;
   overflow: hidden;
+  border-radius: 50%;
 }
 .user-follow .img-cover img {
   height: 100%;

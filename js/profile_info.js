@@ -255,6 +255,9 @@ function postUpdate(post_data){
 
             const likeButton = document.createElement('button');
             likeButton.classList.add('btn-like');
+            if(item.hearted){
+                likeButton.classList.add('like');
+            }
             
             const likeSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
             likeSvg.setAttribute('width', '20');
@@ -371,9 +374,6 @@ async function run(url,token,accountName) {
 
     followBtns.forEach((item,idx,arr)=>{
         item.addEventListener('click', async ()=>{
-            arr[idx].classList.add('hidden')
-            arr[(idx+1)%2].classList.remove('hidden');
-
             const METHOD = item.classList.contains('cancle') ? 'DELETE' : 'POST',
                 ACTION = item.classList.contains('cancle') ? 'unfollow' : 'follow'
             
@@ -390,16 +390,45 @@ async function run(url,token,accountName) {
             const resJson = await res.json()
             
             document.querySelector('.follower').textContent = resJson.profile.followerCount;
+            arr[idx].classList.add('hidden')
+            arr[(idx+1)%2].classList.remove('hidden');
         })
     })
 }(url,token));
 
-function handleLike(event){
-    console.log(event.currentTarget)
-    if(event.currentTarget.classList.contains('like')){
+async function handleLike(event){
 
-    }else{
-        
+    const target = event.currentTarget;
+    console.log(event.currentTarget)
+    let ACT, METHOD, FUNC;
+    // 좋아요가 없음
+    if(!target.classList.contains('like')){
+        ACT = "heart"
+        METHOD = "POST"
+    }else{ //좋아요가 있음
+        ACT = "unheart"
+        METHOD = "DELETE"
+    }
+    result = await reqLike(target,target.closest('li').dataset.postid, ACT, METHOD)
+    target.querySelector('span').textContent = `${result.heartCount}`
+    console.log(result.hearted)
+    result.hearted ? target.classList.add('like') : target.classList.remove('like')    
+}
+
+async function reqLike(target,postId,act,method){
+    try{
+        const res = await fetch(url+`/post/${postId}/${act}`, {
+                        method: method,
+                        headers : {
+                            "Authorization" : `Bearer ${token}`,
+                            "Content-type" : "application/json"
+                        }
+                    });
+        const resJson = await res.json();
+
+        return resJson.post
+    } catch(err){
+        console.error(err);
     }
 }
 

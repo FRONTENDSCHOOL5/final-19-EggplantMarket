@@ -1,7 +1,27 @@
+const token = localStorage.getItem('user-token');
+
+const writerImg = document.querySelector('.user-profile img');
 const uploadButton = document.querySelector('#upload-btn');
 const imglist = document.querySelector('.upload-imgs-list');
 const contentInp = document.querySelector('textarea');
 const imgInp = document.querySelector('#input-file');
+
+async function getMyImg() {
+    const reqPath = "/user/myinfo";
+    const res = await fetch("https://api.mandarin.weniv.co.kr" + reqPath, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const json = await res.json();
+
+    return json.user.image;
+}
+(async function () {
+    writerImg.src = await getMyImg();
+})();
+
 
 // ---- start of 버튼 활성화 ----
 

@@ -48,7 +48,19 @@ img {
 
 .user-profile {
     display: inline-block;
+    height: 42px;
+        width: 42px;
+        overflow: hidden;
+        border-radius: 50%;
+    
+        img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
 }
+
 
 .input-file-btn {
     img {

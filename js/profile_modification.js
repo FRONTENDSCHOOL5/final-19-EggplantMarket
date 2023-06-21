@@ -111,7 +111,7 @@ inpsProfile.forEach(item => {
         await validateProfile(item);
 
         // 사용자 이름이 공백이면 버튼 비활성화
-        if (userNameInp.value === "") {
+        if (userNameInp.value === "" || userNameInp.value.length === 1) {
             submitButton.disabled = true;
         } else{
             // info 혹은 image만 변경해도 저장 가능하도록
@@ -130,7 +130,7 @@ async function validateProfile(target) {
 
     // 사용자이름 validation
     if (target.id === 'username') {
-        if (!target.validity.tooShort && !target.validity.tooLong && target.value.trim() !== '') {
+        if (!target.validity.tooShort && !target.validity.tooLong) {
             document.querySelector(`.warning-msg-username`).style.display = 'none';
             validUserName = true;
         } else {

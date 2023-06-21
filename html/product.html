@@ -58,8 +58,19 @@
 
         </form>
     </main>
-    <script src="../js/product_add.js"></script>
-    <script src="../js/product_modification.js"></script>
+    <script>
+        let productID = "6491f338b2cb2056634d816e";
+        // let productID = "";
+        if (productID !== "") {
+            let scriptEl = document.createElement('script');
+            scriptEl.src = "../js/product_modification.js";
+            document.body.appendChild(scriptEl);
+        } else {
+            let scriptEl = document.createElement('script');
+            scriptEl.src = "../js/product_add.js";
+            document.body.appendChild(scriptEl);
+        }
+    </script>
 </body>
 
 </html>

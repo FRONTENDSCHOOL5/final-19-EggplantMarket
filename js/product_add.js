@@ -7,8 +7,7 @@ const purchaseLink = document.querySelector('#purchase-link');
 
 // 프로필 정보 불러오기
 const url = "https://api.mandarin.weniv.co.kr",
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTEzYWY5YjJjYjIwNTY2MzQ1M2NiNSIsImV4cCI6MTY5MjQ2MzI3NiwiaWF0IjoxNjg3Mjc5Mjc2fQ.LVM0nvI_mtCKFUK5R58WpWq7oxM-VcP1xfereldLh7Y",
-    userID = "ellie"
+    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTEzYWY5YjJjYjIwNTY2MzQ1M2NiNSIsImV4cCI6MTY5MjQ2MzI3NiwiaWF0IjoxNjg3Mjc5Mjc2fQ.LVM0nvI_mtCKFUK5R58WpWq7oxM-VcP1xfereldLh7Y"
 
 /////// 
 let validItemName = false;
@@ -140,10 +139,3 @@ submitButton.addEventListener('click', async (e) => {
     await saveProduct(url, token);
     console.log('상품 등록 완료')
 })
-
-// async function run(url, token, accountName) {
-//     const profileData = await Load_userinfo(url, token, accountName);
-//     introUpdate(profileData.profile);
-// }
-
-// run(url, token, userID);

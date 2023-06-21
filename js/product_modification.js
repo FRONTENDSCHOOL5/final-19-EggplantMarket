@@ -6,10 +6,10 @@ const editProductPrice = document.querySelector('#product-price');
 const editPurchaseLink = document.querySelector('#purchase-link');
 
 const apiUrl = "https://api.mandarin.weniv.co.kr",
-    userToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTEzYWY5YjJjYjIwNTY2MzQ1M2NiNSIsImV4cCI6MTY5MjQ2MzI3NiwiaWF0IjoxNjg3Mjc5Mjc2fQ.LVM0nvI_mtCKFUK5R58WpWq7oxM-VcP1xfereldLh7Y",
-    productID = "6491f338b2cb2056634d816e"
+    userToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTEzYWY5YjJjYjIwNTY2MzQ1M2NiNSIsImV4cCI6MTY5MjQ2MzI3NiwiaWF0IjoxNjg3Mjc5Mjc2fQ.LVM0nvI_mtCKFUK5R58WpWq7oxM-VcP1xfereldLh7Y"
 
 
+////////
 async function Load_product(apiUrl, token, productID) {
     try {
         const res = await fetch(apiUrl + `/product/detail/${productID}`, {
@@ -26,6 +26,11 @@ async function Load_product(apiUrl, token, productID) {
         console.error(err);
     }
 }    
+
+let validItemName = false;
+let validItemPrice = false;
+let validItemLink = false;
+let validImage = false;
 
 editInpsProduct.forEach(item => {
     item.addEventListener('change', async () => {
@@ -89,11 +94,9 @@ async function saveProduct(url, token, productID){
 
     try{
         const currentImageSrc = document.querySelector('.product-img').style.backgroundImage;
-        console.log(currentImageSrc)
         // 이미지 데이터 저장할 변수 선언
         let updatedData;
         let checkURL = `url('${imageURL}')`
-        console.log(checkURL);
         // 현재 이미지 소스와 다른 경우 데이터의 이미지 URL을 업데이트
         if (currentImageSrc !== checkURL) {
             updatedData = { ...data };
@@ -130,7 +133,7 @@ async function postImg() {
         const res = await fetch("https://api.mandarin.weniv.co.kr" + reqPath, {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${token}`,
+                "Authorization": `Bearer ${userToken}`,
                 "Content-Type": "multipart/form-data"
             },
             body: formData

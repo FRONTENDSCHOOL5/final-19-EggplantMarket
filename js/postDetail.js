@@ -1,5 +1,4 @@
-// const postId = new URLSearchParams(location.search).get('postId') || '6491b73cb2cb2056634d2217';
-const postId = '648bbcfdb2cb205663363788';
+const postId = new URLSearchParams(location.search).get('postId');
 
 const url = "https://api.mandarin.weniv.co.kr";
 const token = localStorage.getItem("user-token");
@@ -8,6 +7,17 @@ let userAccountName = '';
 
 const postViewSec = document.querySelector('.home-post');
 const commentList = document.querySelector('.comment-list');
+const commentInp = document.querySelector('#commemt-input');
+const commentSubmitButton = document.querySelector('.btn-comment');
+
+commentInp.addEventListener('keyup', (e) => {
+    console.log(e.target.value)
+    if (e.target.value !== '') {
+        commentSubmitButton.disabled = false;
+    } else {
+        commentSubmitButton.disabled = true;
+    }
+})
 
 
 // GET 게시글 데이터
@@ -52,7 +62,7 @@ function displayPost(post) {
 
     // h2
     const hd = document.querySelector('.home-post h2');
-    const headingContent = post.image && post.content ? '이미지와 글이 함께 있는 게시물' : (post.image ? '이미지만 있는 게시글' : '글만 있는 게시물');
+    const headingContent = post.image && post.content ? '사진과 글이 함께 있는 게시물' : (post.image ? '사진만 있는 게시글' : '글만 있는 게시물');
     hd.innerHTML = headingContent;
 
     // section .게시글 작성자
@@ -129,6 +139,7 @@ async function run() {
     const dataComments = await getComments();
 
     // 모달창 관련
+    console.log(dataPost)
     userAccountName = dataPost.post.author.accountname;
     if (myAccountName !== userAccountName) {
         // 게시글 신고하기 모달

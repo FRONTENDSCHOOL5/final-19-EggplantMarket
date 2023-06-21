@@ -59,9 +59,10 @@
         </form>
     </main>
     <script>
-        let productID = "64925accb2cb2056634f5cb0";
-        // let productID = "";
-        if (productID !== "") {
+        const productID = localStorage.getItem("product-id");
+        // localStorage.removeItem("product-id");
+
+        if (productID) {
             let scriptEl = document.createElement('script');
             scriptEl.src = "../js/product_modification.js";
             document.body.appendChild(scriptEl);

@@ -6,8 +6,7 @@ const editProductPrice = document.querySelector('#product-price');
 const editPurchaseLink = document.querySelector('#purchase-link');
 
 const apiUrl = "https://api.mandarin.weniv.co.kr",
-    userToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTEzYWY5YjJjYjIwNTY2MzQ1M2NiNSIsImV4cCI6MTY5MjQ2MzI3NiwiaWF0IjoxNjg3Mjc5Mjc2fQ.LVM0nvI_mtCKFUK5R58WpWq7oxM-VcP1xfereldLh7Y"
-
+    userToken = localStorage.getItem("user-token");
 
 ////////
 async function Load_product(apiUrl, token, productID) {
@@ -36,11 +35,15 @@ editInpsProduct.forEach(item => {
     item.addEventListener('change', async () => {
         await validateProduct(item);
 
-        if (validItemName || validItemPrice || validItemLink || validImage) {
-            console.log('다 통과했는디');
-            editButton.disabled = false;
-        } else {
+        if (editProduceName.value === "" || editProduceName.value.length === 1) {
             editButton.disabled = true;
+        } else{
+            if (validItemName || validItemPrice || validItemLink || validImage) {
+                console.log('다 통과했는디');
+                editButton.disabled = false;
+            } else {
+                editButton.disabled = true;
+            }
         }
     });
 });

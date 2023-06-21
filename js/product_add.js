@@ -7,7 +7,7 @@ const purchaseLink = document.querySelector('#purchase-link');
 
 // 프로필 정보 불러오기
 const url = "https://api.mandarin.weniv.co.kr",
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTEzYWY5YjJjYjIwNTY2MzQ1M2NiNSIsImV4cCI6MTY5MjQ2MzI3NiwiaWF0IjoxNjg3Mjc5Mjc2fQ.LVM0nvI_mtCKFUK5R58WpWq7oxM-VcP1xfereldLh7Y"
+    token = localStorage.getItem("user-token");
 
 /////// 
 let validItemName = false;
@@ -16,14 +16,19 @@ let validItemLink = false;
 let validImage = false;
 
 inpsProduct.forEach(item => {
-    item.addEventListener('change', async () => {
+    item.addEventListener('input', async () => {
         await validateProduct(item);
 
-        if (validItemName && validItemPrice && validItemLink && validImage) {
-            console.log('다 통과했는디');
-            submitButton.disabled = false;
-        } else {
-            submitButton.disabled = true;
+            if (validItemName && validItemPrice && validItemLink && validImage) {
+                if (produceName.value === "" || produceName.value.length === 1) {
+                    submitButton.disabled = true;
+                } else {
+                    console.log('다 통과했는디');
+                    submitButton.disabled = false;
+                }
+            } else {
+                submitButton.disabled = true;
+            
         }
     });
 });
@@ -50,7 +55,7 @@ async function validateProduct(target) {
         validItemPrice = true;
     }
 
-    // 상품 링크 validation - 링크 형식
+    // 상품 링크 validation
     if (target.id === 'purchase-link') {
         const urlPattern = /^https?:\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
         if (urlPattern.test(target.value)) {
@@ -101,8 +106,8 @@ async function saveProduct(url, token){
     });
 
     const json = await res.json();
+    localStorage.setItem("product-id", json.product.id);
     console.log(json);
-    // return json;
 }
 
 async function postImg() {

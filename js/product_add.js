@@ -17,7 +17,7 @@ let validImage = false;
 
 inpsProduct.forEach(item => {
     item.addEventListener('change', async () => {
-        await validateProfile(item);
+        await validateProduct(item);
 
         if (validItemName && validItemPrice && validItemLink && validImage) {
             console.log('다 통과했는디');
@@ -29,15 +29,18 @@ inpsProduct.forEach(item => {
 });
 
 // 유효성 검사
-async function validateProfile(target) {
+async function validateProduct(target) {
 
     // 상품명 validation
     if (target.id === 'product-name') {
         if (!target.validity.tooShort && !target.validity.tooLong) {
+            document.querySelector(`.warning-msg-productname`).style.display = 'none';
+            produceName.style.borderBottom = '1px solid #dbdbdb';
             validItemName = true;
         } else {
             document.querySelector('.warning-msg-productname').textContent = '*2~15자 이내여야 합니다.'
             document.querySelector(`.warning-msg-productname`).style.display = 'block'
+            produceName.style.borderBottom = '1px solid red';
             validItemName = false;
         }
     }
@@ -47,17 +50,19 @@ async function validateProfile(target) {
         validItemPrice = true;
     }
 
-    // 상품 링크 validation
+    // 상품 링크 validation - 링크 형식
     if (target.id === 'purchase-link') {
-        // url 형식
-        // if (target.validity.patternMismatch) {
-        //     document.querySelector('.warning-msg-purchaselink').textContent = 'URL 형식으로 입력해주세요'
-        //     document.querySelector(`.warning-msg-purchaselink`).style.display = 'block'
-        //     validItemLink = false;
-        // } else {
-        //     validItemLink = true;
-        // }
-        validItemLink = true;
+        const urlPattern = /^https?:\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
+        if (urlPattern.test(target.value)) {
+            document.querySelector('.warning-msg-purchaselink').style.display = 'none';
+            purchaseLink.style.borderBottom = '1px solid #dbdbdb';
+            validItemLink = true;
+        } else {
+            document.querySelector('.warning-msg-purchaselink').textContent = 'URL 형식으로 입력해주세요';
+            document.querySelector(`.warning-msg-purchaselink`).style.display = 'block';
+            purchaseLink.style.borderBottom = '1px solid red';
+            validItemLink = false;
+        }
     }
 
     // 상품 이미지 validation

@@ -10,11 +10,9 @@ acNameInp.readOnly = true;
 
 // 프로필 정보 불러오기
 const url = "https://api.mandarin.weniv.co.kr",
-    // token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTEzYWY5YjJjYjIwNTY2MzQ1M2NiNSIsImV4cCI6MTY5MjUwOTU3NiwiaWF0IjoxNjg3MzI1NTc2fQ.UDzdVyWnAUfW-oLjgkEPcEinjXGC_rDyUzcoZkdmUDc",
-    // userID = "ellie"
-    token = localStorage.getItem("user-token");;
-    console.log(token);
+    token = localStorage.getItem("user-token"),
     userID = localStorage.getItem("user-accountname");
+
 
     // 프로필 정보 저장
 async function saveProfile(url, token) {

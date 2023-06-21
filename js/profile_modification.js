@@ -5,28 +5,15 @@ const userNameInp = document.querySelector('#username');
 const acNameInp = document.querySelector('#userid');
 const introInp = document.querySelector('#userinfo');
 
+// 계정ID는 변경되지 않도록 고정
+acNameInp.readOnly = true;
+
 // 프로필 정보 불러오기
 const url = "https://api.mandarin.weniv.co.kr",
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTEzYWY5YjJjYjIwNTY2MzQ1M2NiNSIsImV4cCI6MTY5MjQyMzQ3NiwiaWF0IjoxNjg3MjM5NDc2fQ.qsUhukxADGoXTjs98N8h-NDWquskgMW3S03OFaEl5-U",
+    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTEzYWY5YjJjYjIwNTY2MzQ1M2NiNSIsImV4cCI6MTY5MjUwOTU3NiwiaWF0IjoxNjg3MzI1NTc2fQ.UDzdVyWnAUfW-oLjgkEPcEinjXGC_rDyUzcoZkdmUDc",
     userID = "ellie"
 
-async function Load_userinfo(url, token, accountName) {
-    try {
-        const res = await fetch(url + `/profile/${accountName}`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        });
-        const resJson = await res.json();
-        console.log(resJson);
-        return resJson
-    } catch (err) {
-        console.error(err);
-    }
-}
-
-// 프로필 정보 저장
+    // 프로필 정보 저장
 async function saveProfile(url, token) {
     // 수정된 프로필 정보 가져오기
     const reqPath = "/user";
@@ -74,7 +61,6 @@ async function saveProfile(url, token) {
     }
 }
 
-
 async function postImg() {
     const file = imgInp.files[0];
     const formData = new FormData();
@@ -97,6 +83,7 @@ async function postImg() {
     }
 }
 
+// 프로필 이미지 버튼
 imgInp.addEventListener('change', async (e) => {
     const formData = new FormData();
     const imageFile = e.target.files[0];
@@ -115,7 +102,7 @@ imgInp.addEventListener('change', async (e) => {
 
 // 이메일 비밀번호 입력 후 포커스 잃으면 형식 및 유효성 검사
 let validAccountName = false;
-let validUserName = false;
+let validUserName = true;
 let validInfo = false;
 let validImage = false;
 
@@ -123,13 +110,17 @@ inpsProfile.forEach(item => {
     item.addEventListener('change', async () => {
         await validateProfile(item);
 
-        // 사용자이름 길이 맞고 && 계정ID 형식 맞고 사용가능한 ID면 => 버튼 활성화
-        // info 혹은 image만 변경해도 저장 가능하도록
-        if (validAccountName || validUserName || validInfo || validImage) {
-            console.log('다 통과했는디');
-            submitButton.disabled = false;
-        } else {
+        // 사용자 이름이 공백이면 버튼 비활성화
+        if (userNameInp.value === "") {
             submitButton.disabled = true;
+        } else{
+            // info 혹은 image만 변경해도 저장 가능하도록
+            if (validAccountName || validUserName || validInfo || validImage) {
+                console.log('다 통과했는디');
+                submitButton.disabled = false;
+            } else {
+                submitButton.disabled = true;
+            }
         }
     });
 });
@@ -139,33 +130,12 @@ async function validateProfile(target) {
 
     // 사용자이름 validation
     if (target.id === 'username') {
-        if (!target.validity.tooShort && !target.validity.tooLong) {
+        if (!target.validity.tooShort && !target.validity.tooLong && target.value.trim() !== '') {
             document.querySelector(`.warning-msg-username`).style.display = 'none';
             validUserName = true;
         } else {
             document.querySelector(`.warning-msg-username`).style.display = 'block';
             validUserName = false;
-        }
-    }
-
-    // 계정id validation
-    if (target.id === 'userid') {
-        // 1. pattern 검사
-        console.log(target.validity.patternMismatch);
-        if (target.validity.patternMismatch) {
-            document.querySelector('.warning-msg-userid').textContent = '*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.';
-            document.querySelector('.warning-msg-userid').style.display = 'block';
-        } else {
-            // 2. 계정 중복 검사
-            const msg = await validateUserId();
-
-            document.querySelector('.warning-msg-userid').textContent = '*' + msg.message;
-            document.querySelector('.warning-msg-userid').style.display = 'block';
-            if (msg.message === '이미 가입된 계정ID 입니다.') {
-                validAccountName = false;
-            } else {
-                validAccountName = true;
-            }
         }
     }
 
@@ -208,6 +178,24 @@ async function validateUserId() {
     return json;
 }
 
+// 프로필 정보 가져오기
+async function Load_userinfo(url, token, accountName) {
+    try {
+        const res = await fetch(url + `/profile/${accountName}`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        const resJson = await res.json();
+        console.log(resJson);
+        return resJson
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+// 가져온 프로필 정보 화면에 보여주기
 function introUpdate(profileData) {
     const imageInput = document.querySelector('.img-cover img');
     const userNameInput = document.querySelector('#username');

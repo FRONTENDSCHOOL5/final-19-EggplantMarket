@@ -12,12 +12,51 @@
 <body>
     <header class="top nav-search">
         <h1 class="a11y-hidden">검색상단</h1>
-        <label for="inp-search" class="a11y-hidden">계정 검색하기</label>
+        <label for="inp-search" class="a11y-hidden">이름 혹은 계정으로 사용자 검색하기</label>
         <input type="text" id="inp-search" placeholder="계정 검색">
         <button class="btn-back" onclick="history.back()" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
     </header>
-    <!-- 추가구현 : 유저이름 검색시 보여주는 기능 -->
-    <main></main>
+    <main>
+        <h2 class="a11y-hidden">검색된 사용자 목록</h2>
+        <ul class="search-user-list">
+            <li class="search-user-item">
+                <section class="user-follow">
+                    <h3 class="a11y-hidden">유저정보</h3>
+                    <a class="profile-img img-cover" href="./profile_info.html">
+                        <img src="../assets/basic-profile.png" alt="프로필사진">
+                    </a>
+                    <a class="user-info" href="./profile_info.html">
+                        <p class="user-name">애월읍 위니브 가지밭</p>
+                        <p class="user-id">@weniv_Eggplant</p>
+                    </a>
+                </section>
+            </li>
+            <li class="search-user-item">
+                <section class="user-follow">
+                    <h3 class="a11y-hidden">유저정보</h3>
+                    <a class="profile-img img-cover" href="./profile_info.html">
+                        <img src="../assets/basic-profile.png" alt="프로필사진">
+                    </a>
+                    <a class="user-info" href="./profile_info.html">
+                        <p class="user-name">가지 러버</p>
+                        <p class="user-id">@Eggplant_lover</p>
+                    </a>
+                </section>
+            </li>
+            <li class="search-user-item">
+                <section class="user-follow">
+                    <h3 class="a11y-hidden">유저정보</h3>
+                    <a class="profile-img img-cover" href="./profile_info.html">
+                        <img src="../assets/basic-profile.png" alt="프로필사진">
+                    </a>
+                    <a class="user-info" href="./profile_info.html">
+                        <p class="user-name">가지의 품격</p>
+                        <p class="user-id">@about_Eggplant</p>
+                    </a>
+                </section>
+            </li>
+        </ul>
+    </main>
     <footer>
         <nav class="tab-menu">
             <p class="a11y-hidden">하단 탭 메뉴</p>

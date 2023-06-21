@@ -36,3 +36,12 @@ footer {
   position: fixed;
   bottom: 0;
 }
+
+.search-user-list {
+  margin-left: 1rem;
+  margin-top: 1.25rem;
+}
+
+li {
+  margin-bottom: 1rem;
+}

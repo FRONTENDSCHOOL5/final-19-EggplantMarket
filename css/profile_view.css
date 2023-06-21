@@ -83,6 +83,9 @@ a {
 .post-sec .post-album.hidden {
   display: none;
 }
+.post-sec ul {
+  min-height: calc(100vh - 360px - 247px - 44px - 61px);
+}
 
 .post-album-item {
   width: 100%;
@@ -106,6 +109,7 @@ a {
 
 .post-container {
   background-color: white;
+  margin-top: 6px;
 }
 
 .btn-like.like svg {

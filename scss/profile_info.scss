@@ -28,6 +28,7 @@ main {
         background-color: white;
     }
     background-color: #f2f2f2;
+    margin-bottom: 61px;
 }
 header{
     background-color: white;
@@ -160,8 +161,11 @@ header{
 
 .content-wrap {
     margin-top: 6px;
-    min-height: calc(100vh - 6px - 61px - 360px);
-    background-color: #f2f2f2;
-    margin-bottom: 61px;
+    // background-color: #f2f2f2;
+    // margin-bottom: 61px;
     // box-sizing: border-box;
+}
+
+:root{
+    background-color: #f2f2f2;
 }

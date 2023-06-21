@@ -45,7 +45,6 @@
 
     // overflow-y: scroll;
     
-    
     .post-list {
         // 목록형 최상단 게시글 마진 삭제
         li:first-child>section:first-child {
@@ -61,6 +60,9 @@
     .post-list.hidden,
     .post-album.hidden {
         display: none;
+    }
+    ul {
+        min-height: calc(100vh - 360px - 247px - 44px - 61px);
     }
 }
 
@@ -89,6 +91,7 @@
 
 .post-container{
     background-color: white;
+    margin-top: 6px;
 }
 
 .btn-like.like{

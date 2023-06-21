@@ -53,6 +53,7 @@ body {
 main {
   min-width: 390px;
   background-color: #f2f2f2;
+  margin-bottom: 61px;
 }
 main > section {
   background-color: white;
@@ -187,7 +188,8 @@ header {
 
 .content-wrap {
   margin-top: 6px;
-  min-height: calc(100vh - 6px - 61px - 360px);
+}
+
+:root {
   background-color: #f2f2f2;
-  margin-bottom: 61px;
 }

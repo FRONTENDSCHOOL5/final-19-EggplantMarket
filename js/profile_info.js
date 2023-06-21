@@ -1,7 +1,14 @@
+document.querySelector('body').style.display = 'none'
+
+const pageUrl = new URL(window.location.href);
 const url = "https://api.mandarin.weniv.co.kr",
     token = localStorage.getItem("user-token"),
     myAccountName = localStorage.getItem("user-accountname"),
-    profileAccountName = 'yoon';
+    // profileAccountName = 'yoon';
+    // profileAccountName = myAccountName;
+    profileAccountName = pageUrl.searchParams.get('accountName');
+// console.log(profileAccountName)
+// http://127.0.0.1:5500/html/profile_info.html?accountName=jyp1
 
     // testtestabc
     // yoon
@@ -13,58 +20,54 @@ const url = "https://api.mandarin.weniv.co.kr",
  */
 
 
-async function Load(url, token, accountName) { 
-    try{
-        const res = await fetch(url+`/profile/${accountName}`, {
-                        method: "GET",
-                        headers : {
-                            "Authorization" : `Bearer ${token}`
-                        }
-                    });
-        const resJson = await res.json();
-        console.log(resJson)
-        return resJson
-    } catch(err){
-        console.error(err);
-    }
-}
-
-async function ProductLoad(url,token, accountName) { 
-    try{
-        const res = await fetch(url+`/product/${accountName}`, {
-                        method: "GET",
-                        headers : {
-                            "Authorization" : `Bearer ${token}`,
-                            "Content-type" : "application/json"
-                        }
-                    });
-        const resJson = await res.json();
-        console.log(resJson)
-        return resJson
-    } catch(err){
-        console.error(err);
-    }
-}
-
-async function postLoad(url, token, accountName) {
+async function fetchData(url, options) {
     try {
-        const res = await fetch(url + `/post/${accountName}/userpost`,{
-            method : "GET",
-            headers : {
-                "Authorization" : `Bearer ${token}`,
-                "Content-type" : "application/json"
-            }
-        });
-
-        const resJson = await res.json();
-        console.log(resJson)
-        return resJson
-    } catch(err){
-        console.error(err)
+        const response = await fetch(url, options);
+        const data = await response.json();
+        console.log(data);
+        return data;
+    } catch (err) {
+        console.error(err);
+        throw err;
     }
 }
 
-function introUpdate(profile_data){
+async function loadProfileData(url, token, accountName) { 
+    const fullUrl = `${url}/profile/${accountName}`;
+    const options = {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    };
+    return fetchData(fullUrl, options);
+}
+
+async function loadProductData(url, token, accountName) { 
+    const fullUrl = `${url}/product/${accountName}`;
+    const options = {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        }
+    };
+    return fetchData(fullUrl, options);
+}
+
+async function loadPostData(url, token, accountName) {
+    const fullUrl = `${url}/post/${accountName}/userpost`;
+    const options = {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        }
+    };
+    return fetchData(fullUrl, options);
+}
+
+function updateInfo(profile_data){
 
     const userName = document.querySelector('.profile-name'),
     accountName = document.querySelector('.profile-id'),
@@ -76,25 +79,27 @@ function introUpdate(profile_data){
     unFollowBtn = document.querySelector('.btn-follow.cancle');
 
 
-    userName.appendChild(document.createTextNode(profile_data.username))
-    accountName.appendChild(document.createTextNode(profile_data.accountname))
+    userName.insertAdjacentText('beforeend',profile_data.username)
+    accountName.insertAdjacentText('beforeend',profile_data.accountname)
     if(profile_data.intro !== ""){
         intro.childNodes[1].textContent = profile_data.intro
     }
     followerElement.textContent = profile_data.followerCount;
+    followerElement.closest('a').href = `./profile_follower.html?accountName=${profile_data.accountname}`
     followingElement.textContent = profile_data.followingCount;
+    followingElement.closest('a').href = `./profile_follower.html?accountName=${profile_data.accountname}`
     profileImg.src=`${profile_data.image}`
 
     profile_data.isfollow ? followBtn.classList.add('hidden') : unFollowBtn.classList.add('hidden')
 }
 
-function productUpdate(product_data,count){
+function updateProduct(product_data,count){
     if(count==0){
         document.querySelector('.product-container').style.display='none'
     } else{
 
         const productList = document.querySelector('.product-list')
-        let fragment = document.createDocumentFragment()
+        const fragment = document.createDocumentFragment()
 
         product_data.forEach(item => {
             
@@ -133,7 +138,7 @@ function productUpdate(product_data,count){
 }
 
 
-function postUpdate(post_data){
+function updatePost(post_data){
     
     if (!post_data.length){
         document.querySelector('.post-container').style.display='none'
@@ -151,7 +156,6 @@ function postUpdate(post_data){
 
             const listLi = document.createElement('li')
             listLi.setAttribute('data-postid',`${item.id}`)
-
             const post = document.createElement('section')
             post.className = 'home-post'
 
@@ -189,21 +193,19 @@ function postUpdate(post_data){
 
             const postEdit = document.createElement('section');
             postEdit.className = 'post-edit';
+            postEdit.innerHTML = `
+                <h4 class="a11y-hidden">게시물의 내용</h4>
+                <a href="./post_detail.html?postId=${item.id}" tabindex="1">
+                </a>
+            `;
 
-            const postTextLink = document.createElement('a');
-            postTextLink.href = './post_detail.html';
-            postTextLink.setAttribute('tabindex', '1');
-
-            const postText = document.createElement('p');
-            postText.classList.add('post-text');
-            postText.textContent = item.content;
-
-            postTextLink.appendChild(postText);
+            const H3 = item.image ? (item.content ? '사진과 글을 함께 있는 게시물' : '사진만 있는 게시물') : '글만 있는 게시물'
+            post.insertAdjacentHTML('afterbegin',`<h3 class="a11y-hidden">${H3}</h3>`)
+            if (item.content){
+                postEdit.querySelector('a').insertAdjacentHTML('beforeend',`<p class="post-text">${item.content}</p>`)
+            }
             
             if (item.image) {
-
-                post.insertAdjacentHTML('afterbegin','<h3 class="a11y-hidden">사진과 글을 함께 올리는 게시물</h3>')
-                postEdit.insertAdjacentHTML('afterbegin','<h4 class="a11y-hidden">게시물의 사진과 내용</h4>')
                 const postfragment = document.createDocumentFragment()
                 item.image.split(', ').forEach((i, idx) => {
                     const imgCover = document.createElement('div');
@@ -219,143 +221,91 @@ function postUpdate(post_data){
                 
                     if (idx === 0) {
                         const albumLi = document.createElement('li');
-                        albumLi.classList.add('post-album-item');
-                
-                        const albumLink = document.createElement('a');
-                        albumLink.href = './post_detail.html';
-                        albumLink.setAttribute('tabindex', '1');
-                
-                        const albumImg = document.createElement('img');
-                        albumImg.src = i;
-                        albumImg.alt = '';
-                
-                        albumLink.appendChild(albumImg);
-                        albumLi.appendChild(albumLink);
-                
+                        albumLi.className = 'post-album-item';
+                        albumLi.innerHTML = `
+                        <a href="./post_detail.html?postId=${item.id}" tabindex="1">
+                            <img src="${item.image.split(', ')[0]}" alt="">
+                        </a>
+                        `;
                         albumfragment.appendChild(albumLi);
                     }
                 });
             
-                postTextLink.appendChild(postfragment);
-            }else{
-                post.insertAdjacentHTML('afterbegin','<h3 class="a11y-hidden">글만 올리는 게시물</h3>')
-                postEdit.insertAdjacentHTML('afterbegin','<h4 class="a11y-hidden">게시물의 내용</h4>')
+                postEdit.querySelector('a').appendChild(postfragment);
             }
-
-            postEdit.appendChild(postTextLink)
 
             const postIcon = document.createElement('div');
-            postIcon.classList.add('post-icon');
+            postIcon.className = 'post-icon';
+            postIcon.innerHTML = `
+                <button class="btn-like ${item.hearted ? 'like' : ''}">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.9202 4.01346C16.5204 3.60579 16.0456 3.28239 15.5231 3.06175C15.0006 2.8411 14.4406 2.72754 13.875 2.72754C13.3094 2.72754 12.7494 2.8411 12.2268 3.06175C11.7043 3.28239 11.2296 3.60579 10.8298 4.01346L9.99997 4.85914L9.17017 4.01346C8.36252 3.19037 7.26713 2.72797 6.12495 2.72797C4.98277 2.72797 3.88737 3.19037 3.07973 4.01346C2.27209 4.83655 1.81836 5.9529 1.81836 7.11693C1.81836 8.28095 2.27209 9.3973 3.07973 10.2204L3.90953 11.0661L9.99997 17.273L16.0904 11.0661L16.9202 10.2204C17.3202 9.81291 17.6376 9.32909 17.8541 8.79659C18.0706 8.26409 18.182 7.69333 18.182 7.11693C18.182 6.54052 18.0706 5.96977 17.8541 5.43726C17.6376 4.90476 17.3202 4.42095 16.9202 4.01346Z" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="cnt">${item.heartCount}</span>
+                </button>
+                <a class="btn-comment" href="./post_detail.html?postId=${item.id}" tabindex="1">
+                    <img src="../assets/icon/icon-message-circle.svg" alt="댓글 버튼">
+                    <span class="cnt">${item.commentCount}</span>
+                </a>
+            `;
 
-            const btnLike = document.createElement('button');
-            btnLike.classList.add('btn-like');
-
-            const postIconDiv = document.createElement('div');
-            postIconDiv.classList.add('post-icon');
-
-            const likeButton = document.createElement('button');
-            likeButton.classList.add('btn-like');
-            if(item.hearted){
-                likeButton.classList.add('like');
-            }
+            postIcon.querySelector('.btn-like').addEventListener('click',handleLike)
             
-            const likeSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            likeSvg.setAttribute('width', '20');
-            likeSvg.setAttribute('height', '20');
-            likeSvg.setAttribute('viewBox', '0 0 20 20');
-            likeSvg.setAttribute('fill', 'none');
-
-            const likePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            likePath.setAttribute('d', 'M16.9202 4.01346C16.5204 3.60579 16.0456 3.28239 15.5231 3.06175C15.0006 2.8411 14.4406 2.72754 13.875 2.72754C13.3094 2.72754 12.7494 2.8411 12.2268 3.06175C11.7043 3.28239 11.2296 3.60579 10.8298 4.01346L9.99997 4.85914L9.17017 4.01346C8.36252 3.19037 7.26713 2.72797 6.12495 2.72797C4.98277 2.72797 3.88737 3.19037 3.07973 4.01346C2.27209 4.83655 1.81836 5.9529 1.81836 7.11693C1.81836 8.28095 2.27209 9.3973 3.07973 10.2204L3.90953 11.0661L9.99997 17.273L16.0904 11.0661L16.9202 10.2204C17.3202 9.81291 17.6376 9.32909 17.8541 8.79659C18.0706 8.26409 18.182 7.69333 18.182 7.11693C18.182 6.54052 18.0706 5.96977 17.8541 5.43726C17.6376 4.90476 17.3202 4.42095 16.9202 4.01346Z');
-            likePath.setAttribute('stroke', '#767676');
-            likePath.setAttribute('stroke-width', '1.5');
-            likePath.setAttribute('stroke-linecap', 'round');
-            likePath.setAttribute('stroke-linejoin', 'round');
-
-            likeSvg.appendChild(likePath)
-            likeButton.appendChild(likeSvg);
-
-            likeButton.addEventListener('click',handleLike)
-
-            const likeCountSpan = document.createElement('span');
-            likeCountSpan.classList.add('cnt');
-            likeCountSpan.textContent = item.heartCount;
-            likeButton.appendChild(likeCountSpan);
-
-            const commentLink = document.createElement('a');
-            commentLink.classList.add('btn-comment');
-            commentLink.setAttribute('href', './post_detail.html');
-            commentLink.setAttribute('tabindex', '1');
-
-            const commentIconImg = document.createElement('img');
-            commentIconImg.setAttribute('src', '../assets/icon/icon-message-circle.svg');
-            commentIconImg.setAttribute('alt', '댓글 버튼');
-            commentLink.appendChild(commentIconImg);
-
-            const commentCountSpan = document.createElement('span');
-            commentCountSpan.classList.add('cnt');
-            commentCountSpan.textContent = item.commentCount;
-            commentLink.appendChild(commentCountSpan);
-
-            postIconDiv.appendChild(likeButton);
-            postIconDiv.appendChild(commentLink);
-
-            postEdit.appendChild(postIconDiv)
-
-            const postDate = document.createElement('p');
-            postDate.classList.add('post-date');
-            postDate.textContent = `${YEAR}년 ${MONTH}월 ${DAY}일`;
-
-            postEdit.appendChild(postDate);
+            postEdit.appendChild(postIcon);
+            postEdit.insertAdjacentHTML('beforeend',`<p class="post-date">${YEAR}년 ${MONTH}월 ${DAY}일</p>`)
 
             post.appendChild(postEdit)
 
             const btnOption = document.createElement('button');
-            btnOption.classList.add('btn-option');
+            btnOption.className = 'btn-option';
+            btnOption.innerHTML = `
+                <img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼">
+            `;
 
-            const btnOptionImg = document.createElement('img');
-            btnOptionImg.src = '../assets/icon/icon-more-vertical.svg';
-            btnOptionImg.alt = '더보기 버튼';
+            post.appendChild(btnOption);
+            listLi.appendChild(post);
+            fragment.appendChild(listLi);
 
-            btnOption.appendChild(btnOptionImg);
-
-            post.appendChild(btnOption)
-            listLi.appendChild(post)
-            fragment.appendChild(listLi)
-
-            listUl.appendChild(fragment)
-            albumUl.appendChild(albumfragment)
-        })
+            listUl.appendChild(fragment);
+            albumUl.appendChild(albumfragment);
+        });
     }
 }
 
 
-async function run(url,token,accountName) {
-    if (myAccountName !== profileAccountName){
-        document.querySelector('.btn-wrap-your').style.display='flex'
-        document.querySelector('.btn-wrap-my').style.display='none'
-        document.querySelector('li.tab-item-more a').classList.remove('here')
-        document.querySelector('li.tab-item-home a').classList.add('here')
-    }else{
-        document.querySelector('.btn-wrap-your').style.display='none'
-        document.querySelector('.btn-wrap-my').style.display='block'
-        document.querySelector('li.tab-item-more a').classList.add('here')
-        document.querySelector('li.tab-item-home a').classList.remove('here')
-    }
-    const profileData = await Load(url, token,accountName);
-    const productData = await ProductLoad(url, token,accountName )
-    const postData = await postLoad(url,token,accountName)
-    await introUpdate(profileData.profile)
-    await productUpdate(productData.product,productData.data)
-    await postUpdate(postData.post)
+async function run(url, token, accountName) {
+    const isMyProfile = (myAccountName !== profileAccountName)
+
+    document.querySelector('.btn-wrap-your').style.display = isMyProfile ? 'flex' : 'none'
+    document.querySelector('.btn-wrap-my').style.display = isMyProfile ? 'none' : 'block'
+    document.querySelector('li.tab-item-more a').classList.toggle('here',!isMyProfile)    
+    document.querySelector('li.tab-item-home a').classList.toggle('here',isMyProfile)
+
+    // 동시에 호출할 비동기 함수들을 배열로 준비
+    const loadPromises = [
+        loadProfileData(url, token, accountName),
+        loadProductData(url, token, accountName),
+        loadPostData(url, token, accountName)
+    ];
+
+    // 모든 비동기 작업이 완료될 때까지 기다림
+    const [profileData, productData, postData] = await Promise.all(loadPromises);
+
+    const updatePromises = [
+        updateInfo(profileData.profile),
+        updateProduct(productData.product,productData.data),
+        updatePost(postData.post)
+    ]
+    await Promise.all(updatePromises);
+
     document.querySelector('body').style.display = 'block'
 };
 
 // 게시글 토글
 (function  () {
     const btnPosts = document.querySelectorAll('.tab-btn-wrap > button')
+    const posts = document.querySelectorAll('.post-sec > ul')
     btnPosts.forEach((item,idx,array)=>{
-        posts = document.querySelectorAll('.post-sec > ul')
         item.addEventListener('click',()=>{
             if(!item.classList.contains('on')){
                 item.classList.add('on')
@@ -368,17 +318,16 @@ async function run(url,token,accountName) {
 }());
 
 // 팔로우버튼
-(function (url,token){
+(function (url,token, accountName){
 
     const followBtns = document.querySelectorAll('.btn-wrap-your > .btn-follow')
 
     followBtns.forEach((item,idx,arr)=>{
         item.addEventListener('click', async ()=>{
-            const METHOD = item.classList.contains('cancle') ? 'DELETE' : 'POST',
-                ACTION = item.classList.contains('cancle') ? 'unfollow' : 'follow'
+            const isCancle = item.classList.contains('cancle')
+            const METHOD = isCancle ? 'DELETE' : 'POST',
+                ACTION = isCancle ? 'unfollow' : 'follow'
             
-            const accountName = document.querySelector('.profile-id').childNodes[1].textContent
-            let resJson
             try {
                 let res = await fetch(url+`/profile/${accountName}/${ACTION}`, {
                     method: METHOD,
@@ -388,53 +337,15 @@ async function run(url,token,accountName) {
                     }
                 });
             
-                resJson = await res.json()
+                const resJson = await res.json()
+                document.querySelector('.follower').textContent = resJson.profile.followerCount;
+                arr[idx].classList.add('hidden')
+                arr[(idx+1)%2].classList.remove('hidden');
             } catch(err) {
                 console.log(err)
             }
-            
-            document.querySelector('.follower').textContent = resJson.profile.followerCount;
-            arr[idx].classList.add('hidden')
-            arr[(idx+1)%2].classList.remove('hidden');
         })
     })
-}(url,token));
+}(url,token,profileAccountName));
 
-async function handleLike(event){
-
-    const target = event.currentTarget;
-    console.log(event.currentTarget)
-    let ACT, METHOD, FUNC;
-    // 좋아요가 없음
-    if(!target.classList.contains('like')){
-        ACT = "heart"
-        METHOD = "POST"
-    }else{ //좋아요가 있음
-        ACT = "unheart"
-        METHOD = "DELETE"
-    }
-    result = await reqLike(target,target.closest('li').dataset.postid, ACT, METHOD)
-    target.querySelector('span').textContent = `${result.heartCount}`
-    console.log(result.hearted)
-    result.hearted ? target.classList.add('like') : target.classList.remove('like')    
-}
-
-async function reqLike(target,postId,act,method){
-    try{
-        const res = await fetch(url+`/post/${postId}/${act}`, {
-                        method: method,
-                        headers : {
-                            "Authorization" : `Bearer ${token}`,
-                            "Content-type" : "application/json"
-                        }
-                    });
-        const resJson = await res.json();
-
-        return resJson.post
-    } catch(err){
-        console.error(err);
-    }
-}
-
-document.querySelector('body').style.display = 'none'
-run(url,token,profileAccountName);
+run(url, token, profileAccountName);

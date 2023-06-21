@@ -41,7 +41,10 @@ footer {
   margin-left: 1rem;
   margin-top: 1.25rem;
 }
-
-li {
+.search-user-list li {
   margin-bottom: 1rem;
+}
+
+.user-id strong, .user-name strong {
+  color: #9747FF;
 }

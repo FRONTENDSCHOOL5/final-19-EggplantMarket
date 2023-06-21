@@ -13,13 +13,13 @@
     <header class="top nav-search">
         <h1 class="a11y-hidden">검색상단</h1>
         <label for="inp-search" class="a11y-hidden">이름 혹은 계정으로 사용자 검색하기</label>
-        <input type="text" id="inp-search" placeholder="계정 검색">
+        <input onkeypress="filter(this)" type="text" id="inp-search" placeholder="계정 검색" >
         <button class="btn-back" onclick="history.back()" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
     </header>
     <main>
         <h2 class="a11y-hidden">검색된 사용자 목록</h2>
-        <ul class="search-user-list">
-            <li class="search-user-item">
+        <ul class="search-user-list" >
+            <!-- <li class="search-user-item">
                 <section class="user-follow">
                     <h3 class="a11y-hidden">유저정보</h3>
                     <a class="profile-img img-cover" href="./profile_info.html">
@@ -54,7 +54,7 @@
                         <p class="user-id">@about_Eggplant</p>
                     </a>
                 </section>
-            </li>
+            </li> -->
         </ul>
     </main>
     <footer>
@@ -84,5 +84,6 @@
             </ul>
         </nav>
     </footer>
+    <script src="../js/home_search.js"></script>
 </body>
 </html>

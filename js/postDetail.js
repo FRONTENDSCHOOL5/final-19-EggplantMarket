@@ -1,5 +1,5 @@
 // const postId = new URLSearchParams(location.search).get('postId') || '6491b73cb2cb2056634d2217';
-const postId = '6491b73cb2cb2056634d2217';
+const postId = '648bbcfdb2cb205663363788';
 
 const url = "https://api.mandarin.weniv.co.kr";
 const token = localStorage.getItem("user-token");
@@ -7,10 +7,10 @@ const myAccountName = localStorage.getItem("user-accountname");
 let userAccountName = '';
 
 const postViewSec = document.querySelector('.home-post');
-const commentViewSec = document.querySelector('.post-comment');
+const commentList = document.querySelector('.comment-list');
 
 
-// GET 데이터
+// GET 게시글 데이터
 async function getOnePost() {
     try {
         const res = await fetch(url + `/post/${postId}`, {
@@ -21,22 +21,39 @@ async function getOnePost() {
             }
         });
         const resJson = await res.json();
-        console.log(resJson);
+        // console.log(resJson);
         return resJson;
     } catch (err) {
         console.error(err);
     }
 }
-// getOnePost();
 
-// DOM 데이터
+// GET 댓글 데이터 
+async function getComments() {
+    try {
+        const res = await fetch(url + `/post/${postId}/comments`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-type": "application/json"
+            }
+        });
+        const resJson = await res.json();
+        // console.log(resJson);
+        return resJson;
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+// 게시글 내용 화면에 뿌리기
 function displayPost(post) {
     const frag = document.createDocumentFragment();
 
     // h2
-    const hd = document.createElement('h2');
-    const headingContent = post.image && post.content ? '이미지와 글이 함께 있는 게시물' : (post.image ? '이미지만 있는 게시글' : '글만 있는 게시물')
-    hd.innerHTML = `<h3 class="a11y-hidden">${headingContent}</h3>`;
+    const hd = document.querySelector('.home-post h2');
+    const headingContent = post.image && post.content ? '이미지와 글이 함께 있는 게시물' : (post.image ? '이미지만 있는 게시글' : '글만 있는 게시물');
+    hd.innerHTML = headingContent;
 
     // section .게시글 작성자
     const userInfoSec = document.createElement('section');
@@ -51,10 +68,10 @@ function displayPost(post) {
     </a>`
 
     // section .게시글 내용
-    // 컴포넌트 마크업 재영오빠 코드 반영하기 ! ! ! ! !
+    // 좋아요 부분 수정하기
     const postInfoSec = document.createElement('section');
     postInfoSec.setAttribute('class', 'post-edit');
-    postInfoSec.innerHTML = `<h4 class="a11y-hidden">게시물의 사진과 내용</h4>
+    postInfoSec.innerHTML = `<h3 class="a11y-hidden">게시물의 사진과 내용</h3>
     <a href="./post_detail.html">
         <p class="post-text">${post.content}</p>
             <div class="img-cover">
@@ -77,17 +94,42 @@ function displayPost(post) {
     btnOption.setAttribute('tabindex', '0');
     btnOption.innerHTML = `<img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼">`;
 
-    frag.append(hd, userInfoSec, postInfoSec, btnOption);
+    frag.append(userInfoSec, postInfoSec, btnOption);
     postViewSec.append(frag);
 
 }
 
 
+// 댓글 화면에 뿌리기
+function displayComment(comments) {
+    const frag = document.createDocumentFragment();
+
+    comments.forEach(i => {
+        const li = document.createElement('li');
+        li.setAttribute('class', 'comment-item');
+        li.innerHTML = `<div class="comment-user-info">
+        <a class="user-img img-cover" href="./profile_info.html" tabindex="1">
+            <img src=${i.author.image} alt="사용자 이미지">
+        </a>
+        <a class="user-name" href="./profile_info.html" tabindex="1"><span class="a11y-hidden">사용자
+            이름,</span>${i.author.acountname}</a>
+    </div>
+    <p class="comment-time">${i.createdAt}</p>
+    <p class="comment-text">${i.content}</p>
+    <button class="btn-more" tabindex="2"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>`;
+
+        frag.append(li);
+    })
+
+    commentList.append(frag);
+}
+
 async function run() {
-    const data = await getOnePost();
+    const dataPost = await getOnePost();
+    const dataComments = await getComments();
 
     // 모달창 관련
-    userAccountName = data.post.author.accountname;
+    userAccountName = dataPost.post.author.accountname;
     if (myAccountName !== userAccountName) {
         // 게시글 신고하기 모달
         // 댓글 신고하기 모달
@@ -97,7 +139,8 @@ async function run() {
     }
 
     // 데이터 뿌리기
-    displayPost(data.post);
+    displayPost(dataPost.post);
+    displayComment(dataComments.comments);
 }
 
 run();

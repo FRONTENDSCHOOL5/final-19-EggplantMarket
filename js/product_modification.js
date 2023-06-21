@@ -34,7 +34,7 @@ let validImage = false;
 
 editInpsProduct.forEach(item => {
     item.addEventListener('change', async () => {
-        await validateProfile(item);
+        await validateProduct(item);
 
         if (validItemName || validItemPrice || validItemLink || validImage) {
             console.log('다 통과했는디');
@@ -45,7 +45,7 @@ editInpsProduct.forEach(item => {
     });
 });
 
-async function validateProfile(target) {
+async function validateProduct(target) {
 
     // 상품명 validation
     if (target.id === 'product-name') {

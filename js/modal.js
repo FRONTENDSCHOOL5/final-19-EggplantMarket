@@ -115,7 +115,7 @@ async function postDelete(){
     const fullUrl = `https://api.mandarin.weniv.co.kr/post/${localStorage.getItem('targetPostId')}`
     const options = {
         method: "DELETE", 
-        header: {
+        headers: {
             "Authorization" : `Bearer ${localStorage.getItem('user-token')}`,
 	        "Content-type" : "application/json"
         }

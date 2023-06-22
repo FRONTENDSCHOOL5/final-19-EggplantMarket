@@ -1,0 +1,126 @@
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+button {
+  border: none;
+  background-color: initial;
+  padding: 0px;
+}
+
+input {
+  border: none;
+}
+
+a {
+  color: initial;
+  text-decoration: initial;
+}
+
+.profile-setting form {
+  margin-top: 30px;
+}
+.profile-setting .title {
+  margin-bottom: 12px;
+}
+
+form {
+  min-width: 330px;
+  max-width: 40%;
+  margin: 0 auto;
+  color: #767676;
+  font-size: 0.75rem;
+}
+form .profile-img {
+  position: relative;
+  width: 110px;
+  margin: 0 auto 30px;
+}
+form .profile-img .img-cover {
+  width: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+form .profile-img .img-cover img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+form > fieldset {
+  margin-bottom: 16px;
+}
+form label {
+  display: block;
+  margin-bottom: 2px;
+  text-align: start;
+}
+form label.btn-upload {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border: none;
+  background-color: transparent;
+  margin: 0;
+}
+form label.btn-upload svg > circle {
+  fill: #635CA5;
+}
+form input {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #dbdbdb;
+  padding: 8px 0;
+}
+form input.btn-upload {
+  display: none;
+}
+form input::-webkit-input-placeholder {
+  font-size: 0.875rem;
+  color: #dbdbdb;
+}
+form input::-moz-placeholder {
+  font-size: 0.875rem;
+  color: #dbdbdb;
+}
+form input:-ms-input-placeholder {
+  font-size: 0.875rem;
+  color: #dbdbdb;
+}
+form input::-ms-input-placeholder {
+  font-size: 0.875rem;
+  color: #dbdbdb;
+}
+form input::placeholder {
+  font-size: 0.875rem;
+  color: #dbdbdb;
+}
+form input:focus {
+  border-bottom: 1px solid #9747FF;
+  outline: none;
+}
+form [class^=warning-msg] {
+  color: #EB5757;
+  font-size: 12px;
+  margin-top: 6px;
+  display: none;
+}
+
+.btn-upload {
+  cursor: pointer;
+}

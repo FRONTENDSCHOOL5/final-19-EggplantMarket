@@ -34,8 +34,8 @@ a {
 .post-tab {
   height: 44px;
   padding: 9px 21px;
-  border-top: 1px solid #DBDBDB;
-  border-bottom: 1px solid #DBDBDB;
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
 }
 
 .tab-btn-wrap {
@@ -83,6 +83,9 @@ a {
 .post-sec .post-album.hidden {
   display: none;
 }
+.post-sec ul {
+  min-height: calc(100vh - 360px - 247px - 44px - 61px);
+}
 
 .post-album-item {
   width: 100%;
@@ -102,4 +105,9 @@ a {
   aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.post-container {
+  background-color: #fff;
+  margin-top: 6px;
 }

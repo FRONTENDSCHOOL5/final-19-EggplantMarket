@@ -5,40 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>join_membership</title>
-
+    <title>프로필 수정 페이지</title>
     <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/join_membership.css">
+    <link rel="stylesheet" href="../css/component.css">
+    <link rel="stylesheet" href="../css/profile_modification.css">
 </head>
 
 <body>
-    <main class="join">
-        <h1 class="a11y-hidden">회원가입</h1>
-
-        <!-- join-email -->
-        <section class="join-email">
-            <h2 class="title">이메일로 회원가입</h2>
-            <form>
-                <fieldset>
-                    <label for="email">이메일</label>
-                    <input type="email" id="email" placeholder="이메일 주소를 입력해 주세요.">
-                    <strong class="warning-msg-email"></strong>
-                </fieldset>
-                <fieldset>
-                    <label for="pw">비밀번호</label>
-                    <input type="password" id="pw" minlength="6" placeholder="비밀번호를 설정해 주세요.">
-                    <strong class="warning-msg-pw">*비밀번호는 6자 이상이어야 합니다.</strong>
-                </fieldset>
-                <button id="next-btn" class='size-l btn-next' disabled>다음</button>
-            </form>
-        </section>
-        <!-- // join-email -->
-
-
-        <!-- profile-setting -->
-        <section class="profile-setting" style="display : none">
-            <h2 class="title">프로필 설정</h2>
-            <p>나중에 언제든지 변경할 수 있습니다.</p>
+    <header class="top nav-upload">
+        <h1 class="a11y-hidden">팔로우페이지상단</h1>
+        <button class="btn-back" onclick="history.back()" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg"
+                alt="뒤로가기 버튼"></button>
+        <button class="size-ms btn-save" tabindex="0">저장<span class="a11y-hidden">버튼</span></button>
+    </header>
+    <main>
+        <section class="profile-setting">
             <form>
                 <section class="profile-img">
                     <h3 class="a11y-hidden">프로필 이미지 설정</h3>
@@ -63,28 +44,23 @@
                 <fieldset>
                     <label for="username">사용자 이름</label>
                     <input type="text" id="username" minlength="2" maxlength="10" placeholder="2~10자 이내여야 합니다."
-                        required>
+                        tabindex="1" required>
                     <strong class="warning-msg-username">*2~10자 이내여야 합니다.</strong>
                 </fieldset>
                 <fieldset>
                     <label for="userid">계정 ID</label>
                     <input type="text" id="userid" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
-                        pattern="^[0-9a-zA-Z._]*$">
+                        pattern="^[0-9a-zA-Z._]*$" tabindex="1">
                     <strong class="warning-msg-userid"></strong>
                 </fieldset>
-
                 <fieldset>
                     <label for="userinfo">소개</label>
-                    <input type="text" id="userinfo" placeholder="자신과 판매할 상품에 대해 소개해 주세요!">
+                    <input type="text" id="userinfo" placeholder="자신과 판매할 상품에 대해 소개해 주세요!" tabindex="1">
                 </fieldset>
-                <button id="submit-btn" class='size-l btn-next' type="submit" disabled>가지마켙
-                    시작하기</button>
             </form>
         </section>
-        <!-- // profile-setting -->
     </main>
-    <script src="../js/join.js"></script>
-    <script src="../js/setProfile.js"></script>
+    <script src="../js/profile_modification.js"></script>
 </body>
 
 </html>

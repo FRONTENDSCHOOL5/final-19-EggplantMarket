@@ -12,16 +12,23 @@ main {
 
 form {
   width: 100%;
-  overflow: hidden;
+  max-height: 500px;
 }
 form > * {
   display: block;
 }
 form textarea {
   width: calc(100% - 24px);
+  min-height: 150px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   margin: 12px;
   border: none;
   resize: none;
+}
+form textarea::-webkit-scrollbar {
+  display: none;
 }
 form .img-cover {
   width: 30vw;

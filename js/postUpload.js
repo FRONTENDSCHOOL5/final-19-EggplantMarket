@@ -6,6 +6,7 @@ const imglist = document.querySelector('.upload-imgs-list');
 const contentInp = document.querySelector('textarea');
 const imgInp = document.querySelector('#input-file');
 
+// 작성자 프로필 이미지 가져오기
 async function getMyImg() {
     const reqPath = "/user/myinfo";
     const res = await fetch("https://api.mandarin.weniv.co.kr" + reqPath, {
@@ -22,6 +23,11 @@ async function getMyImg() {
     writerImg.src = await getMyImg();
 })();
 
+// textarea 작성 길이 조절
+contentInp.addEventListener('keyup', (e) => {
+    e.target.style.height = 0;
+    e.target.style.height = e.target.scrollHeight + 'px';
+})
 
 // ---- start of 버튼 활성화 ----
 

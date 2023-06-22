@@ -71,7 +71,7 @@ async function validateProduct(target) {
 
     // 상품 링크 validation
     if (target.id === 'purchase-link') {
-        const urlPattern = /^https?:\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
+        const urlPattern = /^(https?:\/\/)?(www\.)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
         if (urlPattern.test(target.value)) {
             document.querySelector('.warning-msg-purchaselink').style.display = 'none';
             editPurchaseLink.style.borderBottom = '1px solid #dbdbdb';

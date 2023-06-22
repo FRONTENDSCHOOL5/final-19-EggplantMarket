@@ -1,14 +1,17 @@
 const accountname = new URLSearchParams(location.search).get('accountName'),
+    myAccountname = localStorage.getItem('user-accountname'),
     token = localStorage.getItem('user-token');
 
-const followers = document.querySelector('.follow-list');
+const followings = document.querySelector('.follow-list');
 
-followers.addEventListener('click', (e) => {
-    if (e.target.nodeName === 'BUTTON') {
+followings.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn-follow')) {
         if (e.target.classList.contains('opposite')) {
+            // 언팔로우 기능
             e.target.classList.remove('opposite');
             e.target.innerHTML = `팔로우<span class="a11y-hidden">하기 버튼</span>`;
         } else {
+            // 팔로우 기능
             e.target.classList.add('opposite');
             e.target.innerHTML = `팔로잉<span class="a11y-hidden">취소 버튼</span>`;
         }
@@ -16,8 +19,8 @@ followers.addEventListener('click', (e) => {
 }
 )
 
+// GET 사용자 팔로잉 목록
 async function getFollowingList() {
-
     const url = "https://api.mandarin.weniv.co.kr";
     const reqPath = `/profile/${accountname}/following`;
 
@@ -33,6 +36,7 @@ async function getFollowingList() {
     return json;
 }
 
+// 팔로잉 목록 뿌리기
 async function makeList() {
     const data = await getFollowingList();
     console.log(data);
@@ -51,12 +55,13 @@ async function makeList() {
         </strong>
         <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>${user.intro}</p>
     </div>
-    <button class="btn-follow opposite" tabindex="1">팔로잉<span class="a11y-hidden">취소 버튼</span></button>`
+    ${user.accountname !== myAccountname ? (user.isfollow ? `<button class="btn-follow opposite" tabindex="1">팔로잉<span class="a11y-hidden">취소 버튼</span></button>` : `<button class="btn-follow" tabindex="1">팔로우<span class="a11y-hidden">하기 버튼</span></button>`) : (``)}
+    `
 
         frag.append(li);
     })
 
-    followers.append(frag);
+    followings.append(frag);
 }
 
 makeList();

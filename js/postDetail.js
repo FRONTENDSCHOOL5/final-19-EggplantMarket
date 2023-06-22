@@ -11,7 +11,6 @@ const commentInp = document.querySelector('#commemt-input');
 const commentSubmitButton = document.querySelector('.btn-comment');
 
 commentInp.addEventListener('keyup', (e) => {
-    console.log(e.target.value)
     if (e.target.value !== '') {
         commentSubmitButton.disabled = false;
     } else {
@@ -69,10 +68,10 @@ function displayPost(post) {
     const userInfoSec = document.createElement('section');
     userInfoSec.setAttribute('class', 'user-follow');
     userInfoSec.innerHTML = `<h3 class="a11y-hidden">작성자 정보</h3>
-    <a class="profile-img img-cover" href="./profile_info.html">
+    <a class="profile-img img-cover" href="./profile_info.html?accountName=${post.author.accountname}">
         <img src=${post.author.image} alt="프로필사진">
     </a>
-    <a class="user-info" href="./profile_info.html">
+    <a class="user-info" href="./profile_info?accountName=${post.author.accountname}.html">
         <p class="user-name">${post.author.username}</p>
         <p class="user-id">@${post.author.accountname}</p>
     </a>`
@@ -82,19 +81,21 @@ function displayPost(post) {
     const postInfoSec = document.createElement('section');
     postInfoSec.setAttribute('class', 'post-edit');
     postInfoSec.innerHTML = `<h3 class="a11y-hidden">게시물의 사진과 내용</h3>
-    <a href="./post_detail.html">
+    <div>
         <p class="post-text">${post.content}</p>
             <div class="img-cover">
                 <img class="post-img" src=${post.image} alt="게시물 사진">
             </div>
-        </a>
+        </div>
         <div class="post-icon">
             <button class="btn-like ${post.hearted ? 'like' : ''}">
-                <img src="../assets/icon/icon-heart.svg" alt="좋아요 버튼"><span class="cnt">${post.heartCount}</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.9202 4.01346C16.5204 3.60579 16.0456 3.28239 15.5231 3.06175C15.0006 2.8411 14.4406 2.72754 13.875 2.72754C13.3094 2.72754 12.7494 2.8411 12.2268 3.06175C11.7043 3.28239 11.2296 3.60579 10.8298 4.01346L9.99997 4.85914L9.17017 4.01346C8.36252 3.19037 7.26713 2.72797 6.12495 2.72797C4.98277 2.72797 3.88737 3.19037 3.07973 4.01346C2.27209 4.83655 1.81836 5.9529 1.81836 7.11693C1.81836 8.28095 2.27209 9.3973 3.07973 10.2204L3.90953 11.0661L9.99997 17.273L16.0904 11.0661L16.9202 10.2204C17.3202 9.81291 17.6376 9.32909 17.8541 8.79659C18.0706 8.26409 18.182 7.69333 18.182 7.11693C18.182 6.54052 18.0706 5.96977 17.8541 5.43726C17.6376 4.90476 17.3202 4.42095 16.9202 4.01346Z" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg><span class="cnt">${post.heartCount}</span>
             </button>
-            <a class="btn-comment" href="./post_detail.html">
+            <div class="btn-comment">
                 <img src="../assets/icon/icon-message-circle.svg" alt="댓글 버튼"><span class="cnt">${post.comments.length}</span>
-            </a>
+            </div>
         </div>
         <p class="post-date">${post.updatedAt}</p>`
 
@@ -118,11 +119,11 @@ function displayComment(comments) {
         const li = document.createElement('li');
         li.setAttribute('class', 'comment-item');
         li.innerHTML = `<div class="comment-user-info">
-        <a class="user-img img-cover" href="./profile_info.html" tabindex="1">
+        <a class="user-img img-cover" href="./profile_info.html?accountName=${i.author.accountname}" tabindex="1">
             <img src=${i.author.image} alt="사용자 이미지">
         </a>
-        <a class="user-name" href="./profile_info.html" tabindex="1"><span class="a11y-hidden">사용자
-            이름,</span>${i.author.acountname}</a>
+        <a class="user-name" href="./profile_info.html?accountName=${i.author.accountname}" tabindex="1"><span class="a11y-hidden">사용자
+            이름,</span>${i.author.accountname}</a>
     </div>
     <p class="comment-time">${i.createdAt}</p>
     <p class="comment-text">${i.content}</p>
@@ -135,11 +136,11 @@ function displayComment(comments) {
 }
 
 async function run() {
+    // 추후 promiseAll 사용해보기
     const dataPost = await getOnePost();
     const dataComments = await getComments();
 
     // 모달창 관련
-    console.log(dataPost)
     userAccountName = dataPost.post.author.accountname;
     if (myAccountName !== userAccountName) {
         // 게시글 신고하기 모달

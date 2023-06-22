@@ -63,12 +63,12 @@ a {
   margin-bottom: 6px;
   font-weight: 500;
   line-height: 18px;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 .follow-list .follow-item .user-info .user-intro {
   font-weight: 400;
   line-height: 15px;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #767676;
 }
 
@@ -79,14 +79,14 @@ a {
       flex-basis: 56px;
   height: 28px;
   margin-left: auto;
-  color: #FFFFFF;
+  color: #fff;
   background-color: #635CA5;
   border-radius: 26px;
 }
 
 .btn-follow.opposite {
   color: #767676;
-  background-color: #FFFFFF;
+  background-color: #fff;
   border: 1px solid #dbdbdb;
 }
 

@@ -51,8 +51,9 @@ main {
   overflow: hidden;
   padding: 20px 0;
   position: relative;
-  border-top: 1px solid #DBDBDB;
-  border-bottom: 1px solid #DBDBDB;
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+  background-color: #fff;
 }
 .product-container h2 {
   margin-bottom: 16px;
@@ -78,6 +79,7 @@ main {
       -ms-flex-order: -1;
           order: -1;
   border-radius: 8px;
+  aspect-ratio: 14/9;
 }
 .product-name {
   width: 100%;

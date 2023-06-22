@@ -47,14 +47,14 @@ flex-shrink: 0;
     height: 28px;
 margin-left: auto;
 
-color: #FFFFFF;
+color: $white-color;
     background-color: $enabled-color;
 border-radius: 26px;
 }
 
 .btn-follow.opposite {
 color: $gray300-color;
-background-color: #FFFFFF;
+background-color: $white-color;
 border: 1px solid $gray100-color;
 }
 // 재사용되는 코드

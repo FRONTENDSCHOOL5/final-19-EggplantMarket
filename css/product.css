@@ -57,7 +57,7 @@ form > label {
 form > input {
   display: block;
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 6px;
   border: none;
   border-bottom: 1px solid #dbdbdb;
   padding: 8px 0;
@@ -82,6 +82,12 @@ form > input::placeholder {
   font-size: 0.875rem;
   color: #dbdbdb;
 }
+form label[for=product-price] {
+  margin-top: 16px;
+}
+form label[for=purchase-link] {
+  margin-top: 16px;
+}
 
 .product-img {
   border-radius: 20px;
@@ -103,4 +109,16 @@ form > input::placeholder {
 
 .upload-img:hover circle {
   fill: #635CA5;
+}
+
+.warning-msg-productname {
+  color: #EB5757;
+  font-size: 12px;
+  display: none;
+}
+
+.warning-msg-purchaselink {
+  color: #EB5757;
+  font-size: 12px;
+  display: none;
 }

@@ -27,7 +27,7 @@ async function validateProfile(target) {
 
     // 사용자이름 validation
     if (target.id === 'username') {
-        if (!target.validity.tooShort && !target.validity.tooLong) {
+        if (!target.validity.tooShort && !target.validity.tooLong && !target.validity.valueMissing) {
             document.querySelector(`.warning-msg-username`).style.display = 'none'
             pw.style.borderBottom = '1px solid #f2f2f2';
             validUserName = true

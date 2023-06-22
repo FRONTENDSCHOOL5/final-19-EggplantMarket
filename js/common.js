@@ -37,3 +37,13 @@ if(document.querySelector('.tab-item-more a') !== null){
     document.querySelector('.tab-item-more a').href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
 }
 
+function dateProcess(createdAt) {
+    const itemDate = new Date(createdAt)
+    const YEAR = itemDate.getFullYear()
+    const MONTH = (itemDate.getMonth()+1) >= 10 ? (itemDate.getMonth()+1) : '0'+(itemDate.getMonth()+1)
+    const DAY = itemDate.getDate()
+
+    return `${YEAR}년 ${MONTH}월 ${DAY}일`
+}
+
+document.querySelector('.tab-item-more a').href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`

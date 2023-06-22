@@ -90,6 +90,8 @@ async function makeMyFollowerList(data) {
 // 다른 사용자 팔로워 목록 뿌리기 
 // : (팔로우(하기) 버튼, 팔로잉(취소) 버튼)
 async function makeUserFollowerList(data) {
+
+    console.log(data)
     const frag = document.createDocumentFragment();
 
     data.forEach(user => {
@@ -104,7 +106,7 @@ async function makeUserFollowerList(data) {
         </strong>
         <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>${user.intro}</p>
     </div>
-    ${user.isfollow ? `<button class="btn-follow opposite" tabindex="1">팔로잉<span class="a11y-hidden">취소 버튼</span></button>` : `<button class="btn-follow" tabindex="1">팔로우<span class="a11y-hidden">하기 버튼</span></button>`}
+    ${user.accountname !== myAccountname ? (user.isfollow ? `<button class="btn-follow opposite" tabindex="1">팔로잉<span class="a11y-hidden">취소 버튼</span></button>` : `<button class="btn-follow" tabindex="1">팔로우<span class="a11y-hidden">하기 버튼</span></button>`) : (``)}
     `
 
         frag.append(li);

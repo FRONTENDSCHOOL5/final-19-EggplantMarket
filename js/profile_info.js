@@ -137,7 +137,6 @@ function updateProduct(product_data,count){
     }
 }
 
-
 function updatePost(post_data){
     
     if (!post_data.length){
@@ -148,12 +147,6 @@ function updatePost(post_data){
         const fragment = document.createDocumentFragment()
         const albumfragment = document.createDocumentFragment()
         post_data.forEach((item)=>{
-            const itemDate = new Date(item.createdAt)
-            console.log(item)
-            const YEAR = itemDate.getFullYear()
-            const MONTH = (itemDate.getMonth()+1) >= 10 ? (itemDate.getMonth()+1) : '0'+(itemDate.getMonth()+1)
-            const DAY = itemDate.getDate()
-
             const listLi = document.createElement('li')
             listLi.setAttribute('data-postid',`${item.id}`)
             const post = document.createElement('section')
@@ -252,7 +245,7 @@ function updatePost(post_data){
             postIcon.querySelector('.btn-like').addEventListener('click',handleLike)
             
             postEdit.appendChild(postIcon);
-            postEdit.insertAdjacentHTML('beforeend',`<p class="post-date">${YEAR}년 ${MONTH}월 ${DAY}일</p>`)
+            postEdit.insertAdjacentHTML('beforeend',`<p class="post-date">${dateProcess(item.createdAt)}</p>`)
 
             post.appendChild(postEdit)
 

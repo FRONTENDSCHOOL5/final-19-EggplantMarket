@@ -127,66 +127,21 @@
         <div class="post-modal-content">
             <div class="post-modal-bar"></div>
             <div class="modal-content">
-                <button class="modal-description btn-setting-info" tabindex="0">설정 및 개인정보</button>
-                <button class="modal-description btn-log-out" tabindex="0">로그아웃</button>
             </div>
         </div>
     </article>
-    <!-- 삭제모달창 -->
     <article class="modal-background">
-        <p class="a11y-hidden">삭제모달창</p>
+        <h2 class="modal-title a11y-hidden">팝업</h2>
         <div class="modal-content">
-            <h2 class="modal-title a11y-hidden">로그아웃</h2>
-            <p class="modal-description" tabindex="0">로그아웃하시겠어요?</p>
+            <p class="modal-description" tabindex="0">?</p>
             <div class="modal-actions">
-                <button class="right-button ac-log-out" tabindex="0">로그아웃</button>
-                <button class="left-button" tabindex="0">취소</button>
+                <button class="right-button ac-log-out" tabindex="0"></button>
+                <button class="left-button" tabindex="0"></button>
             </div>
         </div>
     </article>
     <script src="../js/common.js"></script>
     <script src="../js/profile_info.js"></script>
-    <script>
-        // 모달창
-        const btnOption = document.querySelector('.btn-option');
-        const postModal = document.querySelector('.post-modal-background');
-        const btnLogOut = document.querySelector('.btn-log-out');
-        const popUpModal = document.querySelector('.modal-background');
-        const acLogOut = document.querySelector('.ac-log-out');
-
-        // option 버튼 클릭 시 모달창 나타나기
-        btnOption.addEventListener('click', () => {
-            postModal.style.display = 'block';
-        });
-
-        // 로그아웃 버튼 클릭 시 
-        btnLogOut.addEventListener('click', () => {
-            popUpModal.style.visibility = 'visible';
-        })
-
-        // 로그아웃 시 페이지 이동
-        acLogOut.addEventListener('click', () => {
-            location.href = './login.html'
-        })
-
-        // 하단에 띄어진 모달이 아닌 배경을 클릭하면 모달창 닫기
-        postModal.addEventListener('click', (event) => {
-            const targetElement = event.target;
-
-            if (targetElement.classList.contains('post-modal-background')) {
-                postModal.style.display = 'none';
-            }
-        });
-
-        // 팝업으로 띄어진 모달이 아닌 배경을 클릭하면 모달창 닫기
-        popUpModal.addEventListener('click', (event) => {
-            const targetElement = event.target;
-
-            if (targetElement.classList.contains('modal-background') || targetElement.classList.contains('left-button')) {
-                popUpModal.style.visibility = 'hidden';
-            }
-        });
-    </script>
 </body>
 
 </html>

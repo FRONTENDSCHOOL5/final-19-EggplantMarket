@@ -33,4 +33,7 @@ async function reqLike(postId,act,method){
     }
 }
 
-document.querySelector('.tab-item-more a').href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
+if(document.querySelector('.tab-item-more a') !== null){
+    document.querySelector('.tab-item-more a').href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
+}
+

@@ -261,6 +261,7 @@ function updatePost(post_data){
             btnOption.innerHTML = `
                 <img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼">
             `;
+            btnOption.setAttribute('data-postid',`${item.id}`)
 
             post.appendChild(btnOption);
             listLi.appendChild(post);

@@ -71,9 +71,9 @@ function displayPost(post) {
     <a class="profile-img img-cover" href="./profile_info.html?accountName=${post.author.accountname}">
         <img src=${post.author.image} alt="프로필사진">
     </a>
-    <a class="user-info" href="./profile_info?accountName=${post.author.accountname}.html">
+    <a class="user-info" href="./profile_info.html?accountName=${post.author.accountname}">
         <p class="user-name">${post.author.username}</p>
-        <p class="user-id">@${post.author.accountname}</p>
+        <p class="user-id">${post.author.accountname}</p>
     </a>`
 
     // section .게시글 내용
@@ -104,6 +104,7 @@ function displayPost(post) {
     btnOption.setAttribute('class', 'btn-option');
     btnOption.setAttribute('tabindex', '0');
     btnOption.innerHTML = `<img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼">`;
+    btnOption.setAttribute('data-postid',post.id)
 
     frag.append(userInfoSec, postInfoSec, btnOption);
     postViewSec.append(frag);
@@ -153,6 +154,8 @@ async function run() {
     // 데이터 뿌리기
     displayPost(dataPost.post);
     displayComment(dataComments.comments);
+    handleModal()
 }
+
 
 run();

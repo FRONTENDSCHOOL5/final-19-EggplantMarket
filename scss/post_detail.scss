@@ -66,29 +66,29 @@ display: inline-block;
 .comment-user-info {
     display: inline-block;
 
-    .user-name {
-        display: inline-block;
-        line-height: 19px;
-        vertical-align: top;
-        margin-top: 6px;
-        margin-left: 12px;
-        font-weight: 500;
-        font-size: .875rem;
-        color: #000000;
-    }
-}
-
-.img-cover {
-    display: inline-block;
-    width: 36px;
-    height: 36px;
-    overflow: hidden;
-    border-radius: 50%;
-
-    img {
-        width: 100%;
-        height: 100%;
-        aspect-ratio: 1/1;
-        object-fit: cover;
+    .img-cover {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            overflow: hidden;
+            border-radius: 50%;
+    
+            img {
+                width: 100%;
+                height: 100%;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+        }
+        }
+        
+        .user-name {
+            display: inline-block;
+            line-height: 19px;
+            vertical-align: top;
+            margin-top: 6px;
+            margin-left: 12px;
+            font-weight: 500;
+            font-size: .875rem;
+            color: #000000;
     }
 }

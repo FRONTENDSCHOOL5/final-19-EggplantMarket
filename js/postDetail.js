@@ -104,7 +104,7 @@ function displayPost(post) {
     </a>
     <a class="user-info" href="./profile_info?accountName=${post.author.accountname}.html">
         <p class="user-name">${post.author.username}</p>
-        <p class="user-id">@${post.author.accountname}</p>
+        <p class="user-id">${post.author.accountname}</p>
     </a>`
 
     // section .게시글 내용

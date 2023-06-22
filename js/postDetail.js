@@ -1,4 +1,4 @@
-const postId = new URLSearchParams(location.search).get('postId');
+const postId = new URLSearchParams(location.search).get('postId') || '648bbcfdb2cb205663363788';
 
 const url = "https://api.mandarin.weniv.co.kr";
 const token = localStorage.getItem("user-token");
@@ -18,6 +18,37 @@ commentInp.addEventListener('keyup', (e) => {
     }
 })
 
+commentSubmitButton.addEventListener('click', async () => {
+    await postComment(commentInp.value)
+    commentInp.value = '';
+    // 댓글 다시 뿌리기
+    const dataComments = await getComments();
+    displayComment(dataComments.comments);
+});
+
+// POST 댓글
+async function postComment(content) {
+    try {
+        const data = {
+            "comment": {
+                "content": content
+            }
+        }
+        const res = await fetch(url + `/post/${postId}/comments`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+        const resJson = await res.json();
+        console.log(resJson);
+
+    } catch (err) {
+        console.error(err);
+    }
+}
 
 // GET 게시글 데이터
 async function getOnePost() {
@@ -132,6 +163,9 @@ function displayComment(comments) {
         frag.append(li);
     })
 
+    while (commentList.hasChildNodes()) {
+        commentList.removeChild(commentList.firstChild);
+    }
     commentList.append(frag);
 }
 

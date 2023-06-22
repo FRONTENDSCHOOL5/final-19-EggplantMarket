@@ -23,11 +23,12 @@ form{
         display: block;
         margin-bottom: 2px;
     }
+    
     & > input {
         display: block;
         width: 100%;
 
-        margin-bottom: 16px;
+        margin-bottom: 6px;
 
         border: none;
         border-bottom: 1px solid $gray100-color;
@@ -36,6 +37,14 @@ form{
     & > input::placeholder{
         font-size: .875rem;
         color: $gray100-color;
+    }
+
+    label[for="product-price"]{
+        margin-top: 16px;
+    }
+
+    label[for="purchase-link"]{
+        margin-top: 16px;
     }
 }
 
@@ -64,4 +73,16 @@ form{
     circle {
         fill: $enabled-color;
     }
+}
+
+.warning-msg-productname {
+    color: $warning-color-text;
+    font-size: 12px;
+    display: none;
+}
+
+.warning-msg-purchaselink {
+    color: $warning-color-text;
+    font-size: 12px;
+    display: none;
 }

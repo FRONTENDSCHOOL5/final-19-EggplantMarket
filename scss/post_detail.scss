@@ -2,43 +2,93 @@
 @import "variables";
 
 main {
-    margin: 0 .9375rem;
+margin: 0 .9375rem;
     margin-bottom: 61px;
 }
 
-.user-comment-info {
-    display: flex;
+// 게시글 내용 영역
+.home-post {
+    border-bottom: 1px solid #DBDBDB;
+}
+// 게시글 댓글 영역
+.comment-list {
+    margin-top: 20px;
+
+    .comment-item {
+        margin-top: 20px;
+        position: relative;
+
+.comment-time {
+display: inline-block;
+    font-size: 10px;
+    color: #767676;
+    line-height: 18px;
+        vertical-align: top;
+        margin-top: 6px;
+        // position: relative;
+        padding-left: 12px;
+    
+    
+        // .comment-time::before {
+        //     content: '';
+        //     display: inline-block;
+        //     width: 4px;
+        //     height: 4px;
+        //     background-color: inherit;
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        // }
+}
+
+.comment-text {
+    margin-left: 54px;
+    margin-right: 24px;
+    line-height: 1.5;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.btn-more {
+    width: 24px;
+    position: absolute;
+    top: 0;
+    left: calc(100% - 25px);
+    transform: translate(0, 25%);
+
+    img {
+        width: 100%;
+    }
+}
+}
+}
+
+.comment-user-info {
+    display: inline-block;
+
     .user-name {
+        display: inline-block;
+        line-height: 19px;
+        vertical-align: top;
+        margin-top: 6px;
+        margin-left: 12px;
+        font-weight: 500;
         font-size: .875rem;
         color: #000000;
     }
 }
 
-.comment-time {
-    margin-left: 6px;
-    font-size: 10px;
-    color: #767676;
-    margin-top: auto;
-}
+.img-cover {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    overflow: hidden;
+    border-radius: 50%;
 
-.post-comment {
-    margin-top: 20px;
-}
-
-.comment-edit {
-    margin: 10px auto 16px 54px;
-    .comment-text{
-        margin-bottom: 16px;
-        line-height: 18px;
-        font-size: 14px;
-        color: #333333;
+    img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
     }
-}
-
-.home-post {
-    border-bottom: 1px solid #DBDBDB;
-}
-
-.user-comment-info {
-    margin-right: auto;
 }

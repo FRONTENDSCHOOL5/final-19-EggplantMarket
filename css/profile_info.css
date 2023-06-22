@@ -47,7 +47,7 @@ a {
 
 body {
   height: calc(100% + 61px);
-  background-color: white;
+  background-color: #fff;
 }
 
 main {
@@ -56,15 +56,15 @@ main {
   margin-bottom: 61px;
 }
 main > section {
-  background-color: white;
+  background-color: #fff;
 }
 
 header {
-  background-color: white;
+  background-color: #fff;
 }
 
 .profile-container {
-  border: 1px solid #DBDBDB;
+  border: 1px solid #dbdbdb;
   border-top: 0;
   position: relative;
   text-align: center;
@@ -145,7 +145,7 @@ header {
   margin-right: 12px;
 }
 .profile-container .btn-wrap-my .btn-link {
-  background-color: white;
+  background-color: #fff;
   border: 1px solid #dbdbdb;
   color: #767676;
   border-radius: 30px;

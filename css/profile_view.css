@@ -34,8 +34,8 @@ a {
 .post-tab {
   height: 44px;
   padding: 9px 21px;
-  border-top: 1px solid #DBDBDB;
-  border-bottom: 1px solid #DBDBDB;
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
 }
 
 .tab-btn-wrap {
@@ -108,13 +108,6 @@ a {
 }
 
 .post-container {
-  background-color: white;
+  background-color: #fff;
   margin-top: 6px;
-}
-
-.btn-like.like svg {
-  fill: #F26E22;
-}
-.btn-like.like svg path {
-  stroke: #F26E22;
 }

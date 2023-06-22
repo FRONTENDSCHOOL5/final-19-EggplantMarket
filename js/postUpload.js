@@ -154,7 +154,7 @@ async function postImg() {
 
         console.log(json.filename)
 
-        return 'https://api.mandarin.weniv.co.kr' + json.filename;
+        return 'https://api.mandarin.weniv.co.kr/' + json.filename;
     } else {
         return '';
     }

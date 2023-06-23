@@ -102,3 +102,22 @@ main {
   font-size: 0.875rem;
   color: #000000;
 }
+
+.comment .img-cover {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.comment .img-cover img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.comment #commemt-input {
+  padding: 8px;
+}

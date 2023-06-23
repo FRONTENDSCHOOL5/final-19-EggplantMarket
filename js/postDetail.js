@@ -7,11 +7,28 @@ let userAccountName = '';
 
 const postViewSec = document.querySelector('.home-post');
 const commentList = document.querySelector('.comment-list');
+const profileImg = document.querySelector('.profile-img');
 const commentInp = document.querySelector('#commemt-input');
 const commentSubmitButton = document.querySelector('.btn-comment');
 
+// 작성자 프로필 이미지 가져오기
+async function getMyImg() {
+    const reqPath = "/user/myinfo";
+    const res = await fetch(url + reqPath, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const json = await res.json();
+    return json.user.image;
+}
+(async function () {
+    profileImg.src = await getMyImg();
+})();
+
 commentInp.addEventListener('keyup', (e) => {
-    if (e.target.value !== '') {
+    if (e.target.value.trim() !== '') {
         commentSubmitButton.disabled = false;
     } else {
         commentSubmitButton.disabled = true;

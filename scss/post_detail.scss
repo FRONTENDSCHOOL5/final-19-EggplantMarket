@@ -92,3 +92,24 @@ display: inline-block;
             color: #000000;
     }
 }
+.comment {
+    .img-cover {
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        overflow: hidden;
+        border-radius: 50%;
+        margin-right: 10px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+    }
+
+    #commemt-input {
+        padding: 8px;
+    }
+}

@@ -145,7 +145,7 @@ function displayPost(post) {
                 <img src="../assets/icon/icon-message-circle.svg" alt="댓글 버튼"><span class="cnt">${post.comments.length}</span>
             </div>
         </div>
-        <p class="post-date">${post.updatedAt}</p>`
+        <p class="post-date">${dateProcess(post.updatedAt)}</p>`
 
     // 더보기 버튼
     const btnOption = document.createElement('button');
@@ -173,7 +173,7 @@ function displayComment(comments) {
         <a class="user-name" href="./profile_info.html?accountName=${i.author.accountname}" tabindex="1"><span class="a11y-hidden">사용자
             이름,</span>${i.author.accountname}</a>
     </div>
-    <p class="comment-time">${i.createdAt}</p>
+    <p class="comment-time">${dateProcess(i.createdAt)}</p>
     <p class="comment-text">${i.content}</p>
     <button class="btn-more" tabindex="2"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>`;
 

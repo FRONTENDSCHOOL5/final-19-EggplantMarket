@@ -108,6 +108,7 @@ uploadButton.addEventListener('click', async (e) => {
     e.preventDefault();
     await submitPostForm();
     console.log('게시글 작성 완료');
+    location.href=`./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
 })
 
 // 작성 완료된 게시글 내용 post요청

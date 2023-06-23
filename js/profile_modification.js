@@ -150,6 +150,7 @@ submitButton.addEventListener('click', async (e) => {
     e.preventDefault();
     await saveProfile(url, token);
     console.log('프로필 수정 완료');
+    location.href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
 });
 
 

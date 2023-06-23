@@ -1,4 +1,15 @@
+if(document.querySelector('.btn-back')){
+    
+    document.querySelector('.btn-back').addEventListener('click',()=>{
+        const prevLink = document.referrer
+        const isPrevUpload = prevLink.includes('modification') || prevLink.includes('upload')
+
+        location.href = isPrevUpload ? './home.html' : prevLink
+    })
+}
+
 // common
+
 
 async function handleLike(event){
     const target = event.currentTarget;
@@ -42,4 +53,6 @@ function dateProcess(createdAt) {
     return `${YEAR}년 ${MONTH}월 ${DAY}일`
 }
 
-document.querySelector('.tab-item-more a').href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
+if(document.querySelector('.tab-item-more a')){
+    document.querySelector('.tab-item-more a').href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
+}

@@ -3,8 +3,13 @@ if(document.querySelector('.btn-back')){
     document.querySelector('.btn-back').addEventListener('click',()=>{
         const prevLink = document.referrer
         const isPrevUpload = prevLink.includes('modification') || prevLink.includes('upload')
-
-        location.href = isPrevUpload ? './home.html' : prevLink
+        
+        if(isPrevUpload){
+            location.href = './home.html'
+        }
+        else{
+            history.back()
+        }
     })
 }
 

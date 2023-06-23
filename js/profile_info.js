@@ -87,7 +87,7 @@ function updateInfo(profile_data){
     followerElement.textContent = profile_data.followerCount;
     followerElement.closest('a').href = `./profile_follower.html?accountName=${profile_data.accountname}`
     followingElement.textContent = profile_data.followingCount;
-    followingElement.closest('a').href = `./profile_follower.html?accountName=${profile_data.accountname}`
+    followingElement.closest('a').href = `./profile_following.html?accountName=${profile_data.accountname}`
     profileImg.src=`${profile_data.image}`
 
     profile_data.isfollow ? followBtn.classList.add('hidden') : unFollowBtn.classList.add('hidden')

@@ -1,4 +1,4 @@
-const postId = new URLSearchParams(location.search).get('postId');
+const postId = new URLSearchParams(location.search).get('postId') || '648bbcfdb2cb205663363788';
 
 const url = "https://api.mandarin.weniv.co.kr";
 const token = localStorage.getItem("user-token");
@@ -7,17 +7,65 @@ let userAccountName = '';
 
 const postViewSec = document.querySelector('.home-post');
 const commentList = document.querySelector('.comment-list');
+const profileImg = document.querySelector('.profile-img');
 const commentInp = document.querySelector('#commemt-input');
 const commentSubmitButton = document.querySelector('.btn-comment');
 
+// 작성자 프로필 이미지 가져오기
+async function getMyImg() {
+    const reqPath = "/user/myinfo";
+    const res = await fetch(url + reqPath, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const json = await res.json();
+    return json.user.image;
+}
+(async function () {
+    profileImg.src = await getMyImg();
+})();
+
 commentInp.addEventListener('keyup', (e) => {
-    if (e.target.value !== '') {
+    if (e.target.value.trim() !== '') {
         commentSubmitButton.disabled = false;
     } else {
         commentSubmitButton.disabled = true;
     }
 })
 
+commentSubmitButton.addEventListener('click', async () => {
+    await postComment(commentInp.value)
+    commentInp.value = '';
+    // 댓글 다시 뿌리기
+    const dataComments = await getComments();
+    displayComment(dataComments.comments);
+});
+
+// POST 댓글
+async function postComment(content) {
+    try {
+        const data = {
+            "comment": {
+                "content": content
+            }
+        }
+        const res = await fetch(url + `/post/${postId}/comments`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+        const resJson = await res.json();
+        console.log(resJson);
+
+    } catch (err) {
+        console.error(err);
+    }
+}
 
 // GET 게시글 데이터
 async function getOnePost() {
@@ -73,7 +121,7 @@ function displayPost(post) {
     </a>
     <a class="user-info" href="./profile_info?accountName=${post.author.accountname}.html">
         <p class="user-name">${post.author.username}</p>
-        <p class="user-id">@${post.author.accountname}</p>
+        <p class="user-id">${post.author.accountname}</p>
     </a>`
 
     // section .게시글 내용
@@ -132,6 +180,9 @@ function displayComment(comments) {
         frag.append(li);
     })
 
+    while (commentList.hasChildNodes()) {
+        commentList.removeChild(commentList.firstChild);
+    }
     commentList.append(frag);
 }
 

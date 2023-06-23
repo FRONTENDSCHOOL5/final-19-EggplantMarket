@@ -111,5 +111,10 @@ display: inline-block;
 
     #commemt-input {
         padding: 8px;
-    }
+        margin-right: 10px;
+        }
+        
+        button:not(:disabled) {
+            color: $enabled-color;
+}
 }

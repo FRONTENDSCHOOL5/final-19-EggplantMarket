@@ -120,4 +120,8 @@ main {
 }
 .comment #commemt-input {
   padding: 8px;
+  margin-right: 10px;
+}
+.comment button:not(:disabled) {
+  color: #635CA5;
 }

@@ -285,11 +285,14 @@ a {
           align-items: center;
 }
 .user-follow .img-cover {
-  height: 100%;
+  display: inline-block;
+  width: 36px;
+  height: 36px;
   overflow: hidden;
   border-radius: 50%;
 }
 .user-follow .img-cover img {
+  width: 100%;
   height: 100%;
   aspect-ratio: 1/1;
   -o-object-fit: cover;

@@ -128,7 +128,7 @@ function displayComment(comments) {
     </div>
     <p class="comment-time">${i.createdAt}</p>
     <p class="comment-text">${i.content}</p>
-    <button class="btn-more" tabindex="2"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>`;
+    <button class="btn-more" tabindex="2" data-commentId=${i.id}><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>`;
 
         frag.append(li);
     })

@@ -82,7 +82,7 @@ function updateInfo(profile_data){
     userName.insertAdjacentText('beforeend',profile_data.username)
     accountName.insertAdjacentText('beforeend',profile_data.accountname)
     if(profile_data.intro !== ""){
-        intro.childNodes[1].textContent = profile_data.intro
+        intro.childNodes[1].textContent = profile_data.intro;
     }
     followerElement.textContent = profile_data.followerCount;
     followerElement.closest('a').href = `./profile_follower.html?accountName=${profile_data.accountname}`

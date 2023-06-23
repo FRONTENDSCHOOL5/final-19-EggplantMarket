@@ -19,10 +19,10 @@ function handleModal() {
     if(commentBtnOption.length !== 0){
         handleCommentOptionModal(commentBtnOption)
     }
+    if(productBtn.length !== 0){
+        console.log("!")
+    }
     // if(mainBtnOption){}
-
-    
-    
 
 }
 
@@ -52,8 +52,7 @@ function handlePostOptionModal(nodes) {
     nodes.forEach(item => {item.addEventListener('click', (e) => {
 
         const targetBtn = e.currentTarget
-
-        localStorage.setItem('targetPostId',targetBtn.dataset.postid)
+        const targetPostId = e.currentTarget.dataset.postid
 
         // 내 글인지 다른 사람 글인지.
         const postAccountName = targetBtn.parentNode.querySelector('a').href.split('accountName=')[1]
@@ -71,10 +70,10 @@ function handlePostOptionModal(nodes) {
             //     editPopUp(popUpModal,'수정하시겠어요?','수정', postEdit)
             // }
             if(e.currentTarget.classList.contains('btn-delete')){
-                editPopUp(popUpModal,'게시글을 삭제할까요?','삭제', postDelete)
+                editPopUp(popUpModal,'게시글을 삭제할까요?','삭제',()=>{postDelete(targetPostId)})
             }
             if(e.currentTarget.classList.contains('btn-report')){
-                editPopUp(popUpModal,'게시글을 신고할까요?','신고', postReport)
+                editPopUp(popUpModal,'게시글을 신고할까요?','신고', ()=>{postReport(targetPostId)})
             }
             popUpModal.style.visibility = 'visible';
         })})
@@ -87,22 +86,24 @@ function handleCommentOptionModal(nodes){
     nodes.forEach(item=>{item.addEventListener('click', (e) => {
         const postAccountName = e.currentTarget.parentNode.querySelector('a').href.split('accountName=')[1]
 
+        const targetBtn = e.currentTarget
+        const targetCommentId = e.currentTarget.dataset.commentid
+
+        const pageUrl = new URL(window.location.href);
+        const targetPostId = pageUrl.searchParams.get('postId');
+
         if(myAccountName === postAccountName){
-            modalContent.innerHTML = `
-                <button class="modal-description btn-delete" tabindex="0">삭제</button>
-            `
+            modalContent.innerHTML = `<button class="modal-description btn-delete" tabindex="0">삭제</button>`
         } else {
-            modalContent.innerHTML = `
-                <button class="modal-description btn-report" tabindex="0">신고하기</button>
-            `
+            modalContent.innerHTML = `<button class="modal-description btn-report" tabindex="0">신고하기</button>`
         }
 
         modalContent.querySelector('.modal-description').addEventListener('click', (e) => {
             if(e.currentTarget.classList.contains('btn-delete')){
-                editPopUp(popUpModal,'댓글을 삭제할까요?','삭제', commentDelete)
+                editPopUp(popUpModal,'댓글을 삭제할까요?','삭제',() => commentDelete(targetPostId,targetCommentId))
             }
             if(e.currentTarget.classList.contains('btn-report')){
-                editPopUp(popUpModal,'댓글을 신고할까요?','신고', commentReport)
+                editPopUp(popUpModal,'댓글을 신고할까요?','신고',() => commentReport(targetPostId,targetCommentId))
             }
             popUpModal.style.visibility = 'visible';
         })
@@ -111,8 +112,9 @@ function handleCommentOptionModal(nodes){
     })});
 }
 
-async function postDelete(){
-    const fullUrl = `https://api.mandarin.weniv.co.kr/post/${localStorage.getItem('targetPostId')}`
+async function postDelete(targetPostId){
+    console.log(targetPostId)
+    const fullUrl = `https://api.mandarin.weniv.co.kr/post/${targetPostId}`
     const options = {
         method: "DELETE", 
         headers: {
@@ -121,16 +123,19 @@ async function postDelete(){
         }
     };
     try {
-        const response = await fetch(fullUrl, options)
-        const resJson = await response.json()
-        console.log(resJson);
+        await fetch(fullUrl, options)
+        if(window.location.href.includes('detail')){
+            location.href = document.referrer
+        } else{
+            location.reload()
+        }
     } catch(err){
         console.error(err);
     }
 }
 
-async function postReport(){
-    const fullUrl = `https://api.mandarin.weniv.co.kr/post/${localStorage.getItem('targetPostId')}/report`;
+async function postReport(targetPostId){
+    const fullUrl = `https://api.mandarin.weniv.co.kr/post/${targetPostId}/report`;
     const options = {
         method: "POST",
         headers: {
@@ -139,9 +144,45 @@ async function postReport(){
         }
     };
     try{
-        const response = await fetch(fullUrl,options)
-        const resJson = await response.json()
-        alert
+        await fetch(fullUrl,options)
+        alert('게시글이 신고가 되었습니다')
+    } catch (err){
+        console.error(err)
+    }
+}
+
+async function commentDelete(targetPostId, targetCommentId){
+    const fullUrl = `https://api.mandarin.weniv.co.kr/post/${targetPostId}/comments/${targetCommentId}`;
+    const options = {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem('user-token')}`,
+            "Content-type" : "application/json"
+        }
+    };
+    try{
+        await fetch(fullUrl,options)
+        
+        if(!alert('댓글이 삭제되었습니다.')){
+            location.reload()
+        }
+    } catch (err){
+        console.error(err)
+    }
+}
+
+async function commentReport(targetPostId, targetCommentId){
+    const fullUrl = `https://api.mandarin.weniv.co.kr/post/${targetPostId}/comments/${targetCommentId}/report`;
+    const options = {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem('user-token')}`,
+            "Content-type" : "application/json"
+        }
+    };
+    try{
+        await fetch(fullUrl,options)
+        alert('댓글이 신고가 되었습니다')
     } catch (err){
         console.error(err)
     }
@@ -151,7 +192,11 @@ async function postReport(){
 function editPopUp(parent, desc, btnText, action){
     parent.querySelector('.modal-description').textContent = desc
     parent.querySelector('.right-button').textContent = btnText;
-    parent.querySelector('.right-button').addEventListener('click',action);
+    parent.querySelector('.right-button').addEventListener('click',async ()=>{
+        await action()
+        postModal.style.display = 'none';
+        popUpModal.style.visibility = 'hidden';
+    });
 }
 
 // 기능
@@ -167,7 +212,6 @@ postModal.addEventListener('click', (event) => {
 
     if (targetElement.classList.contains('post-modal-background')) {
         postModal.style.display = 'none';
-        localStorage.removeItem('targetPostId')
     }
 });
 

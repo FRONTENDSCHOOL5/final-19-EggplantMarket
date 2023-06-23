@@ -1,5 +1,4 @@
 // common
-
 async function handleLike(event){
     const target = event.currentTarget;
     console.log(event.currentTarget)
@@ -45,5 +44,3 @@ function dateProcess(createdAt) {
 
     return `${YEAR}년 ${MONTH}월 ${DAY}일`
 }
-
-document.querySelector('.tab-item-more a').href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`

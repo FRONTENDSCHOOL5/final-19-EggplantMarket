@@ -90,6 +90,11 @@ a {
   border: 1px solid #dbdbdb;
 }
 
+.btn-follow:disabled {
+  background-color: #dbdbdb;
+  color: #fff;
+}
+
 .img-cover {
   display: inline-block;
   width: 50px;

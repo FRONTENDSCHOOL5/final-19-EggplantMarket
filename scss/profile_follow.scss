@@ -57,6 +57,10 @@ color: $gray300-color;
 background-color: $white-color;
 border: 1px solid $gray100-color;
 }
+.btn-follow:disabled {
+    background-color: $gray100-color;
+    color: $white-color;
+}
 // 재사용되는 코드
 .img-cover {
     display: inline-block;

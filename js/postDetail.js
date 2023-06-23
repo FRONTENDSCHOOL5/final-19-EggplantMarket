@@ -130,11 +130,7 @@ function displayPost(post) {
     postInfoSec.setAttribute('class', 'post-edit');
     postInfoSec.innerHTML = `<h3 class="a11y-hidden">게시물의 사진과 내용</h3>
     <div>
-        <p class="post-text">${post.content}</p>
-            <div class="img-cover">
-                <img class="post-img" src=${post.image} alt="게시물 사진">
-            </div>
-        </div>
+    </div>
         <div class="post-icon">
             <button class="btn-like ${post.hearted ? 'like' : ''}">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -146,6 +142,14 @@ function displayPost(post) {
             </div>
         </div>
         <p class="post-date">${dateProcess(post.updatedAt)}</p>`
+    if(post.content){
+        postInfoSec.querySelector('div').insertAdjacentHTML('afterbegin',`<p class="post-text">${post.content}</p>`)
+    }
+    if(post.image){
+        postInfoSec.querySelector('div').insertAdjacentHTML('beforeend',`<div class="img-cover">
+        <img class="post-img" src=${post.image} alt="게시물 사진">
+    </div>`)
+    }
 
     // 더보기 버튼
     const btnOption = document.createElement('button');
@@ -173,7 +177,7 @@ function displayComment(comments) {
         <a class="user-name" href="./profile_info.html?accountName=${i.author.accountname}" tabindex="1"><span class="a11y-hidden">사용자
             이름,</span>${i.author.accountname}</a>
     </div>
-    <p class="comment-time">${dateProcess(i.createdAt)}</p>
+    <p class="comment-time">${displayedAt(i.createdAt)}</p>
     <p class="comment-text">${i.content}</p>
     <button class="btn-more" tabindex="2"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>`;
 
@@ -207,3 +211,21 @@ async function run() {
 }
 
 run();
+
+
+function displayedAt(createdAt) {
+    const milliSeconds = new Date() - new Date(createdAt)
+    const seconds = milliSeconds / 1000
+    if (seconds < 60) return `방금 전`
+    const minutes = seconds / 60
+    if (minutes < 60) {
+        return `${Math.floor(minutes)}분 전`
+    }
+    const hours = minutes / 60
+    if (hours < 24) {
+        return `${Math.floor(hours)}시간 전`
+    }
+    else{
+        return dateProcess(createdAt)
+    }
+ }

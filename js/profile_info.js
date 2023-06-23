@@ -280,7 +280,7 @@ async function run(url, token, accountName) {
             location.href = './profile_modification.html'
         })
         document.querySelector('.btn-link.add-product').addEventListener('click',()=>{
-            location.href = `./product.html`
+            location.href = `./product_upload.html`
         })
     }
 

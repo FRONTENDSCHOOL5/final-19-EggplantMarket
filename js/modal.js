@@ -52,7 +52,7 @@ function handlePostOptionModal(nodes) {
     nodes.forEach(item => {item.addEventListener('click', (e) => {
 
         const targetBtn = e.currentTarget
-        const targetPostId = e.currentTarget.dataset.postid
+        const targetPostId = e.currentTarget.dataset.postid || e.currentTarget.closest('li').dataset.postid
 
         // 내 글인지 다른 사람 글인지.
         const postAccountName = targetBtn.parentNode.querySelector('a').href.split('accountName=')[1]

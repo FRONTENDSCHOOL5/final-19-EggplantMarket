@@ -4,21 +4,15 @@ const pageUrl = new URL(window.location.href);
 const url = "https://api.mandarin.weniv.co.kr",
     token = localStorage.getItem("user-token"),
     myAccountName = localStorage.getItem("user-accountname"),
-    // profileAccountName = 'yoon';
-    // profileAccountName = myAccountName;
     profileAccountName = pageUrl.searchParams.get('accountName');
-// console.log(profileAccountName)
-// http://127.0.0.1:5500/html/profile_info.html?accountName=jyp1
 
-    // testtestabc
-    // yoon
-    // weniv_won
-    // oxxun21
-/**
- * 분기1
- * 내 프로필인지 다른 사람 프로필인지 체크
- */
-
+// 무한 스크롤 
+window.addEventListener("scroll", async () => {
+    if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
+        console.log('바닥이당! 데이터 불러올게 기다려!')
+        throttle(updatePost((await loadPostData(url, token, profileAccountName)).post), 1000)
+    };
+})
 
 async function fetchData(url, options) {
     try {
@@ -55,8 +49,10 @@ async function loadProductData(url, token, accountName) {
     return fetchData(fullUrl, options);
 }
 
+let reqCnt = 0;
 async function loadPostData(url, token, accountName) {
-    const fullUrl = `${url}/post/${accountName}/userpost`;
+    console.log(2 * reqCnt)
+    const fullUrl = `${url}/post/${accountName}/userpost?limit=2&skip=${reqCnt++ * 2}`;
     const options = {
         method: "GET",
         headers: {
@@ -118,7 +114,8 @@ function updateProduct(product_data,count){
             
             const productImg = document.createElement('img')
             productImg.className='product-img'
-            productImg.setAttribute('src',`${item.itemImage}`)
+            const itemSrc = item.itemImage.includes("https://api.mandarin.weniv.co.kr",) ? item.itemImage : "https://api.mandarin.weniv.co.kr/1687488082591.png"
+            productImg.setAttribute('src', `${itemSrc}`)
             productImg.setAttribute('alt','상품 이미지')
 
             const productPrice = document.createElement('strong')
@@ -137,13 +134,14 @@ function updateProduct(product_data,count){
     }
 }
 
-function updatePost(post_data){
-    
-    if (!post_data.length){
-        document.querySelector('.post-container').style.display='none'
-    } else{
-        const listUl = document.querySelector('.post-sec .post-list')
-        const albumUl = document.querySelector('.post-album')
+// 게시글 보는 섹션
+function updatePost(post_data) {
+    const listUl = document.querySelector('.post-sec .post-list')
+    const albumUl = document.querySelector('.post-album')
+    // 첫 요청시 데이터가 없으면 섹션 숨기기
+    if (reqCnt == 1 && !post_data.length) {
+        document.querySelector('.post-container').style.display = 'none'
+    } else {
         const fragment = document.createDocumentFragment()
         const albumfragment = document.createDocumentFragment()
         post_data.forEach((item)=>{
@@ -201,6 +199,7 @@ function updatePost(post_data){
             if (item.image) {
                 const postfragment = document.createDocumentFragment()
                 item.image.split(', ').forEach((i, idx) => {
+                    // 리스트형 
                     const imgCover = document.createElement('div');
                     imgCover.classList.add('img-cover');
                 
@@ -212,6 +211,7 @@ function updatePost(post_data){
                     imgCover.appendChild(postImg);
                     postfragment.appendChild(imgCover);
                 
+                    // 앨범형 - 첫번째 사진을 섬네일로
                     if (idx === 0) {
                         const albumLi = document.createElement('li');
                         albumLi.className = 'post-album-item';
@@ -259,10 +259,11 @@ function updatePost(post_data){
             listLi.appendChild(post);
             fragment.appendChild(listLi);
 
-            listUl.appendChild(fragment);
-            albumUl.appendChild(albumfragment);
         });
+        listUl.appendChild(fragment);
+        albumUl.appendChild(albumfragment);
     }
+
 }
 
 

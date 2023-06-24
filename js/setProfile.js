@@ -146,11 +146,17 @@ async function postImg() {
 
     function readURL(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                document.querySelector('.img-cover img').src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
+            
+            if (checkImageExtension(input.files[0])) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.querySelector('.img-cover img').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else{
+                alert('유효하지 않은 파일 입니다')
+                input.value = '';
+            }
         } else {
             document.querySelector('.img-cover img').src = "../assets/basic-profile-img.png";
         }

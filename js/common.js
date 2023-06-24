@@ -13,6 +13,12 @@ if(document.querySelector('.btn-back')){
     })
 }
 
+function checkImageExtension(file){
+    const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+    const extension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
+  return validExtensions.some(validExtension => extension.endsWith(validExtension));
+}
+
 // common
 
 

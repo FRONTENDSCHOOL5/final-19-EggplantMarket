@@ -12,67 +12,31 @@
 </head>
 
 <body>
-    <main class="join">
-        <h1 class="a11y-hidden">회원가입</h1>
 
-        <!-- join-email -->
-        <section class="join-email">
-            <h2 class="title">이메일로 회원가입</h2>
-            <form>
-                <fieldset>
-                    <label for="email">이메일</label>
-                    <input type="email" id="email" placeholder="이메일 주소를 입력해 주세요.">
-                    <strong class="warning-msg-email"></strong>
-                </fieldset>
-                <fieldset>
-                    <label for="pw">비밀번호</label>
-                    <input type="password" id="pw" minlength="6" placeholder="비밀번호를 설정해 주세요.">
-                    <strong class="warning-msg-pw">*비밀번호는 6자 이상이어야 합니다.</strong>
-                </fieldset>
-                <button id="next-btn" class='size-l btn-next' disabled>다음</button>
-            </form>
-        </section>
-        <!-- // join-email -->
+        <main class="join">
+            <h1 class="a11y-hidden">회원가입</h1>
+
+            <!-- join-email -->
+            <section class="join-email">
+                <h2 class="title">이메일로 회원가입</h2>
+                <form>
+                    <fieldset>
+                        <label for="email">이메일</label>
+                        <input type="email" id="email" placeholder="이메일 주소를 입력해 주세요.">
+                        <strong class="warning-msg-email"></strong>
+                    </fieldset>
+                    <fieldset>
+                        <label for="pw">비밀번호</label>
+                        <input type="password" id="pw" minlength="6" placeholder="비밀번호를 설정해 주세요.">
+                        <strong class="warning-msg-pw">*비밀번호는 6자 이상이어야 합니다.</strong>
+                    </fieldset>
+                    <button id="next-btn" class='size-l btn-next' disabled>다음</button>
+                </form>
+            </section>
+            <!-- // join-email -->
 
 
-        <!-- profile-setting -->
-        <section class="profile-setting" style="display : none">
-            <h2 class="title">프로필 설정</h2>
-            <p>나중에 언제든지 변경할 수 있습니다.</p>
-            <form>
-                <section class="profile-img">
-                    <h3 class="a11y-hidden">프로필 이미지 설정</h3>
-                    <div class="img-cover">
-                        <img src="../assets/basic-profile-img.png" alt="기본 프로필 이미지">
-                    </div>
-                    <label class="btn-upload" for="btn-upload">
-                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="18" cy="18" r="18" fill="#C4C4C4" />
-                            <path
-                                d="M24.4167 9.75H11.5833C10.5708 9.75 9.75 10.5708 9.75 11.5833V24.4167C9.75 25.4292 10.5708 26.25 11.5833 26.25H24.4167C25.4292 26.25 26.25 25.4292 26.25 24.4167V11.5833C26.25 10.5708 25.4292 9.75 24.4167 9.75Z"
-                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                                d="M14.7915 16.1665C15.5509 16.1665 16.1665 15.5509 16.1665 14.7915C16.1665 14.0321 15.5509 13.4165 14.7915 13.4165C14.0321 13.4165 13.4165 14.0321 13.4165 14.7915C13.4165 15.5509 14.0321 16.1665 14.7915 16.1665Z"
-                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M26.2502 20.7498L21.6668 16.1665L11.5835 26.2498" stroke="white" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </label>
-                </section>
-                <input type='file' id='btn-upload' class="btn-upload">
-                <fieldset>
-                    <label for="username">사용자 이름</label>
-                    <input type="text" id="username" minlength="2" maxlength="10" placeholder="2~10자 이내여야 합니다."
-                        required>
-                    <strong class="warning-msg-username">*2~10자 이내여야 합니다.</strong>
-                </fieldset>
-                <fieldset>
-                    <label for="userid">계정 ID</label>
-                    <input type="text" id="userid" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
-                        pattern="^[0-9a-zA-Z._]*$">
-                    <strong class="warning-msg-userid"></strong>
-                </fieldset>
-
+<<<<<<< Updated upstream
                 <fieldset>
                     <label for="userinfo">소개</label>
                     <input type="text" id="userinfo" placeholder="자신과 판매할 상품에 대해 소개해 주세요!">
@@ -84,6 +48,59 @@
         <!-- // profile-setting -->
     </main>
     <script src="../js/common.js"></script>
+=======
+            <!-- profile-setting -->
+            <section class="profile-setting" style="display : none">
+                <h2 class="title">프로필 설정</h2>
+                <p>나중에 언제든지 변경할 수 있습니다.</p>
+                <form>
+                    <section class="profile-img">
+                        <h3 class="a11y-hidden">프로필 이미지 설정</h3>
+                        <div class="img-cover">
+                            <img src="../assets/basic-profile-img.png" alt="기본 프로필 이미지">
+                        </div>
+                        <label class="btn-upload" for="btn-upload">
+                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="18" cy="18" r="18" fill="#C4C4C4" />
+                                <path
+                                    d="M24.4167 9.75H11.5833C10.5708 9.75 9.75 10.5708 9.75 11.5833V24.4167C9.75 25.4292 10.5708 26.25 11.5833 26.25H24.4167C25.4292 26.25 26.25 25.4292 26.25 24.4167V11.5833C26.25 10.5708 25.4292 9.75 24.4167 9.75Z"
+                                    stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M14.7915 16.1665C15.5509 16.1665 16.1665 15.5509 16.1665 14.7915C16.1665 14.0321 15.5509 13.4165 14.7915 13.4165C14.0321 13.4165 13.4165 14.0321 13.4165 14.7915C13.4165 15.5509 14.0321 16.1665 14.7915 16.1665Z"
+                                    stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M26.2502 20.7498L21.6668 16.1665L11.5835 26.2498" stroke="white"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </label>
+                    </section>
+                    <input type='file' id='btn-upload' class="btn-upload">
+                    <fieldset>
+                        <label for="username">사용자 이름</label>
+                        <input type="text" id="username" minlength="2" maxlength="10" placeholder="2~10자 이내여야 합니다."
+                            required>
+                        <strong class="warning-msg-username">*2~10자 이내여야 합니다.</strong>
+                    </fieldset>
+                    <fieldset>
+                        <label for="userid">계정 ID</label>
+                        <input type="text" id="userid" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
+                            pattern="^[0-9a-zA-Z._]*$">
+                        <strong class="warning-msg-userid"></strong>
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="userinfo">소개</label>
+                        <input type="text" id="userinfo" placeholder="자신과 판매할 상품에 대해 소개해 주세요!">
+                    </fieldset>
+                    <button id="submit-btn" class='size-l btn-next' type="submit" disabled>가지마켙
+                        시작하기</button>
+                </form>
+            </section>
+            <!-- // profile-setting -->
+
+        </main>
+
+>>>>>>> Stashed changes
     <script src="../js/join.js"></script>
     <script src="../js/setProfile.js"></script>
 </body>

@@ -53,19 +53,25 @@ contentInp.addEventListener('change', () => {
         // 이미지 하나씩 여러개 추가할 수 있는 상태, 3개 한정은 아직 구현하지 않음
         if (input.files && input.files[0]) {
 
-            // 이미지 입력되면 valid
-            validImg = true;
+            if (checkImageExtension(input.files[0])) {
+                // 이미지 입력되면 valid
+                validImg = true;
 
-            var reader = new FileReader();
-            reader.addEventListener('load', function (e) {
-                const li = document.createElement('li');
-                li.innerHTML = `<div class="img-cover">
-                <img src=${e.target.result} alt="이미지 미리보기">
-                <button class="btn-remove"></button>
-            </div>`;
-                imglist.append(li);
-            });
-            reader.readAsDataURL(input.files[0]);
+                var reader = new FileReader();
+                reader.addEventListener('load', function (e) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<div class="img-cover">
+                    <img src=${e.target.result} alt="이미지 미리보기">
+                    <button class="btn-remove"></button>
+                </div>`;
+                    imglist.append(li);
+                });
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                alert('유효하지 않은 파일 입니다')
+                input.value = '';
+            }
+            
         }
     }
 })()
@@ -109,6 +115,7 @@ uploadButton.addEventListener('click', async (e) => {
     e.preventDefault();
     await submitPostForm();
     console.log('게시글 작성 완료');
+    location.href=`./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
 })
 
 // 작성 완료된 게시글 내용 post요청

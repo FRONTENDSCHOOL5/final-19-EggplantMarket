@@ -269,11 +269,21 @@ function updatePost(post_data){
 
 async function run(url, token, accountName) {
     const isMyProfile = (myAccountName !== profileAccountName)
-
+    
     document.querySelector('.btn-wrap-your').style.display = isMyProfile ? 'flex' : 'none'
     document.querySelector('.btn-wrap-my').style.display = isMyProfile ? 'none' : 'block'
     document.querySelector('li.tab-item-more a').classList.toggle('here',!isMyProfile)    
     document.querySelector('li.tab-item-home a').classList.toggle('here',isMyProfile)
+
+
+    if(!isMyProfile){
+        document.querySelector('.btn-link.profile-modification').addEventListener('click',()=>{
+            location.href = './profile_modification.html'
+        })
+        document.querySelector('.btn-link.add-product').addEventListener('click',()=>{
+            location.href = `./product_upload.html`
+        })
+    }
 
     // 동시에 호출할 비동기 함수들을 배열로 준비
     const loadPromises = [

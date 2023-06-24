@@ -186,6 +186,7 @@ editButton.addEventListener('click', async (e) => {
     e.preventDefault()
     await saveProduct(apiUrl, userToken, productID);
     console.log('상품 등록 완료')
+    location.href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
 })
 
 

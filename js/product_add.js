@@ -127,22 +127,27 @@ async function postImg() {
 }
 
 imgInp.addEventListener('change', async (e) => {
-    const formData = new FormData();
     const imageFile = e.target.files[0];
-    formData.append("image", imageFile);
-    const res = await fetch("https://api.mandarin.weniv.co.kr/image/uploadfile", {
-        method: "POST",
-        body: formData
-    });
-    const json = await res.json();
-    const imageURL = "https://api.mandarin.weniv.co.kr/" + json.filename;
+    if(checkImageExtension(input.files[0])){
+        const formData = new FormData();
+        formData.append("image", imageFile);
+        const res = await fetch("https://api.mandarin.weniv.co.kr/image/uploadfile", {
+            method: "POST",
+            body: formData
+        });
+        const json = await res.json();
+        const imageURL = "https://api.mandarin.weniv.co.kr/" + json.filename;
 
-    // 보여지는 이미지 업데이트
-    const imageInput = document.querySelector('.product-img');
-    imageInput.style.backgroundImage = `url('${imageURL}')`;
-    imageInput.style.backgroundSize = 'cover';
-    imageInput.style.backgroundPosition = 'center';
-    imageInput.style.backgroundRepeat = 'no-repeat';
+        // 보여지는 이미지 업데이트
+        const imageInput = document.querySelector('.product-img');
+        imageInput.style.backgroundImage = `url('${imageURL}')`;
+        imageInput.style.backgroundSize = 'cover';
+        imageInput.style.backgroundPosition = 'center';
+        imageInput.style.backgroundRepeat = 'no-repeat';
+    } else {
+        alert('유효하지 않은 파일 입니다')
+        input.value = '';
+    }
 });
 
 submitButton.addEventListener('click', async (e) => {

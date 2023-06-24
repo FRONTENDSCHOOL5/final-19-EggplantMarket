@@ -60,7 +60,8 @@
     </main>
     <script src="../js/common.js"></script>
     <script>
-        const productID = localStorage.getItem("product-id");
+        const pageUrl = new URL(window.location.href);
+        const productID = pageUrl.searchParams.get('productId')
         // localStorage.removeItem("product-id");
 
         if (productID) {

@@ -59,6 +59,12 @@ a {
   color: #767676;
 }
 
+.home-post-list {
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 65px;
+}
+
 .home-background {
   background-image: url("../assets/symbol-logo-gray.svg");
   background-size: contain;

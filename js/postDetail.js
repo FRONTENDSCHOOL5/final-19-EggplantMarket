@@ -189,6 +189,11 @@ function displayComment(comments) {
         commentList.removeChild(commentList.firstChild);
     }
     commentList.append(frag);
+
+    const commentBtnOption = document.querySelectorAll('.btn-more');
+    if(commentBtnOption.length !== 0){
+        handleCommentOptionModal(commentBtnOption)
+    }
 }
 
 async function run() {

@@ -10,6 +10,8 @@ function handleModal() {
     const productBtn = document.querySelectorAll('main .product');
     const commentBtnOption = document.querySelectorAll('.btn-more');
 
+    console.log(postBtnOption)
+
     if(headerBtnOption){
         handleHeaderModal(headerBtnOption)
     }
@@ -20,7 +22,7 @@ function handleModal() {
         handleCommentOptionModal(commentBtnOption)
     }
     if(productBtn.length !== 0){
-        console.log("!")
+        handleProductOptionModal(productBtn)
     }
     // if(mainBtnOption){}
 
@@ -52,10 +54,14 @@ function handlePostOptionModal(nodes) {
     nodes.forEach(item => {item.addEventListener('click', (e) => {
 
         const targetBtn = e.currentTarget
-        const targetPostId = e.currentTarget.dataset.postid || e.currentTarget.closest('li').dataset.postid
-
+        let targetPostId = targetBtn.dataset.postid || targetBtn.closest('li').dataset.postid
+        
+        if(targetPostId === undefined) {
+            targetPostId = targetBtn.parentNode.querySelector('.post-edit a').href.split('postId=')[1] 
+        }
+        
         // 내 글인지 다른 사람 글인지.
-        const postAccountName = targetBtn.parentNode.querySelector('a').href.split('accountName=')[1]
+        const postAccountName = targetBtn.parentNode.querySelector('a').href.split('accountName=')[1] || window.location.href.split('accountName=')[1]
         if(myAccountName === postAccountName){
             modalContent.innerHTML = `
                 <button class="modal-description btn-edit" tabindex="0">수정</button>
@@ -112,6 +118,40 @@ function handleCommentOptionModal(nodes){
     })});
 }
 
+function handleProductOptionModal(nodes){
+    nodes.forEach(item=>{item.addEventListener('click',(e)=>{
+        const productId = e.currentTarget.dataset.productid;
+
+        console.log(productId)
+
+        const AccountName = window.location.href.split('accountName=')[1]
+
+        if(AccountName === myAccountName){
+            modalContent.innerHTML = `<button class="modal-description btn-product-delete" tabindex="0">삭제</button>
+                                        <button class="modal-description btn-product-edit" tabindex="0">수정</button>
+                                        <button class="modal-description btn-product-link" tabindex="0">웹사이트에서 상품 보기</button>`
+        } else{
+            modalContent.innerHTML = `<button class="modal-description btn-product-link" tabindex="0">웹사이트에서 상품 보기</button>`
+        }
+
+        modalContent.querySelectorAll('.modal-description').forEach(item=>{item.addEventListener('click', (e) => {
+            if(e.currentTarget.classList.contains('btn-product-delete')){
+                editPopUp(popUpModal,'상품을 삭제할까요?','삭제',() => productDelete(productId))
+                popUpModal.style.visibility = 'visible';
+            }
+            if(e.currentTarget.classList.contains('btn-product-edit')){
+                location.href = `./product_upload.html?productId=${productId}`
+            }
+            if(e.currentTarget.classList.contains('btn-product-link')){
+                location.href='./404.html'
+            }
+            })
+            postModal.style.display = 'block';
+            })
+        })
+    })
+}
+
 async function postDelete(targetPostId){
     console.log(targetPostId)
     const fullUrl = `https://api.mandarin.weniv.co.kr/post/${targetPostId}`
@@ -145,7 +185,6 @@ async function postReport(targetPostId){
     };
     try{
         await fetch(fullUrl,options)
-        alert('게시글이 신고가 되었습니다')
     } catch (err){
         console.error(err)
     }
@@ -182,12 +221,28 @@ async function commentReport(targetPostId, targetCommentId){
     };
     try{
         await fetch(fullUrl,options)
-        alert('댓글이 신고가 되었습니다')
     } catch (err){
         console.error(err)
     }
 }
 
+async function productDelete(productId){
+    const fullUrl = `https://api.mandarin.weniv.co.kr/product/${productId}`
+    const options = {
+        method: "DELETE",
+        headers: {
+            "Authorization" : `Bearer ${localStorage.getItem('user-token')}`,
+	        "Content-type" : "application/json"
+        }
+    };
+
+    try {
+        await fetch(fullUrl, options)
+        location.reload()
+    } catch(err){
+        console.error(err);
+    }
+}
 
 function editPopUp(parent, desc, btnText, action){
     parent.querySelector('.modal-description').textContent = desc

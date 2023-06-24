@@ -18,6 +18,24 @@ function checkImageExtension(file){
     const extension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
   return validExtensions.some(validExtension => extension.endsWith(validExtension));
 }
+function checkImageUrl(Img){
+    if(Img.includes('https://api.mandarin.weniv.co.kr/https://api.mandarin.weniv.co.kr/')){
+        return Img.replace('https://api.mandarin.weniv.co.kr/https://api.mandarin.weniv.co.kr/','https://api.mandarin.weniv.co.kr/')
+    }
+    if(Img.includes('mandarin.api')){
+        return Img.replace('mandarin.api','api.mandarin')
+    }
+    if(Img.includes('Ellipse')){
+        return 'https://api.mandarin.weniv.co.kr/1687141773353.png'
+    }
+    const regex = /\/(\d+\.png)$/;
+    const match = Img.match(regex);
+    const fileNameWithExtension = match ? match[1] : null;
+
+    if(fileNameWithExtension && !Img.includes('https://api.mandarin.weniv.co.kr/')){
+        return 'https://api.mandarin.weniv.co.kr/' + fileNameWithExtension;
+    }
+}
 
 // common
 

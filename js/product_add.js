@@ -17,6 +17,7 @@ let validImage = false;
 
 inpsProduct.forEach(item => {
     item.addEventListener('input', async () => {
+        item.value = item.value.trim();
         await validateProduct(item);
 
             if (validItemName && validItemPrice && validItemLink && validImage) {

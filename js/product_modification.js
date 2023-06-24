@@ -33,6 +33,7 @@ let validImage = false;
 
 editInpsProduct.forEach(item => {
     item.addEventListener('change', async () => {
+        item.value = item.value.trim()
         await validateProduct(item);
 
         if (editProduceName.value === "" || editProduceName.value.length === 1) {
@@ -185,6 +186,7 @@ editButton.addEventListener('click', async (e) => {
     e.preventDefault()
     await saveProduct(apiUrl, userToken, productID);
     console.log('상품 등록 완료')
+    location.href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
 })
 
 

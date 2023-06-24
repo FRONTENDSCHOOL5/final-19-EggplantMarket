@@ -88,17 +88,23 @@ async function postImg() {
 imgInp.addEventListener('change', async (e) => {
     const formData = new FormData();
     const imageFile = e.target.files[0];
-    formData.append("image", imageFile);
-    const res = await fetch("https://api.mandarin.weniv.co.kr/image/uploadfile", {
-        method: "POST",
-        body: formData
-    });
-    const json = await res.json();
-    const imageURL = "https://api.mandarin.weniv.co.kr/" + json.filename;
+    if (checkImageExtension(imageFile)) {
 
-    // 보여지는 이미지 업데이트
-    const imageInput = document.querySelector('.img-cover img');
-    imageInput.src = imageURL;
+        formData.append("image", imageFile);
+        const res = await fetch("https://api.mandarin.weniv.co.kr/image/uploadfile", {
+            method: "POST",
+            body: formData
+        });
+        const json = await res.json();
+        const imageURL = "https://api.mandarin.weniv.co.kr/" + json.filename;
+
+        // 보여지는 이미지 업데이트
+        const imageInput = document.querySelector('.img-cover img');
+        imageInput.src = imageURL;
+    } else{
+        alert('유효하지 않은 파일 입니다')
+        e.target.value = '';
+    }
 });
 
 // 이메일 비밀번호 입력 후 포커스 잃으면 형식 및 유효성 검사
@@ -109,6 +115,7 @@ let validImage = false;
 
 inpsProfile.forEach(item => {
     item.addEventListener('change', async () => {
+        item.value = item.value.trim();
         await validateProfile(item);
 
         if (validAccountName || validUserName || validInfo || validImage) {
@@ -150,6 +157,7 @@ submitButton.addEventListener('click', async (e) => {
     e.preventDefault();
     await saveProfile(url, token);
     console.log('프로필 수정 완료');
+    location.href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
 });
 
 

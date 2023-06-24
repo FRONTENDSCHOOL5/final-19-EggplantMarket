@@ -5,11 +5,13 @@ const pw = document.querySelector('#pw');
 
 // 이메일 비밀번호 입력 후 포커스 잃으면 형식 및 유효성 검사
 let validPw = false;
-let validEmail = false;
-
+let validEmail = false; 
 
 inps.forEach(item => {
     item.addEventListener('change', async () => {
+        if(item.id === 'email'){
+            item.value = item.value.trim();
+        }
         await validateJoin(item)
 
         // email 형식에 맞고 가입 가능한 이메일 && pw 길이 맞으면 => 버튼 활성화

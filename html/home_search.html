@@ -12,12 +12,15 @@
 <body>
     <header class="top nav-search">
         <h1 class="a11y-hidden">검색상단</h1>
-        <label for="inp-search" class="a11y-hidden">계정 검색하기</label>
-        <input type="text" id="inp-search" placeholder="계정 검색">
-        <button class="btn-back" onclick="history.back()" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+        <label for="inp-search" class="a11y-hidden">이름 혹은 계정으로 사용자 검색하기</label>
+        <input onkeypress="filter(this)" type="text" id="inp-search" placeholder="이름 혹은 계정으로 사용자 검색하기" >
+        <button class="btn-back" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
     </header>
-    <!-- 추가구현 : 유저이름 검색시 보여주는 기능 -->
-    <main></main>
+    <main>
+        <h2 class="a11y-hidden">검색된 사용자 목록</h2>
+        <ul class="search-user-list" >
+        </ul>
+    </main>
     <footer>
         <nav class="tab-menu">
             <p class="a11y-hidden">하단 탭 메뉴</p>
@@ -38,12 +41,16 @@
                     </a>
                 </li>
                 <li class="tab-item-more">
-                    <a href="./profile_info.html" tabindex="2">
+                    <a tabindex="2">
                         <p>프로필<span class="a11y-hidden">화면으로 이동</span></p>
                     </a>
                 </li>
             </ul>
         </nav>
     </footer>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/home_search.js"></script>
+
 </body>
 </html>

@@ -9,6 +9,9 @@ const pw = document.querySelector('#pw');
 // 아이디 비밀번호 입력시 로그인 버튼 활성화
 inps.forEach(item => {
     item.addEventListener('keyup', () => {
+        if(item.id === 'email'){
+            item.value = item.value.trim();
+        }
         if (!email.validity.typeMismatch) {
             document.querySelector('.warning-msg-1').style.display = 'none';
             email.style.borderBottom = '1px solid #dbdbdb';

@@ -1,4 +1,4 @@
-const postId = new URLSearchParams(location.search).get('postId');
+const postId = new URLSearchParams(location.search).get('postId') || '648bbcfdb2cb205663363788';
 
 const url = "https://api.mandarin.weniv.co.kr";
 const token = localStorage.getItem("user-token");
@@ -7,17 +7,65 @@ let userAccountName = '';
 
 const postViewSec = document.querySelector('.home-post');
 const commentList = document.querySelector('.comment-list');
+const profileImg = document.querySelector('.profile-img');
 const commentInp = document.querySelector('#commemt-input');
 const commentSubmitButton = document.querySelector('.btn-comment');
 
+// 작성자 프로필 이미지 가져오기
+async function getMyImg() {
+    const reqPath = "/user/myinfo";
+    const res = await fetch(url + reqPath, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const json = await res.json();
+    return json.user.image;
+}
+(async function () {
+    profileImg.src = await getMyImg();
+})();
+
 commentInp.addEventListener('keyup', (e) => {
-    if (e.target.value !== '') {
+    if (e.target.value.trim() !== '') {
         commentSubmitButton.disabled = false;
     } else {
         commentSubmitButton.disabled = true;
     }
 })
 
+commentSubmitButton.addEventListener('click', async () => {
+    await postComment(commentInp.value)
+    commentInp.value = '';
+    // 댓글 다시 뿌리기
+    const dataComments = await getComments();
+    displayComment(dataComments.comments);
+});
+
+// POST 댓글
+async function postComment(content) {
+    try {
+        const data = {
+            "comment": {
+                "content": content
+            }
+        }
+        const res = await fetch(url + `/post/${postId}/comments`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+        const resJson = await res.json();
+        console.log(resJson);
+
+    } catch (err) {
+        console.error(err);
+    }
+}
 
 // GET 게시글 데이터
 async function getOnePost() {
@@ -73,7 +121,7 @@ function displayPost(post) {
     </a>
     <a class="user-info" href="./profile_info?accountName=${post.author.accountname}.html">
         <p class="user-name">${post.author.username}</p>
-        <p class="user-id">@${post.author.accountname}</p>
+        <p class="user-id">${post.author.accountname}</p>
     </a>`
 
     // section .게시글 내용
@@ -82,11 +130,7 @@ function displayPost(post) {
     postInfoSec.setAttribute('class', 'post-edit');
     postInfoSec.innerHTML = `<h3 class="a11y-hidden">게시물의 사진과 내용</h3>
     <div>
-        <p class="post-text">${post.content}</p>
-            <div class="img-cover">
-                <img class="post-img" src=${post.image} alt="게시물 사진">
-            </div>
-        </div>
+    </div>
         <div class="post-icon">
             <button class="btn-like ${post.hearted ? 'like' : ''}">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +141,15 @@ function displayPost(post) {
                 <img src="../assets/icon/icon-message-circle.svg" alt="댓글 버튼"><span class="cnt">${post.comments.length}</span>
             </div>
         </div>
-        <p class="post-date">${post.updatedAt}</p>`
+        <p class="post-date">${dateProcess(post.updatedAt)}</p>`
+    if(post.content){
+        postInfoSec.querySelector('div').insertAdjacentHTML('afterbegin',`<p class="post-text">${post.content}</p>`)
+    }
+    if(post.image){
+        postInfoSec.querySelector('div').insertAdjacentHTML('beforeend',`<div class="img-cover">
+        <img class="post-img" src=${post.image} alt="게시물 사진">
+    </div>`)
+    }
 
     // 더보기 버튼
     const btnOption = document.createElement('button');
@@ -125,13 +177,16 @@ function displayComment(comments) {
         <a class="user-name" href="./profile_info.html?accountName=${i.author.accountname}" tabindex="1"><span class="a11y-hidden">사용자
             이름,</span>${i.author.accountname}</a>
     </div>
-    <p class="comment-time">${i.createdAt}</p>
+    <p class="comment-time">${displayedAt(i.createdAt)}</p>
     <p class="comment-text">${i.content}</p>
     <button class="btn-more" tabindex="2"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>`;
 
         frag.append(li);
     })
 
+    while (commentList.hasChildNodes()) {
+        commentList.removeChild(commentList.firstChild);
+    }
     commentList.append(frag);
 }
 
@@ -156,3 +211,21 @@ async function run() {
 }
 
 run();
+
+
+function displayedAt(createdAt) {
+    const milliSeconds = new Date() - new Date(createdAt)
+    const seconds = milliSeconds / 1000
+    if (seconds < 60) return `방금 전`
+    const minutes = seconds / 60
+    if (minutes < 60) {
+        return `${Math.floor(minutes)}분 전`
+    }
+    const hours = minutes / 60
+    if (hours < 24) {
+        return `${Math.floor(hours)}시간 전`
+    }
+    else{
+        return dateProcess(createdAt)
+    }
+ }

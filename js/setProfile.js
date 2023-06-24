@@ -11,6 +11,7 @@ let validUserName = false;
 
 inpsProfile.forEach(item => {
     item.addEventListener('change', async () => {
+        item.value = item.value.trim();
         await validateProfile(item);
 
         // 사용자이름 길이 맞고 && 계정ID 형식 맞고 사용가능한 ID면 => 버튼 활성화
@@ -146,11 +147,17 @@ async function postImg() {
 
     function readURL(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                document.querySelector('.img-cover img').src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
+            
+            if (checkImageExtension(input.files[0])) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.querySelector('.img-cover img').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else{
+                alert('유효하지 않은 파일 입니다')
+                input.value = '';
+            }
         } else {
             document.querySelector('.img-cover img').src = "../assets/basic-profile-img.png";
         }

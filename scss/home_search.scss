@@ -6,3 +6,17 @@ footer {
     position: fixed;
     bottom: 0;
 }
+
+.search-user-list {
+    li {
+        margin-bottom: 1rem;
+    }
+    margin-left: 1rem;
+    margin-top: 1.25rem;
+}
+
+.user-id ,.user-name{
+    strong {
+        color: #9747FF;
+    }
+}

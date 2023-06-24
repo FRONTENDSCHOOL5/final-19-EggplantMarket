@@ -135,6 +135,9 @@ table {
 button {
   cursor: pointer;
 }
+button:disabled {
+    cursor: default;
+}
 img {
   vertical-align: top;
 }

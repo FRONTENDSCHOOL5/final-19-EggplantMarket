@@ -17,6 +17,7 @@ let validImage = false;
 
 inpsProduct.forEach(item => {
     item.addEventListener('input', async () => {
+        item.value = item.value.trim();
         await validateProduct(item);
 
             if (validItemName && validItemPrice && validItemLink && validImage) {
@@ -148,4 +149,5 @@ submitButton.addEventListener('click', async (e) => {
     e.preventDefault()
     await saveProduct(url, token);
     console.log('상품 등록 완료')
+    location.href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
 })

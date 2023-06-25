@@ -169,3 +169,18 @@ async function postImg() {
 }
 
 // --- end of 게시글 작성하기 ---
+
+//고대비 테마
+const wrapper = document.querySelector('.post-upload-wrapper');
+const theme = window.localStorage.getItem('theme');
+if (theme === 'highContrast') {
+    wrapper.classList.add('highContrast');
+    document.body.style.backgroundColor = '#000000';
+    document.getElementById("post-upload-backBtn").src = "../assets/icon/icon-arrow-left-hc.svg";
+    document.getElementById("image-upload-btn").src = "../assets/upload-file-hc.svg";
+
+} else {
+    wrapper.classList.remove('highContrast');
+    document.body.style.backgroundColor = '#ffffff'; 
+    
+}

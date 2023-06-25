@@ -12,26 +12,28 @@
 </head>
 
 <body>
-    <header class="top nav-upload">
-        <h1 class="a11y-hidden">게시물 업로드 페이지상단</h1>
-        <button class="btn-back" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
-        <button id="upload-btn" class="size-ms btn-save" tabindex="0" disabled>업로드<span class="a11y-hidden">버튼</span></button>
-    </header>
-    <main>
-        <div class="user-profile">
-            <img src="/assets/basic-profile-img.png" alt="사용자의 프로필 이미지">
-        </div>
-        <form>
-            <h2 class="a11y-hidden">게시글 입력창</h2>
-            <!-- JS로 입력값에 따라 TextArea 높이 자동조절 기능 추후 구현 -->
-            <textarea placeholder="게시글 입력하기.." tabindex="1"></textarea>
-            <ul class="upload-imgs-list"></ul>
-            <label class="input-file-btn" for="input-file" tabindex="1">
-                <img src="/assets/upload-file.svg" alt="">
-            </label>
-            <input type="file" id="input-file" accept="img/*" multiple style="display: none;">
-        </form>
-    </main>
+    <div class="post-upload-wrapper">
+        <header class="top nav-upload">
+            <h1 class="a11y-hidden">게시물 업로드 페이지상단</h1>
+            <button class="btn-back" tabindex="0"><img id="post-upload-backBtn" src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+            <button id="upload-btn" class="size-ms btn-save" tabindex="0" disabled>업로드<span class="a11y-hidden">버튼</span></button>
+        </header>
+        <main>
+            <div class="user-profile">
+                <img src="/assets/basic-profile-img.png" alt="사용자의 프로필 이미지">
+            </div>
+            <form>
+                <h2 class="a11y-hidden">게시글 입력창</h2>
+                <!-- JS로 입력값에 따라 TextArea 높이 자동조절 기능 추후 구현 -->
+                <textarea placeholder="게시글 입력하기.." tabindex="1"></textarea>
+                <ul class="upload-imgs-list"></ul>
+                <label class="input-file-btn" for="input-file" tabindex="1">
+                    <img id="image-upload-btn" src="/assets/upload-file.svg" alt="">
+                </label>
+                <input type="file" id="input-file" accept="img/*" multiple style="display: none;">
+            </form>
+        </main>
+    </div>
     <script src="../js/common.js"></script>
     <script src="../js/postUpload.js"></script>
 </body>

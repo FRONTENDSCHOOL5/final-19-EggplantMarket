@@ -1,6 +1,44 @@
 @import 'global';
 @import 'variables';
 
+$theme: (
+    light: (bg-color:#fff,
+        btn-color: #ffffff,
+        btn-font:#767676,
+        background-color: rgba(0, 0, 0, 0.5),
+        font-color: #000000,
+        btn-font-color: #ffffff,
+        gray-color: #767676,
+    ),
+    highContrast: (bg-color:#000000,
+        btn-color: #E4D6FF,
+        btn-font: #000000,
+        background-color: rgb(236 236 236 / 34%),
+        font-color: #ffffff,
+        btn-font-color: #000000,
+        gray-color: #dbdbdb,
+    )
+);
+
+@function get-color($key, $type: 'light') {
+
+    @each $name,
+    $color in map-get($theme, $type) {
+        @if($key ==$name) {
+            @return $color
+        }
+    }
+}
+
+@mixin get-color($property, $color) {
+
+    #{$property}: get-color($color);
+
+    @at-root .highContrast & {
+        #{$property}: get-color($color, highContrast);
+    }
+}
+
 .home-post, .home-post-onlytext{
     margin-top: 20px;
 }
@@ -137,9 +175,9 @@
     width: 100%;
     height: 100%;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    @include get-color(background-color, background-color);
     .post-modal-content{
-        background-color: #FFFFFF;
+        @include get-color(background-color, bg-color);
         padding-bottom: 10px;
         border-radius: 20px 20px 0 0;
         position: absolute;
@@ -162,6 +200,7 @@
         width: 100%;
         text-align: left;
         padding: 14px 0px;
+        @include get-color(color, font-color);
         font-size: map-get($font-sizes, size14);
     }
 }

@@ -31,6 +31,13 @@ a {
   text-decoration: initial;
 }
 
+.title-chat {
+  color: #000000;
+}
+.profile-follower-wrapper.highContrast .title-chat {
+  color: #ffffff;
+}
+
 .follow-list {
   padding: 24px 16px;
 }
@@ -58,6 +65,20 @@ a {
       flex-shrink: 1;
   margin-right: 12px;
 }
+.follow-list .follow-item .user-info a {
+  color: #000000;
+}
+.profile-follower-wrapper.highContrast .follow-list .follow-item .user-info a {
+  color: #ffffff;
+}
+
+.follow-list .follow-item .user-info p {
+  color: #767676;
+}
+.profile-follower-wrapper.highContrast .follow-list .follow-item .user-info p {
+  color: #dbdbdb;
+}
+
 .follow-list .follow-item .user-info .user-name {
   display: inline-block;
   margin-bottom: 6px;
@@ -79,9 +100,16 @@ a {
       flex-basis: 56px;
   height: 28px;
   margin-left: auto;
-  color: #fff;
+  color: #ffffff;
   background-color: #635CA5;
   border-radius: 26px;
+}
+.profile-follower-wrapper.highContrast .btn-follow {
+  color: #000000;
+}
+
+.profile-follower-wrapper.highContrast .btn-follow {
+  background-color: #E4D6FF;
 }
 
 .btn-follow.opposite {
@@ -91,8 +119,11 @@ a {
 }
 
 .btn-follow:disabled {
-  background-color: #dbdbdb;
+  background-color: #767676;
   color: #fff;
+}
+.profile-follower-wrapper.highContrast .btn-follow:disabled {
+  background-color: #dbdbdb;
 }
 
 .img-cover {

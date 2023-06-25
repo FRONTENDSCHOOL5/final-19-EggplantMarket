@@ -34,7 +34,14 @@ loginButton.addEventListener('click', (e) => {
 function validate(target) {
     if (target.validity.typeMismatch) {
         document.querySelector('.warning-msg-1').style.display = 'block'
-        email.style.borderBottom = '1px solid red';
+        const theme = window.localStorage.getItem('theme');
+        if(theme != 'highContrast'){
+            email.style.borderBottom = '1px solid red';
+        }
+        else {
+            email.style.borderBottom = '1px solid #FFEB32';
+        }
+        
         email.focus()
     } else {
         login();

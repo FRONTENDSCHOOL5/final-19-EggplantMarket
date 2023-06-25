@@ -79,15 +79,20 @@ a {
       flex-basis: 56px;
   height: 28px;
   margin-left: auto;
-  color: #FFFFFF;
+  color: #fff;
   background-color: #635CA5;
   border-radius: 26px;
 }
 
 .btn-follow.opposite {
   color: #767676;
-  background-color: #FFFFFF;
+  background-color: #fff;
   border: 1px solid #dbdbdb;
+}
+
+.btn-follow:disabled {
+  background-color: #dbdbdb;
+  color: #fff;
 }
 
 .img-cover {

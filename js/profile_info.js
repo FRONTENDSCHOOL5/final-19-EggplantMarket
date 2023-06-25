@@ -52,7 +52,7 @@ async function loadProductData(url, token, accountName) {
 let reqCnt = 0;
 async function loadPostData(url, token, accountName) {
     console.log(2 * reqCnt)
-    const fullUrl = `${url}/post/${accountName}/userpost?limit=2&skip=${reqCnt++ * 2}`;
+    const fullUrl = `${url}/post/${accountName}/userpost?limit=6&skip=${reqCnt++ * 6}`;
     const options = {
         method: "GET",
         headers: {

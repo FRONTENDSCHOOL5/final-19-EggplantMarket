@@ -12,7 +12,7 @@ window.addEventListener("scroll", async () => {
 let reqCnt = 0;
 async function getData() {
     console.log(reqCnt)
-    const res = await fetch(url + `/post/feed/?limit=6&skip=${reqCnt++ * 6}`, {
+    const res = await fetch(url + `/post/feed/?limit=10&skip=${reqCnt++ * 10}`, {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${localStorage.getItem("user-token")}`,

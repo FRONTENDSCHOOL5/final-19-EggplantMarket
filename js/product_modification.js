@@ -33,7 +33,9 @@ let validImage = false;
 
 editInpsProduct.forEach(item => {
     item.addEventListener('change', async () => {
-        item.value = item.value.trim()
+        if(item.type !== 'file'){
+            item.value = item.value.trim();
+        }
         await validateProduct(item);
 
         if (editProduceName.value === "" || editProduceName.value.length === 1) {
@@ -67,9 +69,17 @@ async function validateProduct(target) {
 
     // 상품 가격 validation
     if (target.id === 'product-price'){
-        validItemPrice = true;
+        if(!target.validity.rangeUnderflow && !target.validity.rangeOverflow){
+            document.querySelector(`.warning-msg-productprice`).style.display = 'none';
+            editProductPrice.style.borderBottom = '1px solid #dbdbdb';
+            validItemPrice = true;
+        } else{
+            document.querySelector(`.warning-msg-productprice`).textContent = '*너무 숫자가 커요!';
+            document.querySelector(`.warning-msg-productprice`).style.display = 'block';
+            editProductPrice.style.borderBottom = '1px solid red';
+            validItemPrice = false
+        }
     }
-
     // 상품 링크 validation
     if (target.id === 'purchase-link') {
         const urlPattern = /^(https?:\/\/)?(www\.)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
@@ -164,7 +174,7 @@ async function postImg() {
     
 editImgInp.addEventListener('change', async (e) => {
     const imageFile = e.target.files[0];
-    if(checkImageExtension(input.files[0])){
+    if(checkImageExtension(imageFile)){
         const formData = new FormData();
         formData.append("image", imageFile);
         const res = await fetch("https://api.mandarin.weniv.co.kr/image/uploadfile", {

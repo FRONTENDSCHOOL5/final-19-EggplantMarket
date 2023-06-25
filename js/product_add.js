@@ -17,7 +17,9 @@ let validImage = false;
 
 inpsProduct.forEach(item => {
     item.addEventListener('input', async () => {
-        item.value = item.value.trim();
+        if(item.type !== 'file'){
+            item.value = item.value.trim();
+        }
         await validateProduct(item);
 
             if (validItemName && validItemPrice && validItemLink && validImage) {
@@ -53,7 +55,16 @@ async function validateProduct(target) {
 
     // 상품 가격 validation
     if (target.id === 'product-price'){
-        validItemPrice = true;
+        if(!target.validity.rangeUnderflow && !target.validity.rangeOverflow){
+            document.querySelector(`.warning-msg-productprice`).style.display = 'none';
+            productPrice.style.borderBottom = '1px solid #dbdbdb';
+            validItemPrice = true;
+        } else{
+            document.querySelector(`.warning-msg-productprice`).textContent = '*너무 숫자가 커요!';
+            document.querySelector(`.warning-msg-productprice`).style.display = 'block';
+            productPrice.style.borderBottom = '1px solid red';
+            validItemPrice = false
+        }
     }
 
     // 상품 링크 validation
@@ -128,7 +139,7 @@ async function postImg() {
 
 imgInp.addEventListener('change', async (e) => {
     const imageFile = e.target.files[0];
-    if(checkImageExtension(input.files[0])){
+    if(checkImageExtension(imageFile)){
         const formData = new FormData();
         formData.append("image", imageFile);
         const res = await fetch("https://api.mandarin.weniv.co.kr/image/uploadfile", {

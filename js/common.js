@@ -16,24 +16,40 @@ if(document.querySelector('.btn-back')){
 function checkImageExtension(file){
     const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
     const extension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
-  return validExtensions.some(validExtension => extension.endsWith(validExtension));
+    return validExtensions.some(validExtension => extension.endsWith(validExtension));
 }
-function checkImageUrl(Img){
-    if(Img.includes('https://api.mandarin.weniv.co.kr/https://api.mandarin.weniv.co.kr/')){
-        return Img.replace('https://api.mandarin.weniv.co.kr/https://api.mandarin.weniv.co.kr/','https://api.mandarin.weniv.co.kr/')
-    }
-    if(Img.includes('mandarin.api')){
-        return Img.replace('mandarin.api','api.mandarin')
-    }
-    if(Img.includes('Ellipse')){
-        return 'https://api.mandarin.weniv.co.kr/1687141773353.png'
-    }
-    const regex = /\/(\d+\.png)$/;
-    const match = Img.match(regex);
-    const fileNameWithExtension = match ? match[1] : null;
 
-    if(fileNameWithExtension && !Img.includes('https://api.mandarin.weniv.co.kr/')){
-        return 'https://api.mandarin.weniv.co.kr/' + fileNameWithExtension;
+function checkProfileImageUrl(Img){
+
+    Img += ''
+
+    const pattern = /^https:\/\/api\.mandarin\.weniv\.co\.kr\/(\d{13})\.png$/;
+
+    if(pattern.test(Img)){
+        console.log('통과!')
+        return Img
+    }
+    else{
+        if(Img.includes('https://api.mandarin.weniv.co.kr/https://api.mandarin.weniv.co.kr/')){
+            const result = Img.replace('https://api.mandarin.weniv.co.kr/https://api.mandarin.weniv.co.kr/','https://api.mandarin.weniv.co.kr/')
+            return checkImageUrl(result)
+        }
+        if(Img.includes('mandarin.api')){
+            const result = Img.replace('mandarin.api','api.mandarin')
+            return checkImageUrl(result)
+        }
+
+        const regex = /(\d+)\.png$/;
+        const match = Img.match(regex);
+        const fileNameWithExtension = match && match[1].length === 13 ? match[1] + ".png" : null
+
+        if(fileNameWithExtension){
+            return 'https://api.mandarin.weniv.co.kr/' + fileNameWithExtension;
+        }
+        
+        if(Img.includes('Ellipse') || !fileNameWithExtension){
+            return 'https://api.mandarin.weniv.co.kr/1687141773353.png'
+        }
     }
 }
 

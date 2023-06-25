@@ -1,124 +1,147 @@
 <!DOCTYPE html>
 <html lang="ko-KR">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>userprofile_info</title>
-        <link rel="stylesheet" href="../css/reset.css">
-        <link rel="stylesheet" href="../css/component.css">
-        <link rel="stylesheet" href="../css/profile_info.css">
-        <link rel="stylesheet" href="../css/profile_productlist.css">
-        <link rel="stylesheet" href="../css/profile_view.css">
-    </head>
-    <body>
-        <header class="top nav-basic">
-            <h1 class="a11y-hidden">사용자 프로필 화면</h1>
-            <button class="btn-back" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
-            <button class="btn-option" tabindex="0"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
-        </header>
-        <main>
-            <section class="profile-container">
-                <header class="profile-header">
-                    <h2 class="a11y-hidden">사용자 정보</h2>
-                    <div class="img-crop">
-                        <!-- 임시 이미지 -->
-                        <img src="../assets/basic-profile-img.png" alt="사용자 프로필 이미지" />
-                    </div>
-                    <strong class="profile-name"><span class="a11y-hidden">사용자 이름:</span></strong>
-                    <strong class="profile-id"><span class="a11y-hidden">사용자 아이디:</span></strong>
-                    <p class="profile-intro"><span class="a11y-hidden">사용자 소개:</span>소개를 입력해주세요!</p>
-                    <a class="follow-wrap" href="./profile_follower.html" tabindex="1">
-                        <p>followers</p>
-                        <strong class="follower">0<span class="a11y-hidden">명</span></strong>
-                    </a>
-                    <a class="follow-wrap" href="./profile_following.html" tabindex="1">
-                        <p>followings</p>
-                        <strong class="following">0<span class="a11y-hidden">명</span></strong>
-                    </a>
-                </header>
-                <div class="btn-wrap-your">
-                    <button class="btn-chat circle" type="button" onclick="location.href = './chat_room.html'" tabindex="1">
-                        <span class="a11y-hidden">채팅 버튼</span>
-                    </button>
-                    <!-- 팔로우버튼 : 공통 컴퍼넌트 사용 -->
-                    <button class="size-m btn-follow" tabindex="1">팔로우</button>
-                    <button class="size-m btn-follow cancle" tabindex="1">언팔로우</button>
-                    <button class="btn-share circle" type="button" tabindex="1">
-                        <span class="a11y-hidden">공유 버튼</span>
-                    </button>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>userprofile_info</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/component.css">
+    <link rel="stylesheet" href="../css/profile_info.css">
+    <link rel="stylesheet" href="../css/profile_productlist.css">
+    <link rel="stylesheet" href="../css/profile_view.css">
+</head>
+
+<body>
+    <header class="top nav-basic">
+        <h1 class="a11y-hidden">사용자 프로필 화면</h1>
+        <button class="btn-back" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+        <button class="btn-option" tabindex="0"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
+    </header>
+    <main>
+        <section class="profile-container">
+            <header class="profile-header">
+                <h2 class="a11y-hidden">사용자 정보</h2>
+                <div class="img-crop">
+                    <!-- 임시 이미지 -->
+                    <img src="../assets/basic-profile-img.png" alt="사용자 프로필 이미지" />
                 </div>
-                <div class="btn-wrap-my" style="display: none;">
-                    <button class="btn-link profile-modification" type="button">
-                        프로필 수정<span class="a11y-hidden">버튼</span>
-                    </button>
-                    <button class="btn-link add-product" type="button">
-                        상품 등록<span class="a11y-hidden">버튼</span>
-                    </button>
-                </div>
-            </section>
-            
-            <div class="content-wrap">
-                <section class="product-container">
-                    <h2 tabindex="1">판매 중인 상품</h2>
-                    <ul class="product-list">                      
-                    </ul>
-                </section>
-                <section class="post-container">
-                    <!-- 게시글 보기 탭 -->
-                    <section class="post-tab">
-                        <h2 class="a11y-hidden">게시글 보기 유형 고르기</h2>
-                        <div class="tab-btn-wrap">
-                            <button class="btn-post-list on" tabindex="1"><span class="a11y-hidden">목록형</span></button>
-                            <button class="btn-post-album" tabindex="1"><span class="a11y-hidden">앨범형</span></button>
-                        </div>
-                    </section>
-                    <!-- // 게시글 보기 탭 -->
-                    <!-- 게시글 보기 -->
-                    <section class="post-sec">
-                        <h2 class="a11y-hidden">게시글</h2>
-                        <!-- 목록형 -->
-                        <ul class="post-list">
-                        </ul>
-                        <!-- // 목록형 -->
-                        <!-- 앨범형 -->
-                        <ul class="post-album hidden">
-                        </ul>
-                        <!-- // 앨범형 -->
-        
-                    </section>
-                </section>
+                <strong class="profile-name"><span class="a11y-hidden">사용자 이름:</span></strong>
+                <strong class="profile-id"><span class="a11y-hidden">사용자 아이디:</span></strong>
+                <p class="profile-intro"><span class="a11y-hidden">사용자 소개:</span>소개를 입력해주세요!</p>
+                <a class="follow-wrap" href="./profile_follower.html" tabindex="1">
+                    <p>followers</p>
+                    <strong class="follower">0<span class="a11y-hidden">명</span></strong>
+                </a>
+                <a class="follow-wrap" href="./profile_following.html" tabindex="1">
+                    <p>followings</p>
+                    <strong class="following">0<span class="a11y-hidden">명</span></strong>
+                </a>
+            </header>
+            <div class="btn-wrap-your">
+                <button class="btn-chat circle" type="button" onclick="location.href = './chat_room.html'" tabindex="1">
+                    <span class="a11y-hidden">채팅 버튼</span>
+                </button>
+                <!-- 팔로우버튼 : 공통 컴퍼넌트 사용 -->
+                <button class="size-m btn-follow" tabindex="1">팔로우</button>
+                <button class="size-m btn-follow cancle" tabindex="1">언팔로우</button>
+                <button class="btn-share circle" type="button" tabindex="1">
+                    <span class="a11y-hidden">공유 버튼</span>
+                </button>
             </div>
-            
-        </main>
-        <footer>
-            <nav class="tab-menu">
-                <p class="a11y-hidden">하단 탭 메뉴</p>
-                <ul class="tab-item-list">
-                    <li class="tab-item-home">
-                        <a href="./home_withfollowers.html" tabindex="1">
-                            <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-chat">
-                        <a href="./chat_list.html" tabindex="1">
-                            <p>채팅<span class="a11y-hidden">화면으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-follow">
-                        <a href="./post_upload.html" tabindex="1">
-                            <p>게시물 작성<span class="a11y-hidden">화면으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-more">
-                        <a class="here" href="./profile_info.html" tabindex="1">
-                            <p>프로필<span class="a11y-hidden">화면으로 이동</span></p>
-                        </a>
-                    </li>
+            <div class="btn-wrap-my" style="display: none;">
+                <button class="btn-link profile-modification" type="button">
+                    프로필 수정<span class="a11y-hidden">버튼</span>
+                </button>
+                <button class="btn-link add-product" type="button">
+                    상품 등록<span class="a11y-hidden">버튼</span>
+                </button>
+            </div>
+        </section>
+
+        <div class="content-wrap">
+            <section class="product-container">
+                <h2 tabindex="1">판매 중인 상품</h2>
+                <ul class="product-list">
                 </ul>
-            </nav>
-        </footer>
-        <script src="../js/common.js"></script>
-        <script src="../js/profile_info.js"></script>
-    </body>
+            </section>
+            <section class="post-container">
+                <!-- 게시글 보기 탭 -->
+                <section class="post-tab">
+                    <h2 class="a11y-hidden">게시글 보기 유형 고르기</h2>
+                    <div class="tab-btn-wrap">
+                        <button class="btn-post-list on" tabindex="1"><span class="a11y-hidden">목록형</span></button>
+                        <button class="btn-post-album" tabindex="1"><span class="a11y-hidden">앨범형</span></button>
+                    </div>
+                </section>
+                <!-- // 게시글 보기 탭 -->
+                <!-- 게시글 보기 -->
+                <section class="post-sec">
+                    <h2 class="a11y-hidden">게시글</h2>
+                    <!-- 목록형 -->
+                    <ul class="post-list">
+                    </ul>
+                    <!-- // 목록형 -->
+                    <!-- 앨범형 -->
+                    <ul class="post-album hidden">
+                    </ul>
+                    <!-- // 앨범형 -->
+
+                </section>
+            </section>
+        </div>
+
+    </main>
+    <footer>
+        <nav class="tab-menu">
+            <p class="a11y-hidden">하단 탭 메뉴</p>
+            <ul class="tab-item-list">
+                <li class="tab-item-home">
+                    <a href="./home.html" tabindex="1">
+                        <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
+                    </a>
+                </li>
+                <li class="tab-item-chat">
+                    <a href="./chat_list.html" tabindex="1">
+                        <p>채팅<span class="a11y-hidden">화면으로 이동</span></p>
+                    </a>
+                </li>
+                <li class="tab-item-follow">
+                    <a href="./post_upload.html" tabindex="1">
+                        <p>게시물 작성<span class="a11y-hidden">화면으로 이동</span></p>
+                    </a>
+                </li>
+                <li class="tab-item-more">
+                    <a class="here" href="./profile_info.html" tabindex="1">
+                        <p>프로필<span class="a11y-hidden">화면으로 이동</span></p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+    <!-- 하단 모달창 - 더보기 버튼 클릭 시 보이도록 -->
+    <article class="post-modal-background">
+        <h2 class="a11y-hidden">모달창</h2>
+        <div class="post-modal-content">
+            <div class="post-modal-bar"></div>
+            <div class="modal-content">
+            </div>
+        </div>
+    </article>
+    <article class="modal-background">
+        <h2 class="modal-title a11y-hidden">팝업</h2>
+        <div class="modal-content">
+            <p class="modal-description" tabindex="0">?</p>
+            <div class="modal-actions">
+                <button class="right-button ac-log-out" tabindex="0"></button>
+                <button class="left-button" tabindex="0">취소</button>
+            </div>
+        </div>
+    </article>
+    <script src="../js/common.js"></script>
+    <script src="../js/modal.js"></script>
+    <script src="../js/profile_info.js"></script>
+</body>
+
 </html>

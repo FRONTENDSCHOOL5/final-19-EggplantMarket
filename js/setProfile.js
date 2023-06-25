@@ -11,7 +11,9 @@ let validUserName = false;
 
 inpsProfile.forEach(item => {
     item.addEventListener('change', async () => {
-        item.value = item.value.trim();
+        if(item.id === 'username' || item.id === 'userid' || item.id ==='userinfo'){
+            item.value = item.value.trim();
+        }
         await validateProfile(item);
 
         // 사용자이름 길이 맞고 && 계정ID 형식 맞고 사용가능한 ID면 => 버튼 활성화

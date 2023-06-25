@@ -14,9 +14,11 @@
 <body>
     <header class="top nav-chat">
         <h1 class="a11y-hidden">판매 채팅 상단</h1>
-        <a class='title-chat' href="./profile_info.html" tabindex="1"><span class="a11y-hidden">대화상대: </span>애월읍 위니브 가지밭</a>
+        <a class='title-chat' href="./profile_info.html" tabindex="1"><span class="a11y-hidden">대화상대: </span>애월읍 위니브
+            가지밭</a>
         <!-- <p class="title-chat" tabindex="1"><span class="a11y-hidden">대화상대: </span>애월읍 위니브 가지밭</p> -->
-        <button class="btn-back" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+        <button class="btn-back" onclick="history.back()" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg"
+                alt="뒤로가기 버튼"></button>
         <button class="btn-option" tabindex="0"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
     </header>
 
@@ -26,7 +28,8 @@
             <a class="user-img img-cover" href="./profile_info.html" tabindex="-1">
                 <img src="../assets/profile_imgs/user6.jpg" alt="사용자 이미지">
             </a>
-            <p class="content-text" tabindex="2">옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게
+            <p class="content-text" tabindex="2">옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고,
+                못할 넣는 풍부하게
                 뛰노는 인생의
                 힘있다.</p>
             <p class="chat-time">12:39</p>
@@ -51,23 +54,27 @@
         </div>
 
         <section class="comment">
-            <h2 class="a11y-hidden">메세지 입력창</h2>
-            <label for="commemt-input" class="a11y-hidden"><span class="a11y-hidden"></span>메세지 입력</label>
-            <input type="text" id="commemt-input" placeholder="메세지 입력하기..." tabindex="3">
-            <img class="profile-img" src="../assets/img-button.svg" alt="업로드 버튼 이미지" tabindex="3">
-            <button type="submit" class="btn-comment" tabindex="3" disabled>전송</button>
+            <h2 class="a11y-hidden">채팅창</h2>
+            <label for="commemt-input" class="a11y-hidden">게시물에 대한 메세지 입력</label>
+            <input type="text" id="commemt-input" placeholder="댓글 입력하기..." tabindex="3">
+            <img class="profile-img" src="../assets/img-button.svg" alt="채팅에 입력하는 사진 선택 버튼" tabindex="3">
+            <button type="submit" class="btn-comment" tabindex="3" disabled><span
+                    class="a11y-hidden">채팅</span>전송</button>
         </section>
 
-        <!-- 모달창 - 더보기 버튼 클릭 시 보이도록 -->
-        <!-- <article class="post-modal">
+        <!-- 하단 모달창 - 더보기 버튼 클릭 시 보이도록 -->
+        <article class="post-modal-background">
             <h2 class="a11y-hidden">모달창</h2>
-            <div class="post-modal-bar"></div>
-            <p class="a11y-hidden">채팅방 나가기</p>
-            <div class="modal-content">
-                <p class="modal-description" tabindex="0">채팅방 나가기</p>
+            <div class="post-modal-content">
+                <div class="post-modal-bar"></div>
+                <p class="a11y-hidden">채팅방 나가기</p>
+                <div class="modal-content">
+                    <button class="modal-description" tabindex="0">채팅방 나가기</button>
+                </div>
             </div>
-        </article> -->
+        </article>
     </main>
+    <script src="../js/chat_room.js"></script>
     <script src="../js/common.js"></script>
 </body>
 

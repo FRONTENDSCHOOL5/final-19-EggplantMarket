@@ -1,5 +1,3 @@
-document.querySelector('body').style.display = 'none'
-
 const pageUrl = new URL(window.location.href);
 const url = "https://api.mandarin.weniv.co.kr",
     token = localStorage.getItem("user-token"),
@@ -91,6 +89,8 @@ function updateInfo(profile_data){
     profileImg.src=`${profile_data.image}`
 
     profile_data.isfollow ? followBtn.classList.add('hidden') : unFollowBtn.classList.add('hidden')
+    
+    document.querySelector('.profile-container').style.display = 'block'
 }
 
 function updateProduct(product_data,count){
@@ -134,6 +134,7 @@ function updateProduct(product_data,count){
             fragment.appendChild(productItem)
         })
         productList.appendChild(fragment)
+        document.querySelector('.product-container').style.display='block'
     }
 }
 
@@ -148,9 +149,10 @@ function updatePost(post_data){
         const albumfragment = document.createDocumentFragment()
         post_data.forEach((item)=>{
             const listLi = document.createElement('li')
-            listLi.setAttribute('data-postid',`${item.id}`)
+            
             const post = document.createElement('section')
             post.className = 'home-post'
+            post.setAttribute('data-postid',`${item.id}`)
 
             const userInfo = document.createElement('section')
             userInfo.className='user-follow'
@@ -263,6 +265,7 @@ function updatePost(post_data){
             listUl.appendChild(fragment);
             albumUl.appendChild(albumfragment);
         });
+        document.querySelector('.post-container').style.display='block'
     }
 }
 

@@ -1,5 +1,6 @@
 //피드벡 반영2
 const url = "https://api.mandarin.weniv.co.kr";
+const myAccountName = localStorage.getItem("user-accountname");
 
 async function getData() {
     const res = await fetch(url + "/post/feed/", {
@@ -80,6 +81,7 @@ async function postFeed() {
 
         }
     }
+    handleModal()
 }
 
 postFeed();

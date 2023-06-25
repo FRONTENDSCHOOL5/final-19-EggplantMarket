@@ -91,6 +91,15 @@ $theme: (
 
 }
 
+.home-post-list{
+    padding : {
+        left: 16px;
+        right : 16px;
+    }
+
+    margin-bottom: 65px;
+}
+
 .home-background {
     @include get-color(background-image, bg-image);
     background-size: contain;

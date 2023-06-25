@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko-KR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,17 +10,18 @@
     <link rel="stylesheet" href="../css/component.css">
     <link rel="stylesheet" href="../css/home_search.css">
 </head>
+
 <body>
     <div class="search-wrapper">
         <header class="top nav-search">
             <h1 class="a11y-hidden">검색상단</h1>
             <label for="inp-search" class="a11y-hidden">이름 혹은 계정으로 사용자 검색하기</label>
-            <input onkeypress="filter(this)" type="text" id="inp-search" placeholder="이름 혹은 계정으로 사용자 검색하기" >
+            <input onkeypress="filter(this)" type="text" id="inp-search" placeholder="이름 혹은 계정으로 사용자 검색하기">
             <button class="btn-back" tabindex="0"><img id="back-btn" src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
         </header>
         <main>
             <h2 class="a11y-hidden">검색된 사용자 목록</h2>
-            <ul class="search-user-list" >
+            <ul class="search-user-list">
             </ul>
         </main>
         <footer>
@@ -27,7 +29,7 @@
                 <p class="a11y-hidden">하단 탭 메뉴</p>
                 <ul class="tab-item-list">
                     <li class="tab-item-home">
-                        <a class="here" href="./home_withfollowers.html" tabindex="2">
+                        <a class="here" href="./home.html" tabindex="2">
                             <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
                         </a>
                     </li>
@@ -51,8 +53,10 @@
         </footer>
     </div>
     
+
     <script src="../js/common.js"></script>
     <script src="../js/home_search.js"></script>
 
 </body>
+
 </html>

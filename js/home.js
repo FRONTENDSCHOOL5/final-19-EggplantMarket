@@ -66,7 +66,7 @@ async function postFeed() {
                                 </div>
                                 <p class="post-date">${year}년 ${month}월 ${day}일</p>
                             </section>
-                            <button class="btn-option"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
+                            <button class="btn-option"><img id="more-icon" src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
                     </section>`
             // <p class="post-text">${item.content}</p>
             //             <img class="post-img" src="${item.image}" alt="게시물 사진"></img>
@@ -83,3 +83,18 @@ async function postFeed() {
 }
 
 postFeed();
+
+//테마 작업 진행중.
+const wrapper = document.querySelector('.home-wrapper');
+const theme = window.localStorage.getItem('theme');
+if (theme === 'highContrast') {
+    wrapper.classList.add('highContrast');
+    document.body.style.backgroundColor = '#000000';
+    document.getElementById("search-icon").src = "../assets/icon/icon-search-highContrast.svg";
+    document.getElementById("more-icon").src = "../assets/icon/icon-more-vertical-hc.svg";
+
+} else {
+    wrapper.classList.remove('highContrast');
+    document.body.style.backgroundColor = '#ffffff'; 
+    
+}

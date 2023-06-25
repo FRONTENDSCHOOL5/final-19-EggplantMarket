@@ -1,6 +1,70 @@
 @import "global";
 @import "variables";
 
+$theme: (
+    light: (bg-color:#fff,
+    enabled-btn-color: #635CA5,
+    disabled-btn-color: #BCADDC,
+    font-color: #000000,
+    btn-font-color: #ffffff,
+    gray-color: #767676,
+    box-shadow : none,
+    border: none,
+    kakao-color : #F2C94C,
+    google-color : #767676,
+    facebook-color : #2D9CDB,
+    placeholder-color:#c4c4c4,
+    warning-color: #EB5757,
+    bg-logo:url(../assets/symbol-logo.svg),
+    home-image: url(../assets/icon/icon-home-fill.svg),
+    chat-image: url(../assets/icon/icon-message-circle.svg),
+    post-image: url(../assets/icon/icon-edit.svg),
+    profile-image: url(../assets/icon/icon-user.svg),
+    input-color: #F2F2F2,
+    strong-color: #9747FF,
+    ),
+    highContrast: (bg-color:#000000,
+    enabled-btn-color: #E4D6FF,
+    disabled-btn-color: transparent ,
+    font-color: #ffffff,
+    btn-font-color: #000000,
+    gray-color: #dbdbdb,
+    box-shadow: 0 0 0 2px #E4D6FF inset,
+    border: 2px solid #E4D6FF,
+    kakao-color : #FFEB32,
+    google-color : #65FB76,
+    facebook-color : #B3E3FF,
+    placeholder-color:#000000,
+    warning-color: #FFEB32,
+    bg-logo:url(../assets/symbol-logo-highContrast.svg),
+    home-image: url(../assets/icon/icon-home-fill-hc.svg),
+    chat-image: url(../assets/icon/icon-message-circle-hc.svg),
+    post-image: url(../assets/icon/icon-edit-hc.svg),
+    profile-image: url(../assets/icon/icon-user-hc.svg),
+    input-color: #bdbdbd,
+    strong-color: #FFEB32,
+    )
+);
+
+@function get-color($key, $type: 'light') {
+    @each $name,
+    $color in map-get($theme, $type) {
+        @if($key ==$name) {
+            @return $color
+        }
+    }
+}
+
+@mixin get-color($property, $color) {
+    
+    #{$property}: get-color($color);
+
+    @at-root .search-wrapper.highContrast & {
+        #{$property}: get-color($color, highContrast);
+    }
+}
+
+
 footer {
     width: 100%;
     position: fixed;
@@ -17,6 +81,58 @@ footer {
 
 .user-id ,.user-name{
     strong {
-        color: #9747FF;
+        @include get-color(color, strong-color);
     }
+}
+
+#inp-search{
+    @include get-color(background-color, input-color);
+}
+
+#inp-search::placeholder {
+    @include get-color(color, placeholder-color);
+}
+
+.tab-item-list {
+    .here {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, home-image);
+    }
+    @include get-color(background-color, bg-color);
+}
+
+.tab-item-chat{
+    a {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, chat-image);
+    }
+}
+
+.tab-item-follow {
+    a {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, post-image);
+    }
+}
+
+.tab-item-more {
+    a {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, profile-image);
+    }
+}
+
+.user-name {
+    @include get-color(color, font-color);
+}
+.user-id {
+    @include get-color(color, gray-color);
 }

@@ -10,17 +10,20 @@
 </head>
 <body>
     <h1 class="a11y-hidden">로그인 화면</h1>
-    <div class="back"></div>
-    <section class="login">
-        <h2 class="a11y-hidden">로그인 선택 섹션</h2>
-        <a class="domain kakao" href="#">카카오톡 계정으로 로그인</a>
-        <a class="domain google" href="#">구글 계정으로 로그인</a>
-        <a class="domain facebook" href="#">페이스북 계정으로 로그인</a>
-        <div class="email">
-            <a class="email-login" href="./login_email.html">이메일로 로그인</a>
-            <span>|</span>
-            <a class="email-signin" href="./join_membership.html">회원가입</a>
-        </div>
-    </section>
+    <div class="login-wrapper">
+        <div class="back" id="bg-icon"></div>
+        <section class="login">
+            <h2 class="a11y-hidden">로그인 선택 섹션</h2>
+            <a class="domain kakao" href="#">카카오톡 계정으로 로그인</a>
+            <a class="domain google" href="#">구글 계정으로 로그인</a>
+            <a class="domain facebook" href="#">페이스북 계정으로 로그인</a>
+            <div class="email">
+                <a class="email-login" href="./login_email.html">이메일로 로그인</a>
+                <span>|</span>
+                <a class="email-signin" href="./join_membership.html">회원가입</a>
+            </div>
+        </section>
+    </div>
+    <script src="../js/login.js"></script>
 </body>
 </html>

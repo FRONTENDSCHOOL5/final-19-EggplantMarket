@@ -1,6 +1,72 @@
 @import "global";
 @import "variables";
 
+$theme: (
+    light: (bg-color:#fff,
+    enabled-btn-color: #635CA5,
+    disabled-btn-color: #BCADDC,
+    font-color: #000000,
+    btn-font-color: #ffffff,
+    gray-color: #767676,
+    box-shadow : none,
+    border: none,
+    kakao-color : #F2C94C,
+    google-color : #767676,
+    facebook-color : #2D9CDB,
+    placeholder-color:#dbdbdb,
+    warning-color: #EB5757,
+    bg-logo:url(../assets/symbol-logo.svg),
+    bg-image: url(../assets/symbol-logo-gray.svg),
+    home-image: url(../assets/icon/icon-home-fill.svg),
+    chat-image: url(../assets/icon/icon-message-circle.svg),
+    post-image: url(../assets/icon/icon-edit.svg),
+    profile-image: url(../assets/icon/icon-user.svg),
+    ),
+    highContrast: (bg-color:#000000,
+    enabled-btn-color: #E4D6FF,
+    disabled-btn-color: transparent ,
+    font-color: #ffffff,
+    btn-font-color: #000000,
+    gray-color: #dbdbdb,
+    box-shadow: 0 0 0 2px #E4D6FF inset,
+    border: 2px solid #E4D6FF,
+    kakao-color : #FFEB32,
+    google-color : #65FB76,
+    facebook-color : #B3E3FF,
+    placeholder-color:#FFEB32,
+    warning-color: #FFEB32,
+    bg-logo:url(../assets/symbol-logo-highContrast.svg),
+    bg-image: url(../assets/symbol-logo-theme.svg),
+    home-image: url(../assets/icon/icon-home-fill-hc.svg),
+    chat-image: url(../assets/icon/icon-message-circle-hc.svg),
+    post-image: url(../assets/icon/icon-edit-hc.svg),
+    profile-image: url(../assets/icon/icon-user-hc.svg),
+    )
+);
+
+@function get-color($key, $type: 'light') {
+    @each $name,
+    $color in map-get($theme, $type) {
+        @if($key ==$name) {
+            @return $color
+        }
+    }
+}
+
+@mixin get-color($property, $color) {
+    
+    #{$property}: get-color($color);
+
+    @at-root .home-wrapper.highContrast & {
+        #{$property}: get-color($color, highContrast);
+    }
+}
+
+.title-main {
+    @include get-color(color, font-color);
+}
+
+
 .main-container {
 
     p,
@@ -12,7 +78,7 @@
 
     p {
         font-size: 14px;
-        color: $gray300-color;
+        @include get-color(color, gray-color);
     }
 
     display: flex;
@@ -26,15 +92,15 @@
 }
 
 .home-background {
-    background-image: url("../assets/symbol-logo-gray.svg");
+    @include get-color(background-image, bg-image);
     background-size: contain;
     width: 72px;
     height: 100px;
 }
 
 .search-btn {
-    background-color: #635CA5;
-    color: #FFFFFF;
+    @include get-color(background-color, enabled-btn-color);
+    @include get-color(color, btn-font-color);
     font-weight: 500;
     text-align: center;
     width: 120px;
@@ -47,4 +113,64 @@ footer {
     width: 100%;
     position: fixed;
     bottom: 0;
+}
+
+.tab-item-list {
+    .here {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, home-image);
+    }
+    @include get-color(background-color, bg-color);
+}
+
+.tab-item-chat{
+    a {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, chat-image);
+    }
+}
+
+.tab-item-follow {
+    a {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, post-image);
+    }
+}
+
+.tab-item-more {
+    a {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, profile-image);
+    }
+}
+
+.home-post .user-follow .user-info {
+    .user-id {
+        @include get-color(color, gray-color);
+    }
+    @include get-color(color, font-color);
+}
+
+.post-text {
+    @include get-color(color, font-color);
+}
+
+.cnt{
+    @include get-color(color, gray-color);
+}
+
+.btn-comment {
+    @include get-color(color, gray-color);
+}
+
+.post-date {
+    @include get-color(color, gray-color);
 }

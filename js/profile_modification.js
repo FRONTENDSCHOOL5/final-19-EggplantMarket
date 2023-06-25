@@ -115,7 +115,9 @@ let validImage = false;
 
 inpsProfile.forEach(item => {
     item.addEventListener('change', async () => {
-        item.value = item.value.trim();
+        if(item.id === 'username' || item.id === 'userid' || item.id ==='userinfo'){
+            item.value = item.value.trim();
+        }
         await validateProfile(item);
 
         if (validAccountName || validUserName || validInfo || validImage) {

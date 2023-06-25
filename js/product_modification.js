@@ -33,7 +33,7 @@ let validImage = false;
 
 editInpsProduct.forEach(item => {
     item.addEventListener('change', async () => {
-        if(item.type !== 'file'){
+        if(item.id === 'product-name' || item.id === 'product-price' || item.id ==='purchase-link'){
             item.value = item.value.trim();
         }
         await validateProduct(item);

@@ -8,6 +8,7 @@
     <title>홈 피드 | 가지마켓</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/home_withoutfollowers.css">
+    <link rel="stylesheet" href="../css/home_withfollowers.css">
     <link rel="stylesheet" href="../css/component.css">
 </head>
 
@@ -20,6 +21,7 @@
     <main>
         <!-- home-withoutfollower -->
         <section class="home-withoutfollower">
+            <!-- heading -->
             <div class="main-container">
                 <div class="home-background"></div>
                 <p tabindex="2">유저를 검색해 팔로우 해보세요!</p>
@@ -30,77 +32,8 @@
 
         <!-- home-withfollower -->
         <section class="home-withfollower" style="display : none">
-            <ul class="home-post-list">
-                <!-- <li class="home-post-item">
-                    <section class="home-post">
-                        <h2 class="a11y-hidden">사진과 글을 함께 올리는 게시물</h2>
-                        <section class="user-follow">
-                            <h3 class="a11y-hidden">유저정보</h3>
-                            <a class="profile-img img-cover" href="./profile_info.html" tabindex="1">
-                                <img src="../assets/basic-profile.png" alt="프로필사진">
-                            </a>
-                            <a class="user-info" href="./profile_info.html" tabindex="1">
-                                <p class="user-name">애월읍 위니브 가지밭</p>
-                                <p class="user-id">@weniv_Eggplant</p>
-                            </a>
-                        </section>
-                        <section class="post-edit">
-                            <h4 class="a11y-hidden">게시물의 사진과 내용</h4>
-                            <a href="./post_detail.html" tabindex="1">
-                                <p class="post-text">옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게
-                                    뛰노는
-                                    인생의 힘있다.</p>
-                                    <div class="img-cover">
-                                        <img class="post-img" src="../assets/img-post.svg" alt="게시물 사진">
-                                    </div>
-                                </a>
-                                <div class="post-icon">
-                                    <button class="btn-like">
-                                        <img src="../assets/icon/icon-heart.svg" alt="좋아요 버튼"><span class="cnt">58</span>
-                                    </button>
-                                    <a class="btn-comment" href="./post_detail.html" tabindex="1">
-                                        <img src="../assets/icon/icon-message-circle.svg" alt="댓글 버튼"><span class="cnt">12</span>
-                                    </a>
-                                </div>
-                                <p class="post-date">2023년 06월 23일</p>
-                            </section>
-                            <button class="btn-option"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
-                    </section>
-                </li> -->
-                <!-- <li class="home-post-onlytext-item">
-                    <section class="home-post onlytext">
-                        <h2 class="a11y-hidden">글만 올리는 게시물</h2>
-                        <section class="user-follow">
-                            <h3 class="a11y-hidden">유저정보</h3>
-                            <a class="profile-img img-cover" href="./profile_info.html" tabindex="1">
-                                <img src="../assets/basic-profile.png" alt="프로필사진">
-                            </a>
-                            <a class="user-info" href="./profile_info.html" tabindex="1">
-                                <p class="user-name">애월읍 위니브 가지밭</p>
-                                <p class="user-id">@weniv_Eggplant</p>
-                            </a>
-                        </section>
-                        <section class="post-edit">
-                            <h4 class="a11y-hidden">게시물의 내용</h4>
-                            <a href="./post_detail.html" tabindex="1">
-                            <p class="post-text">옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게
-                                뛰노는
-                                인생의 힘있다.</p>
-                            </a>
-                            <div class="post-icon">
-                                <button class="btn-like">
-                                    <img src="../assets/icon/icon-heart.svg" alt="좋아요 버튼"><span class="cnt">58</span>
-                                </button>
-                                <a class="btn-comment" href="./post_detail.html" tabindex="1">
-                                    <img src="../assets/icon/icon-message-circle.svg" alt="댓글 버튼"><span class="cnt">12</span>
-                                </a>
-                            </div>
-                            <p class="post-date">2023년 06월 23일</p>
-                        </section>
-                        <button class="btn-option"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
-                    </section>
-                </li> -->
-            </ul>
+            <!-- heading -->
+            <ul class="home-post-list"></ul>
         </section>
         <!-- // home-withfollower -->
         
@@ -110,7 +43,7 @@
             <p class="a11y-hidden">하단 탭 메뉴</p>
             <ul class="tab-item-list">
                 <li class="tab-item-home">
-                    <a class="here" href="./home_withfollowers.html">
+                    <a class="here" href="./home.html">
                         <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
                     </a>
                 </li>
@@ -132,6 +65,8 @@
             </ul>
         </nav>
     </footer>
+    <script src="../js/common.js"></script>
+    <script src="../js/scrollFetch.js"></script>
     <script src="../js/home.js"></script>
 </body>
 

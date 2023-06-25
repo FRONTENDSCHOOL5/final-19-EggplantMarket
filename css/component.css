@@ -313,6 +313,7 @@ a {
 .post-edit .post-text {
   margin-bottom: 16px;
   line-height: 18px;
+  word-break: break-all;
 }
 .post-edit .img-cover {
   max-width: 304px;

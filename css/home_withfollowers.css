@@ -32,8 +32,8 @@ a {
 }
 
 main {
-  margin: 0 0.9375rem;
-  margin-bottom: 65px;
+  margin-bottom: 61px;
+  padding: 0 1rem;
 }
 
 footer {

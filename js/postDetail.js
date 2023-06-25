@@ -119,7 +119,7 @@ function displayPost(post) {
     <a class="profile-img img-cover" href="./profile_info.html?accountName=${post.author.accountname}">
         <img src=${post.author.image} alt="프로필사진">
     </a>
-    <a class="user-info" href="./profile_info?accountName=${post.author.accountname}.html">
+    <a class="user-info" href="./profile_info.html?accountName=${post.author.accountname}">
         <p class="user-name">${post.author.username}</p>
         <p class="user-id">${post.author.accountname}</p>
     </a>`
@@ -156,6 +156,7 @@ function displayPost(post) {
     btnOption.setAttribute('class', 'btn-option');
     btnOption.setAttribute('tabindex', '0');
     btnOption.innerHTML = `<img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼">`;
+    btnOption.setAttribute('data-postid',post.id)
 
     frag.append(userInfoSec, postInfoSec, btnOption);
     postViewSec.append(frag);
@@ -179,7 +180,7 @@ function displayComment(comments) {
     </div>
     <p class="comment-time">${displayedAt(i.createdAt)}</p>
     <p class="comment-text">${i.content}</p>
-    <button class="btn-more" tabindex="2"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>`;
+    <button class="btn-more" tabindex="2" data-commentId=${i.id}><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>`;
 
         frag.append(li);
     })
@@ -188,6 +189,11 @@ function displayComment(comments) {
         commentList.removeChild(commentList.firstChild);
     }
     commentList.append(frag);
+
+    const commentBtnOption = document.querySelectorAll('.btn-more');
+    if(commentBtnOption.length !== 0){
+        handleCommentOptionModal(commentBtnOption)
+    }
 }
 
 async function run() {
@@ -208,7 +214,9 @@ async function run() {
     // 데이터 뿌리기
     displayPost(dataPost.post);
     displayComment(dataComments.comments);
+    handleModal()
 }
+
 
 run();
 

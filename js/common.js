@@ -21,7 +21,6 @@ function checkImageExtension(file){
 
 // common
 
-
 async function handleLike(event){
     const target = event.currentTarget;
     console.log(event.currentTarget)
@@ -55,6 +54,10 @@ async function reqLike(postId,act,method){
     }
 }
 
+if(document.querySelector('.tab-item-more a') !== null){
+    document.querySelector('.tab-item-more a').href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
+}
+
 function dateProcess(createdAt) {
     const itemDate = new Date(createdAt)
     const YEAR = itemDate.getFullYear()
@@ -62,8 +65,4 @@ function dateProcess(createdAt) {
     const DAY = itemDate.getDate()
 
     return `${YEAR}년 ${MONTH}월 ${DAY}일`
-}
-
-if(document.querySelector('.tab-item-more a')){
-    document.querySelector('.tab-item-more a').href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
 }

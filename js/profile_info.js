@@ -78,7 +78,7 @@ function updateInfo(profile_data){
     userName.insertAdjacentText('beforeend',profile_data.username)
     accountName.insertAdjacentText('beforeend',profile_data.accountname)
     if(profile_data.intro !== ""){
-        intro.childNodes[1].textContent = profile_data.intro
+        intro.childNodes[1].textContent = profile_data.intro;
     }
     followerElement.textContent = profile_data.followerCount;
     followerElement.closest('a').href = `./profile_follower.html?accountName=${profile_data.accountname}`
@@ -254,6 +254,7 @@ function updatePost(post_data) {
             btnOption.innerHTML = `
                 <img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼">
             `;
+            btnOption.setAttribute('data-postid',`${item.id}`)
 
             post.appendChild(btnOption);
             listLi.appendChild(post);
@@ -276,14 +277,13 @@ async function run(url, token, accountName) {
     document.querySelector('li.tab-item-home a').classList.toggle('here',isMyProfile)
 
 
-    if(!isMyProfile){
-        document.querySelector('.btn-link.profile-modification').addEventListener('click',()=>{
-            location.href = './profile_modification.html'
-        })
-        document.querySelector('.btn-link.add-product').addEventListener('click',()=>{
-            location.href = `./product_upload.html`
-        })
-    }
+    
+    document.querySelector('.btn-link.profile-modification').addEventListener('click',()=>{
+        location.href = './profile_modification.html'
+    })
+    document.querySelector('.btn-link.add-product').addEventListener('click',()=>{
+        location.href = `./product_upload.html`
+    })
 
     // 동시에 호출할 비동기 함수들을 배열로 준비
     const loadPromises = [
@@ -303,6 +303,7 @@ async function run(url, token, accountName) {
     await Promise.all(updatePromises);
 
     document.querySelector('body').style.display = 'block'
+    handleModal()
 };
 
 // 게시글 토글

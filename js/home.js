@@ -44,7 +44,7 @@ async function postFeed() {
                         <section class="user-follow">
                             <h3 class="a11y-hidden">유저정보</h3>
                             <a class="profile-img img-cover" href="./profile_info.html?accountName=${item.author.accountname}" tabindex="1">
-                                <img src="${item.author.image}" alt="프로필사진">
+                                <img src="${checkImageUrl(item.author.image,'profile')}" alt="프로필사진">
                             </a>
                             <a class="user-info" href="./profile_info.html?accountName=${item.author.accountname}" tabindex="1">
                                 <p class="user-name">${item.author.username}</p>
@@ -75,7 +75,7 @@ async function postFeed() {
                 liNode.querySelector('.post-edit a').insertAdjacentHTML('afterbegin', `<p class="post-text">${item.content}</p>`)
             }
             if (item.image) {
-                liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<div class="img-cover"><img class="post-img" src="${item.image}" alt="게시물 사진"></img></div>`)
+                liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<div class="img-cover"><img class="post-img" src="${checkImageUrl(item.image,'post')}" alt="게시물 사진"></img></div>`)
             }
             liNode.querySelector('.home-post').setAttribute('data-postid',item.id)
 

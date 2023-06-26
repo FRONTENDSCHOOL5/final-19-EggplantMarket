@@ -86,7 +86,7 @@ function updateInfo(profile_data){
     followerElement.closest('a').href = `./profile_follower.html?accountName=${profile_data.accountname}`
     followingElement.textContent = profile_data.followingCount;
     followingElement.closest('a').href = `./profile_following.html?accountName=${profile_data.accountname}`
-    profileImg.src=`${profile_data.image}`
+    profileImg.src=`${checkImageUrl(profile_data.image,'profile')}`
 
     profile_data.isfollow ? followBtn.classList.add('hidden') : unFollowBtn.classList.add('hidden')
     
@@ -118,7 +118,7 @@ function updateProduct(product_data,count){
             
             const productImg = document.createElement('img')
             productImg.className='product-img'
-            productImg.setAttribute('src',`${item.itemImage}`)
+            productImg.setAttribute('src',`${checkImageUrl(item.itemImage,'post')}`)
             productImg.setAttribute('alt','상품 이미지')
 
             const productPrice = document.createElement('strong')
@@ -162,7 +162,7 @@ function updatePost(post_data){
             userImg.setAttribute('tabindex','1')
 
             const userImgImg = document.createElement('img');
-            userImgImg.src = item.author.image;
+            userImgImg.src = checkImageUrl(item.author.image,'profile');
             userImgImg.alt = '프로필사진';
 
             userImg.appendChild(userImgImg);
@@ -208,7 +208,7 @@ function updatePost(post_data){
                 
                     const postImg = document.createElement('img');
                     postImg.classList.add('post-img');
-                    postImg.src = i;
+                    postImg.src = checkImageUrl(i,'post');
                     postImg.alt = '게시물 사진';
                 
                     imgCover.appendChild(postImg);
@@ -219,7 +219,7 @@ function updatePost(post_data){
                         albumLi.className = 'post-album-item';
                         albumLi.innerHTML = `
                         <a href="./post_detail.html?postId=${item.id}" tabindex="1">
-                            <img src="${item.image.split(', ')[0]}" alt="">
+                            <img src="${checkImageUrl(item.image.split(', ')[0]),'post'}" alt="">
                         </a>
                         `;
                         albumfragment.appendChild(albumLi);

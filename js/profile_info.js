@@ -199,7 +199,7 @@ function updatePost(post_data) {
             
             if (item.image) {
                 const postfragment = document.createDocumentFragment()
-                item.image.split(', ').forEach((i, idx) => {
+                item.image.split(',').forEach((i, idx) => {
                     // 리스트형 
                     const imgCover = document.createElement('div');
                     imgCover.classList.add('img-cover');
@@ -218,7 +218,7 @@ function updatePost(post_data) {
                         albumLi.className = 'post-album-item';
                         albumLi.innerHTML = `
                         <a href="./post_detail.html?postId=${item.id}" tabindex="1">
-                            <img src="${checkImageUrl(item.image.split(', ')[0]),'post'}" alt="">
+                            <img src="${checkImageUrl(item.image.split(',')[0],'post')}" alt="">
                         </a>
                         `;
                         albumfragment.appendChild(albumLi);
@@ -262,6 +262,8 @@ function updatePost(post_data) {
             fragment.appendChild(listLi);
 
         });
+        listUl.appendChild(fragment)
+    albumUl.appendChild(albumfragment)
         document.querySelector('.post-container').style.display='block'
     }
 

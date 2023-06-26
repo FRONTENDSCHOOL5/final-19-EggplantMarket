@@ -5,10 +5,8 @@ const submitButton = document.querySelector('.btn-comment');
 commentInput.addEventListener('input', function () {
     if (commentInput.value.trim() !== '') {
          submitButton.disabled = false;	
-         submitButton.style.color = '#477958';
     } else {
          submitButton.disabled = true;	
-         submitButton.style.color = '';
     }
 });
 

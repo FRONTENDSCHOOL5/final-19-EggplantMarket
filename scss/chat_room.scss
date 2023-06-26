@@ -100,6 +100,13 @@ main{
     img{
         width: 36px;
     }
+    #commemt-input{
+        padding: 8px;
+        margin-right: 10px;
+    }
+    .btn-comment:not(:disabled){
+        color: $enabled-color;
+    }
 }
 
 // 하단 모달창 부분

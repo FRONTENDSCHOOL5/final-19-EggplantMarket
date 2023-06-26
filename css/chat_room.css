@@ -145,6 +145,13 @@ main {
 .comment img {
   width: 36px;
 }
+.comment #commemt-input {
+  padding: 8px;
+  margin-right: 10px;
+}
+.comment .btn-comment:not(:disabled) {
+  color: #635CA5;
+}
 
 .post-modal-background {
   display: none;

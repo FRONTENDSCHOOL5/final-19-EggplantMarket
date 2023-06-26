@@ -357,14 +357,11 @@ async function run(url, token, accountName) {
 }(url,token,profileAccountName));
 
 run(url, token, profileAccountName);
-// window.addEventListener('resize',touchScroll)
+window.addEventListener('resize',touchScroll)
 
 
 function touchScroll(){
     const list = document.querySelector('.product-list')
-    list.querySelector('img').addEventListener('click',(e)=>{
-        e.preventDefault()
-    })
     const listScrollWidth = list.scrollWidth;
     const listClientWidth = list.clientWidth;
 

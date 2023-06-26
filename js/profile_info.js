@@ -303,6 +303,7 @@ async function run(url, token, accountName) {
 
     document.querySelector('body').style.display = 'block'
     handleModal()
+    touchScroll()
 };
 
 // 게시글 토글
@@ -353,3 +354,89 @@ async function run(url, token, accountName) {
 }(url,token,profileAccountName));
 
 run(url, token, profileAccountName);
+// window.addEventListener('resize',touchScroll)
+
+
+function touchScroll(){
+    const list = document.querySelector('.product-list')
+    list.querySelector('img').addEventListener('click',(e)=>{
+        e.preventDefault()
+    })
+    const listScrollWidth = list.scrollWidth;
+    const listClientWidth = list.clientWidth;
+
+    let startX = 0;
+    let nowX = 0;
+    let endX = 0;
+    let listX = 0;
+
+    const onScrollStart = (e) => {
+        startX = getClientX(e);
+        window.addEventListener('mousemove', onScrollMove);
+        window.addEventListener('touchmove', onScrollMove);
+        window.addEventListener('mouseup', onScrollEnd);
+        window.addEventListener('touchend', onScrollEnd);
+    };
+
+    const onScrollMove = (e) => {
+        nowX = getClientX(e);
+        setTranslateX(listX + nowX - startX);
+    };
+    const onScrollEnd = (e) => {
+        endX = getClientX(e);
+        listX = getTranslateX();
+        if (listX > 0) {
+            setTranslateX(0);
+            list.style.transition = `all 0.3s ease`;
+            listX = 0;
+        } else if (listX < listClientWidth - listScrollWidth) {
+            setTranslateX(listClientWidth - listScrollWidth);
+            list.style.transition = `all 0.3s ease`;
+            listX = listClientWidth - listScrollWidth;
+        }
+    
+        window.removeEventListener('mousedown', onScrollStart);
+        window.removeEventListener('touchstart', onScrollStart);
+        window.removeEventListener('mousemove', onScrollMove);
+        window.removeEventListener('touchmove', onScrollMove);
+        window.removeEventListener('mouseup', onScrollEnd);
+        window.removeEventListener('touchend', onScrollEnd);
+        window.removeEventListener('click', onClick);
+    
+        setTimeout(() => {
+            bindEvents();
+            list.style.transition = '';
+        }, 300);
+    };
+    const onClick = (e) => {
+        console.log(e.target)
+        if (startX - endX !== 0) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    };
+
+    const getClientX = (e) => {
+        const isTouches = e.touches ? true : false;
+        return isTouches ? e.touches[0].clientX : e.clientX;
+    };
+    
+    const getTranslateX = () => {
+        return parseInt(getComputedStyle(list).transform.split(/[^\-0-9]+/g)[5]);
+    };
+    
+    const setTranslateX = (x) => {
+        list.style.transform = `translateX(${x}px)`;
+    };
+
+    const bindEvents = () => {
+        list.addEventListener('mousedown', onScrollStart);
+        list.addEventListener('touchstart', onScrollStart);
+        list.addEventListener('click', onClick, true);
+    };
+    bindEvents();
+}
+
+function focusItem(){
+    
+}

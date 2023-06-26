@@ -13,6 +13,7 @@ $theme: (
     box-shadow : none,
     border: none,
     profile-border : 1px solid #dbdbdb,
+    icon-border : 1px solid #767676,
     price-color: #BF8DFF,
     placeholder-color:#c4c4c4,
     warning-color: #EB5757,
@@ -23,6 +24,8 @@ $theme: (
     profile-image: url(../assets/icon/icon-user-fill.svg),
     input-color: #F2F2F2,
     strong-color: #9747FF,
+    chat-btn:url(../assets//icon/icon-message-circle.svg),
+    share-btn:url(../assets//icon/icon-share.svg),
     ),
     highContrast: (bg-color:#000000,
     root-color: #000000,
@@ -35,6 +38,7 @@ $theme: (
     box-shadow: 0 0 0 2px #E4D6FF inset,
     border: 2px solid #E4D6FF,
     profile-border : none,
+    icon-border : 1px solid #dbdbdb,
     price-color: #C5A8FF,
     placeholder-color:#000000,
     warning-color: #FFEB32,
@@ -45,6 +49,8 @@ $theme: (
     profile-image: url(../assets/icon/icon-user-fill-hc.svg),
     input-color: #bdbdbd,
     strong-color: #FFEB32,
+    chat-btn:url(../assets//icon/icon-message-circle-hc.svg),
+    share-btn:url(../assets//icon/icon-share-hc.svg),
     )
 );
 
@@ -210,7 +216,7 @@ header{
         font-size: 0;
         line-height: 0;
         .circle{
-            border: 1px solid $gray300-color;
+            @include get-color(border, icon-border);
             border-radius: 50%;
             width: 34px;
             height: 34px;
@@ -221,10 +227,10 @@ header{
         justify-content: center;
         
         .btn-chat{
-            background-image: url(../assets//icon/icon-message-circle.svg)
+            @include get-color(background-image, chat-btn);
         }
         .btn-share{
-            background-image: url(../assets//icon/icon-share.svg);
+            @include get-color(background-image, share-btn);
         }
         .size-m {
             margin: 0 12px;

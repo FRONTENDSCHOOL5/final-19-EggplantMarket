@@ -452,12 +452,27 @@ a {
 /* button */
 .size-l, .size-m, .size-ms, .size-s {
   background-color: #635CA5;
-  color: #fff;
+  color: #ffffff;
+}
+.highContrast .size-l, .highContrast .size-m, .highContrast .size-ms, .highContrast .size-s {
+  background-color: #E4D6FF;
+}
+
+.highContrast .size-l, .highContrast .size-m, .highContrast .size-ms, .highContrast .size-s {
+  color: #000000;
 }
 
 .size-l:disabled, .size-m:disabled, .size-ms:disabled, .size-s:disabled {
   background-color: #BCADDC;
+  border: none;
   color: #fff;
+}
+.highContrast .size-l:disabled, .highContrast .size-m:disabled, .highContrast .size-ms:disabled, .highContrast .size-s:disabled {
+  background-color: transparent;
+}
+
+.highContrast .size-l:disabled, .highContrast .size-m:disabled, .highContrast .size-ms:disabled, .highContrast .size-s:disabled {
+  border: 2px solid #E4D6FF;
 }
 
 .size-l {

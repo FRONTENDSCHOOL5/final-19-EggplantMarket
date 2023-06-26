@@ -3,54 +3,72 @@ const accountname = new URLSearchParams(location.search).get('accountName'),
     token = localStorage.getItem('user-token');
 
 const followers = document.querySelector('.follow-list');
+let reqCnt = 0;
+
 
 // 1. 내가 내 팔로워 목록을 보는지, 내가 다른 사용자 팔로워 목록을 보는지
 const viewMyFollowerList = accountname === myAccountname ? true : false;
 
-(async function () {
-    const data = await getFollowerList();
-    // console.log('나를 팔로잉하고 있는 사람덜: ', data);
 
-    if (viewMyFollowerList) {
-        makeMyFollowerList(data);
-        // (팔로우(하기) 버튼만 가능, 팔로워를 삭제하는 버튼은 있지만 기능은 없음 disabled 처리)
-        followers.addEventListener('click', async (e) => {
-            if (e.target.classList.contains('btn-follow')) {
+// 무한 스크롤 
+window.addEventListener("scroll", async () => {
+    if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
+        console.log('바닥이당! 데이터 불러올게 기다려!')
+        if (viewMyFollowerList) {
+            throttle(makeMyFollowerList(await getFollowerList()), 1000)
+        } else {
+            throttle(makeUserFollowerList(await getFollowerList()), 1000)
+        }
+    };
+})
+
+async function run() {
+    const data = await getFollowerList();
+    if (viewMyFollowerList) makeMyFollowerList(data);
+    else makeUserFollowerList(data);
+};
+
+run()
+
+
+// event
+if (viewMyFollowerList) {
+    // (팔로우(하기) 버튼만 가능, 팔로워를 삭제하는 버튼은 있지만 기능은 없음 disabled 처리)
+    followers.addEventListener('click', async (e) => {
+        if (e.target.classList.contains('btn-follow')) {
+            // 팔로우 기능
+            // 클릭한 요소의 사용자계정 
+            const clickedAccount = e.target.closest('li').querySelector('a').href.split('?accountName=')[1];
+            await postFollow(clickedAccount);
+
+            e.target.innerHTML = `삭제<span class="a11y-hidden">하기 버튼</span>`;
+            e.target.disabled = true;
+        }
+    })
+} else {
+    // (팔로우(하기) 버튼, 팔로잉(취소) 버튼)
+    followers.addEventListener('click', async (e) => {
+        if (e.target.classList.contains('btn-follow')) {
+            // 클릭한 요소의 사용자계정 
+            const clickedAccount = e.target.closest('li').querySelector('a').href.split('?accountName=')[1];
+
+            if (e.target.classList.contains('opposite')) { // 현재 '팔로잉 취소하기 버튼'일때 가지고 있는 클래스
+                // 언팔로우 기능
+                await deleteFollow(clickedAccount);
+
+                e.target.classList.remove('opposite');
+                e.target.innerHTML = `팔로우<span class="a11y-hidden">하기 버튼</span>`;
+            } else {
                 // 팔로우 기능
-                // 클릭한 요소의 사용자계정 
-                const clickedAccount = e.target.closest('li').querySelector('a').href.split('?accountName=')[1];
                 await postFollow(clickedAccount);
 
-                e.target.innerHTML = `삭제<span class="a11y-hidden">하기 버튼</span>`;
-                e.target.disabled = true;
-            }
-        })
-    } else {
-        makeUserFollowerList(data);
-        // (팔로우(하기) 버튼, 팔로잉(취소) 버튼)
-        followers.addEventListener('click', async (e) => {
-            if (e.target.classList.contains('btn-follow')) {
-                // 클릭한 요소의 사용자계정 
-                const clickedAccount = e.target.closest('li').querySelector('a').href.split('?accountName=')[1];
-
-                if (e.target.classList.contains('opposite')) { // 현재 '팔로잉 취소하기 버튼'일때 가지고 있는 클래스
-                    // 언팔로우 기능
-                    await deleteFollow(clickedAccount);
-
-                    e.target.classList.remove('opposite');
-                    e.target.innerHTML = `팔로우<span class="a11y-hidden">하기 버튼</span>`;
-                } else {
-                    // 팔로우 기능
-                    await postFollow(clickedAccount);
-
-                    e.target.classList.add('opposite');
-                    e.target.innerHTML = `팔로잉<span class="a11y-hidden">취소 버튼</span>`;
-                }
+                e.target.classList.add('opposite');
+                e.target.innerHTML = `팔로잉<span class="a11y-hidden">취소 버튼</span>`;
             }
         }
-        )
     }
-})()
+    )
+}
 
 
 // POST 팔로우
@@ -92,9 +110,8 @@ async function deleteFollow(accountName) {
 
 // GET 사용자 팔로워 목록 
 async function getFollowerList() {
-
     const url = "https://api.mandarin.weniv.co.kr";
-    const reqPath = `/profile/${accountname}/follower`;
+    const reqPath = `/profile/${accountname}/follower?limit=12&skip=${reqCnt++ * 12}`;
 
     const res = await fetch(url + reqPath, {
         method: "GET",

@@ -1,13 +1,20 @@
-//피드벡 반영2
 const url = "https://api.mandarin.weniv.co.kr";
 const myAccountName = localStorage.getItem("user-accountname");
 
-async function getData() {
-    const res = await fetch(url + "/post/feed/", {
+// 무한 스크롤 
+window.addEventListener("scroll", async () => {
+    if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
+        console.log('바닥이당! 데이터 불러올게 기다려!')
+        throttle(postFeed(await getData()), 1000)
+    };
+})
 
+let reqCnt = 0;
+async function getData() {
+    console.log(reqCnt)
+    const res = await fetch(url + `/post/feed/?limit=10&skip=${reqCnt++ * 10}`, {
         method: "GET",
         headers: {
-            //토큰 받아와야함(O)
             "Authorization": `Bearer ${localStorage.getItem("user-token")}`,
             "Content-Type": "application/json"
         },
@@ -16,31 +23,25 @@ async function getData() {
     return resJson.posts;
 }
 
-async function postFeed() {
-    const postsData = await getData();
+async function postFeed(postsData) {
+    console.log(postsData)
 
-    //팔로우 있을경우 없을경우 보여주는 창 다르게 구현(O)
+    //팔로잉이 있으면서 게시글이 1개 이상인 경우
     if (postsData.length > 0) {
         document.querySelector('.home-withoutfollower').style.display = 'none';
         document.querySelector('.home-withfollower').style.display = '';
         console.log('한명이상있어요')
-        let writeTime = postsData[0].createdAt.split('-');
-        let year = writeTime[0];
-        let month = writeTime[1];
-        let day = writeTime[2].substr(0, 2);
-        console.log(postsData)
 
-        const ulNode = document.querySelector('.home-post-list')
+        const ulNode = document.querySelector('.home-post-list');
+        const frag = document.createDocumentFragment();
 
         for (let i = 0; i < postsData.length; i++) {
             const item = postsData[i];
 
-            //수정해보는중
             const liNode = document.createElement('li');
-            const divNode = document.createElement('div');
             liNode.innerHTML = `
             <section class="home-post">
-                        <h2 class="a11y-hidden">사진과 글을 함께 올리는 게시물</h2>
+                        <h2 class="a11y-hidden">${item.image && item.content ? '사진과 글이 함께 있는 게시물' : (item.image ? '사진만 있는 게시글' : '글만 있는 게시물')}</h2>
                         <section class="user-follow">
                             <h3 class="a11y-hidden">유저정보</h3>
                             <a class="profile-img img-cover" href="./profile_info.html?accountName=${item.author.accountname}" tabindex="1">
@@ -52,7 +53,7 @@ async function postFeed() {
                             </a>
                         </section>
                         <section class="post-edit">
-                            <h4 class="a11y-hidden">게시물의 사진과 내용</h4>
+                            <h3 class="a11y-hidden">게시물의 사진과 내용</h3>
                             <a href = "./post_detail.html?postId=${item.id}" tabindex="1">
                                 </a>
                                 <div class="post-icon">
@@ -65,23 +66,24 @@ async function postFeed() {
                                         <img src="../assets/icon/icon-message-circle.svg" alt="댓글 버튼"><span class="cnt">${item.commentCount}</span>
                                     </a>
                                 </div>
-                                <p class="post-date">${year}년 ${month}월 ${day}일</p>
+                                <p class="post-date">${dateProcess(item.createdAt)}</p>
                             </section>
                             <button class="btn-option"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
                     </section>`
-            // <p class="post-text">${item.content}</p>
-            //             <img class="post-img" src="${item.image}" alt="게시물 사진"></img>
             if (item.content) {
                 liNode.querySelector('.post-edit a').insertAdjacentHTML('afterbegin', `<p class="post-text">${item.content}</p>`)
             }
             if (item.image) {
                 liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<div class="img-cover"><img class="post-img" src="${item.image}" alt="게시물 사진"></img></div>`)
             }
-            ulNode.appendChild(liNode)
-
+            frag.appendChild(liNode)
         }
+        ulNode.appendChild(frag);
     }
     handleModal()
 }
 
-postFeed();
+async function run() {
+    postFeed(await getData());
+}
+run()

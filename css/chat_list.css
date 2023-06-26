@@ -77,6 +77,10 @@ a {
   font-weight: 400;
   margin-top: 2px;
 }
+.chat-list-wrapper.highContrast .user-chat-content .user-info .chat-content {
+  color: #dbdbdb;
+}
+
 .user-chat-content .chat-date {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
@@ -115,4 +119,18 @@ a {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.tab-item-chat a {
+  background-image: url("../assets/icon/icon-message-circle-fill.svg");
+}
+.tab-item-chat a p {
+  color: #767676;
+}
+.chat-list-wrapper.highContrast .tab-item-chat a p {
+  color: #dbdbdb;
+}
+
+.chat-list-wrapper.highContrast .tab-item-chat a {
+  background-image: url("../assets/icon/icon-message-circle-fill-hc.svg");
 }

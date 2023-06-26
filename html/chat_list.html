@@ -12,87 +12,107 @@
 </head>
 
 <body>
-    <header class="top nav-basic">
-        <h1 class="a11y-hidden">채팅방 리스트 페이지</h1>
-        <button class="btn-back" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
-        <button class="btn-option" tabindex="0"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
-    </header>
+    <div class="chat-list-wrapper">
+        <header class="top nav-basic">
+            <h1 class="a11y-hidden">채팅방 리스트 페이지</h1>
+            <button class="btn-back" tabindex="0"><img id="chat-list-back-btn" src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+            <button class="btn-option" tabindex="0"><img id="chat-list-more-btn" src="../assets/icon/icon-more-vertical.svg"
+                    alt="더보기 버튼"></button>
+        </header>
 
-    <main>
-        <ul class="chat-list">
-            <li class="user-chat-list">
-                <p class="a11y-hidden"><span class="a11y-hidden">사람1의</span>채팅방</p>
-                <a href="./chat_room.html" class="user-chat-content new-chat" tabindex="1">
-                    <div class="user-img img-cover">
-                        <img class="profile-img" src="../assets/profile_imgs/user6.jpg" alt="사용자 이미지">
-                        <span class="profile-dot"></span>
-                    </div>
-                    <div class="user-info">
-                        <p class="user-name">애월읍 위니브 가지밭</p>
-                        <p class="chat-content ellipsis"><span class="a11y-hidden">댓글 내용 :</span>이번에 정정 언제하멘마씸?</p>
-                    </div>
-                    <p class="chat-date"><span class="a11y-hidden">가장 최근에 연락 온 날짜</span>2023.06.23</p>
-                </a>
-            </li>
-            <!-- <li class="user-chat-list">
-                <p class="a11y-hidden"><span class="a11y-hidden">사람2의</span>채팅방</p>
-                <a href="./chat_room.html" class="user-chat-content new-chat" tabindex="1">
-                    <div class="user-img img-cover">
-                        <img class="profile-img" src="../assets/profile_imgs/user3.jpg" alt="사용자 이미지">
-                        <span class="profile-dot"></span>
-                    </div>
-                    <div class="user-info">
-                        <p class="user-name">강원도가지마을</p>
-                        <p class="chat-content ellipsis">깊은 어둠의 존재감, 롤스로이드 뉴 블랙 배지는 뭐가 어떻게 되는지 모르겠습니다. 그냥 가지가 좋아요</p>
-                    </div>
-                    <p class="chat-date"><span class="a11y-hidden">가장 최근에 연락 온 날짜</span>2023.06.23</p>
-                </a>
-            </li> -->
-            <li class="user-chat-list">
-                <p class="a11y-hidden"><span class="a11y-hidden">사람3의</span>채팅방</p>
-                <a href="./chat_room.html" class="user-chat-content" tabindex="1">
-                    <div class="user-img img-cover">
-                        <img class="profile-img" src="../assets/profile_imgs/user2.jpg" alt="사용자 이미지">
-                        <span class="profile-dot"></span>
-                    </div>
-                    <div class="user-info">
-                        <p class="user-name">누구네 농장 친환경 가지</p>
-                        <p class="chat-content ellipsis"><span class="a11y-hidden">댓글 내용 :</span>뭇 끓는 이는 봄날의 있다. 위하여 오직
-                            이상은 것이다. 커다란 이것이야말로 대고, 철환하였는가?</p>
-                    </div>
-                    <p class="chat-date"><span class="a11y-hidden">가장 최근에 연락 온 날짜</span>2023.06.23</p>
-                </a>
-            </li>
-        </ul>
-    </main>
-    <footer>
-        <nav class="tab-menu">
-            <p class="a11y-hidden">하단 탭 메뉴</p>
-            <ul class="tab-item-list">
-                <li class="tab-item-home">
-                    <a href="./home.html" tabindex="2">
-                        <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
+        <main>
+            <ul class="chat-list">
+                <li class="user-chat-list">
+                    <p class="a11y-hidden"><span class="a11y-hidden">사람1의</span>채팅방</p>
+                    <a href="./chat_room.html" class="user-chat-content new-chat" tabindex="1">
+                        <div class="user-img img-cover">
+                            <img class="profile-img" src="../assets/profile_imgs/user6.jpg" alt="사용자 이미지">
+                            <!-- <span class="profile-dot"></span> -->
+                        </div>
+                        <div class="user-info">
+                            <p class="user-name">애월읍 위니브 가지밭</p>
+                            <p class="chat-content ellipsis"><span class="a11y-hidden">댓글 내용 :</span>이번에 정정 언제하멘마씸?</p>
+                        </div>
+                        <p class="chat-date"><span class="a11y-hidden">가장 최근에 연락 온 날짜</span>2023.06.23</p>
                     </a>
                 </li>
-                <li class="tab-item-chat">
-                    <a href="./chat_list.html" tabindex="2">
-                        <p>채팅<span class="a11y-hidden">화면으로 이동</span></p>
+                <!-- <li class="user-chat-list">
+                    <p class="a11y-hidden"><span class="a11y-hidden">사람2의</span>채팅방</p>
+                    <a href="./chat_room.html" class="user-chat-content new-chat" tabindex="1">
+                        <div class="user-img img-cover">
+                            <img class="profile-img" src="../assets/profile_imgs/user3.jpg" alt="사용자 이미지">
+                            <span class="profile-dot"></span>
+                        </div>
+                        <div class="user-info">
+                            <p class="user-name">강원도가지마을</p>
+                            <p class="chat-content ellipsis">깊은 어둠의 존재감, 롤스로이드 뉴 블랙 배지는 뭐가 어떻게 되는지 모르겠습니다. 그냥 가지가 좋아요</p>
+                        </div>
+                        <p class="chat-date"><span class="a11y-hidden">가장 최근에 연락 온 날짜</span>2023.06.23</p>
                     </a>
-                </li>
-                <li class="tab-item-follow">
-                    <a href="./post_upload.html" tabindex="2">
-                        <p>게시물 작성<span class="a11y-hidden">화면으로 이동</span></p>
-                    </a>
-                </li>
-                <li class="tab-item-more">
-                    <a tabindex="2">
-                        <p>프로필<span class="a11y-hidden">화면으로 이동</span></p>
+                </li> -->
+                <li class="user-chat-list">
+                    <p class="a11y-hidden"><span class="a11y-hidden">사람3의</span>채팅방</p>
+                    <a href="./chat_room.html" class="user-chat-content" tabindex="1">
+                        <div class="user-img img-cover">
+                            <img class="profile-img" src="../assets/profile_imgs/user2.jpg" alt="사용자 이미지">
+                            <span class="profile-dot"></span>
+                        </div>
+                        <div class="user-info">
+                            <p class="user-name">누구네 농장 친환경 가지</p>
+                            <p class="chat-content ellipsis"><span class="a11y-hidden">댓글 내용 :</span>뭇 끓는 이는 봄날의 있다. 위하여
+                                오직
+                                이상은 것이다. 커다란 이것이야말로 대고, 철환하였는가?</p>
+                        </div>
+                        <p class="chat-date"><span class="a11y-hidden">가장 최근에 연락 온 날짜</span>2023.06.23</p>
                     </a>
                 </li>
             </ul>
-        </nav>
-    </footer>
+        </main>
+        <footer>
+            <nav class="tab-menu">
+                <p class="a11y-hidden">하단 탭 메뉴</p>
+                <ul class="tab-item-list">
+                    <li class="tab-item-home">
+                        <a href="./home.html" tabindex="2">
+                            <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
+                        </a>
+                    </li>
+                    <li class="tab-item-chat">
+                        <a href="./chat_list.html" tabindex="2">
+                            <p>채팅<span class="a11y-hidden">화면으로 이동</span></p>
+                        </a>
+                    </li>
+                    <li class="tab-item-follow">
+                        <a href="./post_upload.html" tabindex="2">
+                            <p>게시물 작성<span class="a11y-hidden">화면으로 이동</span></p>
+                        </a>
+                    </li>
+                    <li class="tab-item-more">
+                        <a tabindex="2">
+                            <p>프로필<span class="a11y-hidden">화면으로 이동</span></p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </footer>
+    </div>
     <script src="../js/common.js"></script>
+    <script>
+        //테마 작업 진행중.
+        const wrapper = document.querySelector('.chat-list-wrapper');
+        const theme = window.localStorage.getItem('theme');
+        if (theme === 'highContrast') {
+            wrapper.classList.add('highContrast');
+            document.body.style.backgroundColor = '#000000';
+            document.getElementById("chat-list-back-btn").src = "../assets/icon/icon-arrow-left-hc.svg";
+            document.getElementById("chat-list-more-btn").src = "../assets/icon/icon-more-vertical-hc.svg";
+
+        } else {
+            wrapper.classList.remove('highContrast');
+            document.body.style.backgroundColor = '#ffffff';
+
+        }
+    </script>
 </body>
 
 </html>

@@ -33,7 +33,7 @@ async function search(userInp) {
         liNode.innerHTML = `<section class="user-follow">
         <h3 class="a11y-hidden">유저정보</h3>
         <a class="profile-img img-cover" href="./profile_info.html?accountName=${userData[i].accountname}">
-            <img src="${userData[i].image}" alt="프로필사진">
+            <img src="${checkImageUrl(userData[i].image,'profile')}" alt="프로필사진">
         </a>
         <a class="user-info" href="./profile_info.html?accountName=${userData[i].accountname}">
             ${userName.indexOf(userInp) != -1 ? `<p class="user-name">${userName.split(userInp)[0]}<strong>${sameUserName}</strong>${userName.split(userInp)[1]}</p>` : `<p class="user-name">${userData[i].username}</p>`}

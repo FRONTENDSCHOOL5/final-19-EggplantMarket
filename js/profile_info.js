@@ -1,24 +1,16 @@
-document.querySelector('body').style.display = 'none'
-
 const pageUrl = new URL(window.location.href);
 const url = "https://api.mandarin.weniv.co.kr",
     token = localStorage.getItem("user-token"),
     myAccountName = localStorage.getItem("user-accountname"),
-    // profileAccountName = 'yoon';
-    // profileAccountName = myAccountName;
     profileAccountName = pageUrl.searchParams.get('accountName');
-// console.log(profileAccountName)
-// http://127.0.0.1:5500/html/profile_info.html?accountName=jyp1
 
-    // testtestabc
-    // yoon
-    // weniv_won
-    // oxxun21
-/**
- * 분기1
- * 내 프로필인지 다른 사람 프로필인지 체크
- */
-
+// 무한 스크롤 
+window.addEventListener("scroll", async () => {
+    if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
+        console.log('바닥이당! 데이터 불러올게 기다려!')
+        throttle(updatePost((await loadPostData(url, token, profileAccountName)).post), 1000)
+    };
+})
 
 async function fetchData(url, options) {
     try {
@@ -55,8 +47,10 @@ async function loadProductData(url, token, accountName) {
     return fetchData(fullUrl, options);
 }
 
+let reqCnt = 0;
 async function loadPostData(url, token, accountName) {
-    const fullUrl = `${url}/post/${accountName}/userpost`;
+    console.log(2 * reqCnt)
+    const fullUrl = `${url}/post/${accountName}/userpost?limit=6&skip=${reqCnt++ * 6}`;
     const options = {
         method: "GET",
         headers: {
@@ -88,9 +82,11 @@ function updateInfo(profile_data){
     followerElement.closest('a').href = `./profile_follower.html?accountName=${profile_data.accountname}`
     followingElement.textContent = profile_data.followingCount;
     followingElement.closest('a').href = `./profile_following.html?accountName=${profile_data.accountname}`
-    profileImg.src=`${profile_data.image}`
+    profileImg.src=`${checkImageUrl(profile_data.image,'profile')}`
 
     profile_data.isfollow ? followBtn.classList.add('hidden') : unFollowBtn.classList.add('hidden')
+    
+    document.querySelector('.profile-container').style.display = 'block'
 }
 
 function updateProduct(product_data,count){
@@ -118,7 +114,7 @@ function updateProduct(product_data,count){
             
             const productImg = document.createElement('img')
             productImg.className='product-img'
-            productImg.setAttribute('src',`${item.itemImage}`)
+            productImg.setAttribute('src',`${checkImageUrl(item.itemImage,'post')}`)
             productImg.setAttribute('alt','상품 이미지')
 
             const productPrice = document.createElement('strong')
@@ -134,23 +130,26 @@ function updateProduct(product_data,count){
             fragment.appendChild(productItem)
         })
         productList.appendChild(fragment)
+        document.querySelector('.product-container').style.display='block'
     }
 }
 
-function updatePost(post_data){
-    
-    if (!post_data.length){
-        document.querySelector('.post-container').style.display='none'
-    } else{
-        const listUl = document.querySelector('.post-sec .post-list')
-        const albumUl = document.querySelector('.post-album')
+// 게시글 보는 섹션
+function updatePost(post_data) {
+    const listUl = document.querySelector('.post-sec .post-list')
+    const albumUl = document.querySelector('.post-album')
+    // 첫 요청시 데이터가 없으면 섹션 숨기기
+    if (reqCnt == 1 && !post_data.length) {
+        document.querySelector('.post-container').style.display = 'none'
+    } else {
         const fragment = document.createDocumentFragment()
         const albumfragment = document.createDocumentFragment()
         post_data.forEach((item)=>{
             const listLi = document.createElement('li')
-            listLi.setAttribute('data-postid',`${item.id}`)
+            
             const post = document.createElement('section')
             post.className = 'home-post'
+            post.setAttribute('data-postid',`${item.id}`)
 
             const userInfo = document.createElement('section')
             userInfo.className='user-follow'
@@ -160,7 +159,7 @@ function updatePost(post_data){
             userImg.setAttribute('tabindex','1')
 
             const userImgImg = document.createElement('img');
-            userImgImg.src = item.author.image;
+            userImgImg.src = checkImageUrl(item.author.image,'profile');
             userImgImg.alt = '프로필사진';
 
             userImg.appendChild(userImgImg);
@@ -201,23 +200,25 @@ function updatePost(post_data){
             if (item.image) {
                 const postfragment = document.createDocumentFragment()
                 item.image.split(', ').forEach((i, idx) => {
+                    // 리스트형 
                     const imgCover = document.createElement('div');
                     imgCover.classList.add('img-cover');
                 
                     const postImg = document.createElement('img');
                     postImg.classList.add('post-img');
-                    postImg.src = i;
+                    postImg.src = checkImageUrl(i,'post');
                     postImg.alt = '게시물 사진';
                 
                     imgCover.appendChild(postImg);
                     postfragment.appendChild(imgCover);
                 
+                    // 앨범형 - 첫번째 사진을 섬네일로
                     if (idx === 0) {
                         const albumLi = document.createElement('li');
                         albumLi.className = 'post-album-item';
                         albumLi.innerHTML = `
                         <a href="./post_detail.html?postId=${item.id}" tabindex="1">
-                            <img src="${item.image.split(', ')[0]}" alt="">
+                            <img src="${checkImageUrl(item.image.split(', ')[0]),'post'}" alt="">
                         </a>
                         `;
                         albumfragment.appendChild(albumLi);
@@ -260,10 +261,10 @@ function updatePost(post_data){
             listLi.appendChild(post);
             fragment.appendChild(listLi);
 
-            listUl.appendChild(fragment);
-            albumUl.appendChild(albumfragment);
         });
+        document.querySelector('.post-container').style.display='block'
     }
+
 }
 
 

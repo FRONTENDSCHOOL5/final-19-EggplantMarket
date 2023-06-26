@@ -16,16 +16,54 @@ if(document.querySelector('.btn-back')){
 function checkImageExtension(file){
     const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
     const extension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
-  return validExtensions.some(validExtension => extension.endsWith(validExtension));
+    return validExtensions.some(validExtension => extension.endsWith(validExtension));
+}
+
+function checkImageUrl(Img, position){
+
+    Img += ''
+
+    const pattern = /^https:\/\/api\.mandarin\.weniv\.co\.kr\/(\d{13})\.(png|svg|jpg|jpeg|gif|webp)$/;
+
+    if(pattern.test(Img)){
+        console.log('통과!')
+        return Img
+    }
+    else{
+        if(Img.includes('https://api.mandarin.weniv.co.kr/https://api.mandarin.weniv.co.kr/')){
+            const result = Img.replace('https://api.mandarin.weniv.co.kr/https://api.mandarin.weniv.co.kr/','https://api.mandarin.weniv.co.kr/')
+            return checkImageUrl(result,position)
+        }
+        if(Img.includes('mandarin.api')){
+            const result = Img.replace('mandarin.api','api.mandarin')
+            return checkImageUrl(result,position)
+        }
+
+        const regex = /(\d+)\.(png|svg|jpg|jpeg|gif|webp)$/;
+        const match = Img.match(regex);
+        console.log(match)
+        const fileNameWithExtension = match && match[1].length === 13 ? match[1] + '.' + match[2] : null
+
+        if(fileNameWithExtension){
+            return 'https://api.mandarin.weniv.co.kr/' + fileNameWithExtension;
+        }
+        
+        if(Img.includes('Ellipse') || !fileNameWithExtension){
+            if (position === 'profile'){
+                return 'https://api.mandarin.weniv.co.kr/' + '1687141773353.png'
+            } if (position === 'post'){
+                return 'https://api.mandarin.weniv.co.kr/' + '1687742174893.png'
+            }
+        }
+    }
 }
 
 // common
 
 async function handleLike(event){
     const target = event.currentTarget;
-    console.log(event.currentTarget)
     
-    const postId = target.closest('li').dataset.postid;
+    const postId = target.closest('.home-post').dataset.postid;
     const isLiked = target.classList.contains('like');
 
     const action = isLiked ? 'unheart' : 'heart'
@@ -42,7 +80,7 @@ async function reqLike(postId,act,method){
         const res = await fetch(`${url}/post/${postId}/${act}`, {
                         method: method,
                         headers : {
-                            "Authorization" : `Bearer ${token}`,
+                            "Authorization" : `Bearer ${localStorage.getItem('user-token')}`,
                             "Content-type" : "application/json"
                         }
                     });

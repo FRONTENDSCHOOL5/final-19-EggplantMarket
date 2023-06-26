@@ -69,9 +69,17 @@ async function validateProduct(target) {
 
     // 상품 가격 validation
     if (target.id === 'product-price'){
-        validItemPrice = true;
+        if(!target.validity.rangeUnderflow && !target.validity.rangeOverflow){
+            document.querySelector(`.warning-msg-productprice`).style.display = 'none';
+            editProductPrice.style.borderBottom = '1px solid #dbdbdb';
+            validItemPrice = true;
+        } else{
+            document.querySelector(`.warning-msg-productprice`).textContent = '*너무 숫자가 커요!';
+            document.querySelector(`.warning-msg-productprice`).style.display = 'block';
+            editProductPrice.style.borderBottom = '1px solid red';
+            validItemPrice = false
+        }
     }
-
     // 상품 링크 validation
     if (target.id === 'purchase-link') {
         const urlPattern = /^(https?:\/\/)?(www\.)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
@@ -165,23 +173,28 @@ async function postImg() {
 }
     
 editImgInp.addEventListener('change', async (e) => {
-    const formData = new FormData();
     const imageFile = e.target.files[0];
-    formData.append("image", imageFile);
-    const res = await fetch("https://api.mandarin.weniv.co.kr/image/uploadfile", {
-        method: "POST",
-        body: formData
-    });
-    const json = await res.json();
-    const imageURL = "https://api.mandarin.weniv.co.kr/" + json.filename;
-    editImgInp.dataset.updatedImage = imageURL;
+    if(checkImageExtension(imageFile)){
+        const formData = new FormData();
+        formData.append("image", imageFile);
+        const res = await fetch("https://api.mandarin.weniv.co.kr/image/uploadfile", {
+            method: "POST",
+            body: formData
+        });
+        const json = await res.json();
+        const imageURL = "https://api.mandarin.weniv.co.kr/" + json.filename;
+        editImgInp.dataset.updatedImage = imageURL;
 
-    // 보여지는 이미지 업데이트
-    const imageInput = document.querySelector('.product-img');
-    imageInput.style.backgroundImage = `url('${imageURL}')`;
-    imageInput.style.backgroundSize = 'cover';
-    imageInput.style.backgroundPosition = 'center';
-    imageInput.style.backgroundRepeat = 'no-repeat';
+        // 보여지는 이미지 업데이트
+        const imageInput = document.querySelector('.product-img');
+        imageInput.style.backgroundImage = `url('${imageURL}')`;
+        imageInput.style.backgroundSize = 'cover';
+        imageInput.style.backgroundPosition = 'center';
+        imageInput.style.backgroundRepeat = 'no-repeat';
+    } else {
+        alert('유효하지 않은 파일 입니다')
+        input.value = '';
+    }
 });
     
 editButton.addEventListener('click', async (e) => {

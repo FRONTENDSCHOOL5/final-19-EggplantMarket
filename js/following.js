@@ -4,6 +4,15 @@ const accountname = new URLSearchParams(location.search).get('accountName'),
 
 const followings = document.querySelector('.follow-list');
 
+// 무한 스크롤 
+window.addEventListener("scroll", async () => {
+    if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
+        console.log('바닥이당! 데이터 불러올게 기다려!')
+        throttle(makeList(await getFollowingList()), 1000)
+    };
+})
+
+// 버튼 이벤트
 followings.addEventListener('click', async (e) => {
     if (e.target.classList.contains('btn-follow')) {
         // 클릭한 요소의 사용자계정 
@@ -64,9 +73,10 @@ async function deleteFollow(accountName) {
 }
 
 // GET 사용자 팔로잉 목록
+let reqCnt = 0;
 async function getFollowingList() {
     const url = "https://api.mandarin.weniv.co.kr";
-    const reqPath = `/profile/${accountname}/following`;
+    const reqPath = `/profile/${accountname}/following?limit=12&skip=${reqCnt++ * 12}`;
 
     const res = await fetch(url + reqPath, {
         method: "GET",
@@ -81,17 +91,14 @@ async function getFollowingList() {
 }
 
 // 팔로잉 목록 뿌리기
-async function makeList() {
-    const data = await getFollowingList();
-    console.log(data);
-
+async function makeList(data) {
     const frag = document.createDocumentFragment();
 
     data.forEach(user => {
         const li = document.createElement('li');
         li.setAttribute('class', 'follow-item');
         li.innerHTML = `<a class="user-img img-cover" href="./profile_info.html?accountName=${user.accountname}" tabindex="1">
-        <img src=${user.image} alt="사용자 이미지">
+        <img src=${checkImageUrl(user.image,'profile')} alt="사용자 이미지">
     </a>
     <div class="user-info">
         <strong class="user-name">
@@ -108,4 +115,9 @@ async function makeList() {
     followings.append(frag);
 }
 
-makeList();
+async function run() {
+    const data = await getFollowingList();
+    makeList(data);
+};
+
+run()

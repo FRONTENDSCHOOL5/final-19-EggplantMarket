@@ -74,7 +74,7 @@ a {
       -ms-flex-positive: 1;
           flex-grow: 1;
 }
-.nav-chat .btn-option, .nav-chat .btn-comment, .comment .btn-option, .comment .btn-comment {
+.nav-chat .btn-comment, .comment .btn-comment {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;

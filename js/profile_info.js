@@ -1,5 +1,3 @@
-document.querySelector('body').style.display = 'none'
-
 const pageUrl = new URL(window.location.href);
 const url = "https://api.mandarin.weniv.co.kr",
     token = localStorage.getItem("user-token"),
@@ -84,9 +82,11 @@ function updateInfo(profile_data){
     followerElement.closest('a').href = `./profile_follower.html?accountName=${profile_data.accountname}`
     followingElement.textContent = profile_data.followingCount;
     followingElement.closest('a').href = `./profile_following.html?accountName=${profile_data.accountname}`
-    profileImg.src=`${profile_data.image}`
+    profileImg.src=`${checkImageUrl(profile_data.image,'profile')}`
 
     profile_data.isfollow ? followBtn.classList.add('hidden') : unFollowBtn.classList.add('hidden')
+    
+    document.querySelector('.profile-container').style.display = 'block'
 }
 
 function updateProduct(product_data,count){
@@ -127,6 +127,7 @@ function updateProduct(product_data,count){
             fragment.appendChild(productItem)
         })
         productList.appendChild(fragment)
+        document.querySelector('.product-container').style.display='block'
     }
 }
 
@@ -142,9 +143,10 @@ function updatePost(post_data) {
         const albumfragment = document.createDocumentFragment()
         post_data.forEach((item)=>{
             const listLi = document.createElement('li')
-            listLi.setAttribute('data-postid',`${item.id}`)
+            
             const post = document.createElement('section')
             post.className = 'home-post'
+            post.setAttribute('data-postid',`${item.id}`)
 
             const userInfo = document.createElement('div')
             userInfo.className='user-follow'
@@ -198,7 +200,8 @@ function updatePost(post_data) {
                 
                     const postImg = document.createElement('img');
                     postImg.classList.add('post-img');
-                    postImg.src = i;
+                    postImg.src = checkImageUrl(i,'post');
+                    postImg.alt = '게시물 사진';
                 
                     imgCover.appendChild(postImg);
                     postfragment.appendChild(imgCover);
@@ -208,9 +211,8 @@ function updatePost(post_data) {
                         const albumLi = document.createElement('li');
                         albumLi.className = 'post-album-item';
                         albumLi.innerHTML = `
-                        <a href="./post_detail.html?postId=${item.id}">
-                            <span class="a11y-hidden">게시글 상세 보기</span>
-                            <img src="${item.image.split(', ')[0]}" alt="">
+                        <a href="./post_detail.html?postId=${item.id}" tabindex="1">
+                            <img src="${checkImageUrl(item.image.split(', ')[0]),'post'}" alt="">
                         </a>
                         `;
                         albumfragment.appendChild(albumLi);
@@ -255,8 +257,7 @@ function updatePost(post_data) {
             fragment.appendChild(listLi);
 
         });
-        listUl.appendChild(fragment);
-        albumUl.appendChild(albumfragment);
+        document.querySelector('.post-container').style.display='block'
     }
 
 }

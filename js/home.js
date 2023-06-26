@@ -78,7 +78,11 @@ async function postFeed(postsData) {
             if (item.image) {
                 liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<div class="img-cover"><img class="post-img" src="${item.image}" alt=""></img></div>`)
             }
-            frag.appendChild(liNode)
+            liNode.querySelector('.home-post').setAttribute('data-postid',item.id)
+
+            liNode.querySelector('.btn-like').addEventListener('click',handleLike)
+            ulNode.appendChild(liNode)
+
         }
         ulNode.appendChild(frag);
     }

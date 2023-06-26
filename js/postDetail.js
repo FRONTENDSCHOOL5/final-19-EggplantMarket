@@ -148,6 +148,7 @@ function displayPost(post) {
         postInfoSec.querySelector('div').insertAdjacentHTML('beforeend',`<div class="img-cover">
         <img class="post-img" src=${post.image} alt="">
     </div>`)
+    postInfoSec.querySelector('.btn-like').addEventListener('click',handleLike)
     }
 
     // 더보기 버튼

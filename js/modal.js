@@ -54,11 +54,12 @@ function handlePostOptionModal(nodes) {
     nodes.forEach(item => {item.addEventListener('click', (e) => {
 
         const targetBtn = e.currentTarget
-        let targetPostId = targetBtn.dataset.postid || targetBtn.closest('li').dataset.postid
+        let targetPostId = targetBtn.closest('.home-post').dataset.postid
+        console.log(targetPostId)
         
-        if(targetPostId === undefined) {
-            targetPostId = targetBtn.parentNode.querySelector('.post-edit a').href.split('postId=')[1] 
-        }
+        // if(targetPostId === undefined) {
+        //     targetPostId = targetBtn.parentNode.querySelector('.post-edit a').href.split('postId=')[1] 
+        // }
         
         // 내 글인지 다른 사람 글인지.
         const postAccountName = targetBtn.parentNode.querySelector('a').href.split('accountName=')[1] || window.location.href.split('accountName=')[1]
@@ -74,6 +75,7 @@ function handlePostOptionModal(nodes) {
         modalContent.querySelectorAll('.modal-description').forEach(item => {item.addEventListener('click', (e) => {
             if(e.currentTarget.classList.contains('btn-edit')){
                 alert('구현x')
+                location.reload()
             }
             if(e.currentTarget.classList.contains('btn-delete')){
                 editPopUp(popUpModal,'게시글을 삭제할까요?','삭제',()=>{postDelete(targetPostId)})
@@ -90,10 +92,9 @@ function handlePostOptionModal(nodes) {
 
 function handleCommentOptionModal(nodes){
     nodes.forEach(item=>{item.addEventListener('click', (e) => {
-        const postAccountName = e.currentTarget.parentNode.querySelector('a').href.split('accountName=')[1]
-
         const targetBtn = e.currentTarget
-        const targetCommentId = e.currentTarget.dataset.commentid
+        const postAccountName = targetBtn.parentNode.querySelector('a').href.split('accountName=')[1]
+        const targetCommentId = targetBtn.dataset.commentid
 
         const pageUrl = new URL(window.location.href);
         const targetPostId = pageUrl.searchParams.get('postId');

@@ -61,7 +61,7 @@ contentInp.addEventListener('change', () => {
                 reader.addEventListener('load', function (e) {
                     const li = document.createElement('li');
                     li.innerHTML = `<div class="img-cover">
-                    <img src=${e.target.result} alt="이미지 미리보기">
+                    <img src=${e.target.result} alt="">
                     <button class="btn-remove"></button>
                 </div>`;
                     imglist.append(li);

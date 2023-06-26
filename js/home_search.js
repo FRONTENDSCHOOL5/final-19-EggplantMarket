@@ -18,6 +18,7 @@ async function getData(userInp) {
 
 async function search(userInp) {
     const userData = await getData(userInp);
+    const frag = document.createDocumentFragment();
 
     for (let i = 0; i < userData.length; i++) {
         // const accountName = json[i].accountname;
@@ -30,18 +31,20 @@ async function search(userInp) {
         }
 
         const liNode = document.createElement('li');
-        liNode.innerHTML = `<section class="user-follow">
-        <h3 class="a11y-hidden">유저정보</h3>
-        <a class="profile-img img-cover" href="./profile_info.html?accountName=${userData[i].accountname}">
-            <img src="${userData[i].image}" alt="프로필사진">
+        liNode.setAttribute('class', 'user-follow');
+        liNode.innerHTML = `<a class="profile-img img-cover" href="./profile_info.html?accountName=${userData[i].accountname}">
+             <span class="a11y-hidden">${userData[i].username}의 프로필 보기</span>
+            <img src="${userData[i].image}" alt="">
         </a>
         <a class="user-info" href="./profile_info.html?accountName=${userData[i].accountname}">
             ${userName.indexOf(userInp) != -1 ? `<p class="user-name">${userName.split(userInp)[0]}<strong>${sameUserName}</strong>${userName.split(userInp)[1]}</p>` : `<p class="user-name">${userData[i].username}</p>`}
+            <span class="a11y-hidden">${userData[i].username}의 프로필 보기</span>
             <p class="user-id">${userData[i].accountname}</p>
-        </a>
-    </section>`
-        ulNode.appendChild(liNode);
+        </a>`
+        frag.appendChild(liNode);
     }
+
+    ulNode.append(frag);
 }
 //키보드 값을 다시 입력 받을 때 마다 리스트 삭제
 function delInput() {

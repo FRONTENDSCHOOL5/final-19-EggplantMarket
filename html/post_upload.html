@@ -14,19 +14,19 @@
 <body>
     <header class="top nav-upload">
         <h1 class="a11y-hidden">게시물 업로드 페이지상단</h1>
-        <button class="btn-back" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
-        <button id="upload-btn" class="size-ms btn-save" tabindex="0" disabled>업로드<span class="a11y-hidden">버튼</span></button>
+        <button id="upload-btn" class="size-ms btn-save" disabled>업로드<span class="a11y-hidden">버튼</span></button>
+        <button class="btn-back"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
     </header>
     <main>
         <div class="user-profile">
-            <img src="/assets/basic-profile-img.png" alt="사용자의 프로필 이미지">
+            <img src="/assets/basic-profile-img.png" alt="">
         </div>
         <form>
-            <h2 class="a11y-hidden">게시글 입력창</h2>
+            <h2 class="a11y-hidden">업로드할 게시글 내용 입력 구획</h2>
             <!-- JS로 입력값에 따라 TextArea 높이 자동조절 기능 추후 구현 -->
-            <textarea placeholder="게시글 입력하기.." tabindex="1"></textarea>
+            <textarea placeholder="게시글 입력하기.."></textarea>
             <ul class="upload-imgs-list"></ul>
-            <label class="input-file-btn" for="input-file" tabindex="1">
+            <label class="input-file-btn" for="input-file">
                 <img src="/assets/upload-file.svg" alt="">
             </label>
             <input type="file" id="input-file" accept="img/*" multiple style="display: none;">
@@ -34,6 +34,20 @@
     </main>
     <script src="../js/common.js"></script>
     <script src="../js/postUpload.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mainElement = document.querySelector("main");
+            const uploadBtn = document.getElementById("upload-btn");
+
+            mainElement.addEventListener("keydown", function (event) {
+                if (event.key === "Tab" && !event.shiftKey) {
+                    event.preventDefault();
+                    uploadBtn.focus();
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>

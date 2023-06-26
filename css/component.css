@@ -59,6 +59,17 @@ a {
   padding: 13px 12px 13px 16px;
 }
 
+.nav-basic .btn-back, .nav-upload .btn-back {
+  -webkit-box-ordinal-group: 1;
+      -ms-flex-order: 0;
+          order: 0;
+}
+.nav-basic .btn-option, .nav-basic .btn-save, .nav-basic #upload-btn, .nav-upload .btn-option, .nav-upload .btn-save, .nav-upload #upload-btn {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
 .nav-chat .btn-back, .nav-chat .profile-img, .comment .btn-back, .comment .profile-img {
   -webkit-box-ordinal-group: 1;
       -ms-flex-order: 0;
@@ -354,7 +365,6 @@ a {
 .post-edit .post-text {
   margin-bottom: 16px;
   line-height: 18px;
-  word-break: break-all;
 }
 .post-edit .img-cover {
   max-width: 304px;
@@ -370,14 +380,13 @@ a {
 }
 
 .post-icon {
-  margin-right: 6px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 6px;
+  gap: 8px;
   margin-bottom: 16px;
   color: #767676;
   font-size: 0.75rem;
@@ -389,7 +398,7 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 6px;
+  gap: 4px;
   color: inherit;
 }
 

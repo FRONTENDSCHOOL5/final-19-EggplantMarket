@@ -104,23 +104,19 @@ function updateProduct(product_data,count){
 
             const button = document.createElement('button')
             button.classList.add('product')
-            button.setAttribute('tabindex','1')
             button.setAttribute('data-productId', `${item.id}`)
 
             const productName = document.createElement('strong')
             productName.className='product-name'
-            productName.insertAdjacentHTML('afterbegin','<span class="a11y-hidden">상품 이름:</span>')
             productName.insertAdjacentText('beforeend',`${item.itemName}`)
             
             const productImg = document.createElement('img')
             productImg.className='product-img'
             const itemSrc = item.itemImage.includes("https://api.mandarin.weniv.co.kr",) ? item.itemImage : "https://api.mandarin.weniv.co.kr/1687488082591.png"
             productImg.setAttribute('src', `${itemSrc}`)
-            productImg.setAttribute('alt','상품 이미지')
 
             const productPrice = document.createElement('strong')
             productPrice.className='product-price'
-            productPrice.insertAdjacentHTML('afterbegin','<span class="a11y-hidden">금액:</span>')
             productPrice.insertAdjacentHTML('beforeend',`<span class="price">${Number(item.price).toLocaleString()}</span>`)
             productPrice.insertAdjacentText('beforeend','원')
             
@@ -150,22 +146,19 @@ function updatePost(post_data) {
             const post = document.createElement('section')
             post.className = 'home-post'
 
-            const userInfo = document.createElement('section')
+            const userInfo = document.createElement('div')
             userInfo.className='user-follow'
 
             const userImg = document.createElement('div')
             userImg.classList.add('profile-img', 'img-cover')
-            userImg.setAttribute('tabindex','1')
 
             const userImgImg = document.createElement('img');
             userImgImg.src = item.author.image;
-            userImgImg.alt = '프로필사진';
 
             userImg.appendChild(userImgImg);
 
             const userInfoDiv = document.createElement('div');
             userInfoDiv.classList.add('user-info');
-            userInfoDiv.setAttribute('tabindex', '1');
 
             const userName = document.createElement('p');
             userName.classList.add('user-name');
@@ -182,18 +175,18 @@ function updatePost(post_data) {
             userInfo.appendChild(userInfoDiv);
             post.appendChild(userInfo)
 
-            const postEdit = document.createElement('section');
+            const postEdit = document.createElement('div');
             postEdit.className = 'post-edit';
             postEdit.innerHTML = `
-                <h4 class="a11y-hidden">게시물의 내용</h4>
-                <a href="./post_detail.html?postId=${item.id}" tabindex="1">
+                <a href="./post_detail.html?postId=${item.id}">
+                    <span class="a11y-hidden">게시글 상세 보기</span>
                 </a>
             `;
 
-            const H3 = item.image ? (item.content ? '사진과 글을 함께 있는 게시물' : '사진만 있는 게시물') : '글만 있는 게시물'
-            post.insertAdjacentHTML('afterbegin',`<h3 class="a11y-hidden">${H3}</h3>`)
             if (item.content){
-                postEdit.querySelector('a').insertAdjacentHTML('beforeend',`<p class="post-text">${item.content}</p>`)
+                postEdit.querySelector('a').insertAdjacentHTML('beforeend',`<h3 class="post-text">${item.content}</h3>`)
+            }else {
+                postEdit.querySelector('a').insertAdjacentHTML('beforeend', `<h3 class="a11y-hidden">이미지만 있는 게시물</h3>`)
             }
             
             if (item.image) {
@@ -206,7 +199,6 @@ function updatePost(post_data) {
                     const postImg = document.createElement('img');
                     postImg.classList.add('post-img');
                     postImg.src = i;
-                    postImg.alt = '게시물 사진';
                 
                     imgCover.appendChild(postImg);
                     postfragment.appendChild(imgCover);
@@ -216,7 +208,8 @@ function updatePost(post_data) {
                         const albumLi = document.createElement('li');
                         albumLi.className = 'post-album-item';
                         albumLi.innerHTML = `
-                        <a href="./post_detail.html?postId=${item.id}" tabindex="1">
+                        <a href="./post_detail.html?postId=${item.id}">
+                            <span class="a11y-hidden">게시글 상세 보기</span>
                             <img src="${item.image.split(', ')[0]}" alt="">
                         </a>
                         `;
@@ -236,8 +229,9 @@ function updatePost(post_data) {
                     </svg>
                     <span class="cnt">${item.heartCount}</span>
                 </button>
-                <a class="btn-comment" href="./post_detail.html?postId=${item.id}" tabindex="1">
-                    <img src="../assets/icon/icon-message-circle.svg" alt="댓글 버튼">
+                <a class="btn-comment" href="./post_detail.html?postId=${item.id}">
+                    <span class="a11y-hidden">게시글 댓글 보러가기</span>
+                    <img src="../assets/icon/icon-message-circle.svg" alt="">
                     <span class="cnt">${item.commentCount}</span>
                 </a>
             `;
@@ -252,7 +246,7 @@ function updatePost(post_data) {
             const btnOption = document.createElement('button');
             btnOption.className = 'btn-option';
             btnOption.innerHTML = `
-                <img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼">
+            <span class="a11y-hidden">게시물 옵션</span><img src="../assets/icon/icon-more-vertical.svg" alt="">
             `;
             btnOption.setAttribute('data-postid',`${item.id}`)
 

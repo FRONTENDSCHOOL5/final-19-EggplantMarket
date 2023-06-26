@@ -1,6 +1,50 @@
 @import "global";
 @import "variables";
 
+$theme: (
+    light: (bg-color:#fff,
+        btn-color: #ffffff,
+        btn-font:#767676,
+        background-color: rgba(0, 0, 0, 0.5),
+        font-color: #000000,
+        btn-font-color: #ffffff,
+        gray-color: #767676,
+        point-color: #9747FF,
+        comment-placeholder :#c4c4c4,
+        comment-btn:#635CA5,
+    ),
+    highContrast: (bg-color:#000000,
+        btn-color: #E4D6FF,
+        btn-font: #000000,
+        background-color: rgb(236 236 236 / 34%),
+        font-color: #ffffff,
+        btn-font-color: #000000,
+        gray-color: #dbdbdb,
+        point-color: #FFEB32,
+        comment-placeholder :#bdbdbd,
+        comment-btn:#FFEB32,
+    )
+);
+
+@function get-color($key, $type: 'light') {
+
+    @each $name,
+    $color in map-get($theme, $type) {
+        @if($key ==$name) {
+            @return $color
+        }
+    }
+}
+
+@mixin get-color($property, $color) {
+
+    #{$property}: get-color($color);
+
+    @at-root .post-detail-wrapper.highContrast & {
+        #{$property}: get-color($color, highContrast);
+    }
+}
+
 main {
 margin: 0 .9375rem;
     margin-bottom: 61px;
@@ -21,7 +65,7 @@ margin: 0 .9375rem;
 .comment-time {
 display: inline-block;
     font-size: 10px;
-    color: #767676;
+    @include get-color(color, gray-color);
     line-height: 18px;
         vertical-align: top;
         margin-top: 6px;
@@ -47,6 +91,7 @@ display: inline-block;
     line-height: 1.5;
     font-weight: 400;
     font-size: 14px;
+    @include get-color(color, font-color);
 }
 
 .btn-more {
@@ -89,7 +134,7 @@ display: inline-block;
             margin-left: 12px;
             font-weight: 500;
             font-size: .875rem;
-            color: #000000;
+            @include get-color(color, font-color);
     }
 }
 .comment {
@@ -112,9 +157,24 @@ display: inline-block;
     #commemt-input {
         padding: 8px;
         margin-right: 10px;
+        @include get-color(color, font-color);
+        @include get-color(background-color, bg-color);
         }
         
         button:not(:disabled) {
-            color: $enabled-color;
+            @include get-color(color, comment-btn);
 }
+}
+
+#comment-input::placeholder {
+    @include get-color(color, comment-placeholder);
+    }
+
+.post-icon {
+    path {
+        @include get-color(stroke, gray-color);
+    }
+    span {
+        @include get-color(color, gray-color);
+    }
 }

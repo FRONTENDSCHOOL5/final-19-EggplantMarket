@@ -110,9 +110,11 @@ $theme: (
 }
 
 .comment{
+    @include get-color(background-color, bg-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-top: 1px solid #dbdbdb;
     border-bottom: 1px solid $gray100-color;
     padding: 13px 16px 12px 16px;
     button{
@@ -330,9 +332,10 @@ $theme: (
         font-size: map-get($font-sizes, "size14" );
         font-weight: 500;
         line-height: 18px;
+        @include get-color(color, font-color);
     }
     .user-id{
-        color: $gray300-color;
+        @include get-color(color, gray-color);
         font-size: map-get($font-sizes, "size12" );
         font-weight: 400;
         margin-top: 2px;
@@ -346,6 +349,7 @@ $theme: (
     margin: 16px auto 16px 54px;
     padding-bottom: 5px;
     .post-text{
+        @include get-color(color, font-color);
         margin-bottom: 16px;
         line-height: 18px;
         word-break: break-all;
@@ -379,7 +383,7 @@ $theme: (
         }
     }
     .post-date{
-        color: $gray300-color;
+        @include get-color(color, gray-color);
         font-size: map-get( $font-sizes, "size10" );
     }
 

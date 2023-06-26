@@ -62,10 +62,8 @@ main {
 }
 .product-list {
   white-space: nowrap;
-  overflow-x: scroll;
-}
-.product-list::-webkit-scrollbar {
-  display: none;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
 }
 .product-list > :first-child {
   margin-left: 18px;
@@ -80,6 +78,7 @@ main {
           order: -1;
   border-radius: 8px;
   aspect-ratio: 14/9;
+  -webkit-user-drag: none;
 }
 .product-name {
   width: 100%;

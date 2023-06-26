@@ -93,6 +93,20 @@ form .profile-img .img-cover img {
   -o-object-fit: cover;
      object-fit: cover;
 }
+form .upload-img circle {
+  fill: #9C85C5;
+}
+.join.highContrast form .upload-img circle {
+  fill: #E4D6FF;
+}
+
+form .upload-img path {
+  stroke: #ffffff;
+}
+.join.highContrast form .upload-img path {
+  stroke: #000000;
+}
+
 form > fieldset {
   margin-bottom: 16px;
 }

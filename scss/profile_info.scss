@@ -3,6 +3,7 @@
 
 $theme: (
     light: (bg-color:#fff,
+    root-color: #f2f2f2,
     btn-color: #ffffff,
     btn-font:#767676,
     disabled-btn-color: #BCADDC,
@@ -11,6 +12,7 @@ $theme: (
     gray-color: #767676,
     box-shadow : none,
     border: none,
+    profile-border : 1px solid #dbdbdb,
     price-color: #BF8DFF,
     placeholder-color:#c4c4c4,
     warning-color: #EB5757,
@@ -23,6 +25,7 @@ $theme: (
     strong-color: #9747FF,
     ),
     highContrast: (bg-color:#000000,
+    root-color: #000000,
     btn-color: #E4D6FF,
     btn-font: #000000,
     disabled-btn-color: transparent ,
@@ -31,6 +34,7 @@ $theme: (
     gray-color: #dbdbdb,
     box-shadow: 0 0 0 2px #E4D6FF inset,
     border: 2px solid #E4D6FF,
+    profile-border : none,
     price-color: #C5A8FF,
     placeholder-color:#000000,
     warning-color: #FFEB32,
@@ -95,7 +99,7 @@ header{
 }
 
 .profile-container {
-    border: 1px solid $gray100-color;
+    @include get-color(border, profile-border);
     border-top: 0;
     @include get-color(background-color, bg-color);
     position: relative;

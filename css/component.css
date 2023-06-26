@@ -229,11 +229,19 @@ a {
   -webkit-transform: translate(50%, 50%);
           transform: translate(50%, 50%);
 }
+.highContrast .modal-background .modal-content {
+  background-color: #000000;
+}
+
 .modal-background .modal-content .modal-description {
   padding: 22px 40px;
   font-size: 1rem;
   border-bottom: 0.5px solid #dbdbdb;
+  color: #000000;
   font-weight: 500;
+}
+.highContrast .modal-background .modal-content .modal-description {
+  color: #ffffff;
 }
 
 .modal-actions {
@@ -252,8 +260,13 @@ a {
   width: 126px;
   padding: 14px 48px;
   font-size: 0.875rem;
+  color: #000000;
   border-right: 0.5px solid #dbdbdb;
 }
+.highContrast .modal-actions .left-button {
+  color: #ffffff;
+}
+
 .modal-actions .right-button {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
@@ -262,6 +275,9 @@ a {
   padding: 14px 35px;
   color: #9747FF;
   font-size: 0.875rem;
+}
+.highContrast .modal-actions .right-button {
+  color: #FFEB32;
 }
 
 .nav-chat .btn-back, .nav-chat .profile-img, .comment .btn-back, .comment .profile-img {

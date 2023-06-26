@@ -9,6 +9,7 @@ $theme: (
         font-color: #000000,
         btn-font-color: #ffffff,
         gray-color: #767676,
+        point-color: #9747FF,
     ),
     highContrast: (bg-color:#000000,
         btn-color: #E4D6FF,
@@ -17,6 +18,7 @@ $theme: (
         font-color: #ffffff,
         btn-font-color: #000000,
         gray-color: #dbdbdb,
+        point-color: #FFEB32,
     )
 );
 
@@ -217,7 +219,7 @@ $theme: (
     display: flex;
     .modal-content{
         width: 252px;
-        background-color: #fff;
+        @include get-color(background-color, bg-color);
         border-radius: 10px;
         text-align: center;
         position: absolute;
@@ -228,6 +230,7 @@ $theme: (
             padding: 22px 40px;
             font-size: map-get($font-sizes, "size16");
             border-bottom: 0.5px solid $gray100-color;
+            @include get-color(color, font-color);
             font-weight: 500;
         }
     }
@@ -242,13 +245,14 @@ $theme: (
         width: 126px;
         padding: 14px 48px;
         font-size: map-get($font-sizes, "size14");
+        @include get-color(color, font-color);
         border-right: 0.5px solid $gray100-color;
     }
     .right-button {
         order: 1;
         width: 126px;
         padding: 14px 35px;
-        color: $highlight-color;
+        @include get-color(color, point-color);
         font-size: map-get($font-sizes, "size14");
     }
 }

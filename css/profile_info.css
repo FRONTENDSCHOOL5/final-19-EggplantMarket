@@ -78,6 +78,10 @@ header {
   padding-left: 50px;
 }
 .profile-info-wrapper.highContrast .profile-container {
+  border: none;
+}
+
+.profile-info-wrapper.highContrast .profile-container {
   background-color: #000000;
 }
 

@@ -12,6 +12,7 @@ $theme: (
     border: none,
     placeholder-color:#dbdbdb,
     warning-color: #EB5757,
+    image-btn: #9C85C5,
     ),
     highContrast: (bg-color:#000000,
     enabled-btn-color: #E4D6FF,
@@ -23,6 +24,7 @@ $theme: (
     border: 2px solid #E4D6FF,
     placeholder-color:#FFEB32,
     warning-color: #FFEB32,
+    image-btn: #E4D6FF,
     )
 );
 
@@ -111,6 +113,16 @@ form {
                 }
         }
     }
+
+    .upload-img{
+        circle {
+            @include get-color(fill, image-btn);
+        }
+        path {
+            @include get-color(stroke, btn-font-color);
+        }
+    }
+
 
     &>fieldset {
         margin-bottom: 16px;

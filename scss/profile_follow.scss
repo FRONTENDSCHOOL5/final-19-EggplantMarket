@@ -6,6 +6,9 @@ $theme: (
         btn-color: #ffffff,
         btn-font:#767676,
         disabled-btn-color: #BCADDC,
+        following-btn-bg:white,
+        following-btn-color:#767676,
+        following-btn-border:1px solid #dbdbdb,
         font-color: #000000,
         btn-font-color: #ffffff,
         gray-color: #767676,
@@ -26,6 +29,9 @@ $theme: (
         btn-color: #E4D6FF,
         btn-font: #000000,
         disabled-btn-color: transparent,
+        following-btn-bg:transparent,
+        following-btn-color:#E4D6FF,
+        following-btn-border:2px solid #E4D6FF,
         font-color: #ffffff,
         btn-font-color: #000000,
         gray-color: #dbdbdb,
@@ -58,7 +64,7 @@ $theme: (
 
     #{$property}: get-color($color);
 
-    @at-root .profile-follower-wrapper.highContrast & {
+    @at-root .following-wrapper.highContrast & {
         #{$property}: get-color($color, highContrast);
     }
 }
@@ -128,9 +134,9 @@ $theme: (
 }
 
 .btn-follow.opposite {
-    color: $gray300-color;
-    background-color: $white-color;
-    border: 1px solid $gray100-color;
+    @include get-color(color, following-btn-color);
+    @include get-color(background-color, following-btn-bg);
+    @include get-color(border, following-btn-border);
 }
 
 .btn-follow:disabled {

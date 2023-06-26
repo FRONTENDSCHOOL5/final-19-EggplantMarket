@@ -182,7 +182,7 @@ function displayComment(comments) {
             </a>
     </div>
     <p class="comment-time">${displayedAt(i.createdAt)}</p>
-    <p class="comment-text">${i.content}</p>
+    <h3 class="comment-text">${i.content}</h3>
     <button class="btn-more" data-commentId=${i.id}><span class="a11y-hidden">댓글 옵션</span><img src="../assets/icon/icon-more-vertical.svg" alt=""></button>`;
 
         frag.append(li);

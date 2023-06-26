@@ -22,6 +22,17 @@
     }
 }
 
+.btn-back{
+    height: 44px;
+    width: 44px;
+    background: url('../assets/icon/icon-arrow-left.svg') no-repeat center;
+}
+.btn-option{
+    height: 44px;
+    width: 44px;
+    background: url('../assets/icon/icon-more-vertical.svg') no-repeat center;
+}
+
 .nav-basic, .nav-upload{
     .btn-back{
         order: 0;
@@ -314,6 +325,7 @@
     .post-text{
         margin-bottom: 16px;
         line-height: 18px;
+        word-break: break-all;
     }
 .img-cover {
     max-width: 304px;

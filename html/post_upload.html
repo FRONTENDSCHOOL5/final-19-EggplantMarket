@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시물 업로드 | 가지마켙</title>
+    <title>게시물 게시하기 | 가지마켙</title>
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/post_upload.css">
     <link rel="stylesheet" href="../css/component.css">
@@ -13,8 +13,8 @@
 
 <body>
     <header class="top nav-upload">
-        <h1 class="a11y-hidden">게시물 업로드 페이지상단</h1>
-        <button id="upload-btn" class="size-ms btn-save" disabled>업로드<span class="a11y-hidden">버튼</span></button>
+        <h1 class="a11y-hidden">게시물 업로드</h1>
+        <button id="upload-btn" class="size-ms btn-save" disabled>업로드<span class="a11y-hidden">하기</span></button>
         <button class="btn-back"><img src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
     </header>
     <main>
@@ -34,20 +34,6 @@
     </main>
     <script src="../js/common.js"></script>
     <script src="../js/postUpload.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const mainElement = document.querySelector("main");
-            const uploadBtn = document.getElementById("upload-btn");
-
-            mainElement.addEventListener("keydown", function (event) {
-                if (event.key === "Tab" && !event.shiftKey) {
-                    event.preventDefault();
-                    uploadBtn.focus();
-                }
-            });
-        });
-    </script>
-
 </body>
 
 </html>

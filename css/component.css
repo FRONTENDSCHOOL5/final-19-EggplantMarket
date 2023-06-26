@@ -59,6 +59,18 @@ a {
   padding: 13px 12px 13px 16px;
 }
 
+.btn-back {
+  height: 44px;
+  width: 44px;
+  background: url("../assets/icon/icon-arrow-left.svg") no-repeat center;
+}
+
+.btn-option {
+  height: 44px;
+  width: 44px;
+  background: url("../assets/icon/icon-more-vertical.svg") no-repeat center;
+}
+
 .nav-basic .btn-back, .nav-upload .btn-back {
   -webkit-box-ordinal-group: 1;
       -ms-flex-order: 0;
@@ -365,6 +377,7 @@ a {
 .post-edit .post-text {
   margin-bottom: 16px;
   line-height: 18px;
+  word-break: break-all;
 }
 .post-edit .img-cover {
   max-width: 304px;

@@ -258,6 +258,9 @@ function updatePost(post_data) {
 
         });
         document.querySelector('.post-container').style.display='block'
+
+        listUl.appendChild(fragment);
+        albumUl.appendChild(albumfragment);
     }
 
 }

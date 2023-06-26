@@ -74,8 +74,7 @@ function handlePostOptionModal(nodes) {
 
         modalContent.querySelectorAll('.modal-description').forEach(item => {item.addEventListener('click', (e) => {
             if(e.currentTarget.classList.contains('btn-edit')){
-                alert('구현x')
-                location.reload()
+                location.href=`./post_upload.html?postId=${targetPostId}`
             }
             if(e.currentTarget.classList.contains('btn-delete')){
                 editPopUp(popUpModal,'게시글을 삭제할까요?','삭제',()=>{postDelete(targetPostId)})

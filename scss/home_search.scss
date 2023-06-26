@@ -1,6 +1,10 @@
 @import "global";
 @import "variables";
 
+main{
+    padding-bottom: 65px;
+}
+
 $theme: (
     light: (bg-color:#fff,
     enabled-btn-color: #635CA5,

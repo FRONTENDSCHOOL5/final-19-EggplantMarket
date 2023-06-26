@@ -31,6 +31,10 @@ a {
   text-decoration: initial;
 }
 
+main {
+  padding-bottom: 65px;
+}
+
 footer {
   width: 100%;
   position: fixed;

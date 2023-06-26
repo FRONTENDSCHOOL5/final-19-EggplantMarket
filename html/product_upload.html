@@ -49,8 +49,8 @@
                 <strong class="warning-msg-productname"></strong>
 
                 <label for="product-price">가격</label>
-                <input id="product-price" type="number" placeholder="숫자만 입력 가능합니다.">
-                <strong class="warning-msg-productprice"></strong>
+                <input id="product-price" type="number" min="0" max="1000000000" placeholder="숫자만 입력 가능합니다.">
+                <strong class="warning-msg-productprice" style="color:red"></strong>
 
                 <label for="purchase-link">판매 링크</label>
                 <input id="purchase-link" type="url" placeholder="URL을 입력해 주세요">
@@ -65,10 +65,12 @@
         // localStorage.removeItem("product-id");
 
         if (productID) {
+            console.log('수정')
             let scriptEl = document.createElement('script');
             scriptEl.src = "../js/product_modification.js";
             document.body.appendChild(scriptEl);
         } else {
+            console.log('업로드')
             let scriptEl = document.createElement('script');
             scriptEl.src = "../js/product_add.js";
             document.body.appendChild(scriptEl);

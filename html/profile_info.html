@@ -17,13 +17,11 @@
     <div class="profile-info-wrapper">
         <header class="top nav-basic">
             <h1 class="a11y-hidden">사용자 프로필 화면</h1>
-            <button class="btn-back" tabindex="0"><img id="profile-back-btn" src="../assets/icon/icon-arrow-left.svg"
-                    alt="뒤로가기 버튼"></button>
-            <button class="btn-option" tabindex="0"><img id="profileInfo-more-icon"
-                    src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
+            <button class="btn-back" tabindex="0"><img id="profile-back-btn" src="../assets/icon/icon-arrow-left.svg" alt="뒤로가기 버튼"></button>
+            <button class="btn-option" tabindex="0"><img id="profileInfo-more-icon" src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
         </header>
         <main>
-            <section class="profile-container">
+            <section class="profile-container" style="display: none;">
                 <header class="profile-header">
                     <h2 class="a11y-hidden">사용자 정보</h2>
                     <div class="img-crop">
@@ -43,8 +41,7 @@
                     </a>
                 </header>
                 <div class="btn-wrap-your">
-                    <button class="btn-chat circle" type="button" onclick="location.href = './chat_room.html'"
-                        tabindex="1">
+                    <button class="btn-chat circle" type="button" onclick="location.href = './chat_room.html'" tabindex="1">
                         <span class="a11y-hidden">채팅 버튼</span>
                     </button>
                     <!-- 팔로우버튼 : 공통 컴퍼넌트 사용 -->
@@ -63,14 +60,14 @@
                     </button>
                 </div>
             </section>
-
+    
             <div class="content-wrap">
-                <section class="product-container">
+                <section class="product-container" style="display: none;">
                     <h2 tabindex="1">판매 중인 상품</h2>
                     <ul class="product-list">
                     </ul>
                 </section>
-                <section class="post-container">
+                <section class="post-container" style="display: none;">
                     <!-- 게시글 보기 탭 -->
                     <section class="post-tab">
                         <h2 class="a11y-hidden">게시글 보기 유형 고르기</h2>
@@ -91,59 +88,60 @@
                         <ul class="post-album hidden">
                         </ul>
                         <!-- // 앨범형 -->
-
+    
+                        </section>
                     </section>
-                </section>
-            </div>
-
-        </main>
-        <footer>
-            <nav class="tab-menu">
-                <p class="a11y-hidden">하단 탭 메뉴</p>
-                <ul class="tab-item-list">
-                    <li class="tab-item-home">
-                        <a href="./home_withfollowers.html" tabindex="1">
-                            <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-chat">
-                        <a href="./chat_list.html" tabindex="1">
-                            <p>채팅<span class="a11y-hidden">화면으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-follow">
-                        <a href="./post_upload.html" tabindex="1">
-                            <p>게시물 작성<span class="a11y-hidden">화면으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-more">
-                        <a class="here" href="./profile_info.html" tabindex="1">
-                            <p>프로필<span class="a11y-hidden">화면으로 이동</span></p>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </footer>
-        <!-- 하단 모달창 - 더보기 버튼 클릭 시 보이도록 -->
-        <article class="post-modal-background">
-            <h2 class="a11y-hidden">모달창</h2>
-            <div class="post-modal-content">
-                <div class="post-modal-bar"></div>
+                </div>
+    
+            </main>
+            <footer>
+                <nav class="tab-menu">
+                    <p class="a11y-hidden">하단 탭 메뉴</p>
+                    <ul class="tab-item-list">
+                        <li class="tab-item-home">
+                            <a href="./home_withfollowers.html" tabindex="1">
+                                <p>홈<span class="a11y-hidden">화면으로 이동</span></p>
+                            </a>
+                        </li>
+                        <li class="tab-item-chat">
+                            <a href="./chat_list.html" tabindex="1">
+                                <p>채팅<span class="a11y-hidden">화면으로 이동</span></p>
+                            </a>
+                        </li>
+                        <li class="tab-item-follow">
+                            <a href="./post_upload.html" tabindex="1">
+                                <p>게시물 작성<span class="a11y-hidden">화면으로 이동</span></p>
+                            </a>
+                        </li>
+                        <li class="tab-item-more">
+                            <a class="here" href="./profile_info.html" tabindex="1">
+                                <p>프로필<span class="a11y-hidden">화면으로 이동</span></p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </footer>
+            <!-- 하단 모달창 - 더보기 버튼 클릭 시 보이도록 -->
+            <article class="post-modal-background">
+                <h2 class="a11y-hidden">모달창</h2>
+                <div class="post-modal-content">
+                    <div class="post-modal-bar"></div>
+                    <div class="modal-content">
+                    </div>
+                </div>
+            </article>
+            <article class="modal-background">
+                <h2 class="modal-title a11y-hidden">팝업</h2>
                 <div class="modal-content">
+                    <p class="modal-description" tabindex="0">?</p>
+                    <div class="modal-actions">
+                        <button class="right-button ac-log-out" tabindex="0"></button>
+                        <button class="left-button" tabindex="0">취소</button>
+                    </div>
                 </div>
-            </div>
-        </article>
-        <article class="modal-background">
-            <h2 class="modal-title a11y-hidden">팝업</h2>
-            <div class="modal-content">
-                <p class="modal-description" tabindex="0">?</p>
-                <div class="modal-actions">
-                    <button class="right-button ac-log-out" tabindex="0"></button>
-                    <button class="left-button" tabindex="0">취소</button>
-                </div>
-            </div>
-        </article>
+            </article>
     </div>
+    
     <script src="../js/common.js"></script>
     <script src="../js/modal.js"></script>
     <script src="../js/scrollFetch.js"></script>

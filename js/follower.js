@@ -134,7 +134,7 @@ async function makeMyFollowerList(data) {
         const li = document.createElement('li');
         li.setAttribute('class', 'follow-item');
         li.innerHTML = `<a class="user-img img-cover" href="./profile_info.html?accountName=${user.accountname}" tabindex="1">
-        <img src=${user.image} alt="사용자 이미지">
+        <img src=${checkImageUrl(user.image,'profile')} alt="사용자 이미지">
     </a>
     <div class="user-info">
         <strong class="user-name">
@@ -161,7 +161,7 @@ async function makeUserFollowerList(data) {
         const li = document.createElement('li');
         li.setAttribute('class', 'follow-item');
         li.innerHTML = `<a class="user-img img-cover" href="./profile_info.html?accountName=${user.accountname}" tabindex="1">
-        <img src=${user.image} alt="사용자 이미지">
+        <img src=${checkImageUrl(user.image,'profile')} alt="사용자 이미지">
     </a>
     <div class="user-info">
         <strong class="user-name">

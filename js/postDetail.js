@@ -109,6 +109,7 @@ function displayPost(post) {
 
     // h2
     const hd = document.querySelector('.home-post h2');
+    hd.parentNode.setAttribute('data-postid',post.id)
     const headingContent = post.image && post.content ? '사진과 글이 함께 있는 게시물' : (post.image ? '사진만 있는 게시글' : '글만 있는 게시물');
     hd.innerHTML = headingContent;
 
@@ -117,7 +118,7 @@ function displayPost(post) {
     userInfoSec.setAttribute('class', 'user-follow');
     userInfoSec.innerHTML = `<h3 class="a11y-hidden">작성자 정보</h3>
     <a class="profile-img img-cover" href="./profile_info.html?accountName=${post.author.accountname}">
-        <img src=${post.author.image} alt="프로필사진">
+        <img src=${checkImageUrl(post.author.image,'profile')} alt="프로필사진">
     </a>
     <a class="user-info" href="./profile_info.html?accountName=${post.author.accountname}">
         <p class="user-name">${post.author.username}</p>
@@ -149,8 +150,9 @@ function displayPost(post) {
     }
     if(post.image){
         postInfoSec.querySelector('div').insertAdjacentHTML('beforeend',`<div class="img-cover">
-        <img class="post-img" src=${post.image} alt="게시물 사진">
+        <img class="post-img" src=${checkImageUrl(post.image,'post')} alt="게시물 사진">
     </div>`)
+    postInfoSec.querySelector('.btn-like').addEventListener('click',handleLike)
     }
 
     // 더보기 버튼
@@ -158,7 +160,6 @@ function displayPost(post) {
     btnOption.setAttribute('class', 'btn-option');
     btnOption.setAttribute('tabindex', '0');
     btnOption.innerHTML = `<img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼">`;
-    btnOption.setAttribute('data-postid',post.id)
 
     frag.append(userInfoSec, postInfoSec, btnOption);
     postViewSec.append(frag);

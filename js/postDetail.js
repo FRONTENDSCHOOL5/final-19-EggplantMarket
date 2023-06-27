@@ -110,28 +110,27 @@ function displayPost(post) {
     // h2
     const hd = document.querySelector('.home-post h2');
     hd.parentNode.setAttribute('data-postid',post.id)
-    const headingContent = post.image && post.content ? '사진과 글이 함께 있는 게시물' : (post.image ? '사진만 있는 게시글' : '글만 있는 게시물');
+    const headingContent = post.content ? post.content : '사진만 있는 게시글';
     hd.innerHTML = headingContent;
 
     // section .게시글 작성자
-    const userInfoSec = document.createElement('section');
+    const userInfoSec = document.createElement('div');
     userInfoSec.setAttribute('class', 'user-follow');
-    userInfoSec.innerHTML = `<h3 class="a11y-hidden">작성자 정보</h3>
+    userInfoSec.innerHTML = `
     <a class="profile-img img-cover" href="./profile_info.html?accountName=${post.author.accountname}">
-        <img src=${checkImageUrl(post.author.image,'profile')} alt="프로필사진">
+        <span class="a11y-hidden">${post.author.username}의 프로필 보기</span>
+        <img src=${checkImageUrl(post.author.image,'profile')} alt="">
     </a>
     <a class="user-info" href="./profile_info.html?accountName=${post.author.accountname}">
-        <p class="user-name">${post.author.username}</p>
+        <p class="user-name">${post.author.username}<span class="a11y-hidden">의 프로필 보기</span></p>
         <p class="user-id">${post.author.accountname}</p>
     </a>`
 
     // section .게시글 내용
     // 좋아요 부분 수정하기
-    const postInfoSec = document.createElement('section');
+    const postInfoSec = document.createElement('div');
     postInfoSec.setAttribute('class', 'post-edit');
-    postInfoSec.innerHTML = `<h3 class="a11y-hidden">게시물의 사진과 내용</h3>
-    <div>
-    </div>
+    postInfoSec.innerHTML = `<div></div>
         <div class="post-icon">
             <button class="btn-like ${post.hearted ? 'like' : ''}">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -139,16 +138,16 @@ function displayPost(post) {
                     </svg><span class="cnt">${post.heartCount}</span>
             </button>
             <div class="btn-comment">
-                <img src="../assets/icon/icon-message-circle.svg" alt="댓글 버튼"><span class="cnt">${post.comments.length}</span>
+                <img src="../assets/icon/icon-message-circle.svg" alt=""><span class="cnt">${post.comments.length}</span>
             </div>
         </div>
         <p class="post-date">${dateProcess(post.updatedAt)}</p>`
     if(post.content){
-        postInfoSec.querySelector('div').insertAdjacentHTML('afterbegin',`<p class="post-text">${post.content}</p>`)
+        postInfoSec.querySelector('div').insertAdjacentHTML('beforeend',`<p class="post-text">${post.content}</p>`)
     }
     if(post.image){
         postInfoSec.querySelector('div').insertAdjacentHTML('beforeend',`<div class="img-cover">
-        <img class="post-img" src=${checkImageUrl(post.image,'post')} alt="게시물 사진">
+        <img class="post-img" src=${checkImageUrl(post.image, 'post')} alt="">
     </div>`)
     postInfoSec.querySelector('.btn-like').addEventListener('click',handleLike)
     }
@@ -156,8 +155,7 @@ function displayPost(post) {
     // 더보기 버튼
     const btnOption = document.createElement('button');
     btnOption.setAttribute('class', 'btn-option');
-    btnOption.setAttribute('tabindex', '0');
-    btnOption.innerHTML = `<img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼">`;
+    btnOption.innerHTML = `<span class="a11y-hidden">게시물 옵션</span>`;
 
     frag.append(userInfoSec, postInfoSec, btnOption);
     postViewSec.append(frag);
@@ -172,16 +170,20 @@ function displayComment(comments) {
     comments.forEach(i => {
         const li = document.createElement('li');
         li.setAttribute('class', 'comment-item');
-        li.innerHTML = `<div class="comment-user-info">
-        <a class="user-img img-cover" href="./profile_info.html?accountName=${i.author.accountname}" tabindex="1">
-            <img src=${i.author.image} alt="사용자 이미지">
-        </a>
-        <a class="user-name" href="./profile_info.html?accountName=${i.author.accountname}" tabindex="1"><span class="a11y-hidden">사용자
-            이름,</span>${i.author.accountname}</a>
+        li.innerHTML = `
+        <div class="comment-user-info">
+            <a class="user-img img-cover" href="./profile_info.html?accountName=${i.author.accountname}">
+                <span class="a11y-hidden">${i.author.username}의 프로필 보기</span>
+                <img src=${i.author.image} alt="">
+            </a>
+            <a class="user-name" href="./profile_info.html?accountName=${i.author.accountname}">
+                <span class="a11y-hidden">${i.author.username}의 프로필 보기</span>
+                ${i.author.accountname}
+            </a>
     </div>
     <p class="comment-time">${displayedAt(i.createdAt)}</p>
-    <p class="comment-text">${i.content}</p>
-    <button class="btn-more" tabindex="2" data-commentId=${i.id}><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>`;
+    <h3 class="comment-text">${i.content}</h3>
+    <button class="btn-more" data-commentId=${i.id}><span class="a11y-hidden">댓글 옵션</span></button>`;
 
         frag.append(li);
     })

@@ -50,15 +50,10 @@ display: inline-block;
 }
 
 .btn-more {
-    width: 24px;
     position: absolute;
     top: 0;
-    left: calc(100% - 25px);
+    left: calc(100% - 44px);
     transform: translate(0, 25%);
-
-    img {
-        width: 100%;
-    }
 }
 }
 }

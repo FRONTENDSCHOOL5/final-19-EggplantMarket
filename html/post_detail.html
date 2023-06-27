@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시물 상세페이지 | 가지마켓</title>
+    <title>게시물 상세보기 | 가지마켙</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/component.css">
     <link rel="stylesheet" href="../css/post_detail.css">
@@ -13,10 +13,9 @@
 
 <body>
     <header class="top nav-basic">
-        <h1 class="a11y-hidden">기본상단</h1>
-        <button class="btn-back" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg"
-                alt="뒤로가기 버튼"></button>
-        <button class="btn-option" tabindex="0"><img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼"></button>
+        <h1 class="a11y-hidden">게시물 댓글 페이지</h1>
+        <button class="btn-option"><span class="a11y-hidden">설정</span></button>
+        <button class="btn-back"><span class="a11y-hidden">뒤로가기</span></button>
     </header>
     <main>
 
@@ -33,13 +32,13 @@
 
     <footer>
         <section class="comment">
-            <h2 class="a11y-hidden">댓글창</h2>
-            <label for="commemt-input" class="a11y-hidden"><span class="a11y-hidden">게시물에 대한</span>댓글 입력</label>
-            <input type="text" id="commemt-input" placeholder="댓글 입력하기..." tabindex="3">
+            <h2 class="a11y-hidden">댓글 입력하기</h2>
+            <label for="commemt-input" class="a11y-hidden">게시물에 대한 댓글 입력</label>
+            <input type="text" id="commemt-input" placeholder="댓글 입력하기...">
             <div class="img-cover">
-                <img class="profile-img" src="../assets/basic-profile.png" alt="프로필사진" tabindex="3">
+                <img class="profile-img" src="../assets/basic-profile.png" alt="">
             </div>
-            <button type="submit" class="btn-comment" tabindex="3" disabled>게시</button>
+            <button type="submit" class="btn-comment" disabled>게시</button>
         </section>
     </footer>
     <!-- 모달 -->
@@ -54,10 +53,10 @@
     <article class="modal-background">
         <h2 class="modal-title a11y-hidden">팝업</h2>
         <div class="modal-content">
-            <p class="modal-description" tabindex="0">?</p>
+            <p class="modal-description">?</p>
             <div class="modal-actions">
-                <button class="right-button ac-log-out" tabindex="0"></button>
-                <button class="left-button" tabindex="0">취소</button>
+                <button class="right-button ac-log-out"></button>
+                <button class="left-button">취소</button>
             </div>
         </div>
     </article>

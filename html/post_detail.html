@@ -13,25 +13,31 @@
 
 <body>
     <div class="post-detail-wrapper">
-        <header class="top nav-basic">
+        <div class="skip-nav">
+            <a href="#header" class="skip-link">상단 탭으로 가기</a>
+            <a href="#post" class="skip-link">게시글로 가기</a>
+            <a href="#comment" class="skip-link">댓글로 가기</a>
+            <a href="#footer" class="skip-link">댓글 입력하기</a>
+        </div>
+        <header id="header" class="top nav-basic">
             <h1 class="a11y-hidden">게시물 댓글 페이지</h1>
             <button class="btn-option"><span class="a11y-hidden">설정</span></button>
             <button class="btn-back"><span class="a11y-hidden">뒤로가기</span></button>
         </header>
         <main>
 
-            <section class="home-post">
+            <section id=post class="home-post">
                 <h2 class="a11y-hidden">게시글 내용</h2>
             </section>
 
-            <section class="comment-sec">
+            <section id="comment" class="comment-sec">
                 <h2 class="a11y-hidden">게시물에 대한 답변</h2>
                 <ul class="comment-list">
                 </ul>
             </section>
         </main>
 
-        <footer>
+        <footer id="footer"">
             <section class="comment">
                 <h2 class="a11y-hidden">댓글 입력하기</h2>
                 <label for="commemt-input" class="a11y-hidden">게시물에 대한 댓글 입력</label>

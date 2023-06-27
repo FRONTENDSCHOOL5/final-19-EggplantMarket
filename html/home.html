@@ -14,13 +14,18 @@
 
 <body>
     <div class="home-wrapper">
-        <header class="top nav-main">
+        <div class="skip-nav">
+            <a href="#header" class="skip-link">상단 탭으로 가기</a>
+            <a href="#main" class="skip-link">메인 콘텐츠로 가기</a>
+            <a href="#footer" class="skip-link">하단 탭으로 가기</a>
+        </div>
+        <header id="header" class="top nav-main">
             <!-- <h1 class="a11y-hidden">홈상단</h1> -->
             <h1 class="title-main">가지마켙 피드</h1>
             <a href="./home_search.html"><img id="search-icon" src="../assets/icon/icon-search.svg"
                     alt="검색 아이콘 클릭 시 검색페이지로 이동"></a>
         </header>
-        <main>
+        <main id="main">
             <!-- home-withoutfollower -->
             <section class="home-withoutfollower">
                 <!-- heading -->
@@ -42,7 +47,7 @@
             <!-- // home-withfollower -->
 
         </main>
-        <footer>
+        <footer id="footer">
             <nav class="tab-menu">
                 <p class="a11y-hidden">하단 탭 메뉴</p>
                 <ul class="tab-item-list">

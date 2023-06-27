@@ -1,3 +1,5 @@
+
+
 const url = "https://api.mandarin.weniv.co.kr";
 const myAccountName = localStorage.getItem("user-accountname");
 
@@ -28,7 +30,7 @@ async function postFeed(postsData) {
 
     //팔로잉이 있으면서 게시글이 1개 이상인 경우
     if (postsData.length > 0) {
-        document.querySelector('.home-withoutfollower').style.display = 'none';
+        
         document.querySelector('.home-withfollower').style.display = '';
         console.log('한명이상있어요')
 
@@ -88,6 +90,8 @@ async function postFeed(postsData) {
 
         }
         ulNode.appendChild(frag);
+    } else{
+        document.querySelector('.home-withoutfollower').style.display = '';
     }
     handleModal()
 }
@@ -103,8 +107,6 @@ const theme = window.localStorage.getItem('theme');
 if (theme === 'highContrast') {
     wrapper.classList.add('highContrast');
     document.body.style.backgroundColor = '#000000';
-    document.getElementById("search-icon").src = "../assets/icon/icon-search-highContrast.svg";
-    document.getElementById("more-icon").src = "../assets/icon/icon-more-vertical-hc.svg";
 
 } else {
     wrapper.classList.remove('highContrast');

@@ -1,5 +1,27 @@
-// 모달
+//sass 테마작업 진행중
+function themeSection(){
+    const radioGroup = document.getElementsByName('colorSet');
+    const wrapper = document.querySelector('.wrapper');
+    
+    function colorChange(e) {
+        if (e.target.id === 'highContrast') {
+            window.localStorage.setItem('theme', 'highContrast');
+            wrapper.classList.add('highContrast');
+            document.body.style.backgroundColor = '#000000'; 
+        } else {
+            window.localStorage.setItem('theme', 'light');
+            wrapper.classList.remove('highContrast');
+            document.body.style.backgroundColor = '#ffffff'; 
+        }
+    }
+    
+    radioGroup.forEach((input) => {
+        input.addEventListener('change', colorChange);
+    });
+    // 여기까지
+}
 
+// 모달
 const postModal = document.querySelector('.post-modal-background');
 const popUpModal = document.querySelector('.modal-background');
 const modalContent = document.querySelector('.modal-content');
@@ -15,7 +37,7 @@ function handleModal() {
 
     if(headerBtnOption){
         handleHeaderModal(headerBtnOption)
-        btnOptionFocus(headerBtnOption, modalContent);
+        btnOptionFocus(headerBtnOption);
     }
     if(postBtnOption.length !== 0){
         handlePostOptionModal(postBtnOption)
@@ -30,20 +52,44 @@ function handleModal() {
 
 }
 
+// 코드 수정
 let lastFocusedElement;
-function btnOptionFocus(nodes, modalContent) {
+function btnOptionFocus(nodes) {
     nodes.addEventListener('keydown', event => {
-        if (event.code === 'Tab' && !event.shiftKey) {
-            if(lastFocusedElement){
-                lastFocusedElement.focus();
-                lastFocusedElement=null;
-            } 
-            else {
-                setTimeout(()=> modalContent.querySelector('.modal-description').focus())
-          } 
+      if (event.code === 'Tab' && !event.shiftKey) {
+        if (lastFocusedElement) {
+          lastFocusedElement.focus();
+          lastFocusedElement = null;
+        } else {
+          const firstModalDesc = modalContent.querySelectorAll('button');
+          // console.log(firstModalDesc);
+          for (let i = 0; i < firstModalDesc.length; i++) {
+            firstModalDesc[i].addEventListener('keydown', function (e) {
+              if (e.key === 'Tab' && !e.shiftKey) {
+                e.preventDefault();
+                const nextInput = firstModalDesc[i + 1] || firstModalDesc[0];
+                nextInput.focus();
+              } else if (e.key === 'Enter' && e.target.classList.contains('btn-option')) {  // 수정된 부분: .btn-option을 클릭하거나 Enter를 눌렀을 때 post-modal-content의 modal-content에 focus를 설정
+                e.preventDefault();
+                const postModalContent = document.querySelector('.post-modal-content .modal-content');
+                postModalContent.focus();
+              } else if (e.key === 'Enter') {
+                e.preventDefault();
+                firstModalDesc[i].click();
+                themeSection();
+              } else if (e.key === 'Tab' && e.shiftKey) {
+                e.preventDefault();
+                const prevInput = firstModalDesc[i - 1] || firstModalDesc[firstModalDesc.length - 1];
+                prevInput.focus();
+              }
+            });
+          }
         }
-      });
-}
+      } else if(event.key === 'Enter'){
+
+      }
+    });
+  }
 
 function setFocusOnModalActions() {
     const focusableElements = Array.from(modalActions.getElementsByTagName('button'));
@@ -65,6 +111,30 @@ function handleCancelClick(item) {
     }
 }
 
+function themeChange(inputs) {
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('keydown', function (e) {
+            if (e.key === 'Tab' && !e.shiftKey) {
+                e.preventDefault();
+                const nextInput = inputs[i + 1] || inputs[0];
+                nextInput.focus();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                inputs[i].click();
+                themeSection();
+            } else if (e.key === 'Tab' && e.shiftKey){
+                e.preventDefault();
+                const prevInput = inputs[i - 1] || inputs[inputs.length - 1]
+                prevInput.focus();
+            }
+        });
+        inputs[i].addEventListener('click', function () {
+            inputs[i].click();
+            themeSection();
+        });
+    }
+}
+
 function handleHeaderModal(node){
     node.addEventListener('click',() => {
         modalContent.innerHTML = `
@@ -82,7 +152,27 @@ function handleHeaderModal(node){
         modalContent.querySelectorAll('.modal-description').forEach(item => {item.addEventListener('click', (e) => {
 
             if(e.currentTarget.classList.contains('btn-theme')){
-                // 
+                modalContent.innerHTML = `
+                  <div class="mode_select">
+                    <label for="light">
+                      <input type="radio" name="colorSet" id="light" class="theme" checked>LIGHT
+                    </label>
+                    <label for="highContrast">
+                      <input type="radio" name="colorSet" id="highContrast" class="theme">highContrast
+                    </label>
+                    <button class="modal-description btn-cancel theme">취소</button>
+                  </div>
+                `;
+
+                const inputs = document.querySelectorAll('.theme');
+                themeChange(inputs);
+
+                const btnCancel = modalContent.querySelector('.btn-cancel');
+
+                btnCancel.addEventListener('click', () => {
+                    postModal.style.display = 'none';
+                    node.focus();
+                  });
             }else if(e.currentTarget.classList.contains('btn-cancel')){
                 postModal.style.display = 'none';
             }  
@@ -152,7 +242,7 @@ function handlePostOptionModal(nodes) {
 
         postModal.style.display = 'block';
     })
-    btnOptionFocus(item, modalContent);
+    btnOptionFocus(item);
 });
 }
 
@@ -199,7 +289,7 @@ function handleCommentOptionModal(nodes){
 
         postModal.style.display = 'block';
     })
-    btnOptionFocus(item, modalContent);
+    btnOptionFocus(item);
 });
 }
 
@@ -247,7 +337,7 @@ function handleProductOptionModal(nodes){
             postModal.style.display = 'block';
             })
         })
-        btnOptionFocus(item, modalContent);
+        btnOptionFocus(item);
     })
 }
 

@@ -76,7 +76,10 @@ async function postFeed(postsData) {
                 liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<h2 class="a11y-hidden">이미지만 있는 게시물</h2>`)
             }
             if (item.image) {
-                liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<div class="img-cover"><img class="post-img" src="${checkImageUrl(item.image, 'post')}" alt=""></img></div>`)
+                item.image.split(',').forEach(item=>{
+                    liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<div class="img-cover"><img class="post-img" src="${checkImageUrl(item,'post')}" alt="게시물 사진"></img></div>`)
+                })
+                
             }
             liNode.querySelector('.home-post').setAttribute('data-postid',item.id)
 

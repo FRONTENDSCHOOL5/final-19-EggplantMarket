@@ -146,9 +146,12 @@ function displayPost(post) {
         postInfoSec.querySelector('div').insertAdjacentHTML('beforeend',`<p class="post-text">${post.content}</p>`)
     }
     if(post.image){
-        postInfoSec.querySelector('div').insertAdjacentHTML('beforeend',`<div class="img-cover">
-        <img class="post-img" src=${checkImageUrl(post.image, 'post')} alt="">
-    </div>`)
+        post.image.split(',').forEach(item=>{
+            postInfoSec.querySelector('div').insertAdjacentHTML('beforeend',`<div class="img-cover">
+                <img class="post-img" src=${checkImageUrl(item,'post')} alt="게시물 사진">
+            </div>`)
+        })
+        
     postInfoSec.querySelector('.btn-like').addEventListener('click',handleLike)
     }
 

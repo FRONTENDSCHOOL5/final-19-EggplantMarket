@@ -1,3 +1,9 @@
+if(localStorage.getItem('back')){
+    location.reload()
+    localStorage.removeItem('back')
+}
+
+
 if(document.querySelector('.btn-back')){
     
     document.querySelector('.btn-back').addEventListener('click',()=>{
@@ -9,6 +15,7 @@ if(document.querySelector('.btn-back')){
         }
         else{
             history.back()
+            localStorage.setItem('back',true);
         }
     })
 }

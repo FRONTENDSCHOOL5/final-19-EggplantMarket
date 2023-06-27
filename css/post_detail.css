@@ -64,15 +64,11 @@ main {
   font-size: 14px;
 }
 .comment-list .comment-item .btn-more {
-  width: 24px;
   position: absolute;
   top: 0;
-  left: calc(100% - 25px);
+  left: calc(100% - 44px);
   -webkit-transform: translate(0, 25%);
           transform: translate(0, 25%);
-}
-.comment-list .comment-item .btn-more img {
-  width: 100%;
 }
 
 .comment-user-info {

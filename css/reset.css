@@ -141,6 +141,15 @@ button:disabled {
 img {
   vertical-align: top;
 }
+*:focus{
+  outline: 2px solid #9747FF;
+}
+/* .light *:focus{
+  outline-color: #9747FF;
+}
+.highContrast *:focus{
+  outline-color: #FFEB32;
+} */
 
 /* font */
 @font-face {

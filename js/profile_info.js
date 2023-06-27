@@ -104,22 +104,18 @@ function updateProduct(product_data,count){
 
             const button = document.createElement('button')
             button.classList.add('product')
-            button.setAttribute('tabindex','1')
             button.setAttribute('data-productId', `${item.id}`)
 
             const productName = document.createElement('strong')
             productName.className='product-name'
-            productName.insertAdjacentHTML('afterbegin','<span class="a11y-hidden">상품 이름:</span>')
             productName.insertAdjacentText('beforeend',`${item.itemName}`)
             
             const productImg = document.createElement('img')
             productImg.className='product-img'
-            productImg.setAttribute('src',`${checkImageUrl(item.itemImage,'post')}`)
-            productImg.setAttribute('alt','상품 이미지')
+            productImg.setAttribute('src', `${checkImageUrl(item.itemImage, 'post')}`);
 
             const productPrice = document.createElement('strong')
             productPrice.className='product-price'
-            productPrice.insertAdjacentHTML('afterbegin','<span class="a11y-hidden">금액:</span>')
             productPrice.insertAdjacentHTML('beforeend',`<span class="price">${Number(item.price).toLocaleString()}</span>`)
             productPrice.insertAdjacentText('beforeend','원')
             
@@ -151,22 +147,19 @@ function updatePost(post_data) {
             post.className = 'home-post'
             post.setAttribute('data-postid',`${item.id}`)
 
-            const userInfo = document.createElement('section')
+            const userInfo = document.createElement('div')
             userInfo.className='user-follow'
 
             const userImg = document.createElement('div')
             userImg.classList.add('profile-img', 'img-cover')
-            userImg.setAttribute('tabindex','1')
 
             const userImgImg = document.createElement('img');
-            userImgImg.src = checkImageUrl(item.author.image,'profile');
-            userImgImg.alt = '프로필사진';
+            userImgImg.src = checkImageUrl(item.author.image, 'profile');
 
             userImg.appendChild(userImgImg);
 
             const userInfoDiv = document.createElement('div');
             userInfoDiv.classList.add('user-info');
-            userInfoDiv.setAttribute('tabindex', '1');
 
             const userName = document.createElement('p');
             userName.classList.add('user-name');
@@ -183,23 +176,23 @@ function updatePost(post_data) {
             userInfo.appendChild(userInfoDiv);
             post.appendChild(userInfo)
 
-            const postEdit = document.createElement('section');
+            const postEdit = document.createElement('div');
             postEdit.className = 'post-edit';
             postEdit.innerHTML = `
-                <h4 class="a11y-hidden">게시물의 내용</h4>
-                <a href="./post_detail.html?postId=${item.id}" tabindex="1">
+                <a href="./post_detail.html?postId=${item.id}">
+                    <span class="a11y-hidden">게시글 상세 보기</span>
                 </a>
             `;
 
-            const H3 = item.image ? (item.content ? '사진과 글을 함께 있는 게시물' : '사진만 있는 게시물') : '글만 있는 게시물'
-            post.insertAdjacentHTML('afterbegin',`<h3 class="a11y-hidden">${H3}</h3>`)
             if (item.content){
-                postEdit.querySelector('a').insertAdjacentHTML('beforeend',`<p class="post-text">${item.content}</p>`)
+                postEdit.querySelector('a').insertAdjacentHTML('beforeend',`<h3 class="post-text">${item.content}</h3>`)
+            }else {
+                postEdit.querySelector('a').insertAdjacentHTML('beforeend', `<h3 class="a11y-hidden">이미지만 있는 게시물</h3>`)
             }
             
             if (item.image) {
                 const postfragment = document.createDocumentFragment()
-                item.image.split(', ').forEach((i, idx) => {
+                item.image.split(',').forEach((i, idx) => {
                     // 리스트형 
                     const imgCover = document.createElement('div');
                     imgCover.classList.add('img-cover');
@@ -217,8 +210,8 @@ function updatePost(post_data) {
                         const albumLi = document.createElement('li');
                         albumLi.className = 'post-album-item';
                         albumLi.innerHTML = `
-                        <a href="./post_detail.html?postId=${item.id}" tabindex="1">
-                            <img src="${checkImageUrl(item.image.split(', ')[0]),'post'}" alt="">
+                        <a href="./post_detail.html?postId=${item.id}">
+                            <img src="${checkImageUrl(item.image.split(',')[0],'post')}" alt="">
                         </a>
                         `;
                         albumfragment.appendChild(albumLi);
@@ -237,8 +230,9 @@ function updatePost(post_data) {
                     </svg>
                     <span class="cnt">${item.heartCount}</span>
                 </button>
-                <a class="btn-comment" href="./post_detail.html?postId=${item.id}" tabindex="1">
-                    <img src="../assets/icon/icon-message-circle.svg" alt="댓글 버튼">
+                <a class="btn-comment" href="./post_detail.html?postId=${item.id}">
+                    <span class="a11y-hidden">게시글 댓글 보러가기</span>
+                    <img src="../assets/icon/icon-message-circle.svg" alt="">
                     <span class="cnt">${item.commentCount}</span>
                 </a>
             `;
@@ -252,9 +246,7 @@ function updatePost(post_data) {
 
             const btnOption = document.createElement('button');
             btnOption.className = 'btn-option';
-            btnOption.innerHTML = `
-                <img src="../assets/icon/icon-more-vertical.svg" alt="더보기 버튼">
-            `;
+            btnOption.innerHTML = `<span class="a11y-hidden">게시물 옵션</span>`;
             btnOption.setAttribute('data-postid',`${item.id}`)
 
             post.appendChild(btnOption);
@@ -263,6 +255,9 @@ function updatePost(post_data) {
 
         });
         document.querySelector('.post-container').style.display='block'
+
+        listUl.appendChild(fragment);
+        albumUl.appendChild(albumfragment);
     }
 
 }
@@ -304,6 +299,7 @@ async function run(url, token, accountName) {
 
     document.querySelector('body').style.display = 'block'
     handleModal()
+    touchScroll()
 };
 
 // 게시글 토글
@@ -354,3 +350,81 @@ async function run(url, token, accountName) {
 }(url,token,profileAccountName));
 
 run(url, token, profileAccountName);
+window.addEventListener('resize',touchScroll)
+
+function touchScroll(){
+    const list = document.querySelector('.product-list')
+    const listScrollWidth = list.scrollWidth;
+    const listClientWidth = list.clientWidth;
+
+    let startX = 0;
+    let nowX = 0;
+    let endX = 0;
+    let listX = 0;
+
+    const onScrollStart = (e) => {
+        startX = getClientX(e);
+        window.addEventListener('mousemove', onScrollMove);
+        window.addEventListener('touchmove', onScrollMove);
+        window.addEventListener('mouseup', onScrollEnd);
+        window.addEventListener('touchend', onScrollEnd);
+    };
+
+    const onScrollMove = (e) => {
+        nowX = getClientX(e);
+        setTranslateX(listX + nowX - startX);
+    };
+    const onScrollEnd = (e) => {
+        endX = getClientX(e);
+        listX = getTranslateX();
+        if (listX > 0) {
+            setTranslateX(0);
+            list.style.transition = `all 0.3s ease`;
+            listX = 0;
+        } else if (listX < listClientWidth - listScrollWidth) {
+            setTranslateX(listClientWidth - listScrollWidth);
+            list.style.transition = `all 0.3s ease`;
+            listX = listClientWidth - listScrollWidth;
+        }
+    
+        window.removeEventListener('mousedown', onScrollStart);
+        window.removeEventListener('touchstart', onScrollStart);
+        window.removeEventListener('mousemove', onScrollMove);
+        window.removeEventListener('touchmove', onScrollMove);
+        window.removeEventListener('mouseup', onScrollEnd);
+        window.removeEventListener('touchend', onScrollEnd);
+        window.removeEventListener('click', onClick);
+    
+        setTimeout(() => {
+            bindEvents();
+            list.style.transition = '';
+        }, 300);
+    };
+    const onClick = (e) => {
+        console.log(e.target)
+        if (startX - endX !== 0) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    };
+
+    const getClientX = (e) => {
+        const isTouches = e.touches ? true : false;
+        return isTouches ? e.touches[0].clientX : e.clientX;
+    };
+    
+    const getTranslateX = () => {
+        return parseInt(getComputedStyle(list).transform.split(/[^\-0-9]+/g)[5]);
+    };
+    
+    const setTranslateX = (x) => {
+        list.style.transform = `translateX(${x}px)`;
+    };
+
+    const bindEvents = () => {
+        list.addEventListener('mousedown', onScrollStart);
+        list.addEventListener('touchstart', onScrollStart);
+        list.addEventListener('click', onClick, true);
+    };
+    bindEvents();
+}

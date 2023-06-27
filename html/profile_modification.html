@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>프로필 수정 페이지</title>
+    <title>내 프로필 수정하기 | 가지마켙</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/component.css">
     <link rel="stylesheet" href="../css/profile_modification.css">
@@ -13,10 +13,9 @@
 
 <body>
     <header class="top nav-upload">
-        <h1 class="a11y-hidden">팔로우페이지상단</h1>
-        <button class="btn-back" tabindex="0"><img src="../assets/icon/icon-arrow-left.svg"
-                alt="뒤로가기 버튼"></button>
-        <button class="size-ms btn-save" tabindex="0">저장<span class="a11y-hidden">버튼</span></button>
+        <h1 class="a11y-hidden">프로필 수정하기</h1>
+        <button class="size-ms btn-save">저장</button>
+        <button class="btn-back"><span class="a11y-hidden">뒤로가기</span></button>
     </header>
     <main>
         <section class="profile-setting">
@@ -44,18 +43,18 @@
                 <fieldset>
                     <label for="username">사용자 이름</label>
                     <input type="text" id="username" minlength="2" maxlength="10" placeholder="2~10자 이내여야 합니다."
-                        tabindex="1" required>
+                        required>
                     <strong class="warning-msg-username">*2~10자 이내여야 합니다.</strong>
                 </fieldset>
                 <fieldset>
                     <label for="userid">계정 ID</label>
                     <input type="text" id="userid" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
-                        pattern="^[0-9a-zA-Z._]*$" tabindex="1">
+                        pattern="^[0-9a-zA-Z._]*$">
                     <strong class="warning-msg-userid"></strong>
                 </fieldset>
                 <fieldset>
                     <label for="userinfo">소개</label>
-                    <input type="text" id="userinfo" placeholder="자신과 판매할 상품에 대해 소개해 주세요!" tabindex="1">
+                    <input type="text" id="userinfo" placeholder="자신과 판매할 상품에 대해 소개해 주세요!">
                 </fieldset>
             </form>
         </section>

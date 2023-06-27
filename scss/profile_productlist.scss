@@ -28,16 +28,14 @@ main {
 
     &-list{
         white-space: nowrap;
-        overflow-x: scroll;
-        &::-webkit-scrollbar{
-            display: none;
-        }
         >:first-child{
             margin-left: 18px;
         }
         >:last-child{
             margin-right: 18px;
         }
+        transform: translate(0,0);
+        // position : absolute
     }
 
     &-img{
@@ -46,6 +44,7 @@ main {
         border-radius: 8px;
         // object-fit: cover;
         aspect-ratio: 14/9;
+        -webkit-user-drag: none;
     }
 
     // 길면?

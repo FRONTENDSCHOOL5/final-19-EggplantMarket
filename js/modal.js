@@ -310,9 +310,9 @@ async function commentDelete(targetPostId, targetCommentId){
     try{
         await fetch(fullUrl,options)
         
-        if(!alert('댓글이 삭제되었습니다.')){
+        // if(!alert('댓글이 삭제되었습니다.')){
             location.reload()
-        }
+        // }
     } catch (err){
         console.error(err)
     }

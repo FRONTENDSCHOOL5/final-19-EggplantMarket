@@ -41,7 +41,7 @@ if (viewMyFollowerList) {
             const clickedAccount = e.target.closest('li').querySelector('a').href.split('?accountName=')[1];
             await postFollow(clickedAccount);
 
-            e.target.innerHTML = `삭제<span class="a11y-hidden">하기 버튼</span>`;
+            e.target.innerHTML = `삭제<span class="a11y-hidden">하기</span>`;
             e.target.disabled = true;
         }
     })
@@ -57,13 +57,13 @@ if (viewMyFollowerList) {
                 await deleteFollow(clickedAccount);
 
                 e.target.classList.remove('opposite');
-                e.target.innerHTML = `팔로우<span class="a11y-hidden">하기 버튼</span>`;
+                e.target.innerHTML = `팔로우<span class="a11y-hidden">하기</span>`;
             } else {
                 // 팔로우 기능
                 await postFollow(clickedAccount);
 
                 e.target.classList.add('opposite');
-                e.target.innerHTML = `팔로잉<span class="a11y-hidden">취소 버튼</span>`;
+                e.target.innerHTML = `팔로잉<span class="a11y-hidden">취소</span>`;
             }
         }
     }
@@ -133,16 +133,17 @@ async function makeMyFollowerList(data) {
     data.forEach(user => {
         const li = document.createElement('li');
         li.setAttribute('class', 'follow-item');
-        li.innerHTML = `<a class="user-img img-cover" href="./profile_info.html?accountName=${user.accountname}" tabindex="1">
-        <img src=${checkImageUrl(user.image,'profile')} alt="사용자 이미지">
+        li.innerHTML = `<a class="user-img img-cover" href="./profile_info.html?accountName=${user.accountname}">
+        <span class="a11y-hidden">${user.username}의 프로필 보기</span>
+        <img src=${user.image} alt="">
     </a>
     <div class="user-info">
         <strong class="user-name">
-            <a href="./profile_info.html?accountName=${user.accountname}" tabindex="1"><span class="a11y-hidden">사용자 이름,</span>${user.username}</a>
+            <a href="./profile_info.html?accountName=${user.accountname}">${user.username}<span class="a11y-hidden">의 프로필 보기</span></a>
         </strong>
-        <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>${user.intro}</p>
+        <p class="user-intro ellipsis">${user.intro}</p>
     </div>
-    ${user.isfollow ? '<button class="btn-follow" disabled>삭제<span class="a11y-hidden">하기 버튼</span></button>' : `<button class="btn-follow" tabindex="1">팔로우<span class="a11y-hidden">하기 버튼</span></button>`}`
+    ${user.isfollow ? '<button class="btn-follow" disabled>삭제<span class="a11y-hidden">하기</span></button>' : `<button class="btn-follow">팔로우<span class="a11y-hidden">하기</span></button>`}`
 
         frag.append(li);
     })
@@ -160,16 +161,17 @@ async function makeUserFollowerList(data) {
     data.forEach(user => {
         const li = document.createElement('li');
         li.setAttribute('class', 'follow-item');
-        li.innerHTML = `<a class="user-img img-cover" href="./profile_info.html?accountName=${user.accountname}" tabindex="1">
-        <img src=${checkImageUrl(user.image,'profile')} alt="사용자 이미지">
+        li.innerHTML = `<a class="user-img img-cover" href="./profile_info.html?accountName=${user.accountname}">
+        <span class="a11y-hidden">${user.username}의 프로필 보기</span>
+        <img src=${user.image} alt="">
     </a>
     <div class="user-info">
         <strong class="user-name">
-            <a href="./profile_info.html?accountName=${user.accountname}" tabindex="1"><span class="a11y-hidden">사용자 이름,</span>${user.username}</a>
+            <a href="./profile_info.html?accountName=${user.accountname}">${user.username}<span class="a11y-hidden">의 프로필 보기</span></a>
         </strong>
-        <p class="user-intro ellipsis"><span class="a11y-hidden">사용자 소개</span>${user.intro}</p>
+        <p class="user-intro ellipsis">${user.intro}</p>
     </div>
-    ${user.accountname !== myAccountname ? (user.isfollow ? `<button class="btn-follow opposite" tabindex="1">팔로잉<span class="a11y-hidden">취소 버튼</span></button>` : `<button class="btn-follow" tabindex="1">팔로우<span class="a11y-hidden">하기 버튼</span></button>`) : (``)}
+    ${user.accountname !== myAccountname ? (user.isfollow ? `<button class="btn-follow opposite">팔로잉<span class="a11y-hidden">취소</span></button>` : `<button class="btn-follow">팔로우<span class="a11y-hidden">하기</span></button>`) : (``)}
     `
 
         frag.append(li);

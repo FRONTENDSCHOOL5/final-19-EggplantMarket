@@ -56,7 +56,30 @@ a {
   padding: 0.5625rem 1rem;
 }
 .nav-basic, .nav-main, .nav-chat {
-  padding: 0.8125rem 0.75rem 0.8125rem 1rem;
+  padding: 3px 5px;
+}
+
+.btn-back {
+  height: 44px;
+  width: 44px;
+  background: url("../assets/icon/icon-arrow-left.svg") no-repeat center;
+}
+
+.btn-option, .btn-more {
+  height: 44px;
+  width: 44px;
+  background: url("../assets/icon/icon-more-vertical.svg") no-repeat center;
+}
+
+.nav-basic .btn-back, .nav-upload .btn-back {
+  -webkit-box-ordinal-group: 1;
+      -ms-flex-order: 0;
+          order: 0;
+}
+.nav-basic .btn-option, .nav-basic .btn-save, .nav-basic #upload-btn, .nav-upload .btn-option, .nav-upload .btn-save, .nav-upload #upload-btn {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
 }
 
 .nav-chat .btn-back, .nav-chat .profile-img, .comment .btn-back, .comment .profile-img {
@@ -140,7 +163,7 @@ a {
           align-items: center;
   border-top: 0.0625rem solid #dbdbdb;
   border-bottom: 0.0625rem solid #dbdbdb;
-  padding: 0.8125rem 1rem 0.75rem 1rem;
+  padding: 3px 5px;
 }
 .highContrast .comment {
   background-color: #000000;
@@ -418,15 +441,14 @@ a {
 }
 
 .post-icon {
-  margin-right: 0.375rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 0.375rem;
-  margin-bottom: 1rem;
+  gap: 8px;
+  margin-bottom: 16px;
   color: #767676;
   font-size: 0.75rem;
 }
@@ -437,7 +459,7 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 0.375rem;
+  gap: 4px;
   color: inherit;
 }
 

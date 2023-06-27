@@ -31,8 +31,8 @@ function handleModal() {
 function handleHeaderModal(node){
     node.addEventListener('click',() => {
         modalContent.innerHTML = `
-            <button class="modal-description btn-theme" tabindex="0">테마 변경</button>
-            <button class="modal-description btn-logout" tabindex="0">로그아웃</button>
+            <button class="modal-description btn-theme" >테마 변경</button>
+            <button class="modal-description btn-logout" >로그아웃</button>
         `
 
         modalContent.querySelectorAll('.modal-description').forEach(item => {item.addEventListener('click', (e) => {
@@ -65,17 +65,16 @@ function handlePostOptionModal(nodes) {
         const postAccountName = targetBtn.parentNode.querySelector('a').href.split('accountName=')[1] || window.location.href.split('accountName=')[1]
         if(myAccountName === postAccountName){
             modalContent.innerHTML = `
-                <button class="modal-description btn-edit" tabindex="0">수정</button>
-                <button class="modal-description btn-delete" tabindex="0">삭제</button>
+                <button class="modal-description btn-edit" >수정</button>
+                <button class="modal-description btn-delete" >삭제</button>
             `
         } else {
-            modalContent.innerHTML = `<button class="modal-description btn-report" tabindex="0">신고하기</button>`
+            modalContent.innerHTML = `<button class="modal-description btn-report" >신고하기</button>`
         }
 
         modalContent.querySelectorAll('.modal-description').forEach(item => {item.addEventListener('click', (e) => {
             if(e.currentTarget.classList.contains('btn-edit')){
-                alert('구현x')
-                location.reload()
+                location.href=`./post_upload.html?postId=${targetPostId}`
             }
             if(e.currentTarget.classList.contains('btn-delete')){
                 editPopUp(popUpModal,'게시글을 삭제할까요?','삭제',()=>{postDelete(targetPostId)})
@@ -100,9 +99,9 @@ function handleCommentOptionModal(nodes){
         const targetPostId = pageUrl.searchParams.get('postId');
 
         if(myAccountName === postAccountName){
-            modalContent.innerHTML = `<button class="modal-description btn-delete" tabindex="0">삭제</button>`
+            modalContent.innerHTML = `<button class="modal-description btn-delete" >삭제</button>`
         } else {
-            modalContent.innerHTML = `<button class="modal-description btn-report" tabindex="0">신고하기</button>`
+            modalContent.innerHTML = `<button class="modal-description btn-report" >신고하기</button>`
         }
 
         modalContent.querySelector('.modal-description').addEventListener('click', (e) => {
@@ -128,11 +127,11 @@ function handleProductOptionModal(nodes){
         const AccountName = window.location.href.split('accountName=')[1]
 
         if(AccountName === myAccountName){
-            modalContent.innerHTML = `<button class="modal-description btn-product-delete" tabindex="0">삭제</button>
-                                        <button class="modal-description btn-product-edit" tabindex="0">수정</button>
-                                        <button class="modal-description btn-product-link" tabindex="0">웹사이트에서 상품 보기</button>`
+            modalContent.innerHTML = `<button class="modal-description btn-product-delete" >삭제</button>
+                                        <button class="modal-description btn-product-edit" >수정</button>
+                                        <button class="modal-description btn-product-link" >웹사이트에서 상품 보기</button>`
         } else{
-            modalContent.innerHTML = `<button class="modal-description btn-product-link" tabindex="0">웹사이트에서 상품 보기</button>`
+            modalContent.innerHTML = `<button class="modal-description btn-product-link" >웹사이트에서 상품 보기</button>`
         }
 
         modalContent.querySelectorAll('.modal-description').forEach(item=>{item.addEventListener('click', (e) => {

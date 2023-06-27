@@ -1,3 +1,9 @@
+if(localStorage.getItem('back')){
+    location.reload()
+    localStorage.removeItem('back')
+}
+
+
 if(document.querySelector('.btn-back')){
     
     document.querySelector('.btn-back').addEventListener('click',()=>{
@@ -9,12 +15,13 @@ if(document.querySelector('.btn-back')){
         }
         else{
             history.back()
+            localStorage.setItem('back',true);
         }
     })
 }
 
 function checkImageExtension(file){
-    const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+    const validExtensions = ['.PNG','.JPG','.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
     const extension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
     return validExtensions.some(validExtension => extension.endsWith(validExtension));
 }
@@ -23,7 +30,7 @@ function checkImageUrl(Img, position){
 
     Img += ''
 
-    const pattern = /^https:\/\/api\.mandarin\.weniv\.co\.kr\/(\d{13})\.(png|svg|jpg|jpeg|gif|webp)$/;
+    const pattern = /^https:\/\/api\.mandarin\.weniv\.co\.kr\/(\d{13})\.(JPG|PNG|png|svg|jpg|jpeg|gif|webp)$/;
 
     if(pattern.test(Img)){
         console.log('통과!')
@@ -39,7 +46,7 @@ function checkImageUrl(Img, position){
             return checkImageUrl(result,position)
         }
 
-        const regex = /(\d+)\.(png|svg|jpg|jpeg|gif|webp)$/;
+        const regex = /(\d+)\.(PNG|JPG|png|svg|jpg|jpeg|gif|webp)$/;
         const match = Img.match(regex);
         console.log(match)
         const fileNameWithExtension = match && match[1].length === 13 ? match[1] + '.' + match[2] : null

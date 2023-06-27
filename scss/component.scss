@@ -74,7 +74,27 @@ $theme: (
         padding: .5625rem 1rem;
     }
     &-basic, &-main, &-chat{
-        padding: .8125rem .75rem .8125rem 1rem;
+        padding: 3px 5px;
+    }
+}
+
+.btn-back{
+    height: 44px;
+    width: 44px;
+    background: url('../assets/icon/icon-arrow-left.svg') no-repeat center;
+}
+.btn-option, .btn-more{
+    height: 44px;
+    width: 44px;
+    background: url('../assets/icon/icon-more-vertical.svg') no-repeat center;
+}
+
+.nav-basic, .nav-upload{
+    .btn-back{
+        order: 0;
+    }
+    .btn-option, .btn-save, #upload-btn{
+        order: 1;
     }
 }
 
@@ -132,7 +152,7 @@ $theme: (
     align-items: center;
     border-top: .0625rem solid #dbdbdb;
     border-bottom: .0625rem solid $gray100-color;
-    padding: .8125rem 1rem .75rem 1rem;
+    padding: 3px 5px;
     button{
         font-size: .875rem;
     }
@@ -376,28 +396,27 @@ $theme: (
     border-radius: .625rem;
     overflow: hidden;
 
-    .post-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-}
-    }
-    .post-icon{
-        margin-right: .375rem;
-        display: flex;
-        align-items: center;
-        gap: .375rem;
-        margin-bottom: 1rem;
-        color: $gray300-color;
-        font-size: map-get( $font-sizes, "size12" );
-        &>*{
-            display: flex;
-            align-items: center; 
-            gap: .375rem;
-            color: inherit;
+        .post-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     }
+}
+.post-icon{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    color: $gray300-color;
+    font-size: map-get( $font-sizes, "size12" );
+    &>*{
+        display: flex;
+        align-items: center; 
+        gap: 4px;
+        color: inherit;
+    }
+}
     .post-date{
         @include get-color(color, gray-color);
         font-size: map-get( $font-sizes, "size10" );

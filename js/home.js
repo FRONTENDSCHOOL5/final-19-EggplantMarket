@@ -68,7 +68,7 @@ async function postFeed(postsData) {
                             </div>
                             <p class="post-date">${dateProcess(item.createdAt)}</p>
                         </div>
-                        <button class="btn-option"><span class="a11y-hidden">게시물 옵션</span><img src="../assets/icon/icon-more-vertical.svg" alt=""></button>
+                        <button class="btn-option"><span class="a11y-hidden">게시물 옵션</span></button>
                     </section>`
             if (item.content) {
                 liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<h2 class="post-text">${item.content}</h2>`)
@@ -96,3 +96,18 @@ async function run() {
     postFeed(await getData());
 }
 run()
+
+//테마 작업 진행중.
+const wrapper = document.querySelector('.home-wrapper');
+const theme = window.localStorage.getItem('theme');
+if (theme === 'highContrast') {
+    wrapper.classList.add('highContrast');
+    document.body.style.backgroundColor = '#000000';
+    document.getElementById("search-icon").src = "../assets/icon/icon-search-highContrast.svg";
+    document.getElementById("more-icon").src = "../assets/icon/icon-more-vertical-hc.svg";
+
+} else {
+    wrapper.classList.remove('highContrast');
+    document.body.style.backgroundColor = '#ffffff'; 
+    
+}

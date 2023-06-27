@@ -12,52 +12,53 @@
 </head>
 
 <body>
-    <header class="top nav-upload">
-        <h1 class="a11y-hidden">상품 등록하기</h1>
-        <button class="size-ms btn-save" type="submit" form="upload-product" disabled>저장<span
-                class="a11y-hidden">하기</span></button>
-        <button class="btn-back"><span class="a11y-hidden">뒤로가기</span></button>
-    </header>
-    <main>
-        <form id="upload-product">
+    <div class="product-upload-wrapper">
+        <header class="top nav-upload">
+            <h1 class="a11y-hidden">상품 등록하기</h1>
+            <button class="size-ms btn-save" type="submit" form="upload-product" disabled>저장<span
+                    class="a11y-hidden">하기</span></button>
+            <button class="btn-back"><span class="a11y-hidden">뒤로가기</span></button>
+        </header>
+        <main>
+            <form id="upload-product">
 
-            <h2>상품 등록</h2>
+                <h2>상품 등록</h2>
 
-            <article class="product-img">
-                <h3 class="a11y-hidden">상품 이미지</h3>
-                <label class="btn-upload" for="product-img-upload" tabindex="0">
-                    <span class="a11y-hidden">상품 이미지 업로드 버튼</span>
-                    <svg class="upload-img" width="36" height="36" viewBox="0 0 36 36" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="18" cy="18" r="18" fill="#C4C4C4" />
-                        <path
-                            d="M24.4167 9.75H11.5833C10.5708 9.75 9.75 10.5708 9.75 11.5833V24.4167C9.75 25.4292 10.5708 26.25 11.5833 26.25H24.4167C25.4292 26.25 26.25 25.4292 26.25 24.4167V11.5833C26.25 10.5708 25.4292 9.75 24.4167 9.75Z"
-                            stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path
-                            d="M14.7915 16.1665C15.5509 16.1665 16.1665 15.5509 16.1665 14.7915C16.1665 14.0321 15.5509 13.4165 14.7915 13.4165C14.0321 13.4165 13.4165 14.0321 13.4165 14.7915C13.4165 15.5509 14.0321 16.1665 14.7915 16.1665Z"
-                            stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M26.2502 20.7498L21.6668 16.1665L11.5835 26.2498" stroke="white" stroke-width="1.5"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </label>
-                <input id="product-img-upload" type="file">
-            </article>
+                <article class="product-img">
+                    <h3 class="a11y-hidden">상품 이미지</h3>
+                    <label class="btn-upload" for="product-img-upload" tabindex="0">
+                        <span class="a11y-hidden">상품 이미지 업로드 버튼</span>
+                        <svg class="upload-img" width="36" height="36" viewBox="0 0 36 36" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="18" cy="18" r="18" fill="#C4C4C4" />
+                            <path
+                                d="M24.4167 9.75H11.5833C10.5708 9.75 9.75 10.5708 9.75 11.5833V24.4167C9.75 25.4292 10.5708 26.25 11.5833 26.25H24.4167C25.4292 26.25 26.25 25.4292 26.25 24.4167V11.5833C26.25 10.5708 25.4292 9.75 24.4167 9.75Z"
+                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M14.7915 16.1665C15.5509 16.1665 16.1665 15.5509 16.1665 14.7915C16.1665 14.0321 15.5509 13.4165 14.7915 13.4165C14.0321 13.4165 13.4165 14.0321 13.4165 14.7915C13.4165 15.5509 14.0321 16.1665 14.7915 16.1665Z"
+                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M26.2502 20.7498L21.6668 16.1665L11.5835 26.2498" stroke="white" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </label>
+                    <input id="product-img-upload" type="file">
+                </article>
 
-            <label for="product-name">상품명</label>
-            <input id="product-name" type="text" minlength="2" maxlength="15" placeholder="2~15자 이내여야 합니다.">
-            <strong class="warning-msg-productname"></strong>
+                <label for="product-name">상품명</label>
+                <input id="product-name" type="text" minlength="2" maxlength="15" placeholder="2~15자 이내여야 합니다.">
+                <strong class="warning-msg-productname"></strong>
 
-            <label for="product-price">가격</label>
-            <input id="product-price" type="number" min="0" max="1000000000" placeholder="숫자만 입력 가능합니다.">
-            <strong class="warning-msg-productprice" style="color:red"></strong>
+                <label for="product-price">가격</label>
+                <input id="product-price" type="number" min="0" max="1000000000" placeholder="숫자만 입력 가능합니다.">
+                <strong class="warning-msg-productprice" style="color:red"></strong>
 
-            <label for="purchase-link">판매 링크</label>
-            <input id="purchase-link" type="url" placeholder="URL을 입력해 주세요">
-            <strong class=" warning-msg-purchaselink"></strong>
-
-
-        </form>
-    </main>
+                <label for="purchase-link">판매 링크</label>
+                <input id="purchase-link" type="url" placeholder="URL을 입력해 주세요">
+                <strong class=" warning-msg-purchaselink"></strong>
+            </form>
+        </main>
+    </div>
+    </div>
     <script src="../js/common.js"></script>
     <script>
         const pageUrl = new URL(window.location.href);
@@ -86,6 +87,20 @@
                 }
             });
         });
+
+        //테마 작업 진행중.
+        const wrapper = document.querySelector('.product-upload-wrapper');
+        const theme = window.localStorage.getItem('theme');
+        if (theme === 'highContrast') {
+            wrapper.classList.add('highContrast');
+            document.body.style.backgroundColor = '#000000';
+            document.getElementById("product-upload-backBtn").src = "../assets/icon/icon-arrow-left-hc.svg";
+
+        } else {
+            wrapper.classList.remove('highContrast');
+            document.body.style.backgroundColor = '#ffffff';
+
+        }
     </script>
 </body>
 

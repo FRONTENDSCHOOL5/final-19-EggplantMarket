@@ -43,15 +43,21 @@ body {
   background-repeat: no-repeat;
   background-position: 98% 98%;
 }
+.login-wrapper.highContrast .back {
+  background-image: url(../assets/symbol-logo-highContrast.svg);
+}
 
 .login {
-  background-color: white;
+  background-color: #fff;
   border-radius: 20px 20px 0 0;
   padding: 50px 34px 82px;
   min-width: 390px;
   width: 100%;
   position: fixed;
   bottom: 0;
+}
+.login-wrapper.highContrast .login {
+  background-color: #000000;
 }
 
 .domain {
@@ -69,13 +75,40 @@ body {
 .domain.kakao {
   border-color: #F2C94C;
   background-image: url(../assets/message-circle.svg);
+  color: #767676;
 }
+.login-wrapper.highContrast .domain.kakao {
+  border-color: #FFEB32;
+}
+
+.login-wrapper.highContrast .domain.kakao {
+  color: #dbdbdb;
+}
+
 .domain.google {
+  border-color: #767676;
   background-image: url(../assets/Google__G__Logo\ 2.svg);
+  color: #767676;
 }
+.login-wrapper.highContrast .domain.google {
+  border-color: #65FB76;
+}
+
+.login-wrapper.highContrast .domain.google {
+  color: #dbdbdb;
+}
+
 .domain.facebook {
   border-color: #2D9CDB;
   background-image: url(../assets/facebook.svg);
+  color: #767676;
+}
+.login-wrapper.highContrast .domain.facebook {
+  border-color: #B3E3FF;
+}
+
+.login-wrapper.highContrast .domain.facebook {
+  color: #dbdbdb;
 }
 
 .email {
@@ -83,6 +116,17 @@ body {
   margin-top: 20px;
   color: #767676;
 }
+.login-wrapper.highContrast .email {
+  color: #dbdbdb;
+}
+
+.email a {
+  color: #767676;
+}
+.login-wrapper.highContrast .email a {
+  color: #dbdbdb;
+}
+
 .email span {
   margin: 0 12px;
 }

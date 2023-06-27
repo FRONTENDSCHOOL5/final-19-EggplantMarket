@@ -56,13 +56,22 @@ main {
   margin-top: 6px;
   padding-left: 12px;
 }
+.post-detail-wrapper.highContrast .comment-list .comment-item .comment-time {
+  color: #dbdbdb;
+}
+
 .comment-list .comment-item .comment-text {
   margin-left: 54px;
   margin-right: 24px;
   line-height: 1.5;
   font-weight: 400;
   font-size: 14px;
+  color: #000000;
 }
+.post-detail-wrapper.highContrast .comment-list .comment-item .comment-text {
+  color: #ffffff;
+}
+
 .comment-list .comment-item .btn-more {
   position: absolute;
   top: 0;
@@ -98,6 +107,9 @@ main {
   font-size: 0.875rem;
   color: #000000;
 }
+.post-detail-wrapper.highContrast .comment-user-info .user-name {
+  color: #ffffff;
+}
 
 .comment .img-cover {
   display: inline-block;
@@ -117,7 +129,69 @@ main {
 .comment #commemt-input {
   padding: 8px;
   margin-right: 10px;
+  color: #000000;
+  background-color: #fff;
 }
+.post-detail-wrapper.highContrast .comment #commemt-input {
+  color: #ffffff;
+}
+
+.post-detail-wrapper.highContrast .comment #commemt-input {
+  background-color: #000000;
+}
+
 .comment button:not(:disabled) {
   color: #635CA5;
+}
+.post-detail-wrapper.highContrast .comment button:not(:disabled) {
+  color: #FFEB32;
+}
+
+#comment-input::-webkit-input-placeholder {
+  color: #c4c4c4;
+}
+
+#comment-input::-moz-placeholder {
+  color: #c4c4c4;
+}
+
+#comment-input:-ms-input-placeholder {
+  color: #c4c4c4;
+}
+
+#comment-input::-ms-input-placeholder {
+  color: #c4c4c4;
+}
+
+#comment-input::placeholder {
+  color: #c4c4c4;
+}
+.post-detail-wrapper.highContrast #comment-input::-webkit-input-placeholder {
+  color: #bdbdbd;
+}
+.post-detail-wrapper.highContrast #comment-input::-moz-placeholder {
+  color: #bdbdbd;
+}
+.post-detail-wrapper.highContrast #comment-input:-ms-input-placeholder {
+  color: #bdbdbd;
+}
+.post-detail-wrapper.highContrast #comment-input::-ms-input-placeholder {
+  color: #bdbdbd;
+}
+.post-detail-wrapper.highContrast #comment-input::placeholder {
+  color: #bdbdbd;
+}
+
+.post-icon path {
+  stroke: #767676;
+}
+.post-detail-wrapper.highContrast .post-icon path {
+  stroke: #dbdbdb;
+}
+
+.post-icon span {
+  color: #767676;
+}
+.post-detail-wrapper.highContrast .post-icon span {
+  color: #dbdbdb;
 }

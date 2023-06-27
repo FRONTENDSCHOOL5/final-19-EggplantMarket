@@ -1,9 +1,76 @@
 @import "global";
 @import "variables";
 
-// 질문
-// 일단 px->rem으로 변경
-// 폰트만 건들여야할까?
+$theme: (
+    light: (bg-color:#fff,
+    root-color: #f2f2f2,
+    btn-color: #ffffff,
+    btn-font:#767676,
+    disabled-btn-color: #BCADDC,
+    font-color: #000000,
+    btn-font-color: #ffffff,
+    gray-color: #767676,
+    box-shadow : none,
+    border: none,
+    profile-border : 1px solid #dbdbdb,
+    icon-border : 1px solid #767676,
+    price-color: #BF8DFF,
+    placeholder-color:#c4c4c4,
+    warning-color: #EB5757,
+    bg-logo:url(../assets/symbol-logo.svg),
+    home-image: url(../assets/icon/icon-home.svg),
+    chat-image: url(../assets/icon/icon-message-circle.svg),
+    post-image: url(../assets/icon/icon-edit.svg),
+    profile-image: url(../assets/icon/icon-user-fill.svg),
+    input-color: #F2F2F2,
+    strong-color: #9747FF,
+    chat-btn:url(../assets//icon/icon-message-circle.svg),
+    share-btn:url(../assets//icon/icon-share.svg),
+    ),
+    highContrast: (bg-color:#000000,
+    root-color: #000000,
+    btn-color: #E4D6FF,
+    btn-font: #000000,
+    disabled-btn-color: transparent ,
+    font-color: #ffffff,
+    btn-font-color: #000000,
+    gray-color: #dbdbdb,
+    box-shadow: 0 0 0 2px #E4D6FF inset,
+    border: 2px solid #E4D6FF,
+    profile-border : none,
+    icon-border : 1px solid #dbdbdb,
+    price-color: #C5A8FF,
+    placeholder-color:#000000,
+    warning-color: #FFEB32,
+    bg-logo:url(../assets/symbol-logo-highContrast.svg),
+    home-image: url(../assets/icon/icon-home-hc.svg),
+    chat-image: url(../assets/icon/icon-message-circle-hc.svg),
+    post-image: url(../assets/icon/icon-edit-hc.svg),
+    profile-image: url(../assets/icon/icon-user-fill-hc.svg),
+    input-color: #bdbdbd,
+    strong-color: #FFEB32,
+    chat-btn:url(../assets//icon/icon-message-circle-hc.svg),
+    share-btn:url(../assets//icon/icon-share-hc.svg),
+    )
+);
+
+@function get-color($key, $type: 'light') {
+    @each $name,
+    $color in map-get($theme, $type) {
+        @if($key ==$name) {
+            @return $color
+        }
+    }
+}
+
+@mixin get-color($property, $color) {
+    
+    #{$property}: get-color($color);
+
+    @at-root .profile-info-wrapper.highContrast & {
+        #{$property}: get-color($color, highContrast);
+    }
+}
 
 .img-crop {
     margin: 0 auto;
@@ -31,12 +98,16 @@ main {
     margin-bottom: 61px;
 }
 header{
-    background-color: $white-color;
+    @include get-color(background-color, bg-color);
+}
+.btn-option{
+    
 }
 
 .profile-container {
-    border: 1px solid $gray100-color;
+    @include get-color(border, profile-border);
     border-top: 0;
+    @include get-color(background-color, bg-color);
     position: relative;
     text-align: center;
     padding: {
@@ -50,6 +121,12 @@ header{
         text-decoration: none;
     }
     .profile-header{
+        strong {
+            @include get-color(color, font-color);
+        }
+        .profile-id {
+            @include get-color(color, gray-color);
+        }
         display: flex;
         flex-direction: column;
     }
@@ -65,7 +142,7 @@ header{
         p {
             margin-top: 6px;
             font-size: .5rem;
-            color: $gray300-color;
+            @include get-color(color, gray-color);
         }
         & > strong {
             font-size: 1.125rem;
@@ -99,6 +176,7 @@ header{
     }
 
     .profile-intro {
+        @include get-color(color, gray-color);
         font-size: .875rem;
         margin: {
             top: 16px;
@@ -109,7 +187,13 @@ header{
     .btn-wrap-my {
         font-size: 0;
         line-height: 0;
+        button {
+            @include get-color(background-color, btn-color);
+            @include get-color(color, btn-font);
+
+        }
         & :first-child {
+            
             margin-right: 12px;
         }
         
@@ -132,7 +216,7 @@ header{
         font-size: 0;
         line-height: 0;
         .circle{
-            border: 1px solid $gray300-color;
+            @include get-color(border, icon-border);
             border-radius: 50%;
             width: 34px;
             height: 34px;
@@ -143,10 +227,10 @@ header{
         justify-content: center;
         
         .btn-chat{
-            background-image: url(../assets//icon/icon-message-circle.svg)
+            @include get-color(background-image, chat-btn);
         }
         .btn-share{
-            background-image: url(../assets//icon/icon-share.svg);
+            @include get-color(background-image, share-btn);
         }
         .size-m {
             margin: 0 12px;
@@ -156,6 +240,87 @@ header{
                 display: none;
             }
         }
+    }
+}
+
+.product-container{
+    @include get-color(background-color, bg-color);
+    h2 {
+        @include get-color(color, font-color);
+    }
+    .product-name {
+        @include get-color(color, font-color);
+    }
+    .product-price {
+        @include get-color(color, price-color);
+    }
+}
+
+.post-container {
+    @include get-color(background-color, bg-color);
+}
+
+.user-follow .user-info {
+    .user-id {
+        @include get-color(color, gray-color);
+    }
+    @include get-color(color, font-color);
+}
+
+.post-text {
+    @include get-color(color, font-color);
+}
+
+.cnt{
+    @include get-color(color, gray-color);
+}
+
+.btn-comment {
+    @include get-color(color, gray-color);
+}
+
+.post-date {
+    @include get-color(color, gray-color);
+}
+
+.tab-item-list {
+    @include get-color(background-color, bg-color);
+}
+
+.tab-item-list {
+    .here {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, profile-image);
+    }
+    @include get-color(background-color, bg-color);
+}
+
+.tab-item-chat{
+    a {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, chat-image);
+    }
+}
+
+.tab-item-follow {
+    a {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, post-image);
+    }
+}
+
+.tab-item-home {
+    a {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, home-image);
     }
 }
 

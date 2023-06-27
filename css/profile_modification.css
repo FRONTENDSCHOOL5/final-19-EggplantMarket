@@ -68,7 +68,12 @@ form label {
   display: block;
   margin-bottom: 2px;
   text-align: start;
+  color: #767676;
 }
+.profile-modif-wrapper.highContrast form label {
+  color: #dbdbdb;
+}
+
 form label.btn-upload {
   position: absolute;
   right: 0;
@@ -80,45 +85,89 @@ form label.btn-upload {
 form label.btn-upload svg > circle {
   fill: #635CA5;
 }
+.profile-modif-wrapper.highContrast form label.btn-upload svg > circle {
+  fill: #E4D6FF;
+}
+
+form label.btn-upload svg path {
+  stroke: #fff;
+}
+.profile-modif-wrapper.highContrast form label.btn-upload svg path {
+  stroke: #000000;
+}
+
 form input {
   display: block;
   width: 100%;
   border: none;
   border-bottom: 1px solid #dbdbdb;
   padding: 8px 0;
+  background-color: #fff;
+  color: #000000;
 }
+.profile-modif-wrapper.highContrast form input {
+  background-color: #000000;
+}
+
+.profile-modif-wrapper.highContrast form input {
+  color: #ffffff;
+}
+
 form input.btn-upload {
   display: none;
 }
 form input::-webkit-input-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #767676;
 }
 form input::-moz-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #767676;
 }
 form input:-ms-input-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #767676;
 }
 form input::-ms-input-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #767676;
 }
 form input::placeholder {
   font-size: 0.875rem;
+  color: #767676;
+}
+.profile-modif-wrapper.highContrast form input::-webkit-input-placeholder {
   color: #dbdbdb;
 }
+.profile-modif-wrapper.highContrast form input::-moz-placeholder {
+  color: #dbdbdb;
+}
+.profile-modif-wrapper.highContrast form input:-ms-input-placeholder {
+  color: #dbdbdb;
+}
+.profile-modif-wrapper.highContrast form input::-ms-input-placeholder {
+  color: #dbdbdb;
+}
+.profile-modif-wrapper.highContrast form input::placeholder {
+  color: #dbdbdb;
+}
+
 form input:focus {
   border-bottom: 1px solid #9747FF;
   outline: none;
 }
+.profile-modif-wrapper.highContrast form input:focus {
+  border-bottom: 1px solid #FFEB32;
+}
+
 form [class^=warning-msg] {
   color: #EB5757;
   font-size: 12px;
   margin-top: 6px;
   display: none;
+}
+.profile-modif-wrapper.highContrast form [class^=warning-msg] {
+  color: #FFEB32;
 }
 
 .btn-upload {

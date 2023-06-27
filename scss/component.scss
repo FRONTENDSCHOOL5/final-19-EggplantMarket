@@ -67,15 +67,19 @@ $theme: (
     border-bottom: .0625rem solid $gray100-color;
 }
 .nav{
-    &-upload{
-        padding: .5375rem 1rem;
+    &-main {
+            padding: 13px 1rem;
     }
     &-search{
         padding: .5625rem 1rem;
     }
-    &-basic, &-main, &-chat{
+        &-basic,
+        &-chat {
         padding: 3px 5px;
     }
+        &-upload {
+            padding: 3px 1rem 5px 3px;
+        }
 }
 
 .btn-back{
@@ -332,6 +336,7 @@ $theme: (
             height: 2.25rem;
         overflow: hidden;
         border-radius: 50%;
+        border: 1px solid #DBDBDB;
     
         img {
             width: 100%;
@@ -356,8 +361,8 @@ $theme: (
         width: 1.5rem;
         position: absolute;
         top: 0;
-        left: calc(100% - 1.5625rem);
-        transform: translate(0, 40%);
+        right: -12px;
+            transform: translateX(-25%);
         img{
             width: 100%;
         }
@@ -393,17 +398,22 @@ $theme: (
 .post-edit{
     margin: 1rem auto 1rem 3.375rem;
     padding-bottom: .3125rem;
+    a:first-child {
+            display: block;
+        }
     .post-text{
         @include get-color(color, font-color);
         margin-bottom: 1rem;
         line-height: 1.125rem;
         word-break: break-all;
+        white-space: pre-line;
     }
 .img-cover {
     max-width: 19rem;
     margin-bottom: .75rem;
     border-radius: .625rem;
     overflow: hidden;
+    border: 1px solid #DBDBDB;
 
         .post-img {
             width: 100%;

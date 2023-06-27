@@ -109,6 +109,7 @@ function displayPost(post) {
 
     // h2
     const hd = document.querySelector('.home-post h2');
+    hd.parentNode.setAttribute('data-postid',post.id)
     const headingContent = post.content ? post.content : '사진만 있는 게시글';
     hd.innerHTML = headingContent;
 
@@ -118,7 +119,7 @@ function displayPost(post) {
     userInfoSec.innerHTML = `
     <a class="profile-img img-cover" href="./profile_info.html?accountName=${post.author.accountname}">
         <span class="a11y-hidden">${post.author.username}의 프로필 보기</span>
-        <img src=${post.author.image} alt="">
+        <img src=${checkImageUrl(post.author.image,'profile')} alt="">
     </a>
     <a class="user-info" href="./profile_info.html?accountName=${post.author.accountname}">
         <p class="user-name">${post.author.username}<span class="a11y-hidden">의 프로필 보기</span></p>
@@ -146,7 +147,7 @@ function displayPost(post) {
     }
     if(post.image){
         postInfoSec.querySelector('div').insertAdjacentHTML('beforeend',`<div class="img-cover">
-        <img class="post-img" src=${post.image} alt="">
+        <img class="post-img" src=${checkImageUrl(post.image, 'post')} alt="">
     </div>`)
     postInfoSec.querySelector('.btn-like').addEventListener('click',handleLike)
     }
@@ -155,7 +156,6 @@ function displayPost(post) {
     const btnOption = document.createElement('button');
     btnOption.setAttribute('class', 'btn-option');
     btnOption.innerHTML = `<span class="a11y-hidden">게시물 옵션</span><img src="../assets/icon/icon-more-vertical.svg" alt="">`;
-    btnOption.setAttribute('data-postid',post.id)
 
     frag.append(userInfoSec, postInfoSec, btnOption);
     postViewSec.append(frag);

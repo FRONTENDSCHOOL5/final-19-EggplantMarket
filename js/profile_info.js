@@ -112,8 +112,7 @@ function updateProduct(product_data,count){
             
             const productImg = document.createElement('img')
             productImg.className='product-img'
-            const itemSrc = item.itemImage.includes("https://api.mandarin.weniv.co.kr",) ? item.itemImage : "https://api.mandarin.weniv.co.kr/1687488082591.png"
-            productImg.setAttribute('src', `${itemSrc}`)
+            productImg.setAttribute('src', `${checkImageUrl(item.itemImage, 'post')}`);
 
             const productPrice = document.createElement('strong')
             productPrice.className='product-price'
@@ -155,7 +154,7 @@ function updatePost(post_data) {
             userImg.classList.add('profile-img', 'img-cover')
 
             const userImgImg = document.createElement('img');
-            userImgImg.src = item.author.image;
+            userImgImg.src = checkImageUrl(item.author.image, 'profile');
 
             userImg.appendChild(userImgImg);
 
@@ -247,9 +246,7 @@ function updatePost(post_data) {
 
             const btnOption = document.createElement('button');
             btnOption.className = 'btn-option';
-            btnOption.innerHTML = `
-            <span class="a11y-hidden">게시물 옵션</span><img src="../assets/icon/icon-more-vertical.svg" alt="">
-            `;
+            btnOption.innerHTML = `<span class="a11y-hidden">게시물 옵션</span>`;
             btnOption.setAttribute('data-postid',`${item.id}`)
 
             post.appendChild(btnOption);

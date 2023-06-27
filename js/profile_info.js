@@ -9,6 +9,8 @@ window.addEventListener("scroll", async () => {
     if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
         console.log('바닥이당! 데이터 불러올게 기다려!')
         throttle(updatePost((await loadPostData(url, token, profileAccountName)).post), 1000)
+        const postBtnOption = document.querySelectorAll('main .btn-option');
+        handlePostOptionModal(postBtnOption)
     };
 })
 

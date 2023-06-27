@@ -254,8 +254,6 @@ function updatePost(post_data) {
             fragment.appendChild(listLi);
 
         });
-        listUl.appendChild(fragment)
-    albumUl.appendChild(albumfragment)
         document.querySelector('.post-container').style.display='block'
 
         listUl.appendChild(fragment);

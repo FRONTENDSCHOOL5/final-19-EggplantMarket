@@ -155,7 +155,7 @@ function displayPost(post) {
     // 더보기 버튼
     const btnOption = document.createElement('button');
     btnOption.setAttribute('class', 'btn-option');
-    btnOption.innerHTML = `<span class="a11y-hidden">게시물 옵션</span><img src="../assets/icon/icon-more-vertical.svg" alt="">`;
+    btnOption.innerHTML = `<span class="a11y-hidden">게시물 옵션</span>`;
 
     frag.append(userInfoSec, postInfoSec, btnOption);
     postViewSec.append(frag);
@@ -183,7 +183,7 @@ function displayComment(comments) {
     </div>
     <p class="comment-time">${displayedAt(i.createdAt)}</p>
     <h3 class="comment-text">${i.content}</h3>
-    <button class="btn-more" data-commentId=${i.id}><span class="a11y-hidden">댓글 옵션</span><img src="../assets/icon/icon-more-vertical.svg" alt=""></button>`;
+    <button class="btn-more" data-commentId=${i.id}><span class="a11y-hidden">댓글 옵션</span></button>`;
 
         frag.append(li);
     })

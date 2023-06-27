@@ -352,7 +352,6 @@ async function run(url, token, accountName) {
 run(url, token, profileAccountName);
 window.addEventListener('resize',touchScroll)
 
-
 function touchScroll(){
     const list = document.querySelector('.product-list')
     const listScrollWidth = list.scrollWidth;
@@ -428,8 +427,4 @@ function touchScroll(){
         list.addEventListener('click', onClick, true);
     };
     bindEvents();
-}
-
-function focusItem(){
-    
 }

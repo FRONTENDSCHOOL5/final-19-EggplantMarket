@@ -6,6 +6,35 @@ const imglist = document.querySelector('.upload-imgs-list');
 const contentInp = document.querySelector('textarea');
 const imgInp = document.querySelector('#input-file');
 
+const pageUrl = new URL(window.location.href);
+const POSTID = pageUrl.searchParams.get('postId')
+const METHOD = POSTID ? 'PUT' : 'POST'
+
+async function getPostData(){
+    const res = await fetch(`https://api.mandarin.weniv.co.kr/post/${POSTID}`,{
+        method : "GET",
+        headers : {
+            "Authorization" : `Bearer ${token}`,
+            "Content-type" : "application/json"
+        }
+    })
+    const json = await res.json();
+    
+    console.log(json)
+    if(json.post.content){
+        document.querySelector('textarea').value=json.post.content
+    }
+    if(json.post.image){
+        const li = document.createElement('li');
+            li.innerHTML = `<div class="img-cover">
+            <img src=${checkImageUrl(json.post.image,'post')} alt="">
+            <button class="btn-remove"></button>
+        </div>`;
+        imglist.append(li);
+    }
+
+    return json
+}
 // 작성자 프로필 이미지 가져오기
 async function getMyImg() {
     const reqPath = "/user/myinfo";
@@ -33,6 +62,13 @@ contentInp.addEventListener('keyup', (e) => {
 
 let validContent = false;
 let validImg = false;
+
+if(POSTID){
+    uploadButton.textContent = '수정'
+    uploadButton.disabled = false
+    getPostData()
+}
+
 
 // 텍스트 입력
 contentInp.addEventListener('change', () => {
@@ -83,6 +119,7 @@ imglist.addEventListener('click', (e) => {
     if (e.target.className === 'btn-remove') {
         e.target.closest('li').remove();
 
+        // ????
         if (imglist.children.length === 0) {
             // 이미지 추가한 거 다 삭제하면 invalid
             validImg = false;
@@ -113,20 +150,27 @@ function isValid() {
 
 uploadButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    await submitPostForm();
+    await submitPostForm(METHOD);
     console.log('게시글 작성 완료');
     location.href=`./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
 })
 
 // 작성 완료된 게시글 내용 post요청
-async function submitPostForm() {
+async function submitPostForm(METHOD) {
     const token = localStorage.getItem('user-token');
 
     const url = "https://api.mandarin.weniv.co.kr";
-    const reqPath = "/post"
+    const reqPath = METHOD==="PUT" ? `/post/${POSTID}` : "/post"
 
     // 서버에 이미지 저장하고 가져오기
-    const fileName = await postImg();
+    let fileName;
+    if(METHOD === "PUT" && !document.querySelector('#input-file').files[0]){
+        if(document.querySelector('.img-cover img')){
+            fileName =document.querySelector('.img-cover img').src
+        }
+    } else{
+        fileName = await postImg();
+    }
 
     const data = {
         "post": {
@@ -134,9 +178,10 @@ async function submitPostForm() {
             "image": fileName
         }
     }
+    console.log(data)
 
     const res = await fetch(url + reqPath, {
-        method: "POST",
+        method: METHOD,
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-type": "application/json"
@@ -145,6 +190,7 @@ async function submitPostForm() {
     })
 
     const json = await res.json();
+
     return json;
 }
 

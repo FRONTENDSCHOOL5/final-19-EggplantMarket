@@ -49,7 +49,7 @@ function setFocusOnModalActions() {
     const focusableElements = Array.from(modalActions.getElementsByTagName('button'));
       focusableElements[0].focus();
       focusableElements[1].addEventListener('click', () => {
-        popUpModal.style.display = 'none';
+        popUpModal.style.visibility = 'hidden';
         const btnCancel = modalContent.querySelector('.btn-cancel');
         btnCancel.focus();
     });

@@ -36,6 +36,7 @@ a {
   width: 110px;
   border-radius: 50%;
   overflow: hidden;
+  border: 1px solid #DBDBDB;
 }
 .img-crop img {
   width: 100%;

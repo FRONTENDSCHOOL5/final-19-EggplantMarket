@@ -49,14 +49,17 @@ a {
   border-bottom: 0.0625rem solid #dbdbdb;
 }
 
-.nav-upload {
-  padding: 0.5375rem 1rem;
+.nav-main {
+  padding: 13px 1rem;
 }
 .nav-search {
   padding: 0.5625rem 1rem;
 }
-.nav-basic, .nav-main, .nav-chat {
+.nav-basic, .nav-chat {
   padding: 3px 5px;
+}
+.nav-upload {
+  padding: 3px 1rem 5px 3px;
 }
 
 .btn-back {
@@ -347,6 +350,7 @@ a {
   height: 2.25rem;
   overflow: hidden;
   border-radius: 50%;
+  border: 1px solid #DBDBDB;
 }
 .user-follow .img-cover img {
   width: 100%;
@@ -375,9 +379,9 @@ a {
   width: 1.5rem;
   position: absolute;
   top: 0;
-  left: calc(100% - 1.5625rem);
-  -webkit-transform: translate(0, 40%);
-          transform: translate(0, 40%);
+  right: -12px;
+  -webkit-transform: translateX(-25%);
+          transform: translateX(-25%);
 }
 .home-post .btn-option img {
   width: 100%;
@@ -417,11 +421,15 @@ a {
   margin: 1rem auto 1rem 3.375rem;
   padding-bottom: 0.3125rem;
 }
+.post-edit a:first-child {
+  display: block;
+}
 .post-edit .post-text {
   color: #000000;
   margin-bottom: 1rem;
   line-height: 1.125rem;
   word-break: break-all;
+  white-space: pre-line;
 }
 .highContrast .post-edit .post-text {
   color: #ffffff;
@@ -432,6 +440,7 @@ a {
   margin-bottom: 0.75rem;
   border-radius: 0.625rem;
   overflow: hidden;
+  border: 1px solid #DBDBDB;
 }
 .post-edit .img-cover .post-img {
   width: 100%;

@@ -212,7 +212,7 @@ function introUpdate(profileData) {
     // 프로필 이미지 보여주기
     const imageSrc = profileData.image;
     if(imageSrc) {
-        imageInput.src = imageSrc;
+        imageInput.src = checkImageUrl(imageSrc,'profile');
     }
     userNameInput.value = profileData.username;
     accountNameInput.value = profileData.accountname;
@@ -225,17 +225,3 @@ async function run(url, token, accountName) {
 }
 
 run(url, token, userID);
-
-//테마
-const wrapper = document.querySelector('.profile-modif-wrapper');
-const theme = window.localStorage.getItem('theme');
-if (theme === 'highContrast') {
-    wrapper.classList.add('highContrast');
-    document.body.style.backgroundColor = '#000000';
-    document.getElementById("profile-modif-backBtn").src = "../assets/icon/icon-arrow-left-hc.svg";
-    document.getElementById("img-btn").src = "../assets/img-btn-hc.svg";
-} else {
-    wrapper.classList.remove('highContrast');
-    document.body.style.backgroundColor = '#ffffff'; 
-    
-}

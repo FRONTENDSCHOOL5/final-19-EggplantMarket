@@ -220,7 +220,7 @@ function productUpdate(productData) {
     const imageSrc = productData.itemImage;
     if(imageSrc) {
         imageInput.src = imageSrc;
-        imageInput.style.backgroundImage = `url('${imageSrc}')`;
+        imageInput.style.backgroundImage = `url('${checkImageUrl(imageSrc,'post')}')`;
         imageInput.style.backgroundSize = 'cover';
         imageInput.style.backgroundPosition = 'center';
         imageInput.style.backgroundRepeat = 'no-repeat';

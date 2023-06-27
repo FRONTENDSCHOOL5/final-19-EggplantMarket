@@ -210,7 +210,7 @@ function updatePost(post_data) {
                         const albumLi = document.createElement('li');
                         albumLi.className = 'post-album-item';
                         albumLi.innerHTML = `
-                        <a href="./post_detail.html?postId=${item.id}" tabindex="1">
+                        <a href="./post_detail.html?postId=${item.id}">
                             <img src="${checkImageUrl(item.image.split(',')[0],'post')}" alt="">
                         </a>
                         `;

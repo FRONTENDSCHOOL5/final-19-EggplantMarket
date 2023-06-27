@@ -27,7 +27,7 @@ async function getPostData(){
     if(json.post.image){
         const li = document.createElement('li');
             li.innerHTML = `<div class="img-cover">
-            <img src=${checkImageUrl(json.post.image,'post')} alt="이미지 미리보기">
+            <img src=${checkImageUrl(json.post.image,'post')} alt="">
             <button class="btn-remove"></button>
         </div>`;
         imglist.append(li);

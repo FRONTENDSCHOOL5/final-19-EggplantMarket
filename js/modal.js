@@ -2,7 +2,8 @@
 
 const postModal = document.querySelector('.post-modal-background');
 const popUpModal = document.querySelector('.modal-background');
-const modalContent = document.querySelector('.modal-content')
+const modalContent = document.querySelector('.modal-content');
+const modalActions = popUpModal.querySelector('.modal-content .modal-actions');
 
 function handleModal() {
     const headerBtnOption = document.querySelector('header .btn-option');
@@ -29,22 +30,29 @@ function handleModal() {
 
 }
 
+let lastFocusedElement;
 function btnOptionFocus(nodes, modalContent) {
-    let lastFocusedElement;
-    nodes.addEventListener('keydown', (event) => {
+    nodes.addEventListener('keydown', event => {
         if (event.code === 'Tab' && !event.shiftKey) {
             if(lastFocusedElement){
                 lastFocusedElement.focus();
                 lastFocusedElement=null;
-            } else {
-                modalContent.querySelector('.modal-description').focus();
-                // const modalDescriptions = modalContent.querySelectorAll('.modal-description')
-                // modalDescriptions.forEach((item)=>{
-                //     item.focus();
-                // })
+            } 
+            else {
+                setTimeout(()=> modalContent.querySelector('.modal-description').focus())
           } 
         }
       });
+}
+
+function setFocusOnModalActions() {
+    const focusableElements = Array.from(modalActions.getElementsByTagName('button'));
+      focusableElements[0].focus();
+      focusableElements[1].addEventListener('click', () => {
+        popUpModal.style.display = 'none';
+        const btnCancel = modalContent.querySelector('.btn-cancel');
+        btnCancel.focus();
+    });
 }
 
 function handleHeaderModal(node){
@@ -71,10 +79,12 @@ function handleHeaderModal(node){
             else {
                 editPopUp(popUpModal,'로그아웃하시겠어요?','로그아웃',logOut)
                 popUpModal.style.visibility = 'visible';
+                setFocusOnModalActions(); 
             }
         })})
 
         postModal.style.display = 'block';
+        // popUpModalFocus(popUpModal);
     });
 }
 
@@ -121,9 +131,13 @@ function handlePostOptionModal(nodes) {
             }
             if(e.currentTarget.classList.contains('btn-delete')){
                 editPopUp(popUpModal,'게시글을 삭제할까요?','삭제',()=>{postDelete(targetPostId)})
+                popUpModal.style.visibility = 'visible';
+                setFocusOnModalActions();
             }
             if(e.currentTarget.classList.contains('btn-report')){
                 editPopUp(popUpModal,'게시글을 신고할까요?','신고', ()=>{postReport(targetPostId)})
+                popUpModal.style.visibility = 'visible';
+                setFocusOnModalActions();
             }
             popUpModal.style.visibility = 'visible';
             if(e.currentTarget.classList.contains('btn-cancel')){
@@ -170,9 +184,13 @@ function handleCommentOptionModal(nodes){
         modalContent.querySelector('.modal-description').addEventListener('click', (e) => {
             if(e.currentTarget.classList.contains('btn-delete')){
                 editPopUp(popUpModal,'댓글을 삭제할까요?','삭제',() => commentDelete(targetPostId,targetCommentId))
+                popUpModal.style.visibility = 'visible';
+                setFocusOnModalActions();
             }
             if(e.currentTarget.classList.contains('btn-report')){
                 editPopUp(popUpModal,'댓글을 신고할까요?','신고',() => commentReport(targetPostId,targetCommentId))
+                popUpModal.style.visibility = 'visible';
+                setFocusOnModalActions();
             }
             popUpModal.style.visibility = 'visible';
             if(e.currentTarget.classList.contains('btn-cancel')){
@@ -222,6 +240,7 @@ function handleProductOptionModal(nodes){
             if(e.currentTarget.classList.contains('btn-product-delete')){
                 editPopUp(popUpModal,'상품을 삭제할까요?','삭제',() => productDelete(productId))
                 popUpModal.style.visibility = 'visible';
+                setFocusOnModalActions();
             }
             if(e.currentTarget.classList.contains('btn-product-edit')){
                 location.href = `./product_upload.html?productId=${productId}`

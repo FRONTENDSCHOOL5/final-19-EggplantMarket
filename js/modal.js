@@ -55,6 +55,16 @@ function setFocusOnModalActions() {
     });
 }
 
+function handleCancelClick(item) {
+    postModal.style.display = 'none';
+    const focusableElements = Array.from(document.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
+    const currentItemIndex = focusableElements.findIndex(element => element === item);
+    const currentElement = focusableElements[currentItemIndex];
+    if (currentElement) {
+        currentElement.focus();
+    }
+}
+
 function handleHeaderModal(node){
     node.addEventListener('click',() => {
         modalContent.innerHTML = `
@@ -116,14 +126,8 @@ function handlePostOptionModal(nodes) {
         const btnCancel = modalContent.querySelector('.btn-cancel');
 
         btnCancel.addEventListener('click', () => {
-            postModal.style.display = 'none';
-            const focusableElements = Array.from(document.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
-            const currentItemIndex = focusableElements.findIndex(element => element === item);
-            const nextElement = focusableElements[currentItemIndex + 1];
-            if (nextElement) {
-              nextElement.focus();
-            }
-          });
+            handleCancelClick(item);
+        });
 
         modalContent.querySelectorAll('.modal-description').forEach(item => {item.addEventListener('click', (e) => {
             if(e.currentTarget.classList.contains('btn-edit')){
@@ -172,14 +176,8 @@ function handleCommentOptionModal(nodes){
         const btnCancel = modalContent.querySelector('.btn-cancel');
 
         btnCancel.addEventListener('click', () => {
-            postModal.style.display = 'none';
-            const focusableElements = Array.from(document.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
-            const currentItemIndex = focusableElements.findIndex(element => element === item);
-            const nextElement = focusableElements[currentItemIndex + 1];
-            if (nextElement) {
-              nextElement.focus();
-            }
-          });
+            handleCancelClick(item);
+        });
 
         modalContent.querySelector('.modal-description').addEventListener('click', (e) => {
             if(e.currentTarget.classList.contains('btn-delete')){
@@ -226,15 +224,8 @@ function handleProductOptionModal(nodes){
         const btnCancel = modalContent.querySelector('.btn-cancel');
 
         btnCancel.addEventListener('click', () => {
-            postModal.style.display = 'none';
-            const focusableElements = Array.from(document.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
-            const currentItemIndex = focusableElements.findIndex(element => element === item);
-            const nextElement = focusableElements[currentItemIndex + 1];
-            if (nextElement) {
-                console.log(nextElement);
-              nextElement.focus();
-            }
-          });
+            handleCancelClick(item);
+        });
 
         modalContent.querySelectorAll('.modal-description').forEach(item=>{item.addEventListener('click', (e) => {
             if(e.currentTarget.classList.contains('btn-product-delete')){

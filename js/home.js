@@ -44,7 +44,7 @@ async function postFeed(postsData) {
                         <div class="user-follow">
                             <a class="profile-img img-cover" href="./profile_info.html?accountName=${item.author.accountname}">
                                 <span class="a11y-hidden">${item.author.username}의 프로필 보기</span>
-                                <img src="${item.author.image}" alt="">
+                                <img src="${checkImageUrl(item.author.image,'profile')}" alt="">
                             </a>
                             <a class="user-info" href="./profile_info.html?accountName=${item.author.accountname}">
                                 <p class="user-name">${item.author.username}<span class="a11y-hidden">의 프로필 보기</span></p>

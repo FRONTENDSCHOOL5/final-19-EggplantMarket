@@ -171,6 +171,7 @@ async function postDelete(targetPostId){
         }
     } catch(err){
         console.error(err);
+        location.href='./404.html'
     }
 }
 
@@ -187,6 +188,7 @@ async function postReport(targetPostId){
         await fetch(fullUrl,options)
     } catch (err){
         console.error(err)
+        location.href='./404.html'
     }
 }
 
@@ -207,6 +209,7 @@ async function commentDelete(targetPostId, targetCommentId){
         }
     } catch (err){
         console.error(err)
+        location.href='./404.html'
     }
 }
 
@@ -223,6 +226,7 @@ async function commentReport(targetPostId, targetCommentId){
         await fetch(fullUrl,options)
     } catch (err){
         console.error(err)
+        location.href='./404.html'
     }
 }
 
@@ -241,6 +245,7 @@ async function productDelete(productId){
         location.reload()
     } catch(err){
         console.error(err);
+        location.href='./404.html'
     }
 }
 

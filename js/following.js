@@ -51,6 +51,7 @@ async function postFollow(accountName) {
         console.log('팔로우 완료 : ', resJson.profile);
     } catch (err) {
         console.log(err)
+        location.href='./404.html'
     }
 }
 
@@ -69,6 +70,7 @@ async function deleteFollow(accountName) {
         console.log('팔로우 취소 완료 : ', resJson.profile);
     } catch (err) {
         console.log(err)
+        location.href='./404.html'
     }
 }
 

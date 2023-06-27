@@ -56,8 +56,9 @@ async function saveProfile(url, token) {
         const json = await res.json();
         console.log(json);
         // 성공적으로 저장되었을 때 추가적인 처리 가능
-    } catch (error) {
-        console.error(error);
+    } catch (err) {
+        console.error(err);
+        location.href='./404.html'
         // 저장 실패 시 에러 처리
     }
 }
@@ -197,6 +198,7 @@ async function Load_userinfo(url, token, accountName) {
         return resJson
     } catch (err) {
         console.error(err);
+        location.href='./404.html'
     }
 }
 

@@ -22,7 +22,8 @@ async function fetchData(url, options) {
         return data;
     } catch (err) {
         console.error(err);
-        throw err;
+        // throw err;
+        location.href='./404.html'
     }
 }
 
@@ -94,6 +95,7 @@ function updateInfo(profile_data){
 function updateProduct(product_data,count){
     if(count==0){
         document.querySelector('.product-container').style.display='none'
+        document.querySelector('.skip-nav a:nth-child(3)').style.display='none'
     } else{
 
         const productList = document.querySelector('.product-list')
@@ -139,6 +141,7 @@ function updatePost(post_data) {
     // 첫 요청시 데이터가 없으면 섹션 숨기기
     if (reqCnt == 1 && !post_data.length) {
         document.querySelector('.post-container').style.display = 'none'
+        document.querySelector('.skip-nav a:nth-child(4)').style.display='none'
     } else {
         const fragment = document.createDocumentFragment()
         const albumfragment = document.createDocumentFragment()
@@ -346,6 +349,7 @@ async function run(url, token, accountName) {
                 arr[(idx+1)%2].classList.remove('hidden');
             } catch(err) {
                 console.log(err)
+                location.href='./404.html'
             }
         })
     })

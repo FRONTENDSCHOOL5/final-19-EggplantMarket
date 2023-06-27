@@ -64,6 +64,7 @@ async function postComment(content) {
 
     } catch (err) {
         console.error(err);
+        location.href='./404.html'
     }
 }
 
@@ -82,6 +83,7 @@ async function getOnePost() {
         return resJson;
     } catch (err) {
         console.error(err);
+        location.href='./404.html'
     }
 }
 
@@ -100,6 +102,7 @@ async function getComments() {
         return resJson;
     } catch (err) {
         console.error(err);
+        location.href='./404.html'
     }
 }
 
@@ -201,6 +204,8 @@ function displayComment(comments) {
     const commentBtnOption = document.querySelectorAll('.btn-more');
     if(commentBtnOption.length !== 0){
         handleCommentOptionModal(commentBtnOption)
+    } else{
+        document.querySelector('.skip-nav a:nth-child(3)').style.display='none'
     }
 }
 

@@ -5,7 +5,7 @@ const myAccountName = localStorage.getItem("user-accountname");
 window.addEventListener("scroll", async () => {
     if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
         console.log('바닥이당! 데이터 불러올게 기다려!')
-        throttle(postFeed(await getData()), 1000)
+        postFeed(await getData())
     };
 })
 

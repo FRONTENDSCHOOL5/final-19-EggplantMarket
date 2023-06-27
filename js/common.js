@@ -57,9 +57,11 @@ function checkImageUrl(Img, position){
         
         if(Img.includes('Ellipse') || !fileNameWithExtension){
             if (position === 'profile'){
-                return 'https://api.mandarin.weniv.co.kr/' + '1687141773353.png'
+                if(localStorage('theme') === 'light') return 'https://api.mandarin.weniv.co.kr/' + '1687141773353.png'
+                if(localStorage('theme') === 'highContrast') return 'https://api.mandarin.weniv.co.kr/' + '1687827693364.png'
             } if (position === 'post'){
-                return 'https://api.mandarin.weniv.co.kr/' + '1687742174893.png'
+                if(localStorage('theme') === 'light') return 'https://api.mandarin.weniv.co.kr/' + '1687742174893.png'
+                if(localStorage('theme') === 'highContrast') return 'https://api.mandarin.weniv.co.kr/' + '1687742585629.png '
             }
         }
     }

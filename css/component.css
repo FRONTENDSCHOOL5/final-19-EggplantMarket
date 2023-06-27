@@ -71,6 +71,13 @@ a {
   background: url("../assets/icon/icon-more-vertical.svg") no-repeat center;
 }
 
+.highContrast .btn-back {
+  background-image: url("../assets/icon/icon-arrow-left-hc.svg");
+}
+.highContrast .btn-option, .highContrast .btn-more {
+  background-image: url("../assets/icon/icon-more-vertical-hc.svg");
+}
+
 .nav-basic .btn-back, .nav-upload .btn-back {
   -webkit-box-ordinal-group: 1;
       -ms-flex-order: 0;

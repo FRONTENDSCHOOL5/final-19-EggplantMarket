@@ -89,6 +89,15 @@ $theme: (
     background: url('../assets/icon/icon-more-vertical.svg') no-repeat center;
 }
 
+.highContrast{
+    .btn-back{
+        background-image: url("../assets/icon/icon-arrow-left-hc.svg");
+    }
+    .btn-option, .btn-more{
+        background-image: url('../assets/icon/icon-more-vertical-hc.svg');
+    }
+}
+
 .nav-basic, .nav-upload{
     .btn-back{
         order: 0;

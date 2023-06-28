@@ -587,12 +587,17 @@ footer{
         overflow:hidden;
 
         &:focus, &:active{
-            width:35%;
+            width:fit-content;
             height:auto;
             padding:15px;
             font-size:16px;
         }
     }
+}
+
+.highContrast .skip-nav a{
+    background: #fff;
+    color: #1c1c1c;
 }
 
 .mode_select{

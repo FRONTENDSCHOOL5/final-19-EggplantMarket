@@ -118,7 +118,7 @@ async function saveProduct(url, token){
     });
 
     const json = await res.json();
-    localStorage.setItem("product-id", json.product.id);
+    // localStorage.setItem("product-id", json.product.id);
     console.log(json);
 }
 

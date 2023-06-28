@@ -351,13 +351,18 @@ async function commentDelete(targetPostId, targetCommentId){
     try{
         await fetch(fullUrl,options)
         
-        const commentList = document.querySelector('.comment-list')
-        const targetComment = commentList.querySelector(`[data-commentid="${targetCommentId}"]`);
+        // const commentList = document.querySelector('.comment-list')
+        // const targetComment = commentList.querySelector(`[data-commentid="${targetCommentId}"]`);
 
-        if (targetComment) {
-            const targetCommentElement = targetComment.closest('li');
-            commentList.removeChild(targetCommentElement);
-        }
+        // if (targetComment) {
+        //     const targetCommentElement = targetComment.closest('li');
+        //     commentList.removeChild(targetCommentElement);
+        // }
+        await fetch(fullUrl,options)
+        
+        // if(!alert('댓글이 삭제되었습니다.')){
+            location.reload()
+        // }
     } catch (err){
         console.error(err)
         // location.href='./404.html'

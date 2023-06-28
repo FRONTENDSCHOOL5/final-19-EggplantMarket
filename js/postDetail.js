@@ -40,7 +40,8 @@ commentSubmitButton.addEventListener('click', async () => {
     commentInp.value = '';
     // 댓글 다시 뿌리기
     const dataComments = await getComments();
-    displayComment(dataComments.comments);
+    await displayComment(dataComments.comments);
+    document.querySelector('.btn-comment .cnt').textContent = document.querySelector('.comment-list').childNodes.length
 });
 
 // POST 댓글

@@ -23,7 +23,7 @@ if(document.querySelector('.btn-back')){
 }
 
 function checkImageExtension(file){
-    const validExtensions = ['.PNG','.JPG','.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+    const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
     const extension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
     return validExtensions.some(validExtension => extension.endsWith(validExtension));
 }
@@ -42,29 +42,22 @@ function checkImageUrl(Img, position){
     if(pattern.test(Img)){
 
         
-        if(localStorage.getItem('theme') === 'highContrast'){
-            if(position === 'profile'){
-                if(Img === LightProfile){
-                    return ContrastProfile
-                }
+        if (localStorage.getItem('theme') === 'highContrast') {
+            if (position === 'profile' && Img === LightProfile) {
+                return ContrastProfile;
             }
-            if(position === 'post'){
-                if(Img === LightPost){
-                    return ContrastPost
-                }
+            if (position === 'post' && Img === LightPost) {
+                return ContrastPost;
             }
-        } else if(localStorage.getItem('theme') === 'light') {
-            if(position === 'profile'){
-                if(Img === ContrastProfile){
-                    return LightProfile
-                }
+        } else if (localStorage.getItem('theme') === 'light') {
+            if (position === 'profile' && Img === ContrastProfile) {
+                return LightProfile;
             }
-            if(position === 'post'){
-                if(Img === ContrastPost){
-                    return LightPost
-                }
+            if (position === 'post' && Img === ContrastPost) {
+                return LightPost;
             }
         }
+        
 
         return Img
     }

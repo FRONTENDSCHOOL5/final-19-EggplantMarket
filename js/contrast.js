@@ -1,5 +1,4 @@
 // profile_modification
-
 // colorchange render함수
 function colorChange() {
     const LightProfile = 'https://api.mandarin.weniv.co.kr/1687141773353.png'
@@ -34,8 +33,9 @@ function colorChange() {
             if(item.src === LightPost) item.src=ContrastPost
         })
     } else {
+        console.log('키키')
         window.localStorage.setItem('theme', 'light');
-        wrapper.classList.remove('highContrast'); 
+        document.querySelector('body > div').classList.remove('highContrast'); 
         document.body.style.backgroundColor = '#ffffff'; 
 
         if(imgBtn) imgBtn.src = "../assets/img-button.svg";
@@ -44,22 +44,11 @@ function colorChange() {
         if(logo) logo.src = "../assets/logo.svg";
         if(search) search.src = "../assets/icon/icon-search.svg";
 
+        console.log(document.querySelectorAll('img'))
         document.querySelectorAll('img').forEach(item=>{
+            console.log('변경',item)
             if(item.src === ContrastProfile) item.src= LightProfile
             if(item.src === ContrastPost) item.src= LightPost
         })
     }
 }
-
-// set theme
-const radioGroup = document.getElementsByName('colorSet');
-radioGroup.forEach((input) => {
-    input.addEventListener('change', (e)=>{
-        localStorage.setItem('theme',e.target.id)
-        colorChange()
-    });
-});
-
-// 
-// 모달 이벤트 : localStorage set
-// change 함수 : colorChange

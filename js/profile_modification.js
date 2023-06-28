@@ -204,15 +204,16 @@ async function Load_userinfo(url, token, accountName) {
 
 // 가져온 프로필 정보 화면에 보여주기
 function introUpdate(profileData) {
-    const imageInput = document.querySelector('.img-cover img');
+    const imageInput = document.querySelector('.img-cover');
     const userNameInput = document.querySelector('#username');
     const accountNameInput = document.querySelector('#userid');
     const introInput = document.querySelector('#userinfo');
 
     // 프로필 이미지 보여주기
     const imageSrc = profileData.image;
+    console.log(imageSrc)
     if(imageSrc) {
-        imageInput.src = checkImageUrl(imageSrc,'profile');
+        imageInput.insertAdjacentHTML('beforeend',`<img src="${checkImageUrl(imageSrc,'profile')}" alt="기본 프로필 이미지">`)
     }
     userNameInput.value = profileData.username;
     accountNameInput.value = profileData.accountname;

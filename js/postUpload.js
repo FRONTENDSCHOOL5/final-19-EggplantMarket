@@ -51,7 +51,7 @@ async function getMyImg() {
     return json.user.image;
 }
 (async function () {
-    writerImg.src = await getMyImg();
+    writerImg.src =  checkImageUrl(await getMyImg(),'profile');
 })();
 
 // textarea 작성 길이 조절

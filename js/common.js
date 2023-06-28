@@ -1,3 +1,5 @@
+requestAnimationFrame(colorChange)
+
 if(localStorage.getItem('back')){
     location.reload()
     localStorage.removeItem('back')
@@ -51,7 +53,7 @@ function checkImageUrl(Img, position){
                     return ContrastPost
                 }
             }
-        } else if(localStorage.getItem('theme') === 'highContrast') {
+        } else if(localStorage.getItem('theme') === 'light') {
             if(position === 'profile'){
                 if(Img === ContrastProfile){
                     return LightProfile
@@ -64,7 +66,6 @@ function checkImageUrl(Img, position){
             }
         }
 
-        console.log('통과!')
         return Img
     }
     else{

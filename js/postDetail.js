@@ -35,7 +35,8 @@ commentInp.addEventListener('keyup', (e) => {
     }
 })
 
-commentSubmitButton.addEventListener('click', async () => {
+commentSubmitButton.addEventListener('click', async (e) => {
+    e.target.disabled = true
     await postComment(commentInp.value)
     commentInp.value = '';
     // 댓글 다시 뿌리기

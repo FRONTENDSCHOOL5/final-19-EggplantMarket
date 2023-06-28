@@ -308,6 +308,13 @@ $theme: (
     }
 }
 
+.mode_select{
+    label{
+        display: block;
+        padding: .875rem 0rem;
+    }
+}
+
 .nav-chat, .comment{
     .btn-back, .profile-img{
         order: 0;
@@ -580,10 +587,16 @@ footer{
         overflow:hidden;
 
         &:focus, &:active{
-            width:25%;
+            width:35%;
             height:auto;
             padding:15px;
             font-size:16px;
         }
+    }
+}
+
+.mode_select{
+    label > input{
+        margin-right: 15px;
     }
 }

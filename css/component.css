@@ -319,6 +319,11 @@ a {
   color: #FFEB32;
 }
 
+.mode_select label {
+  display: block;
+  padding: 0.875rem 0rem;
+}
+
 .nav-chat .btn-back, .nav-chat .profile-img, .comment .btn-back, .comment .profile-img {
   -webkit-box-ordinal-group: 1;
       -ms-flex-order: 0;
@@ -659,8 +664,12 @@ footer {
   overflow: hidden;
 }
 .skip-nav a:focus, .skip-nav a:active {
-  width: 25%;
+  width: 35%;
   height: auto;
   padding: 15px;
   font-size: 16px;
+}
+
+.mode_select label > input {
+  margin-right: 15px;
 }

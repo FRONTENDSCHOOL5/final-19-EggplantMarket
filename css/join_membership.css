@@ -41,8 +41,8 @@ p {
   text-align: center;
   font-size: 14px;
 }
-.join-wrapper.highContrast h2,
-.join-wrapper.highContrast p {
+.join.highContrast h2,
+.join.highContrast p {
   color: #dbdbdb;
 }
 
@@ -50,7 +50,7 @@ p {
   font-size: 24px;
   color: #000000;
 }
-.join-wrapper.highContrast .title {
+.join.highContrast .title {
   color: #ffffff;
 }
 
@@ -73,7 +73,7 @@ form {
   color: #767676;
   font-size: 0.75rem;
 }
-.join-wrapper.highContrast form {
+.join.highContrast form {
   color: #dbdbdb;
 }
 
@@ -96,14 +96,14 @@ form .profile-img .img-cover img {
 form .upload-img circle {
   fill: #9C85C5;
 }
-.join-wrapper.highContrast form .upload-img circle {
+.join.highContrast form .upload-img circle {
   fill: #E4D6FF;
 }
 
 form .upload-img path {
   stroke: #ffffff;
 }
-.join-wrapper.highContrast form .upload-img path {
+.join.highContrast form .upload-img path {
   stroke: #000000;
 }
 
@@ -116,7 +116,7 @@ form label {
   margin-bottom: 2px;
   text-align: start;
 }
-.join-wrapper.highContrast form label {
+.join.highContrast form label {
   color: #dbdbdb;
 }
 
@@ -140,11 +140,11 @@ form input {
   border-bottom: 1px solid #dbdbdb;
   padding: 8px 0;
 }
-.join-wrapper.highContrast form input {
+.join.highContrast form input {
   background-color: #000000;
 }
 
-.join-wrapper.highContrast form input {
+.join.highContrast form input {
   color: #ffffff;
 }
 
@@ -167,19 +167,19 @@ form input::-ms-input-placeholder {
 form input::placeholder {
   color: #dbdbdb;
 }
-.join-wrapper.highContrast form input::-webkit-input-placeholder {
+.join.highContrast form input::-webkit-input-placeholder {
   color: #FFEB32;
 }
-.join-wrapper.highContrast form input::-moz-placeholder {
+.join.highContrast form input::-moz-placeholder {
   color: #FFEB32;
 }
-.join-wrapper.highContrast form input:-ms-input-placeholder {
+.join.highContrast form input:-ms-input-placeholder {
   color: #FFEB32;
 }
-.join-wrapper.highContrast form input::-ms-input-placeholder {
+.join.highContrast form input::-ms-input-placeholder {
   color: #FFEB32;
 }
-.join-wrapper.highContrast form input::placeholder {
+.join.highContrast form input::placeholder {
   color: #FFEB32;
 }
 
@@ -216,7 +216,7 @@ form [class^=warning-msg] {
   margin-top: 6px;
   display: none;
 }
-.join-wrapper.highContrast form [class^=warning-msg] {
+.join.highContrast form [class^=warning-msg] {
   color: #FFEB32;
 }
 
@@ -239,49 +239,41 @@ button {
   border-radius: 44px;
   font-size: 0.875rem;
 }
-.join-wrapper.highContrast .size-l {
+.join.highContrast .size-l {
   background-color: transparent;
 }
 
-.join-wrapper.highContrast .size-l {
+.join.highContrast .size-l {
   color: #ffffff;
 }
 
-.join-wrapper.highContrast .size-l {
+.join.highContrast .size-l {
   -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
           box-shadow: 0 0 0 2px #E4D6FF inset;
 }
 
 .btn-next {
   border: none;
-  color: #ffffff;
+  color: white;
   background-color: #635CA5;
   margin-top: 30px;
   padding: 13px;
 }
-.join-wrapper.highContrast .btn-next {
-  color: #000000;
-}
-
-.join-wrapper.highContrast .btn-next {
+.join.highContrast .btn-next {
   background-color: #E4D6FF;
 }
 
 .btn-next:disabled {
   background-color: #BCADDC;
-  color: #000000;
+  color: white;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
-.join-wrapper.highContrast .btn-next:disabled {
+.join.highContrast .btn-next:disabled {
   background-color: transparent;
 }
 
-.join-wrapper.highContrast .btn-next:disabled {
-  color: #ffffff;
-}
-
-.join-wrapper.highContrast .btn-next:disabled {
+.join.highContrast .btn-next:disabled {
   -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
           box-shadow: 0 0 0 2px #E4D6FF inset;
 }

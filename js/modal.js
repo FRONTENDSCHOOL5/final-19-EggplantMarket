@@ -414,7 +414,8 @@ function editPopUp(parent, desc, btnText, action){
 // 기능
 
 function logOut(){
-    localStorage.clear()
+    localStorage.removeItem('user-token')
+    localStorage.removeItem('user-accountname')
     location.href = './login.html'
 }
 

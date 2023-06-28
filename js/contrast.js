@@ -14,12 +14,17 @@ function colorChange() {
 
     if ( localStorage.getItem('theme') === 'highContrast' ) {
         window.localStorage.setItem('theme', 'highContrast');
-        if(!document.querySelector('.login')){
+        if(!document.querySelector('.login-wrapper') && !document.querySelector('.join') && !document.querySelector('main.login')){
             document.querySelector('[class *= "wrapper"]').classList.add('highContrast');
+        }else if (document.querySelector('.login-wrapper')){
+            document.querySelector('.login-wrapper').classList.add('highContrast');
+        }else if(document.querySelector('main.login')){
+            document.querySelector('main.login').classList.add('highContrast');
         }else{
-            document.querySelector('.login').classList.add('highContrast');
+            document.querySelector('.join').classList.add('highContrast');
         }
-        if(document.querySelector('[class *= "wrapper"]').classList.contains('login-wrapper')){
+
+        if(document.querySelector('.login-wrapper')){
             document.body.style.backgroundColor = '#E4D6FF';
         }else{
             document.body.style.backgroundColor = '#000000'; 
@@ -38,15 +43,20 @@ function colorChange() {
     } else {
         console.log('키키')
         window.localStorage.setItem('theme', 'light');
-        if(!document.querySelector('.login')){
+        if(!document.querySelector('.login-wrapper') && !document.querySelector('.join') && !document.querySelector('main.login')){
             document.querySelector('[class *= "wrapper"]').classList.remove('highContrast'); 
+        }else if (document.querySelector('.login-wrapper')){
+            document.querySelector('.login-wrapper').classList.remove('highContrast');
+        }else if(document.querySelector('main.login')){
+            document.querySelector('main.login').classList.remove('highContrast');
         }else{
-            document.querySelector('.login').classList.add('highContrast');
+            document.querySelector('.join').classList.remove('highContrast');
         }
-        if(document.querySelector('[class *= "wrapper"]').classList.contains('login-wrapper')){
+
+        if(document.querySelector('.login-wrapper')){
             document.body.style.backgroundColor = '#635CA5'; 
         } else{
-            document.body.style.backgroundColor = '#000000'; 
+            document.body.style.backgroundColor = '#fff'; 
         }
 
         if(imgBtn) imgBtn.src = "../assets/img-button.svg";

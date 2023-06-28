@@ -45,7 +45,7 @@ $theme: (
     
     #{$property}: get-color($color); //보간법
 
-    @at-root .join-wrapper.highContrast & {
+    @at-root .join.highContrast & {
         #{$property}: get-color($color, highContrast);
     }
 } //mixin은 재사용할 css 스타일을 선언한다고 생각하면 된다.
@@ -213,7 +213,7 @@ button {
 
 .btn-next {
     border: none;
-    @include get-color(color, btn-font-color);
+    color: white;
     @include get-color(background-color, enabled-btn-color);
     margin-top: 30px;
     padding: 13px;
@@ -221,7 +221,7 @@ button {
 
 .btn-next:disabled {
     @include get-color(background-color, disabled-btn-color);
-    @include get-color(color, font-color);
+    color: white;
     @include get-color(box-shadow, box-shadow);
 }
 

@@ -162,6 +162,7 @@ imgInp.addEventListener('change', async (e) => {
 });
 
 submitButton.addEventListener('click', async (e) => {
+    e.target.disabled = true
     e.preventDefault()
     await saveProduct(url, token);
     console.log('상품 등록 완료')

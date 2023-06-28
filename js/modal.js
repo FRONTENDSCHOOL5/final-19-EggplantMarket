@@ -408,12 +408,16 @@ async function productDelete(productId){
 function editPopUp(parent, desc, btnText, action){
     parent.querySelector('.modal-description').textContent = desc
     parent.querySelector('.right-button').textContent = btnText;
-    parent.querySelector('.right-button').addEventListener('click',async ()=>{
-        await action()
-        console.log('Done')
+    const rightButton = parent.querySelector('.right-button');
+    const clickHandler = async () => {
+        await action();
+        console.log('Done');
         postModal.style.display = 'none';
         popUpModal.style.visibility = 'hidden';
-    });
+        rightButton.removeEventListener('click', clickHandler);
+    };
+    
+    rightButton.addEventListener('click', clickHandler);
 }
 
 // 기능

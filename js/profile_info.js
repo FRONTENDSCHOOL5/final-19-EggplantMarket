@@ -432,17 +432,16 @@ function touchScroll(){
 }
 
 //테마 작업 진행중.
-// 모달창에서 설정
-// const wrapper = document.querySelector('.profile-info-wrapper');
-// const theme = window.localStorage.getItem('theme');
-// if (theme === 'highContrast') {
-//     wrapper.classList.add('highContrast');
-//     document.body.style.backgroundColor = '#000000';
-//     document.getElementById("profile-back-btn").src = "../assets/icon/icon-arrow-left-hc.svg";
-//     document.getElementById("profileInfo-more-icon").src = "../assets/icon/icon-more-vertical-hc.svg";
+const wrapper = document.querySelector('.profile-info-wrapper');
+const theme = window.localStorage.getItem('theme');
+if (theme === 'highContrast') {
+    wrapper.classList.add('highContrast');
+    document.body.style.backgroundColor = '#000000';
+    document.getElementById("profile-back-btn").src = "../assets/icon/icon-arrow-left-hc.svg";
+    document.getElementById("profileInfo-more-icon").src = "../assets/icon/icon-more-vertical-hc.svg";
 
-// } else {
-//     wrapper.classList.remove('highContrast');
-//     document.body.style.backgroundColor = '#ffffff'; 
+} else {
+    wrapper.classList.remove('highContrast');
+    document.body.style.backgroundColor = '#ffffff'; 
     
-// }
+}

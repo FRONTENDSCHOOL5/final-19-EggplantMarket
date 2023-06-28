@@ -1,26 +1,3 @@
-//sass 테마작업 진행중
-function themeSection(){
-    const radioGroup = document.getElementsByName('colorSet');
-    const wrapper = document.querySelector('.wrapper');
-    
-    function colorChange(e) {
-        if (e.target.id === 'highContrast') {
-            window.localStorage.setItem('theme', 'highContrast');
-            wrapper.classList.add('highContrast');
-            document.body.style.backgroundColor = '#000000'; 
-        } else {
-            window.localStorage.setItem('theme', 'light');
-            wrapper.classList.remove('highContrast');
-            document.body.style.backgroundColor = '#ffffff'; 
-        }
-    }
-    
-    radioGroup.forEach((input) => {
-        input.addEventListener('change', colorChange);
-    });
-    // 여기까지
-}
-
 // 모달
 const postModal = document.querySelector('.post-modal-background');
 const popUpModal = document.querySelector('.modal-background');
@@ -56,37 +33,13 @@ function handleModal() {
 let lastFocusedElement;
 function btnOptionFocus(nodes) {
     nodes.addEventListener('keydown', event => {
-      if (event.code === 'Tab' && !event.shiftKey) {
+      if (event.key === 'Tab' && !event.shiftKey) {
         if (lastFocusedElement) {
           lastFocusedElement.focus();
           lastFocusedElement = null;
-        } else {
-          const firstModalDesc = modalContent.querySelectorAll('button');
-          // console.log(firstModalDesc);
-          for (let i = 0; i < firstModalDesc.length; i++) {
-            firstModalDesc[i].addEventListener('keydown', function (e) {
-              if (e.key === 'Tab' && !e.shiftKey) {
-                e.preventDefault();
-                const nextInput = firstModalDesc[i + 1] || firstModalDesc[0];
-                nextInput.focus();
-              } else if (e.key === 'Enter' && e.target.classList.contains('btn-option')) {  // 수정된 부분: .btn-option을 클릭하거나 Enter를 눌렀을 때 post-modal-content의 modal-content에 focus를 설정
-                e.preventDefault();
-                const postModalContent = document.querySelector('.post-modal-content .modal-content');
-                postModalContent.focus();
-              } else if (e.key === 'Enter') {
-                e.preventDefault();
-                firstModalDesc[i].click();
-                themeSection();
-              } else if (e.key === 'Tab' && e.shiftKey) {
-                e.preventDefault();
-                const prevInput = firstModalDesc[i - 1] || firstModalDesc[firstModalDesc.length - 1];
-                prevInput.focus();
-              }
-            });
-          }
         }
-      } else if(event.key === 'Enter'){
-
+      } else if (event.key === 'Enter') {
+        setTimeout(()=> modalContent.querySelector('.modal-description').focus())
       }
     });
   }

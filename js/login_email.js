@@ -100,4 +100,3 @@ function colorChange(e) {
 radioGroup.forEach((input) => {
     input.addEventListener('change', colorChange);
 });
-

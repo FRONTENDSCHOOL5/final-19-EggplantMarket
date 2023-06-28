@@ -299,6 +299,13 @@ $theme: (
     }
 }
 
+.mode_select{
+    label{
+        display: block;
+        padding: .875rem 0rem;
+    }
+}
+
 .nav-chat, .comment{
     .btn-back, .profile-img{
         order: 0;

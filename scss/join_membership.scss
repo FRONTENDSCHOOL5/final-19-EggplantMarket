@@ -45,7 +45,7 @@ $theme: (
     
     #{$property}: get-color($color); //보간법
 
-    @at-root .join.highContrast & {
+    @at-root .join-wrapper.highContrast & {
         #{$property}: get-color($color, highContrast);
     }
 } //mixin은 재사용할 css 스타일을 선언한다고 생각하면 된다.

@@ -252,15 +252,15 @@ function displayedAt(createdAt) {
  }
 
  //테마 작업 진행중.
-const wrapper = document.querySelector('.post-detail-wrapper');
-const theme = window.localStorage.getItem('theme');
-if (theme === 'highContrast') {
-    wrapper.classList.add('highContrast');
-    document.body.style.backgroundColor = '#000000';
-    document.getElementById("post-detail-back-btn").src = "../assets/icon/icon-arrow-left-hc.svg";
+// const wrapper = document.querySelector('.post-detail-wrapper');
+// const theme = window.localStorage.getItem('theme');
+// if (theme === 'highContrast') {
+//     wrapper.classList.add('highContrast');
+//     document.body.style.backgroundColor = '#000000';
+//     document.getElementById("post-detail-back-btn").src = "../assets/icon/icon-arrow-left-hc.svg";
 
-} else {
-    wrapper.classList.remove('highContrast');
-    document.body.style.backgroundColor = '#ffffff'; 
+// } else {
+//     wrapper.classList.remove('highContrast');
+//     document.body.style.backgroundColor = '#ffffff'; 
     
-}
+// }

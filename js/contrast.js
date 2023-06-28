@@ -14,9 +14,12 @@ function colorChange() {
 
     if ( localStorage.getItem('theme') === 'highContrast' ) {
         window.localStorage.setItem('theme', 'highContrast');
-        document.querySelector('body > div').classList.add('highContrast');
-
-        if(document.querySelector('body > div').classList.contains('.login-wrapper')){
+        if(!document.querySelector('.login')){
+            document.querySelector('[class *= "wrapper"]').classList.add('highContrast');
+        }else{
+            document.querySelector('.login').classList.add('highContrast');
+        }
+        if(document.querySelector('[class *= "wrapper"]').classList.contains('login-wrapper')){
             document.body.style.backgroundColor = '#E4D6FF';
         }else{
             document.body.style.backgroundColor = '#000000'; 
@@ -35,8 +38,16 @@ function colorChange() {
     } else {
         console.log('키키')
         window.localStorage.setItem('theme', 'light');
-        document.querySelector('body > div').classList.remove('highContrast'); 
-        document.body.style.backgroundColor = '#ffffff'; 
+        if(!document.querySelector('.login')){
+            document.querySelector('[class *= "wrapper"]').classList.remove('highContrast'); 
+        }else{
+            document.querySelector('.login').classList.add('highContrast');
+        }
+        if(document.querySelector('[class *= "wrapper"]').classList.contains('login-wrapper')){
+            document.body.style.backgroundColor = '#635CA5'; 
+        } else{
+            document.body.style.backgroundColor = '#000000'; 
+        }
 
         if(imgBtn) imgBtn.src = "../assets/img-button.svg";
         if(imgUploadBtn) imgUploadBtn.src = "../assets/upload-file.svg";

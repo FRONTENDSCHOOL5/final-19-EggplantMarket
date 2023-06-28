@@ -74,7 +74,6 @@ if(POSTID){
 
 // 텍스트 입력
 contentInp.addEventListener('change', () => {
-    contentInp.value = contentInp.value.trim();
     // 텍스트 입력되면 valid
     if (contentInp.value !== '') {
         validContent = true;
@@ -199,7 +198,7 @@ async function submitPostForm(METHOD) {
 
     const data = {
         "post": {
-            "content": contentInp.value,
+            "content": contentInp.value.trim(),
             "image": fileName
         }
     }

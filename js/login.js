@@ -7,6 +7,6 @@ if (theme === 'highContrast') {
 
 } else {
     wrapper.classList.remove('highContrast');
-    document.body.style.backgroundColor = '#ffffff'; 
+    document.body.style.backgroundColor = '#635CA5'; 
     
 }

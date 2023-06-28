@@ -23,7 +23,17 @@ inps.forEach(item => {
             loginButton.disabled = true
         }
     })
+
+    item.addEventListener('focus', (e) => {
+        const borderColor = document.querySelector('.warning-msg-1').style.display === 'block' ? 'red' : '#9747FF';
+        e.target.style.borderBottom = `1px solid ${borderColor}`;
+    })
+    item.addEventListener('focusout', (e) => {
+        e.target.style.borderBottom = '1px solid #DBDBDB';
+    })
 })
+
+
 
 // 로그인 버튼 클릭시 이메일 형식 유효성 검사
 loginButton.addEventListener('click', (e) => {
@@ -35,13 +45,8 @@ function validate(target) {
     if (target.validity.typeMismatch) {
         document.querySelector('.warning-msg-1').style.display = 'block'
         const theme = window.localStorage.getItem('theme');
-        if(theme != 'highContrast'){
-            email.style.borderBottom = '1px solid red';
-        }
-        else {
-            email.style.borderBottom = '1px solid #FFEB32';
-        }
-        
+        const borderColor = theme === 'highContrast' ? '#FFEB32' : 'red';
+        email.style.borderBottom = `1px solid ${borderColor}`;
         email.focus()
     } else {
         login();

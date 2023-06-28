@@ -56,8 +56,9 @@ async function saveProfile(url, token) {
         const json = await res.json();
         console.log(json);
         // 성공적으로 저장되었을 때 추가적인 처리 가능
-    } catch (error) {
-        console.error(error);
+    } catch (err) {
+        console.error(err);
+        location.href='./404.html'
         // 저장 실패 시 에러 처리
     }
 }
@@ -197,20 +198,22 @@ async function Load_userinfo(url, token, accountName) {
         return resJson
     } catch (err) {
         console.error(err);
+        location.href='./404.html'
     }
 }
 
 // 가져온 프로필 정보 화면에 보여주기
 function introUpdate(profileData) {
-    const imageInput = document.querySelector('.img-cover img');
+    const imageInput = document.querySelector('.img-cover');
     const userNameInput = document.querySelector('#username');
     const accountNameInput = document.querySelector('#userid');
     const introInput = document.querySelector('#userinfo');
 
     // 프로필 이미지 보여주기
     const imageSrc = profileData.image;
+    console.log(imageSrc)
     if(imageSrc) {
-        imageInput.src = imageSrc;
+        imageInput.insertAdjacentHTML('beforeend',`<img src="${checkImageUrl(imageSrc,'profile')}" alt="기본 프로필 이미지">`)
     }
     userNameInput.value = profileData.username;
     accountNameInput.value = profileData.accountname;
@@ -223,17 +226,3 @@ async function run(url, token, accountName) {
 }
 
 run(url, token, userID);
-
-//테마
-const wrapper = document.querySelector('.profile-modif-wrapper');
-const theme = window.localStorage.getItem('theme');
-if (theme === 'highContrast') {
-    wrapper.classList.add('highContrast');
-    document.body.style.backgroundColor = '#000000';
-    document.getElementById("profile-modif-backBtn").src = "../assets/icon/icon-arrow-left-hc.svg";
-    document.getElementById("img-btn").src = "../assets/img-btn-hc.svg";
-} else {
-    wrapper.classList.remove('highContrast');
-    document.body.style.backgroundColor = '#ffffff'; 
-    
-}

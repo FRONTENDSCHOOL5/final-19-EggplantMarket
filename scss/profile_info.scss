@@ -101,9 +101,6 @@ main {
 header{
     @include get-color(background-color, bg-color);
 }
-.btn-option{
-    
-}
 
 .profile-container {
     @include get-color(border, profile-border);
@@ -326,7 +323,7 @@ header{
 }
 
 .content-wrap {
-    margin-top: 6px;
+    margin-top: 3px;
 }
 
 :root{

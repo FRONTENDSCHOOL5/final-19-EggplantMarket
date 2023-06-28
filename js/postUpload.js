@@ -189,7 +189,7 @@ async function submitPostForm(METHOD) {
     // 서버에 이미지 저장하고 가져오기
     let fileName;
     if(METHOD === "PUT" && !document.querySelector('#input-file').files[0]){
-        if(document.querySelectorAll('.img-cover img')){
+        if(document.querySelector('.img-cover img')){
             fileName = document.querySelector('.img-cover img').src
         }
     } else{

@@ -86,23 +86,23 @@ async function login() {
 
 
 
-//sass 테마작업 진행중
-const radioGroup = document.getElementsByName('colorSet');
-const wrapper = document.querySelector('.login');
+// sass 테마작업 진행중
+// const radioGroup = document.getElementsByName('colorSet');
+// const wrapper = document.querySelector('.login');
 
-function colorChange(e) {
-    if (e.target.id === 'highContrast') {
-        window.localStorage.setItem('theme', 'highContrast');
-        wrapper.classList.add('highContrast');
-        document.body.style.backgroundColor = '#000000'; 
-    } else {
-        window.localStorage.setItem('theme', 'light');
-        wrapper.classList.remove('highContrast');
-        document.body.style.backgroundColor = '#ffffff'; 
-    }
-}
+// function colorChange(e) {
+//     if (e.target.id === 'highContrast') {
+//         window.localStorage.setItem('theme', 'highContrast');
+//         wrapper.classList.add('highContrast');
+//         document.body.style.backgroundColor = '#000000'; 
+//     } else {
+//         window.localStorage.setItem('theme', 'light');
+//         wrapper.classList.remove('highContrast');
+//         document.body.style.backgroundColor = '#ffffff'; 
+//     }
+// }
 
-radioGroup.forEach((input) => {
-    input.addEventListener('change', colorChange);
-});
+// radioGroup.forEach((input) => {
+//     input.addEventListener('change', colorChange);
+// });
 

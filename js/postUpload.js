@@ -51,7 +51,7 @@ async function getMyImg() {
     return json.user.image;
 }
 (async function () {
-    writerImg.src = await getMyImg();
+    writerImg.src =  checkImageUrl(await getMyImg(),'profile');
 })();
 
 // textarea 작성 길이 조절
@@ -170,6 +170,8 @@ function isValid() {
 // --- start of 게시글 작성하기 ---
 
 uploadButton.addEventListener('click', async (e) => {
+    console.log(e.target)
+    e.target.disabled=true
     e.preventDefault();
     await submitPostForm(METHOD);
     console.log('게시글 작성 완료');
@@ -186,7 +188,7 @@ async function submitPostForm(METHOD) {
     // 서버에 이미지 저장하고 가져오기
     let fileName;
     if(METHOD === "PUT" && !document.querySelector('#input-file').files[0]){
-        if(document.querySelectorAll('.img-cover img')){
+        if(document.querySelector('.img-cover img')){
             fileName = document.querySelector('.img-cover img').src
         }
     } else{
@@ -247,18 +249,3 @@ async function postImg() {
     }
 
 // --- end of 게시글 작성하기 ---
-
-//고대비 테마
-const wrapper = document.querySelector('.post-upload-wrapper');
-const theme = window.localStorage.getItem('theme');
-if (theme === 'highContrast') {
-    wrapper.classList.add('highContrast');
-    document.body.style.backgroundColor = '#000000';
-    document.getElementById("post-upload-backBtn").src = "../assets/icon/icon-arrow-left-hc.svg";
-    document.getElementById("image-upload-btn").src = "../assets/upload-file-hc.svg";
-
-} else {
-    wrapper.classList.remove('highContrast');
-    document.body.style.backgroundColor = '#ffffff'; 
-    
-}

@@ -15,13 +15,20 @@
 
 <body>
     <div class="profile-info-wrapper">
+        <div class="skip-nav">
+            <a href="#header" class="skip-link">상단 탭으로 가기</a>
+            <a href="#profile" class="skip-link">프로필 정보로 가기</a>
+            <a href="#product" class="skip-link">판매중인 상품으로 가기</a>
+            <a href="#post" class="skip-link">게시글 목록으로 가기</a>
+            <a href="#footer" class="skip-link">하단 탭으로 가기</a>
+        </div>
         <header class="top nav-basic">
             <h1 class="a11y-hidden">사용자 프로필 화면</h1>
             <button class="btn-option"><span class="a11y-hidden">설정</span></button>
             <button class="btn-back"><span class="a11y-hidden">뒤로가기</span></button>
         </header>
         <main>
-            <section class="profile-container" style="display: none;">
+            <section id="profile" class="profile-container" style="display: none;">
                 <header class="profile-header">
                     <h2 class="a11y-hidden">사용자 정보</h2>
                     <div class="img-crop">
@@ -64,12 +71,12 @@
             </section>
 
             <div class="content-wrap">
-                <section class="product-container">
+                <section id="product" class="product-container" style="display: none;">
                     <h2>판매 중인 상품</h2>
                     <ul class="product-list">
                     </ul>
                 </section>
-                <section class="post-container" style="display: none;">
+                <section id="post" class="post-container" style="display: none;">
                     <!-- 게시글 보기 탭 -->
                     <section class="post-tab">
                         <h2 class="a11y-hidden">게시글 보기 유형 고르기</h2>
@@ -96,7 +103,7 @@
             </div>
 
         </main>
-        <footer>
+        <footer id="footer">
             <nav class="tab-menu">
                 <p class="a11y-hidden">하단 탭 메뉴</p>
                 <ul class="tab-item-list">
@@ -143,6 +150,7 @@
             </div>
         </article>
     </div>
+    <script src="../js/contrast.js"></script>
     <script src="../js/common.js"></script>
     <script src="../js/modal.js"></script>
     <script src="../js/scrollFetch.js"></script>

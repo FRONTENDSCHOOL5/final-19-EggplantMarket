@@ -51,6 +51,7 @@ async function postFollow(accountName) {
         console.log('팔로우 완료 : ', resJson.profile);
     } catch (err) {
         console.log(err)
+        location.href='./404.html'
     }
 }
 
@@ -69,6 +70,7 @@ async function deleteFollow(accountName) {
         console.log('팔로우 취소 완료 : ', resJson.profile);
     } catch (err) {
         console.log(err)
+        location.href='./404.html'
     }
 }
 
@@ -123,15 +125,15 @@ async function run() {
 run()
 
 //테마 작업 진행중.
-const wrapper = document.querySelector('.following-wrapper');
-const theme = window.localStorage.getItem('theme');
-if (theme === 'highContrast') {
-    wrapper.classList.add('highContrast');
-    document.body.style.backgroundColor = '#000000';
-    document.getElementById("profile-following-back-btn").src = "../assets/icon/icon-arrow-left-hc.svg";
+// const wrapper = document.querySelector('.following-wrapper');
+// const theme = window.localStorage.getItem('theme');
+// if (theme === 'highContrast') {
+//     wrapper.classList.add('highContrast');
+//     document.body.style.backgroundColor = '#000000';
+//     document.getElementById("profile-following-back-btn").src = "../assets/icon/icon-arrow-left-hc.svg";
 
-} else {
-    wrapper.classList.remove('highContrast');
-    document.body.style.backgroundColor = '#ffffff'; 
+// } else {
+//     wrapper.classList.remove('highContrast');
+//     document.body.style.backgroundColor = '#ffffff'; 
     
-}
+// }

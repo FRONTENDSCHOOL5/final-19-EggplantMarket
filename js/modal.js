@@ -1,5 +1,4 @@
 // 모달
-
 const postModal = document.querySelector('.post-modal-background');
 const popUpModal = document.querySelector('.modal-background');
 const modalContent = document.querySelector('.modal-content');
@@ -15,7 +14,7 @@ function handleModal() {
 
     if(headerBtnOption){
         handleHeaderModal(headerBtnOption)
-        btnOptionFocus(headerBtnOption, modalContent);
+        btnOptionFocus(headerBtnOption);
     }
     if(postBtnOption.length !== 0){
         handlePostOptionModal(postBtnOption)
@@ -30,20 +29,20 @@ function handleModal() {
 
 }
 
+// 코드 수정
 let lastFocusedElement;
-function btnOptionFocus(nodes, modalContent) {
+function btnOptionFocus(nodes) {
     nodes.addEventListener('keydown', event => {
-        if (event.code === 'Tab' && !event.shiftKey) {
-            if(lastFocusedElement){
-                lastFocusedElement.focus();
-                lastFocusedElement=null;
-            } 
-            else {
-                setTimeout(()=> modalContent.querySelector('.modal-description').focus())
-          } 
+      if (event.key === 'Tab' && !event.shiftKey) {
+        if (lastFocusedElement) {
+          lastFocusedElement.focus();
+          lastFocusedElement = null;
         }
-      });
-}
+      } else if (event.key === 'Enter') {
+        setTimeout(()=> modalContent.querySelector('.modal-description').focus())
+      }
+    });
+  }
 
 function setFocusOnModalActions() {
     const focusableElements = Array.from(modalActions.getElementsByTagName('button'));
@@ -65,6 +64,33 @@ function handleCancelClick(item) {
     }
 }
 
+function themeChange(inputs) {
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('keydown', function (e) {
+            if (e.key === 'Tab' && !e.shiftKey) {
+                e.preventDefault();
+                const nextInput = inputs[i + 1] || inputs[0];
+                nextInput.focus();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                inputs[i].click();
+                localStorage.setItem('theme',e.target.id)
+            } else if (e.key === 'Tab' && e.shiftKey){
+                e.preventDefault();
+                const prevInput = inputs[i - 1] || inputs[inputs.length - 1]
+                prevInput.focus();
+            }
+        });
+        inputs[i].addEventListener('click', function (e) {
+            if(!inputs[i].classList.contains('btn-cancel')){
+                inputs[i].click();
+                localStorage.setItem('theme',e.target.id)
+                colorChange()
+            }
+        });
+    }
+}
+
 function handleHeaderModal(node){
     node.addEventListener('click',() => {
         modalContent.innerHTML = `
@@ -81,8 +107,30 @@ function handleHeaderModal(node){
 
         modalContent.querySelectorAll('.modal-description').forEach(item => {item.addEventListener('click', (e) => {
 
+            const currtheme = localStorage.getItem('theme')
+
             if(e.currentTarget.classList.contains('btn-theme')){
-                // 
+                modalContent.innerHTML = `
+                  <div class="mode_select">
+                    <label for="light" class='modal-description'>
+                      <input type="radio" name="colorSet" id="light" ${currtheme==='light' ? 'checked' : ''} class="theme">LIGHT
+                    </label>
+                    <label for="highContrast" class='modal-description'>
+                      <input type="radio" name="colorSet" id="highContrast" ${currtheme==='highContrast' ? 'checked' : ''} class="theme">highContrast
+                    </label>
+                    <button class="modal-description btn-cancel theme">취소</button>
+                  </div>
+                `;
+
+                const inputs = document.querySelectorAll('.theme');
+                themeChange(inputs);
+
+                const btnCancel = modalContent.querySelector('.btn-cancel');
+
+                btnCancel.addEventListener('click', () => {
+                    postModal.style.display = 'none';
+                    node.focus();
+                  });
             }else if(e.currentTarget.classList.contains('btn-cancel')){
                 postModal.style.display = 'none';
             }  
@@ -152,7 +200,7 @@ function handlePostOptionModal(nodes) {
 
         postModal.style.display = 'block';
     })
-    btnOptionFocus(item, modalContent);
+    btnOptionFocus(item);
 });
 }
 
@@ -199,7 +247,7 @@ function handleCommentOptionModal(nodes){
 
         postModal.style.display = 'block';
     })
-    btnOptionFocus(item, modalContent);
+    btnOptionFocus(item);
 });
 }
 
@@ -247,7 +295,7 @@ function handleProductOptionModal(nodes){
             postModal.style.display = 'block';
             })
         })
-        btnOptionFocus(item, modalContent);
+        btnOptionFocus(item);
     })
 }
 
@@ -270,6 +318,7 @@ async function postDelete(targetPostId){
         }
     } catch(err){
         console.error(err);
+        location.href='./404.html'
     }
 }
 
@@ -286,6 +335,7 @@ async function postReport(targetPostId){
         await fetch(fullUrl,options)
     } catch (err){
         console.error(err)
+        location.href='./404.html'
     }
 }
 
@@ -301,11 +351,21 @@ async function commentDelete(targetPostId, targetCommentId){
     try{
         await fetch(fullUrl,options)
         
+        // const commentList = document.querySelector('.comment-list')
+        // const targetComment = commentList.querySelector(`[data-commentid="${targetCommentId}"]`);
+
+        // if (targetComment) {
+        //     const targetCommentElement = targetComment.closest('li');
+        //     commentList.removeChild(targetCommentElement);
+        // }
+        await fetch(fullUrl,options)
+        
         // if(!alert('댓글이 삭제되었습니다.')){
             location.reload()
         // }
     } catch (err){
         console.error(err)
+        // location.href='./404.html'
     }
 }
 
@@ -322,6 +382,7 @@ async function commentReport(targetPostId, targetCommentId){
         await fetch(fullUrl,options)
     } catch (err){
         console.error(err)
+        location.href='./404.html'
     }
 }
 
@@ -340,23 +401,30 @@ async function productDelete(productId){
         location.reload()
     } catch(err){
         console.error(err);
+        location.href='./404.html'
     }
 }
 
 function editPopUp(parent, desc, btnText, action){
     parent.querySelector('.modal-description').textContent = desc
     parent.querySelector('.right-button').textContent = btnText;
-    parent.querySelector('.right-button').addEventListener('click',async ()=>{
-        await action()
+    const rightButton = parent.querySelector('.right-button');
+    const clickHandler = async () => {
+        await action();
+        console.log('Done');
         postModal.style.display = 'none';
         popUpModal.style.visibility = 'hidden';
-    });
+        rightButton.removeEventListener('click', clickHandler);
+    };
+    
+    rightButton.addEventListener('click', clickHandler);
 }
 
 // 기능
 
 function logOut(){
-    localStorage.clear()
+    localStorage.removeItem('user-token')
+    localStorage.removeItem('user-accountname')
     location.href = './login.html'
 }
 
@@ -377,3 +445,12 @@ popUpModal.addEventListener('click', (event) => {
         popUpModal.style.visibility = 'hidden';
     }
 });
+
+
+
+
+// /////
+
+// profile_modification
+
+// colorchange render함수

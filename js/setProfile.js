@@ -4,6 +4,8 @@ const imgInp = document.querySelector('#btn-upload')
 const acNameInp = document.querySelector('#userid');
 const userNameInp = document.querySelector('#username')
 const introInp = document.querySelector('#userinfo');
+// 
+document.querySelector('.img-cover img').src = checkImageUrl('','profile')
 
 // 이메일 비밀번호 입력 후 포커스 잃으면 형식 및 유효성 검사
 let validAccountName = false;

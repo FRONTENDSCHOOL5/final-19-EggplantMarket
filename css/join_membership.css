@@ -254,31 +254,23 @@ button {
 
 .btn-next {
   border: none;
-  color: #ffffff;
+  color: white;
   background-color: #635CA5;
   margin-top: 30px;
   padding: 13px;
 }
-.join.highContrast .btn-next {
-  color: #000000;
-}
-
 .join.highContrast .btn-next {
   background-color: #E4D6FF;
 }
 
 .btn-next:disabled {
   background-color: #BCADDC;
-  color: #000000;
+  color: white;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 .join.highContrast .btn-next:disabled {
   background-color: transparent;
-}
-
-.join.highContrast .btn-next:disabled {
-  color: #ffffff;
 }
 
 .join.highContrast .btn-next:disabled {

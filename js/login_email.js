@@ -15,6 +15,7 @@ inps.forEach(item => {
         if (!email.validity.typeMismatch) {
             document.querySelector('.warning-msg-1').style.display = 'none';
             email.style.borderBottom = '1px solid #dbdbdb';
+            if (document.activeElement == email) email.style.borderBottom = '1px solid #9747FF';
         };
         document.querySelector('.warning-msg-2').style.display = 'none';
         if (!email.validity.valueMissing && !pw.validity.valueMissing) {

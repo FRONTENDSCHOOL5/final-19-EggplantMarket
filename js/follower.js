@@ -179,3 +179,17 @@ async function makeUserFollowerList(data) {
 
     followers.append(frag);
 }
+
+//테마 작업 진행중.
+const wrapper = document.querySelector('.profile-follower-wrapper');
+const theme = window.localStorage.getItem('theme');
+if (theme === 'highContrast') {
+    wrapper.classList.add('highContrast');
+    document.body.style.backgroundColor = '#000000';
+    document.getElementById("profile-follower-back-btn").src = "../assets/icon/icon-arrow-left-hc.svg";
+
+} else {
+    wrapper.classList.remove('highContrast');
+    document.body.style.backgroundColor = '#ffffff'; 
+    
+}

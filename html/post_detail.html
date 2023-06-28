@@ -12,54 +12,56 @@
 </head>
 
 <body>
-    <header class="top nav-basic">
-        <h1 class="a11y-hidden">게시물 댓글 페이지</h1>
-        <button class="btn-option"><span class="a11y-hidden">설정</span></button>
-        <button class="btn-back"><span class="a11y-hidden">뒤로가기</span></button>
-    </header>
-    <main>
+    <div class="post-detail-wrapper">
+        <header class="top nav-basic">
+            <h1 class="a11y-hidden">게시물 댓글 페이지</h1>
+            <button class="btn-option"><span class="a11y-hidden">설정</span></button>
+            <button class="btn-back"><span class="a11y-hidden">뒤로가기</span></button>
+        </header>
+        <main>
 
-        <section class="home-post">
-            <h2 class="a11y-hidden">게시글 내용</h2>
-        </section>
+            <section class="home-post">
+                <h2 class="a11y-hidden">게시글 내용</h2>
+            </section>
 
-        <section class="comment-sec">
-            <h2 class="a11y-hidden">게시물에 대한 답변</h2>
-            <ul class="comment-list">
-            </ul>
-        </section>
-    </main>
+            <section class="comment-sec">
+                <h2 class="a11y-hidden">게시물에 대한 답변</h2>
+                <ul class="comment-list">
+                </ul>
+            </section>
+        </main>
 
-    <footer>
-        <section class="comment">
-            <h2 class="a11y-hidden">댓글 입력하기</h2>
-            <label for="commemt-input" class="a11y-hidden">게시물에 대한 댓글 입력</label>
-            <input type="text" id="commemt-input" placeholder="댓글 입력하기...">
-            <div class="img-cover">
-                <img class="profile-img" src="../assets/basic-profile.png" alt="">
+        <footer>
+            <section class="comment">
+                <h2 class="a11y-hidden">댓글 입력하기</h2>
+                <label for="commemt-input" class="a11y-hidden">게시물에 대한 댓글 입력</label>
+                <input type="text" id="commemt-input" placeholder="댓글 입력하기...">
+                <div class="img-cover">
+                    <img class="profile-img" src="../assets/basic-profile.png" alt="">
+                </div>
+                <button type="submit" class="btn-comment" disabled>게시</button>
+            </section>
+        </footer>
+        <!-- 모달 -->
+        <article class="post-modal-background">
+            <h2 class="a11y-hidden">모달창</h2>
+            <div class="post-modal-content">
+                <div class="post-modal-bar"></div>
+                <div class="modal-content">
+                </div>
             </div>
-            <button type="submit" class="btn-comment" disabled>게시</button>
-        </section>
-    </footer>
-    <!-- 모달 -->
-    <article class="post-modal-background">
-        <h2 class="a11y-hidden">모달창</h2>
-        <div class="post-modal-content">
-            <div class="post-modal-bar"></div>
+        </article>
+        <article class="modal-background">
+            <h2 class="modal-title a11y-hidden">팝업</h2>
             <div class="modal-content">
+                <p class="modal-description">?</p>
+                <div class="modal-actions">
+                    <button class="right-button ac-log-out"></button>
+                    <button class="left-button">취소</button>
+                </div>
             </div>
-        </div>
-    </article>
-    <article class="modal-background">
-        <h2 class="modal-title a11y-hidden">팝업</h2>
-        <div class="modal-content">
-            <p class="modal-description">?</p>
-            <div class="modal-actions">
-                <button class="right-button ac-log-out"></button>
-                <button class="left-button">취소</button>
-            </div>
-        </div>
-    </article>
+        </article>
+    </div>
     <script src="../js/common.js"></script>
     <script src="../js/modal.js"></script>
     <script src="../js/postDetail.js"></script>

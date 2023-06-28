@@ -57,14 +57,29 @@ a {
 .tab-btn-wrap .btn-post-list {
   background-image: url("../assets/icon/icon-post-list-off.svg");
 }
+.profile-info-wrapper.highContrast .tab-btn-wrap .btn-post-list {
+  background-image: url("../assets/icon/icon-post-list-off-hc.svg");
+}
+
 .tab-btn-wrap .btn-post-list.on {
   background-image: url("../assets/icon/icon-post-list-on.svg");
 }
+.profile-info-wrapper.highContrast .tab-btn-wrap .btn-post-list.on {
+  background-image: url("../assets/icon/icon-post-list-on-hc.svg");
+}
+
 .tab-btn-wrap .btn-post-album {
   background-image: url("../assets/icon/icon-post-album-off.svg");
 }
+.profile-info-wrapper.highContrast .tab-btn-wrap .btn-post-album {
+  background-image: url("../assets/icon/icon-post-album-off-hc.svg");
+}
+
 .tab-btn-wrap .btn-post-album.on {
   background-image: url("../assets/icon/icon-post-album-on.svg");
+}
+.profile-info-wrapper.highContrast .tab-btn-wrap .btn-post-album.on {
+  background-image: url("../assets/icon/icon-post-album-on-hc.svg");
 }
 
 .post-sec {

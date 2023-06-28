@@ -9,6 +9,8 @@ window.addEventListener("scroll", async () => {
     if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
         console.log('바닥이당! 데이터 불러올게 기다려!')
         throttle(updatePost((await loadPostData(url, token, profileAccountName)).post), 1000)
+        const postBtnOption = document.querySelectorAll('main .btn-option');
+        handlePostOptionModal(postBtnOption)
     };
 })
 
@@ -427,4 +429,19 @@ function touchScroll(){
         list.addEventListener('click', onClick, true);
     };
     bindEvents();
+}
+
+//테마 작업 진행중.
+const wrapper = document.querySelector('.profile-info-wrapper');
+const theme = window.localStorage.getItem('theme');
+if (theme === 'highContrast') {
+    wrapper.classList.add('highContrast');
+    document.body.style.backgroundColor = '#000000';
+    document.getElementById("profile-back-btn").src = "../assets/icon/icon-arrow-left-hc.svg";
+    document.getElementById("profileInfo-more-icon").src = "../assets/icon/icon-more-vertical-hc.svg";
+
+} else {
+    wrapper.classList.remove('highContrast');
+    document.body.style.backgroundColor = '#ffffff'; 
+    
 }

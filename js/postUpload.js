@@ -25,12 +25,14 @@ async function getPostData(){
         document.querySelector('textarea').value=json.post.content
     }
     if(json.post.image){
-        const li = document.createElement('li');
-            li.innerHTML = `<div class="img-cover">
-            <img src=${checkImageUrl(json.post.image,'post')} alt="">
-            <button class="btn-remove"></button>
-        </div>`;
-        imglist.append(li);
+        json.post.image.split(',').forEach(item=>{
+            const li = document.createElement('li');
+                li.innerHTML = `<div class="img-cover">
+                <img src=${checkImageUrl(item,'post')} alt="">
+                <button class="btn-remove"></button>
+            </div>`;
+            imglist.append(li);
+        })
     }
 
     return json
@@ -88,8 +90,8 @@ contentInp.addEventListener('change', () => {
     function readURL(input) {
         // 이미지 하나씩 여러개 추가할 수 있는 상태, 3개 한정은 아직 구현하지 않음
         if (input.files && input.files[0]) {
-
-            if (checkImageExtension(input.files[0])) {
+            [...input.files].forEach(item=>{
+            if (checkImageExtension(item)) {
                 // 이미지 입력되면 valid
                 validImg = true;
 
@@ -102,12 +104,12 @@ contentInp.addEventListener('change', () => {
                 </div>`;
                     imglist.append(li);
                 });
-                reader.readAsDataURL(input.files[0]);
+                reader.readAsDataURL(item);
             } else {
                 alert('유효하지 않은 파일 입니다')
                 input.value = '';
             }
-            
+        })
         }
     }
 })()
@@ -117,9 +119,13 @@ imglist.addEventListener('click', (e) => {
     e.preventDefault();
     // 이벤트 위임
     if (e.target.className === 'btn-remove') {
+        const removeIdx = [...imglist.childNodes].indexOf(e.target.closest('li'))
+
         e.target.closest('li').remove();
 
-        // ????
+        const updatedFileList = removeFileFromList(imgInp.files,removeIdx)
+        imgInp.files = updatedFileList;
+
         if (imglist.children.length === 0) {
             // 이미지 추가한 거 다 삭제하면 invalid
             validImg = false;
@@ -127,6 +133,22 @@ imglist.addEventListener('click', (e) => {
         }
     }
 })
+
+function removeFileFromList(fileList, index) {
+    let files = Array.from(fileList); // FileList를 배열로 변환
+    files.splice(index, 1); // 해당 인덱스의 요소를 제외
+  
+    // 새로운 FileList를 생성하기 위해 DataTransfer 객체 사용
+    let dataTransfer = new DataTransfer();
+    files.forEach(function (file) {
+      dataTransfer.items.add(file); // 새로운 DataTransfer 객체에 파일 추가
+    });
+  
+    // DataTransfer 객체에서 FileList를 추출
+    const newFileList = dataTransfer.files;
+  
+    return newFileList; // 새로운 FileList 반환
+}
 
 // 이벤트 리스너 차례로 동작함
 imgInp.addEventListener('change', isValid);
@@ -160,17 +182,20 @@ async function submitPostForm(METHOD) {
     const token = localStorage.getItem('user-token');
 
     const url = "https://api.mandarin.weniv.co.kr";
-    const reqPath = METHOD==="PUT" ? `/post/${POSTID}` : "/post"
+    const reqPath = METHOD=== "PUT" ? `/post/${POSTID}` : "/post"
 
     // 서버에 이미지 저장하고 가져오기
     let fileName;
     if(METHOD === "PUT" && !document.querySelector('#input-file').files[0]){
-        if(document.querySelector('.img-cover img')){
-            fileName =document.querySelector('.img-cover img').src
+        if(document.querySelectorAll('.img-cover img')){
+            fileName = document.querySelector('.img-cover img').src
         }
     } else{
+        console.log('POST!!!')
         fileName = await postImg();
     }
+
+    console.log(METHOD,fileName)
 
     const data = {
         "post": {
@@ -196,22 +221,45 @@ async function submitPostForm(METHOD) {
 
 // 입력된 이미지 서버에 올리기
 async function postImg() {
-    const formData = new FormData();
     const reqPath = "/image/uploadfile";
     if (document.querySelector('#input-file').files[0]) {
-        formData.append("image", document.querySelector('#input-file').files[0])
-        const res = await fetch("https://api.mandarin.weniv.co.kr" + reqPath, {
-            method: "POST",
-            body: formData
+        const files = Array.from(imgInp.files);
+    
+        const uploadPromises = files.map(async (item) => {
+            const formData = new FormData();
+            formData.append("image", item);
+        
+            const res = await fetch("https://api.mandarin.weniv.co.kr" + reqPath, {
+                method: "POST",
+                body: formData
+            });
+        
+            const json = await res.json();
+        
+            return json.filename;
         });
-        const json = await res.json();
-
-        console.log(json.filename)
-
-        return 'https://api.mandarin.weniv.co.kr/' + json.filename;
-    } else {
-        return '';
+    
+        const uploadedFiles = await Promise.all(uploadPromises);
+        
+        return uploadedFiles.join(',');
+        } else {
+            return '';
+        }
     }
-}
 
 // --- end of 게시글 작성하기 ---
+
+//고대비 테마
+const wrapper = document.querySelector('.post-upload-wrapper');
+const theme = window.localStorage.getItem('theme');
+if (theme === 'highContrast') {
+    wrapper.classList.add('highContrast');
+    document.body.style.backgroundColor = '#000000';
+    document.getElementById("post-upload-backBtn").src = "../assets/icon/icon-arrow-left-hc.svg";
+    document.getElementById("image-upload-btn").src = "../assets/upload-file-hc.svg";
+
+} else {
+    wrapper.classList.remove('highContrast');
+    document.body.style.backgroundColor = '#ffffff'; 
+    
+}

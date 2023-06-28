@@ -37,11 +37,21 @@ a {
 
 h2,
 p {
+  color: #767676;
   text-align: center;
+  font-size: 14px;
+}
+.join.highContrast h2,
+.join.highContrast p {
+  color: #dbdbdb;
 }
 
 .title {
   font-size: 24px;
+  color: #000000;
+}
+.join.highContrast .title {
+  color: #ffffff;
 }
 
 .join-email form {
@@ -60,8 +70,13 @@ form {
   max-width: 40%;
   margin: 0 auto;
   color: #767676;
+  color: #767676;
   font-size: 0.75rem;
 }
+.join.highContrast form {
+  color: #dbdbdb;
+}
+
 form .profile-img {
   position: relative;
   width: 110px;
@@ -78,14 +93,33 @@ form .profile-img .img-cover img {
   -o-object-fit: cover;
      object-fit: cover;
 }
+form .upload-img circle {
+  fill: #9C85C5;
+}
+.join.highContrast form .upload-img circle {
+  fill: #E4D6FF;
+}
+
+form .upload-img path {
+  stroke: #ffffff;
+}
+.join.highContrast form .upload-img path {
+  stroke: #000000;
+}
+
 form > fieldset {
   margin-bottom: 16px;
 }
 form label {
+  color: #767676;
   display: block;
   margin-bottom: 2px;
   text-align: start;
 }
+.join.highContrast form label {
+  color: #dbdbdb;
+}
+
 form label.btn-upload {
   position: absolute;
   right: 0;
@@ -99,11 +133,56 @@ form label.btn-upload svg > circle {
 }
 form input {
   display: block;
+  background-color: #fff;
+  color: #000000;
   width: 100%;
   border: none;
   border-bottom: 1px solid #dbdbdb;
   padding: 8px 0;
 }
+.join.highContrast form input {
+  background-color: #000000;
+}
+
+.join.highContrast form input {
+  color: #ffffff;
+}
+
+form input::-webkit-input-placeholder {
+  color: #dbdbdb;
+}
+
+form input::-moz-placeholder {
+  color: #dbdbdb;
+}
+
+form input:-ms-input-placeholder {
+  color: #dbdbdb;
+}
+
+form input::-ms-input-placeholder {
+  color: #dbdbdb;
+}
+
+form input::placeholder {
+  color: #dbdbdb;
+}
+.join.highContrast form input::-webkit-input-placeholder {
+  color: #FFEB32;
+}
+.join.highContrast form input::-moz-placeholder {
+  color: #FFEB32;
+}
+.join.highContrast form input:-ms-input-placeholder {
+  color: #FFEB32;
+}
+.join.highContrast form input::-ms-input-placeholder {
+  color: #FFEB32;
+}
+.join.highContrast form input::placeholder {
+  color: #FFEB32;
+}
+
 form input.btn-upload {
   display: none;
 }
@@ -137,6 +216,9 @@ form [class^=warning-msg] {
   margin-top: 6px;
   display: none;
 }
+.join.highContrast form [class^=warning-msg] {
+  color: #FFEB32;
+}
 
 button {
   display: block;
@@ -147,30 +229,61 @@ button {
 
 .size-l {
   margin-top: 30px;
-  background-color: #635CA5;
-  color: #FFFFFF;
+  background-color: #BCADDC;
+  color: #000000;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   font-weight: 500;
   width: 100%;
   padding: 13px 0px;
   border-radius: 44px;
   font-size: 0.875rem;
 }
+.join.highContrast .size-l {
+  background-color: transparent;
+}
 
-.size-l:disabled {
-  background-color: #BCADDC;
-  color: #FFFFFF;
+.join.highContrast .size-l {
+  color: #ffffff;
+}
+
+.join.highContrast .size-l {
+  -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
+          box-shadow: 0 0 0 2px #E4D6FF inset;
 }
 
 .btn-next {
   border: none;
+  color: #ffffff;
   background-color: #635CA5;
-  color: white;
   margin-top: 30px;
   padding: 13px;
+}
+.join.highContrast .btn-next {
+  color: #000000;
+}
+
+.join.highContrast .btn-next {
+  background-color: #E4D6FF;
 }
 
 .btn-next:disabled {
   background-color: #BCADDC;
+  color: #000000;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.join.highContrast .btn-next:disabled {
+  background-color: transparent;
+}
+
+.join.highContrast .btn-next:disabled {
+  color: #ffffff;
+}
+
+.join.highContrast .btn-next:disabled {
+  -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
+          box-shadow: 0 0 0 2px #E4D6FF inset;
 }
 
 .btn-upload {

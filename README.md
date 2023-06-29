@@ -92,8 +92,11 @@
 
 <br />
 
-### [GitHub flow]
+### [Git flow]
 <img width="450" src="https://user-images.githubusercontent.com/121578822/249664354-ded53ca2-78d9-46b7-8359-c0503be4350c.png">
+
+[놀고먹고십구 협업플로우.pdf](https://github.com/FRONTENDSCHOOL5/final-19-EggplantMarket/files/11902046/default.pdf)
+
 
 <br />
 

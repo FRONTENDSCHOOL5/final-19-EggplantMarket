@@ -46,6 +46,7 @@ async function postFeed(postsData) {
                         <div class="user-follow">
                             <a class="profile-img img-cover" href="./profile_info.html?accountName=${item.author.accountname}">
                                 <span class="a11y-hidden">${item.author.username}의 프로필 보기</span>
+                                
                                 <img src="${checkImageUrl(item.author.image,'profile')}" alt="">
                             </a>
                             <a class="user-info" href="./profile_info.html?accountName=${item.author.accountname}">
@@ -80,6 +81,7 @@ async function postFeed(postsData) {
             if (item.image) {
                 item.image.split(',').forEach(item=>{
                     liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<div class="img-cover"><img class="post-img" src="${checkImageUrl(item,'post')}" alt="게시물 사진"></img></div>`)
+                    // liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<div class="img-cover"><img class="post-img" src="${item}" alt="게시물 사진"></img></div>`)
                 })
                 
             }
@@ -90,14 +92,15 @@ async function postFeed(postsData) {
 
         }
         ulNode.appendChild(frag);
-    } else{
-        document.querySelector('.home-withoutfollower').style.display = '';
-    }
+    } 
     handleModal()
 }
 
 async function run() {
-    postFeed(await getData());
+    await postFeed(await getData());
+    if(document.querySelector('.home-post-list').childNodes.length === 0){
+        document.querySelector('.home-withoutfollower').style.display = '';
+    }
 }
 run()
 

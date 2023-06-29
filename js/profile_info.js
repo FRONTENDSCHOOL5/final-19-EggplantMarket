@@ -302,6 +302,33 @@ async function run(url, token, accountName) {
     ]
     await Promise.all(updatePromises);
 
+    // const profilePromise = loadProfileData(url, token, accountName);
+    // const productPromise = loadProductData(url, token, accountName);
+    // const postPromise = loadPostData(url, token, accountName);
+
+    // // 각각의 비동기 작업을 순차적으로 실행하고 결과를 받음
+    // const profileData = await profilePromise;
+    // const productData = await productPromise;
+    // const postData = await postPromise;
+
+    // const updateProfilePromise = updateInfo(profileData.profile);
+    // const updateProductPromise = updateProduct(productData.product, productData.data);
+    // const updatePostPromise = updatePost(postData.post);
+
+    // 각각의 비동기 작업이 모두 완료될 때까지 기다림
+    // await updateProfilePromise;
+    // await updateProductPromise;
+    // await updatePostPromise;
+
+    // 직렬로 실행되는 코드
+    // const profileData = await loadProfileData(url, token, accountName);
+    // const productData = await loadProductData(url, token, accountName);
+    // const postData = await loadPostData(url, token, accountName);
+
+    // updateInfo(profileData.profile);
+    // updateProduct(productData.product, productData.data);
+    // updatePost(postData.post);
+
     document.querySelector('body').style.display = 'block'
     handleModal()
     touchScroll()

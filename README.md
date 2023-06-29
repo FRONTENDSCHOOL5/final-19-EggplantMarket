@@ -123,6 +123,12 @@
 - 의미 있는 변수명 사용하기, 함수명은 동사로 시작하기,  class명은 형태 + 의미 + 상태
 
 <br />
+- 이슈 관리
+<img width="450" src="https://user-images.githubusercontent.com/121578822/249673691-ddf9959e-bb98-467e-a98d-1cb0831304f2.png">
+- 커밋 컨벤션
+<img width="450" src="https://user-images.githubusercontent.com/121578822/249673654-77ff2d0d-7617-4bcd-b0b9-09211d2d143b.png">
+
+<br />
 
 ## <span id = "mainFunction">5. 주요 기능<span>
 - 로그인 / 회원가입

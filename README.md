@@ -279,13 +279,12 @@
 |:-:|:-:|
 |<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249665809-abbc724d-38f1-4158-b1da-26b64ed1f8fb.gif">|<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249662306-e5967968-53d8-40e4-aded-2b98b447ff78.gif">|
 
-<br />
+
 
 | [채팅] | [검색] | [홈 화면] |
 |:-:|:-:|:-:|
 |<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249662948-ff125e34-4ee2-4145-af51-98ac3f343bc6.gif">|<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249662478-633851aa-ac23-4ea4-b885-d4029b9c904f.gif">|<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249662437-47e5ef04-e686-4062-816c-5961a5ae65b7.gif">|
 
-<br />
 <br />
 
 ### 2) 게시글
@@ -294,7 +293,6 @@
 |<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249662966-d872e11d-b5e3-4407-8e3c-63878295f232.gif">|<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249663151-af559480-c407-4bd5-8097-e3ad7a95f5b5.gif">|<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249663004-036a38db-c469-4820-82e3-86bb88b0874b.gif">|
 
 <br />
-<br />
 
 ### 3) 상품 판매
 | [상품 등록] | [상품 수정] | [상품 삭제] |
@@ -302,17 +300,20 @@
 |<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249662871-a85cc4a4-0172-4961-a937-4c1fbd63d6af.gif">|<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249663036-af2a7c20-63ad-4c55-8777-2ba74969d04f.gif">|<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249663121-19a078fd-f995-4810-9307-762dae15d4a2.gif">|
 
 <br />
-<br />
 
 ### 4) 프로필
 | [나의 프로필] | [나의 팔로우/팔로잉 목록] | [다른 사람의 팔로우/팔로잉 목록] |
 |:-:|:-:|:-:|
 |<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249662530-f0e857d3-2052-4048-b47d-bf3503817031.gif">|<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249663065-f427e065-dc25-4bfb-861b-6aae903e73d5.gif">|<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249662624-2f997b7f-fe9d-4ab9-9805-df6e317039ec.gif">|
 
+<br />
+
 ### 5) 고대비 테마
 | [고대비테마 적용] | [다시 라이트모드로] | [고대비 상품 등록] |
 |:-:|:-:|:-:|
 |<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249663799-bd5e9eae-04de-48cd-b1f4-819c51cb2771.gif">|<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249663764-3d25fd45-9519-41a8-a3e1-7a32b93f0afa.gif">|<img width="390px;" src="https://user-images.githubusercontent.com/121578822/249663840-aa9cb09f-5fc1-4175-8949-c3475792a18b.gif">|
+
+<br />
 
 ### 6) 키보드 접근성
 | [Tab으로 focus 이동] | [skip navigation] |

@@ -1,0 +1,72 @@
+@import "global";
+@import "variables";
+
+main {
+    min-width: 390px
+}
+
+.product{
+    display: flex;
+    flex-direction: column;
+    width: 24vw;
+    min-width: 140px;
+    text-align: left;
+
+    &-container{
+        overflow: hidden;
+        padding: 20px 0;
+        h2{
+            margin-bottom: 16px;
+            font-weight: 700;
+            margin-left: 18px;
+        }
+        position:relative;
+        border-top: 1px solid $gray100-color;
+        border-bottom: 1px solid $gray100-color;
+        background-color: $white-color;
+    }
+
+    &-list{
+        white-space: nowrap;
+        >:first-child{
+            margin-left: 18px;
+        }
+        >:last-child{
+            margin-right: 18px;
+        }
+        transform: translate(0,0);
+        // position : absolute
+    }
+
+    &-img{
+        width: 100%;
+        order: -1;
+        border-radius: 8px;
+        // object-fit: cover;
+        aspect-ratio: 14/9;
+        -webkit-user-drag: none;
+    }
+
+    // 길면?
+    &-name{
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+        word-break:break-all;
+
+        margin:7px 0;
+    }
+    &-item{
+        display: inline-block;
+    }
+    &-item + &-item{
+        margin-left: 5px;
+    }
+
+    &-price{
+        color: $price-color;
+        font-weight: 700;
+    }
+}
+

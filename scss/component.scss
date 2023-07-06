@@ -1,0 +1,607 @@
+@import 'global';
+@import 'variables';
+
+$theme: (
+    light: (bg-color:#fff,
+        btn-color: #ffffff,
+        btn-font:#767676,
+        background-color: rgba(0, 0, 0, 0.5),
+        font-color: #000000,
+        btn-font-color: #ffffff,
+        gray-color: #767676,
+        point-color: #9747FF,
+        enabled-color : #635CA5,
+        disabled-color : #BCADDC,
+        border : none,
+        home-icon: url("../assets/icon/icon-home.svg"),
+        message-icon: url("../assets/icon/icon-message-circle.svg"),
+        message-fill:url("../assets/icon/icon-message-circle-fill.svg"),
+        edit-icon:url("../assets/icon/icon-edit.svg"),
+        profile-icon:url("../assets/icon/icon-user.svg"),
+    ),
+    highContrast: (bg-color:#000000,
+        btn-color: #E4D6FF,
+        btn-font: #000000,
+        background-color: rgb(236 236 236 / 34%),
+        font-color: #ffffff,
+        btn-font-color: #000000,
+        gray-color: #dbdbdb,
+        point-color: #FFEB32,
+        enabled-color : #E4D6FF,
+        disabled-color : transparent,
+        border : 2px solid #E4D6FF,
+        home-icon: url("../assets/icon/icon-home-hc.svg"),
+        message-icon: url("../assets/icon/icon-message-circle-hc.svg"),
+        message-fill:url("../assets/icon/icon-message-circle-fill-hc.svg"),
+        edit-icon:url("../assets/icon/icon-edit-hc.svg"),
+        profile-icon:url("../assets/icon/icon-user-hc.svg"),
+    )
+);
+
+@function get-color($key, $type: 'light') {
+
+    @each $name,
+    $color in map-get($theme, $type) {
+        @if($key ==$name) {
+            @return $color
+        }
+    }
+}
+
+@mixin get-color($property, $color) {
+
+    #{$property}: get-color($color);
+
+    @at-root .highContrast & {
+        #{$property}: get-color($color, highContrast);
+    }
+}
+
+.home-post, .home-post-onlytext{
+    margin-top: 1.25rem;
+}
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: .0625rem solid $gray100-color;
+}
+.nav{
+    &-main {
+            padding: 13px 1rem;
+    }
+    &-search{
+        padding: .5625rem 1rem;
+    }
+        &-basic,
+        &-chat {
+        padding: 3px 5px;
+    }
+        &-upload {
+            padding: 3px 1rem 5px 3px;
+        }
+}
+
+.btn-back{
+    height: 44px;
+    width: 44px;
+    background: url('../assets/icon/icon-arrow-left.svg') no-repeat center;
+}
+.btn-option, .btn-more{
+    height: 44px;
+    width: 44px;
+    background: url('../assets/icon/icon-more-vertical.svg') no-repeat center;
+}
+
+.highContrast{
+    .btn-back{
+        background-image: url("../assets/icon/icon-arrow-left-hc.svg");
+    }
+    .btn-option, .btn-more{
+        background-image: url('../assets/icon/icon-more-vertical-hc.svg');
+    }
+}
+
+.nav-basic, .nav-upload{
+    .btn-back{
+        order: 0;
+    }
+    .btn-option, .btn-save, #upload-btn{
+        order: 1;
+    }
+}
+
+.nav-chat, .comment{
+    .btn-back, .profile-img{
+        order: 0;
+        margin-right: .625rem;
+    }
+    .title-chat, #commemt-input{
+        order: 1;
+        margin-right: auto;
+        flex-grow: 1;
+    }
+    .btn-comment{
+        order: 2;
+        margin-left: auto;
+        flex-basis: 8%;
+    }
+}
+.nav-search{
+    .btn-button{
+        order: 0;
+    }
+    #inp-search{
+        order: 1;
+        flex-grow: 1;
+        margin-left: 1.25rem;
+        border-radius: 2rem;
+        padding: .4375rem 0rem .4375rem 1rem;
+        background-color: $gray50-color;
+        line-height: 1.125rem;
+    }
+    input::placeholder{
+        color: $gray200-color;
+    }
+}
+.nav-main{
+    .title-main{
+        font-size: map-get($font-sizes,"size18");
+        font-weight: 500;
+    }
+}
+
+.nav-chat{
+    .title-chat{
+        font-size: map-get($font-sizes,"size14");
+        font-weight: 500;
+    }
+}
+
+.comment{
+    @include get-color(background-color, bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: .0625rem solid #dbdbdb;
+    border-bottom: .0625rem solid $gray100-color;
+    padding: 3px 5px;
+    button{
+        font-size: .875rem;
+    }
+    input::placeholder{
+        color: $gray200-color;
+    }
+}
+
+// .modal-background{
+//     // 모달창 완성 후
+//     position: fixed;
+//     /* top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background-color: rgba(0, 0, 0, 0.5);
+//     display: flex;
+//     justify-content: center;
+//     align-items: center; */
+//     .modal-content{
+//         width: 15.75rem;
+//         background-color: $white-color;
+//         border-radius: .625rem;
+//         text-align: center;
+//         .modal-description {
+//             padding: 1.375rem 3.8125rem;
+//             font-size: map-get($font-sizes, "size16");
+//             border-bottom: .0313rem solid $gray100-color;
+//             font-weight: 500;
+//         }
+//     }
+// }
+
+// .modal-actions {
+//     display: flex;
+//     justify-content: center;
+//     font-weight: 400;
+//     .left-button {
+//         order: 0;
+//         width: 7.875rem;
+//         padding: .875rem 3rem;
+//         font-size: map-get($font-sizes, "size14");
+//         border-right: .0313rem solid $gray100-color;
+//     }
+//     .right-button {
+//         order: 1;
+//         width: 7.875rem;
+//         padding: .875rem 3.0625rem;
+//         color: $highlight-color;
+//         font-size: map-get($font-sizes, "size14");
+//     }
+// }
+
+
+// 모달창
+// 하단 모달창 부분
+.post-modal-background{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    @include get-color(background-color, background-color);
+    .post-modal-content{
+        @include get-color(background-color, bg-color);
+        padding-bottom: .625rem;
+        border-radius: 1.25rem 1.25rem 0 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    .modal-content{
+        padding: 0rem 1.625rem;
+        font-weight: 400;
+        line-height: 1.125rem;
+    }
+    .post-modal-bar{
+        background-color: $gray100-color;
+        width: 3.125rem;
+        height: .25rem;
+        margin: 1rem auto;
+    }
+    .modal-description{
+        width: 100%;
+        text-align: left;
+        padding: .875rem 0rem;
+        @include get-color(color, font-color);
+        font-size: map-get($font-sizes, size14);
+    }
+}
+
+// 삭제 모달창
+.modal-background{
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    .modal-content{
+        width: 15.75rem;
+        @include get-color(background-color, bg-color);
+        border-radius: .625rem;
+        text-align: center;
+        position: absolute;
+        bottom: 50%;
+        right: 50%;
+        transform: translate(50%, 50%);
+        .modal-description {
+            padding: 1.375rem 2.5rem;
+            font-size: map-get($font-sizes, "size16");
+            border-bottom: .0313rem solid $gray100-color;
+            @include get-color(color, font-color);
+            font-weight: 500;
+        }
+    }
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    font-weight: 400;
+    .left-button {
+        order: 0;
+        width: 7.875rem;
+        padding: .875rem 3rem;
+        font-size: map-get($font-sizes, "size14");
+        @include get-color(color, font-color);
+        border-right: .0313rem solid $gray100-color;
+    }
+    .right-button {
+        order: 1;
+        width: 7.875rem;
+        padding: .875rem 2.1875rem;
+        @include get-color(color, point-color);
+        font-size: map-get($font-sizes, "size14");
+    }
+}
+
+.mode_select{
+    label{
+        display: block;
+        padding: .875rem 0rem;
+    }
+}
+
+.nav-chat, .comment{
+    .btn-back, .profile-img{
+        order: 0;
+        margin-right: .625rem;
+    }
+    .title-chat, #commemt-input{
+        order: 1;
+        margin-right: auto;
+    }
+    .btn-option, .btn-comment{
+        order: 2;
+        margin-left: auto;
+    }
+}
+
+/* 게시물 */
+.user-follow{
+    height: 2.625rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .img-cover {
+        display: inline-block;
+            width: 2.25rem;
+            height: 2.25rem;
+        overflow: hidden;
+        border-radius: 50%;
+        border: 1px solid #DBDBDB;
+    
+        img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+    }
+    .profile-img{
+        order: 0;
+        margin-right: .75rem;
+    }
+    .user-info{
+        order: 1;
+        margin-right: auto;
+    }
+}
+
+.home-post{
+    position: relative;
+    .btn-option {
+        width: 1.5rem;
+        position: absolute;
+        top: 0;
+        right: -12px;
+            transform: translateX(-25%);
+        img{
+            width: 100%;
+        }
+    }
+    .btn-like.like{
+        svg {
+            fill : $highlight-color;
+            path {
+                stroke :$highlight-color;
+            }
+        }
+    }
+}
+
+.user-info{
+    .user-name{
+        font-size: map-get($font-sizes, "size14" );
+        font-weight: 500;
+        line-height: 1.125rem;
+        @include get-color(color, font-color);
+    }
+    .user-id{
+        @include get-color(color, gray-color);
+        font-size: map-get($font-sizes, "size12" );
+        font-weight: 400;
+        margin-top: .125rem;
+        &:before{
+            content : '@ '
+        }
+    }
+}
+
+.post-edit{
+    margin: 1rem auto 1rem 3.375rem;
+    padding-bottom: .3125rem;
+    a:first-child {
+            display: block;
+        }
+    .post-text{
+        @include get-color(color, font-color);
+        margin-bottom: 1rem;
+        line-height: 1.125rem;
+        word-break: break-all;
+        white-space: pre-line;
+    }
+.img-cover {
+    max-width: 19rem;
+    margin-bottom: .75rem;
+    border-radius: .625rem;
+    overflow: hidden;
+    border: 1px solid #DBDBDB;
+
+        .post-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+.post-icon{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    color: $gray300-color;
+    font-size: map-get( $font-sizes, "size12" );
+    &>*{
+        display: flex;
+        align-items: center; 
+        gap: 4px;
+        color: inherit;
+    }
+}
+    .post-date{
+        @include get-color(color, gray-color);
+        font-size: map-get( $font-sizes, "size10" );
+    }
+
+
+/* button */
+.size-l, .size-m, .size-ms, .size-s {
+    @include get-color(background-color, enabled-color);
+    @include get-color(color, btn-font-color);
+}
+.size-l:disabled, .size-m:disabled, .size-ms:disabled, .size-s:disabled {
+    @include get-color(background-color, disabled-color);
+    @include get-color(border, border);
+    color: $white-color;
+}
+
+.size{
+    &-l{
+        font-weight: 500;
+        width: 20.125rem;
+        padding: .8125rem 0rem;
+        border-radius: 2.75rem;
+        font-size: map-get( $font-sizes, "size14" );
+    }
+    &-m{
+        font-weight: 500;
+        width: 7.5rem;
+        padding: .5rem 0rem;
+        border-radius: 1.875rem;
+        font-size: map-get( $font-sizes, "size14" );
+    }
+    &-ms{
+        font-weight: 500;
+        width: 5.625rem;
+        padding: .4375rem 0rem;
+        border-radius: 2rem;
+        font-size: map-get( $font-sizes, "size14" );
+    }
+    &-s{
+        font-weight: 400;
+        width: 3.5rem;
+        padding: .4375rem 0rem;
+        border-radius: 1.625rem;
+        font-size: map-get( $font-sizes, "size12" );
+    }
+}
+
+.cancle{
+    background: $white-color;
+    color: $gray300-color;
+    border: .0625rem solid $gray100-color;
+}
+
+// 푸터 - 하단 탭 메뉴
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: $white-color;
+}
+
+.tab-item-list{
+    border-top: .0313rem solid $gray100-color;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    @include get-color(background-color, bg-color);
+    li{
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        a{  
+            flex-grow: 1;
+            top: 0;
+            width: 5.25rem;
+            display: inline-block;
+            font-size: map-get($font-sizes, "size10");
+            color: $gray300-color;
+            text-align: center;
+            background-repeat: no-repeat;
+            background-position: 50% 40%;
+            background-size: 1.25rem 1.25rem;
+        }
+        p {
+            font-weight: 400;
+            padding-top: 2.5rem;
+            padding-bottom: .625rem;
+            text-align: center;
+        }
+        &:hover{
+            background-color: #F1F1F1;
+        }
+    }
+    li:first-child { //여기하는중
+        a{
+            @include get-color(background-image, home-icon);
+        }
+        a.here{
+            background-image: url("../assets/icon/icon-home-fill.svg");
+        }
+    }
+    li:nth-child(2) {
+        a{
+            background-image: url("../assets/icon/icon-message-circle.svg");
+        }
+        a.here{
+            background-image: url("../assets/icon/icon-message-circle-fill.svg");
+        }
+    }
+    li:nth-child(3) {
+        a{
+            @include get-color(background-image, edit-icon);
+        }
+    }
+    li:nth-child(4) {
+        a{
+            @include get-color(background-image, profile-icon);
+        }
+        a.here{
+            background-image: url("../assets/icon/icon-user-fill.svg");
+        }
+    }
+}
+
+.skip-nav{
+    position:absolute;
+    width:100%;
+    height:0;
+    z-index:10000;
+    a {
+        display:block;
+        width:1px;
+        height:1px;
+        margin-bottom:-1px;  
+        font-weight:bold;
+        font-size:14px;
+        text-align:center;
+        white-space:nowrap;
+        background:#1c1c1c;
+        color:#fff;
+        overflow:hidden;
+
+        &:focus, &:active{
+            width:fit-content;
+            height:auto;
+            padding:15px;
+            font-size:16px;
+        }
+    }
+}
+
+.highContrast .skip-nav a{
+    background: #fff;
+    color: #1c1c1c;
+}
+
+.mode_select{
+    label > input{
+        margin-right: 15px;
+    }
+}

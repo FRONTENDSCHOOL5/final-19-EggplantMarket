@@ -1,0 +1,331 @@
+@import "global";
+@import "variables";
+
+$theme: (
+    light: (bg-color:#fff,
+    root-color: #f2f2f2,
+    btn-color: #ffffff,
+    btn-font:#767676,
+    disabled-btn-color: #BCADDC,
+    font-color: #000000,
+    btn-font-color: #ffffff,
+    gray-color: #767676,
+    box-shadow : none,
+    border: none,
+    profile-border : 1px solid #dbdbdb,
+    icon-border : 1px solid #767676,
+    price-color: #BF8DFF,
+    placeholder-color:#c4c4c4,
+    warning-color: #EB5757,
+    bg-logo:url(../assets/symbol-logo.svg),
+    home-image: url(../assets/icon/icon-home.svg),
+    chat-image: url(../assets/icon/icon-message-circle.svg),
+    post-image: url(../assets/icon/icon-edit.svg),
+    profile-image: url(../assets/icon/icon-user-fill.svg),
+    input-color: #F2F2F2,
+    strong-color: #9747FF,
+    chat-btn:url(../assets//icon/icon-message-circle.svg),
+    share-btn:url(../assets//icon/icon-share.svg),
+    ),
+    highContrast: (bg-color:#000000,
+    root-color: #000000,
+    btn-color: #E4D6FF,
+    btn-font: #000000,
+    disabled-btn-color: transparent ,
+    font-color: #ffffff,
+    btn-font-color: #000000,
+    gray-color: #dbdbdb,
+    box-shadow: 0 0 0 2px #E4D6FF inset,
+    border: 2px solid #E4D6FF,
+    profile-border : none,
+    icon-border : 1px solid #dbdbdb,
+    price-color: #C5A8FF,
+    placeholder-color:#000000,
+    warning-color: #FFEB32,
+    bg-logo:url(../assets/symbol-logo-highContrast.svg),
+    home-image: url(../assets/icon/icon-home-hc.svg),
+    chat-image: url(../assets/icon/icon-message-circle-hc.svg),
+    post-image: url(../assets/icon/icon-edit-hc.svg),
+    profile-image: url(../assets/icon/icon-user-fill-hc.svg),
+    input-color: #bdbdbd,
+    strong-color: #FFEB32,
+    chat-btn:url(../assets//icon/icon-message-circle-hc.svg),
+    share-btn:url(../assets//icon/icon-share-hc.svg),
+    )
+);
+
+@function get-color($key, $type: 'light') {
+    @each $name,
+    $color in map-get($theme, $type) {
+        @if($key ==$name) {
+            @return $color
+        }
+    }
+}
+
+@mixin get-color($property, $color) {
+    
+    #{$property}: get-color($color);
+
+    @at-root .profile-info-wrapper.highContrast & {
+        #{$property}: get-color($color, highContrast);
+    }
+}
+
+.img-crop {
+    margin: 0 auto;
+    width: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #DBDBDB;
+    img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+    }
+}
+body{
+    height: calc(100% + 61px);
+    background-color: $white-color;
+}
+
+main {
+    min-width: 390px;
+    & > section {
+        background-color: $white-color;
+    }
+    background-color: $gray50-color;
+    margin-bottom: 61px;
+}
+header{
+    @include get-color(background-color, bg-color);
+}
+
+.profile-container {
+    @include get-color(border, profile-border);
+    border-top: 0;
+    @include get-color(background-color, bg-color);
+    position: relative;
+    text-align: center;
+    padding: {
+        top : 30px;
+        bottom : 26px;
+        right: 50px;
+        left: 50px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+    .profile-header{
+        strong {
+            @include get-color(color, font-color);
+        }
+        .profile-id {
+            @include get-color(color, gray-color);
+        }
+        display: flex;
+        flex-direction: column;
+    }
+
+    .follow-wrap{
+        position: absolute;
+        top: 65px;
+        left: 50%;
+        transform: translateX(calc(-50% + 1.5rem + 94px));
+        display: flex;
+        flex-direction: column-reverse;
+        order: -1;
+        p {
+            margin-top: 6px;
+            font-size: .5rem;
+            @include get-color(color, gray-color);
+        }
+        & > strong {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: $gray300-color;
+        }
+    }
+
+    .follow-wrap:nth-of-type(1){
+        transform: translateX(calc(-50% - 1.5rem - 94px));
+        & > strong {
+            color: $black-color;
+        }
+    }
+
+    .profile-name {
+        display: block;
+        font-size: 1rem;
+        font-weight: 700;
+        margin : {
+            top: 16px;
+            bottom: 10px;
+        }
+    }
+
+    .profile-id {
+        font-size: .75rem;
+    }
+    .profile-id::before {
+        content: "@ ";
+    }
+
+    .profile-intro {
+        @include get-color(color, gray-color);
+        font-size: .875rem;
+        margin: {
+            top: 16px;
+            bottom: 24px;
+        }
+    }
+
+    .btn-wrap-my {
+        font-size: 0;
+        line-height: 0;
+        button {
+            @include get-color(background-color, btn-color);
+            @include get-color(color, btn-font);
+
+        }
+        & :first-child {
+            
+            margin-right: 12px;
+        }
+        
+        .btn-link {
+            // 버튼 초기화
+            background-color: $white-color;
+        
+            // 스타일
+            border: 1px solid $gray100-color;
+            color: $gray300-color;
+            border-radius: 30px;
+            padding: 8px 27px;
+
+            font-size: .875rem;
+            font-weight: 500;
+        }
+    }
+
+    .btn-wrap-your {
+        font-size: 0;
+        line-height: 0;
+        .circle{
+            @include get-color(border, icon-border);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            background: no-repeat center center;;
+        }
+
+        display: flex;
+        justify-content: center;
+        
+        .btn-chat{
+            @include get-color(background-image, chat-btn);
+        }
+        .btn-share{
+            @include get-color(background-image, share-btn);
+        }
+        .size-m {
+            margin: 0 12px;
+            height: 34px;
+            box-sizing: border-box;
+            &.hidden{
+                display: none;
+            }
+        }
+    }
+}
+
+.product-container{
+    @include get-color(background-color, bg-color);
+    h2 {
+        @include get-color(color, font-color);
+    }
+    .product-name {
+        @include get-color(color, font-color);
+    }
+    .product-price {
+        @include get-color(color, price-color);
+    }
+}
+
+.post-container {
+    @include get-color(background-color, bg-color);
+}
+
+.user-follow .user-info {
+    .user-id {
+        @include get-color(color, gray-color);
+    }
+    @include get-color(color, font-color);
+}
+
+.post-text {
+    @include get-color(color, font-color);
+}
+
+.cnt{
+    @include get-color(color, gray-color);
+}
+
+.btn-comment {
+    @include get-color(color, gray-color);
+}
+
+.post-date {
+    @include get-color(color, gray-color);
+}
+
+.tab-item-list {
+    @include get-color(background-color, bg-color);
+}
+
+.tab-item-list {
+    .here {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, profile-image);
+    }
+    @include get-color(background-color, bg-color);
+}
+
+.tab-item-chat{
+    a {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, chat-image);
+    }
+}
+
+.tab-item-follow {
+    a {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, post-image);
+    }
+}
+
+.tab-item-home {
+    a {
+        p {
+            @include get-color(color, gray-color);
+        }
+        @include get-color(background-image, home-image);
+    }
+}
+
+.content-wrap {
+    margin-top: 3px;
+}
+
+:root{
+    background-color: $gray50-color;
+}

@@ -1,0 +1,153 @@
+@import 'global';
+@import 'variables';
+
+$theme: (
+    light: (bg-color:#fff,
+        btn-color: #ffffff,
+        btn-font:#767676,
+        background-color: rgba(0, 0, 0, 0.5),
+        font-color: #000000,
+        btn-font-color: #ffffff,
+        gray-color: #767676,
+        point-color: #9747FF,
+        send-color:#9747FF,
+        warning-color:#EB5757,
+        img-icon: #635CA5,
+        border-bottom:1px solid #9747FF,
+    ),
+    highContrast: (bg-color:#000000,
+        btn-color: #E4D6FF,
+        btn-font: #000000,
+        background-color: rgb(236 236 236 / 34%),
+        font-color: #ffffff,
+        btn-font-color: #000000,
+        gray-color: #dbdbdb,
+        point-color: #FFEB32,
+        send-color:#FFEB32,
+        warning-color:#FFEB32,
+        img-icon: #E4D6FF,
+        border-bottom:1px solid #FFEB32,
+    )
+);
+
+@function get-color($key, $type: 'light') {
+
+    @each $name,
+    $color in map-get($theme, $type) {
+        @if($key ==$name) {
+            @return $color
+        }
+    }
+}
+
+@mixin get-color($property, $color) {
+
+    #{$property}: get-color($color);
+
+    @at-root .profile-modif-wrapper.highContrast & {
+        #{$property}: get-color($color, highContrast);
+    }
+}
+
+.profile-setting {
+    form {
+        margin-top: 30px;
+    }
+
+    .title {
+        margin-bottom: 12px;
+    }
+}
+
+// form
+form {
+    min-width: calc(390px - 30px * 2);
+    max-width: 40%;
+    margin: 0 auto;
+
+    color: $gray300-color;
+    font-size: .75rem;
+
+    .profile-img {
+        position: relative;
+        width: 110px;
+        margin: 0 auto 30px;
+
+        .img-cover {
+            width: 110px;
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                    object-fit: cover;
+                }
+        }
+    }
+
+    &>fieldset {
+        margin-bottom: 16px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 2px;
+        text-align: start;
+        @include get-color(color, gray-color);
+    }
+
+    label.btn-upload {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        border: none;
+        background-color: transparent;
+        margin: 0;
+
+        svg>circle {
+            @include get-color(fill, img-icon);
+        }
+        svg{
+            path {
+                @include get-color(stroke, bg-color);
+            }
+        }
+    }
+
+    input {
+        display: block;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid $gray100-color;
+        padding: 8px 0;
+        @include get-color(background-color, bg-color);
+        @include get-color(color, font-color);
+    }
+
+    input.btn-upload {
+        display: none;
+    }
+
+    input::placeholder {
+        font-size: .875rem;
+        @include get-color(color, gray-color);
+    }
+
+    input:focus {
+        @include get-color(border-bottom, border-bottom);
+        outline: none;
+    }
+
+[class^=warning-msg] {
+        @include get-color(color, warning-color);
+        font-size: 12px;
+        margin-top: 6px;
+        display: none;
+    }
+}
+
+
+// button
+.btn-upload {
+    cursor: pointer;
+}

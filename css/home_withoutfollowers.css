@@ -1,0 +1,215 @@
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+button {
+  border: none;
+  background-color: initial;
+  padding: 0px;
+}
+
+input {
+  border: none;
+}
+
+a {
+  color: initial;
+  text-decoration: initial;
+}
+
+.title-main {
+  color: #000000;
+}
+.home-wrapper.highContrast .title-main {
+  color: #ffffff;
+}
+
+.main-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.main-container p,
+.main-container div,
+.main-container a {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.main-container p {
+  font-size: 14px;
+  color: #767676;
+}
+.home-wrapper.highContrast .main-container p {
+  color: #dbdbdb;
+}
+
+.home-post-list {
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 65px;
+}
+
+.home-background {
+  background-image: url(../assets/symbol-logo-gray.svg);
+  background-size: contain;
+  width: 72px;
+  height: 100px;
+}
+.home-wrapper.highContrast .home-background {
+  background-image: url(../assets/symbol-logo-theme.svg);
+}
+
+.search-btn {
+  background-color: #635CA5;
+  color: #ffffff;
+  font-weight: 500;
+  text-align: center;
+  width: 120px;
+  padding: 13px 0px;
+  border-radius: 44px;
+  font-size: 14px;
+}
+.home-wrapper.highContrast .search-btn {
+  background-color: #E4D6FF;
+}
+
+.home-wrapper.highContrast .search-btn {
+  color: #000000;
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.tab-item-list {
+  background-color: #fff;
+}
+.tab-item-list .here {
+  background-image: url(../assets/icon/icon-home-fill.svg);
+}
+.tab-item-list .here p {
+  color: #767676;
+}
+.home-wrapper.highContrast .tab-item-list .here p {
+  color: #dbdbdb;
+}
+
+.home-wrapper.highContrast .tab-item-list .here {
+  background-image: url(../assets/icon/icon-home-fill-hc.svg);
+}
+
+.home-wrapper.highContrast .tab-item-list {
+  background-color: #000000;
+}
+
+.tab-item-chat a {
+  background-image: url(../assets/icon/icon-message-circle.svg);
+}
+.tab-item-chat a p {
+  color: #767676;
+}
+.home-wrapper.highContrast .tab-item-chat a p {
+  color: #dbdbdb;
+}
+
+.home-wrapper.highContrast .tab-item-chat a {
+  background-image: url(../assets/icon/icon-message-circle-hc.svg);
+}
+
+.tab-item-follow a {
+  background-image: url(../assets/icon/icon-edit.svg);
+}
+.tab-item-follow a p {
+  color: #767676;
+}
+.home-wrapper.highContrast .tab-item-follow a p {
+  color: #dbdbdb;
+}
+
+.home-wrapper.highContrast .tab-item-follow a {
+  background-image: url(../assets/icon/icon-edit-hc.svg);
+}
+
+.tab-item-more a {
+  background-image: url(../assets/icon/icon-user.svg);
+}
+.tab-item-more a p {
+  color: #767676;
+}
+.home-wrapper.highContrast .tab-item-more a p {
+  color: #dbdbdb;
+}
+
+.home-wrapper.highContrast .tab-item-more a {
+  background-image: url(../assets/icon/icon-user-hc.svg);
+}
+
+.home-post .user-follow .user-info {
+  color: #000000;
+}
+.home-post .user-follow .user-info .user-id {
+  color: #767676;
+}
+.home-wrapper.highContrast .home-post .user-follow .user-info .user-id {
+  color: #dbdbdb;
+}
+
+.home-wrapper.highContrast .home-post .user-follow .user-info {
+  color: #ffffff;
+}
+
+.post-text {
+  color: #000000;
+}
+.home-wrapper.highContrast .post-text {
+  color: #ffffff;
+}
+
+.cnt {
+  color: #767676;
+}
+.home-wrapper.highContrast .cnt {
+  color: #dbdbdb;
+}
+
+.btn-comment {
+  color: #767676;
+}
+.home-wrapper.highContrast .btn-comment {
+  color: #dbdbdb;
+}
+
+.post-date {
+  color: #767676;
+}
+.home-wrapper.highContrast .post-date {
+  color: #dbdbdb;
+}

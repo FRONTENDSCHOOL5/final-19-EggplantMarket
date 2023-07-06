@@ -1,0 +1,189 @@
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+button {
+  border: none;
+  background-color: initial;
+  padding: 0px;
+}
+
+input {
+  border: none;
+}
+
+a {
+  color: initial;
+  text-decoration: initial;
+}
+
+.login {
+  padding: 30px;
+}
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  color: #000000;
+}
+.login.highContrast .title {
+  color: #ffffff;
+}
+
+.join {
+  color: #767676;
+  font-size: 0.75rem;
+  display: inline-block;
+  margin: 20px auto 0;
+}
+
+form {
+  min-width: 330px;
+  max-width: 40%;
+  margin: 0 auto;
+  margin-top: 40px;
+  color: #767676;
+  font-size: 0.75rem;
+}
+.login.highContrast form {
+  color: #dbdbdb;
+}
+
+form > label {
+  color: #767676;
+  display: block;
+  margin-bottom: 2px;
+  margin-top: 16px;
+}
+.login.highContrast form > label {
+  color: #dbdbdb;
+}
+
+form > input {
+  display: block;
+  width: 100%;
+  background-color: #fff;
+  color: #000000;
+  border: none;
+  border-bottom: 1px solid #dbdbdb;
+  padding: 8px 0;
+  margin-bottom: 16p;
+}
+.login.highContrast form > input {
+  background-color: #000000;
+}
+
+.login.highContrast form > input {
+  color: #ffffff;
+}
+
+form > input::-webkit-input-placeholder {
+  font-size: 0.875rem;
+  color: #dbdbdb;
+}
+
+form > input::-moz-placeholder {
+  font-size: 0.875rem;
+  color: #dbdbdb;
+}
+
+form > input:-ms-input-placeholder {
+  font-size: 0.875rem;
+  color: #dbdbdb;
+}
+
+form > input::-ms-input-placeholder {
+  font-size: 0.875rem;
+  color: #dbdbdb;
+}
+
+form > input::placeholder {
+  font-size: 0.875rem;
+  color: #dbdbdb;
+}
+
+.size-l {
+  margin-top: 30px;
+  background-color: #635CA5;
+  background-color: #635CA5;
+  color: #ffffff;
+  font-weight: 500;
+  width: 100%;
+  padding: 13px 0px;
+  border-radius: 44px;
+  font-size: 0.875rem;
+}
+.login.highContrast .size-l {
+  background-color: #E4D6FF;
+}
+
+.login.highContrast .size-l {
+  color: #000000;
+}
+
+.size-l:disabled {
+  background-color: #BCADDC;
+  color: #000000;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #FFFFFF;
+}
+.login.highContrast .size-l:disabled {
+  background-color: transparent;
+}
+
+.login.highContrast .size-l:disabled {
+  color: #ffffff;
+}
+
+.login.highContrast .size-l:disabled {
+  -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
+          box-shadow: 0 0 0 2px #E4D6FF inset;
+}
+
+[class^=warning-msg] {
+  color: #EB5757;
+  font-size: 12px;
+  display: block;
+  margin-top: 6px;
+  display: none;
+}
+.login.highContrast [class^=warning-msg] {
+  color: #FFEB32;
+}
+
+.email-join {
+  text-align: center;
+}
+.email-join a {
+  color: #767676;
+}
+.login.highContrast .email-join a {
+  color: #dbdbdb;
+}
+
+input:focus {
+  border-bottom: 1px solid #9747FF;
+  outline: none;
+}
+
+.color-wrapper {
+  background-color: #fff;
+}
+.login.highContrast .color-wrapper {
+  background-color: #000000;
+}

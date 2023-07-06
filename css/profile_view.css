@@ -1,0 +1,128 @@
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+button {
+  border: none;
+  background-color: initial;
+  padding: 0px;
+}
+
+input {
+  border: none;
+}
+
+a {
+  color: initial;
+  text-decoration: initial;
+}
+
+.post-tab {
+  height: 44px;
+  padding: 9px 21px;
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.tab-btn-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+.tab-btn-wrap button {
+  border: none;
+  background-color: inherit;
+  width: 26px;
+  height: 26px;
+  margin-left: 16px;
+  background-repeat: no-repeat;
+}
+.tab-btn-wrap .btn-post-list {
+  background-image: url("../assets/icon/icon-post-list-off.svg");
+}
+.profile-info-wrapper.highContrast .tab-btn-wrap .btn-post-list {
+  background-image: url("../assets/icon/icon-post-list-off-hc.svg");
+}
+
+.tab-btn-wrap .btn-post-list.on {
+  background-image: url("../assets/icon/icon-post-list-on.svg");
+}
+.profile-info-wrapper.highContrast .tab-btn-wrap .btn-post-list.on {
+  background-image: url("../assets/icon/icon-post-list-on-hc.svg");
+}
+
+.tab-btn-wrap .btn-post-album {
+  background-image: url("../assets/icon/icon-post-album-off.svg");
+}
+.profile-info-wrapper.highContrast .tab-btn-wrap .btn-post-album {
+  background-image: url("../assets/icon/icon-post-album-off-hc.svg");
+}
+
+.tab-btn-wrap .btn-post-album.on {
+  background-image: url("../assets/icon/icon-post-album-on.svg");
+}
+.profile-info-wrapper.highContrast .tab-btn-wrap .btn-post-album.on {
+  background-image: url("../assets/icon/icon-post-album-on-hc.svg");
+}
+
+.post-sec {
+  width: 100%;
+  padding: 16px;
+}
+.post-sec .post-list li:first-child > section:first-child {
+  margin-top: 0;
+}
+.post-sec .post-album {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.post-sec .post-list.hidden,
+.post-sec .post-album.hidden {
+  display: none;
+}
+.post-sec ul {
+  min-height: calc(100vh - 360px - 247px - 44px - 61px);
+}
+
+.post-album-item {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.post-album-item a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.post-album-item a:focus {
+  border: 4px solid currentColor;
+}
+.post-album-item img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.post-container {
+  background-color: #fff;
+  margin-top: 3px;
+}

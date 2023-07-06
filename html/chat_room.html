@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>채팅방 | 가지마켙</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/component.css">
+    <link rel="stylesheet" href="../css/chat_room.css">
+</head>
+
+<body>
+    <div class="chat-room-wrapper">
+        <header class="top nav-chat">
+            <h1 class="a11y-hidden">채팅방</h1>
+            <a class='title-chat' href="./profile_info.html"><span class="a11y-hidden">대화상대: </span>애월읍 위니브
+                가지밭</a>
+            <button class="btn-option"><span class="a11y-hidden">나가기 옵션</span></button>
+            <button class="btn-back"><span class="a11y-hidden">뒤로가기</span></button>
+        </header>
+
+        <main>
+            <div class="chat-content follow-chat">
+                <a class="user-img img-cover" href="./profile_info.html">
+                    <img src="../assets/profile_imgs/user6.jpg" alt="">
+                </a>
+                <p class="content-text">옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고,
+                    못할 넣는 풍부하게
+                    뛰노는 인생의
+                    힘있다.</p>
+                <p class="chat-time">12:39</p>
+            </div>
+            <div class="chat-content follow-chat">
+                <a class="user-img img-cover" href="./profile_info.html">
+                    <img src="../assets/profile_imgs/user6.jpg" alt="">
+                </a>
+                <p class="content-text">안녕하세요. 감귤 사고싶어요요요요요</p>
+                <p class="chat-time">12:41</p>
+            </div>
+            <div class="chat-content my-chat">
+                <p class="content-text">네 말씀하세요</p>
+                <p class="chat-time">12:56</p>
+            </div>
+            <div class="chat-content my-chat-img">
+                <img src="../assets/eggplants/eggplant1.jpg" alt="">
+                <p class="chat-time">12:57</p>
+            </div>
+
+            <section class="comment">
+                <h2 class="a11y-hidden">채팅창</h2>
+                <label for="commemt-input" class="a11y-hidden">게시물에 대한 메세지 입력</label>
+                <input type="text" id="commemt-input" placeholder="댓글 입력하기...">
+                <img class="profile-img" id="img-btn" src="../assets/img-button.svg" alt="채팅에 입력하는 사진 선택 버튼">
+                <button type="submit" class="btn-comment" disabled><span class="a11y-hidden">메세지</span>전송</button>
+            </section>
+
+            <!-- 하단 모달창 - 더보기 버튼 클릭 시 보이도록 -->
+            <article class="post-modal-background">
+                <h2 class="a11y-hidden">모달창</h2>
+                <div class="post-modal-content">
+                    <div class="post-modal-bar"></div>
+                    <p class="a11y-hidden">채팅방 나가기</p>
+                    <div class="modal-content">
+                        <button class="modal-description">채팅방 나가기</button>
+                    </div>
+                </div>
+            </article>
+        </main>
+    </div>
+    <script src="../js/contrast.js"></script>
+    <script src="../js/chat_room.js"></script>
+    <script src="../js/common.js"></script>
+</body>
+
+</html>

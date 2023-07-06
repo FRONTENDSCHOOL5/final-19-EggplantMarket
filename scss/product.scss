@@ -1,0 +1,172 @@
+@import "variables";
+@import "global";
+
+$theme: (
+    light: (bg-color:#fff,
+        btn-color: #ffffff,
+        btn-font:#767676,
+        disabled-btn-color: #BCADDC,
+        font-color: #000000,
+        btn-font-color: #ffffff,
+        gray-color: #767676,
+        box-shadow : none,
+        border: none,
+        price-color: #BF8DFF,
+        placeholder-color:#dbdbdb,
+        bg-logo:url(../assets/symbol-logo.svg),
+        input-color: #F2F2F2,
+        strong-color: #EB5757,
+        upload-btn: #635CA5,
+        image-btn: #c4c4c4,
+        border-bottom: 1px solid #EB5757,
+    ),
+    highContrast: (bg-color:#000000,
+        btn-color: #E4D6FF,
+        btn-font: #000000,
+        disabled-btn-color: transparent,
+        font-color: #ffffff,
+        btn-font-color: #000000,
+        gray-color: #dbdbdb,
+        box-shadow: 0 0 0 2px #E4D6FF inset,
+        border: 2px solid #E4D6FF,
+        price-color: #C5A8FF,
+        placeholder-color:#FFEB32,
+        bg-logo:url(../assets/symbol-logo-highContrast.svg),
+        input-color: #bdbdbd,
+        strong-color: #FFEB32,
+        upload-btn: #E4D6FF,
+        image-btn: #000000,
+        border-bottom: 1px solid #FFEB32,
+    )
+);
+
+@function get-color($key, $type: 'light') {
+
+    @each $name,
+    $color in map-get($theme, $type) {
+        @if($key ==$name) {
+            @return $color
+        }
+    }
+}
+
+@mixin get-color($property, $color) {
+
+    #{$property}: get-color($color);
+
+    @at-root .product-upload-wrapper.highContrast & {
+        #{$property}: get-color($color, highContrast);
+    }
+}
+
+body{
+    min-width: 390px;
+}
+main{
+    width: inherit;
+    padding: 0 34px;
+    margin-top: 30px;
+    box-sizing: border-box;
+}
+
+form{
+    min-width: calc(390px - 34px * 2);
+    max-width: 40%;
+    margin: 0 auto;
+
+    color: $gray300-color;
+    font-size: .75rem;
+
+    & > label{
+        @include get-color(color, gray-color);
+        display: block;
+        margin-bottom: 2px;
+    }
+    
+    & > input {
+        display: block;
+        width: 100%;
+        @include get-color(background-color, bg-color);
+        @include get-color(color, font-color);
+        margin-bottom: 6px;
+        border: none;
+        border-bottom: 1px solid $gray100-color;
+        padding: 8px 0
+    }
+    & > input::placeholder{
+        font-size: .875rem;
+        @include get-color(color, placeholder-color);
+    }
+
+    label[for="product-price"]{
+        margin-top: 16px;
+    }
+
+    label[for="purchase-link"]{
+        margin-top: 16px;
+    }
+}
+
+
+.product-img {
+    border-radius: 20px;
+    background: #f2f2f2;
+    position: relative;
+    aspect-ratio: 5/3;
+    .btn-upload {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+    }
+    margin: {
+        top: 18px;
+        bottom: 30px
+    };
+}
+
+#product-img-upload {
+    display: none;
+}
+
+.upload-img{
+    circle {
+        @include get-color(fill, image-btn);
+    }
+}
+
+.btn-upload .upload-img{
+    circle:hover {
+        fill: #E4D6FF;
+    }
+}
+
+.warning-msg-productname {
+    color: $warning-color-text;
+    font-size: 12px;
+    display: none;
+}
+
+.warning-msg-purchaselink {
+    @include get-color(color, strong-color);
+    font-size: 12px;
+    display: none;
+}
+
+#purchase-link {
+    // @include get-color(border-bottom, border-bottom);
+}
+
+.size-ms:disabled{
+    @include get-color(background-color, disabled-btn-color);
+    @include get-color(box-shadow, box-shadow);
+    @include get-color(color, gray-color);
+}
+
+.size-ms{
+    @include get-color(background-color, upload-btn);
+    @include get-color(color, btn-font-color);
+}
+
+h2 {
+    @include get-color(color, gray-color);
+}

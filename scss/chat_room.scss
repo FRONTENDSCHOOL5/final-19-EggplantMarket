@@ -1,0 +1,207 @@
+@import 'global';
+@import 'variables';
+
+$theme: (
+    light: (bg-color:#fff,
+        btn-color: #ffffff,
+        btn-font:#767676,
+        background-color: rgba(0, 0, 0, 0.5),
+        font-color: #000000,
+        btn-font-color: #ffffff,
+        gray-color: #767676,
+        point-color: #9747FF,
+        send-color:#9747FF,
+        mychat-color: #635CA5,
+        mychat-border: none,
+        mychat-font:#fff,
+        chat-image: url("../assets/icon/icon-message-circle-fill.svg"),
+    ),
+    highContrast: (bg-color:#000000,
+        btn-color: #E4D6FF,
+        btn-font: #000000,
+        background-color: rgb(236 236 236 / 34%),
+        font-color: #ffffff,
+        btn-font-color: #000000,
+        gray-color: #dbdbdb,
+        point-color: #FFEB32,
+        send-color:#FFEB32,
+        mychat-color: #000000,
+        mychat-border: 1px solid #C5A8FF,
+        mychat-font:#C5A8FF,
+        chat-image: url("../assets/icon/icon-message-circle-fill-hc.svg"),
+    )
+);
+
+@function get-color($key, $type: 'light') {
+
+    @each $name,
+    $color in map-get($theme, $type) {
+        @if($key ==$name) {
+            @return $color
+        }
+    }
+}
+
+@mixin get-color($property, $color) {
+
+    #{$property}: get-color($color);
+
+    @at-root .chat-room-wrapper.highContrast & {
+        #{$property}: get-color($color, highContrast);
+    }
+}
+
+.top{
+    @include get-color(background-color, bg-color);
+}
+body{
+    background-color: #f2f2f2;
+}
+
+.title-chat {
+    @include get-color(color, font-color);
+}
+
+.img-cover {
+    display: inline-block;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    overflow: hidden;
+    
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+}
+}
+
+main{
+    position: fixed;
+    width: 100%;
+    bottom: 73px;
+}
+
+.chat-content{
+    display: flex;
+    margin-top: 10px;
+    .user-img {
+        flex-shrink: 0; 
+    }
+    .content-text{
+        max-width: 100%;
+        padding: 12px;
+        font-weight: 400;
+        font-size: map-get($font-sizes, size14 );
+        line-height: 
+        17.53px;
+        @include get-color(color, font-color);
+        border: 1px solid $gray200-color;
+    }
+    .chat-time{
+        font-size: map-get($font-sizes, size10 );
+        color: $gray300-color;
+        margin-right: 16px;
+        padding-bottom: 5px;
+        align-self: flex-end;  
+    }
+}
+
+.follow-chat{
+    .user-img{
+        margin: 0 12px 0 16px;
+    }
+    .content-text{
+        border-radius: 0px 12px 12px 12px;
+        @include get-color(background-color, bg-color);
+    }
+    .chat-time{
+        margin-left: 6px;
+    }
+}
+
+.my-chat{
+    justify-content:flex-end;
+    .content-text{
+        order: 1;
+        @include get-color(color, mychat-font);
+        margin: 0 16px 0 12px;
+        border-radius: 12px 0px 12px 12px;
+        @include get-color(border, mychat-border);
+        @include get-color(background-color, mychat-color);
+    }
+    .chat-time{
+        order: 0;
+        margin-right: 6px;
+    }
+}
+
+.my-chat-img{
+    justify-content:flex-end;
+    img{
+        order: 1;
+        max-width: 240px;
+        margin: 0 16px 0 12px;
+    }
+    .content-text{
+        order: 0;
+    }
+}
+
+.comment{
+    background-color: #FFFFFF;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    img{
+        width: 36px;
+    }
+    #commemt-input{
+        padding: 8px;
+        margin-right: 10px;
+        @include get-color(color, font-color);
+        @include get-color(background-color, bg-color);
+    }
+    .btn-comment:not(:disabled){
+        @include get-color(color, send-color);
+    }
+}
+
+#comment-input::placeholder {
+    @include get-color(color, gray-color);
+}
+
+// 하단 모달창 부분
+.post-modal-background{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    .post-modal-content{
+        background-color: #FFFFFF;
+        padding-bottom: 10px;
+        border-radius: 20px 20px 0 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    .modal-content{
+        padding: 14px 26px 14px;
+        font-size: map-get($font-sizes, size14);
+        font-weight: 400;
+        line-height: 18px;
+    }
+    .post-modal-bar{
+        background-color: $gray100-color;
+        width: 50px;
+        height: 4px;
+        margin: 16px auto;
+    }
+    .modal-description{
+        width: 100%;
+        text-align: left;
+    }
+}

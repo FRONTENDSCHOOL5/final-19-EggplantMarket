@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시물 상세보기 | 가지마켙</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/component.css">
+    <link rel="stylesheet" href="../css/post_detail.css">
+</head>
+
+<body>
+    <div class="post-detail-wrapper">
+        <div class="skip-nav">
+            <a href="#header" class="skip-link">상단 탭으로 가기</a>
+            <a href="#post" class="skip-link">게시글로 가기</a>
+            <a href="#comment" class="skip-link">댓글로 가기</a>
+            <a href="#footer" class="skip-link">댓글 입력하기</a>
+        </div>
+        <header id="header" class="top nav-basic">
+            <h1 class="a11y-hidden">게시물 댓글 페이지</h1>
+            <button class="btn-option"><span class="a11y-hidden">설정</span></button>
+            <button class="btn-back"><span class="a11y-hidden">뒤로가기</span></button>
+        </header>
+        <main>
+
+            <section id=post class="home-post">
+                <h2 class="a11y-hidden">게시글 내용</h2>
+            </section>
+
+            <section id="comment" class="comment-sec">
+                <h2 class="a11y-hidden">게시물에 대한 답변</h2>
+                <ul class="comment-list">
+                </ul>
+            </section>
+        </main>
+
+        <footer id="footer"">
+            <section class="comment">
+                <h2 class="a11y-hidden">댓글 입력하기</h2>
+                <label for="commemt-input" class="a11y-hidden">게시물에 대한 댓글 입력</label>
+                <input type="text" id="commemt-input" placeholder="댓글 입력하기...">
+                <div class="img-cover">
+                    <img class="profile-img" src="../assets/basic-profile.png" alt="">
+                </div>
+                <button type="submit" class="btn-comment" disabled>게시</button>
+            </section>
+        </footer>
+        <!-- 모달 -->
+        <article class="post-modal-background">
+            <h2 class="a11y-hidden">모달창</h2>
+            <div class="post-modal-content">
+                <div class="post-modal-bar"></div>
+                <div class="modal-content">
+                </div>
+            </div>
+        </article>
+        <article class="modal-background">
+            <h2 class="modal-title a11y-hidden">팝업</h2>
+            <div class="modal-content">
+                <p class="modal-description">?</p>
+                <div class="modal-actions">
+                    <button class="right-button ac-log-out"></button>
+                    <button class="left-button">취소</button>
+                </div>
+            </div>
+        </article>
+    </div>
+    <script src="../js/contrast.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/modal.js"></script>
+    <script src="../js/postDetail.js"></script>
+    <!-- - 게시글 우측 상단에 위치한 버튼을 클릭했을 경우
+    - 내가 작성한 게시글일 경우 : 삭제, 수정 버튼이 나타납니다.
+    - 다른 사용자가 작성한 게시글일 경우 : 신고하기 버튼이 나타납니다.
+        - 댓글 우측 상단에 위치한 버튼을 클릭했을 경우
+    - 내가 작성한 댓글일 경우 : 삭제 버튼이 나타납니다.
+    - 다른 사용자가 작성한 댓글일 경우 : 신고하기 버튼이 나타납니다.
+    -->
+    <script></script>
+</body>
+
+</html>

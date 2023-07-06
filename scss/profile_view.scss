@@ -1,0 +1,163 @@
+@import './_global.scss';
+@import './variables';
+
+$theme: (
+    light: (bg-color:#fff,
+    btn-color: #ffffff,
+    btn-font:#767676,
+    disabled-btn-color: #BCADDC,
+    font-color: #000000,
+    btn-font-color: #ffffff,
+    gray-color: #767676,
+    box-shadow : none,
+    border: none,
+    price-color: #BF8DFF,
+    placeholder-color:#c4c4c4,
+    btn-list-on:url('../assets/icon/icon-post-list-on.svg'),
+    btn-list-off:url('../assets/icon/icon-post-list-off.svg'),
+    btn-album-off:url('../assets/icon/icon-post-album-off.svg'),
+    btn-album-on:url('../assets/icon/icon-post-album-on.svg'),
+    bg-logo:url(../assets/symbol-logo.svg),
+    home-image: url(../assets/icon/icon-home-fill.svg),
+    chat-image: url(../assets/icon/icon-message-circle.svg),
+    post-image: url(../assets/icon/icon-edit.svg),
+    profile-image: url(../assets/icon/icon-user.svg),
+    input-color: #F2F2F2,
+    strong-color: #9747FF,
+    ),
+    highContrast: (bg-color:#000000,
+    btn-color: #E4D6FF,
+    btn-font: #000000,
+    disabled-btn-color: transparent ,
+    font-color: #ffffff,
+    btn-font-color: #000000,
+    gray-color: #dbdbdb,
+    box-shadow: 0 0 0 2px #E4D6FF inset,
+    border: 2px solid #E4D6FF,
+    price-color: #C5A8FF,
+    placeholder-color:#000000,
+    btn-list-on:url('../assets/icon/icon-post-list-on-hc.svg'),
+    btn-list-off:url('../assets/icon/icon-post-list-off-hc.svg'),
+    btn-album-off:url('../assets/icon/icon-post-album-off-hc.svg'),
+    btn-album-on:url('../assets/icon/icon-post-album-on-hc.svg'),
+    bg-logo:url(../assets/symbol-logo-highContrast.svg),
+    home-image: url(../assets/icon/icon-home-fill-hc.svg),
+    chat-image: url(../assets/icon/icon-message-circle-hc.svg),
+    post-image: url(../assets/icon/icon-edit-hc.svg),
+    profile-image: url(../assets/icon/icon-user-hc.svg),
+    input-color: #bdbdbd,
+    strong-color: #FFEB32,
+    )
+);
+
+@function get-color($key, $type: 'light') {
+    @each $name,
+    $color in map-get($theme, $type) {
+        @if($key ==$name) {
+            @return $color
+        }
+    }
+}
+
+@mixin get-color($property, $color) {
+    
+    #{$property}: get-color($color);
+
+    @at-root .profile-info-wrapper.highContrast & {
+        #{$property}: get-color($color, highContrast);
+    }
+}
+
+// 게시글 보기 탭
+.post-tab {
+    height: 44px;
+    padding: 9px 21px;
+    border-top: 1px solid $gray100-color;
+    border-bottom: 1px solid $gray100-color;
+}
+
+.tab-btn-wrap {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        border: none;
+        background-color: inherit;
+        width: 26px;
+        height: 26px;
+        margin-left: 16px;
+        background-repeat: no-repeat;
+    }
+
+    .btn-post-list {
+        @include get-color(background-image, btn-list-off);
+    }
+
+    .btn-post-list.on {
+        @include get-color(background-image, btn-list-on);
+    }
+
+    .btn-post-album {
+        @include get-color(background-image, btn-album-off);
+    }
+
+    .btn-post-album.on {
+        @include get-color(background-image, btn-album-on);
+    }
+}
+
+// 게시글 목록 섹션
+.post-sec {
+    width: 100%;
+    padding: 16px;
+
+    // overflow-y: scroll;
+    
+    .post-list {
+        // 목록형 최상단 게시글 마진 삭제
+        li:first-child>section:first-child {
+            margin-top: 0;
+        }
+    }
+    .post-album {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .post-list.hidden,
+    .post-album.hidden {
+        display: none;
+    }
+    ul {
+        min-height: calc(100vh - 360px - 247px - 44px - 61px);
+    }
+}
+
+// 재사용 코드
+.post-album-item {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+    }
+    
+    a:focus{
+        border: 4px solid currentColor;
+    }
+
+    img {
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+    }
+}
+
+.post-container{
+    background-color: $white-color;
+    margin-top: 3px;
+}

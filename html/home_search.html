@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사용자 검색 | 가지마켙</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/component.css">
+    <link rel="stylesheet" href="../css/home_search.css">
+</head>
+
+<body>
+    <div class="search-wrapper">
+        <div class="skip-nav">
+            <a href="#header" class="skip-link">상단 탭으로 가기</a>
+            <a href="#footer" class="skip-link">하단 탭으로 가기</a>
+        </div>
+        <header id="header" class="top nav-search">
+            <h1 class="a11y-hidden">검색</h1>
+            <label for="inp-search" class="a11y-hidden">이름 혹은 계정으로 사용자 검색하기</label>
+            <input onkeypress="filter(this)" type="text" id="inp-search" placeholder="이름 혹은 계정으로 사용자 검색하기">
+            <button class="btn-back"><span class="a11y-hidden">뒤로가기</span></button>
+        </header>
+        <main>
+            <h2 class="a11y-hidden">검색된 사용자 목록</h2>
+            <ul class="search-user-list">
+            </ul>
+        </main>
+        <footer id="footer">
+            <nav class="tab-menu">
+                <p class="a11y-hidden">하단 탭 메뉴</p>
+                <ul class="tab-item-list">
+                    <li class="tab-item-home">
+                        <a class="here" href="./home.html">
+                            <p>홈<span class="a11y-hidden">으로 이동</span></p>
+                        </a>
+                    </li>
+                    <li class="tab-item-chat">
+                        <a href="./chat_list.html">
+                            <p>채팅<span class="a11y-hidden">으로 이동</span></p>
+                        </a>
+                    </li>
+                    <li class="tab-item-follow">
+                        <a href="./post_upload.html">
+                            <p>게시물 작성<span class="a11y-hidden">으로 이동</span></p>
+                        </a>
+                    </li>
+                    <li class="tab-item-more">
+                        <a>
+                            <p>프로필<span class="a11y-hidden">로 이동</span></p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </footer>
+    </div>
+
+    <script src="../js/contrast.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/home_search.js"></script>
+
+</body>
+
+</html>

@@ -15,8 +15,10 @@ inps.forEach(item => {
         if (validEmail && validPw) {
             console.log('다 통과했는디')
             nextButton.disabled = false;
+            nextButton.style.color = 'black';
         } else {
             nextButton.disabled = true;
+            nextButton.style.color = 'white';
         }
     })
 })

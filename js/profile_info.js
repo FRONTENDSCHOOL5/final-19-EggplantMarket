@@ -7,8 +7,7 @@ const url = "https://api.mandarin.weniv.co.kr",
 // 무한 스크롤 
 window.addEventListener("scroll", async () => {
     if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
-        console.log('바닥이당! 데이터 불러올게 기다려!')
-        throttle(updatePost((await loadPostData(url, token, profileAccountName)).post), 1000)
+        throttle(renderPosts((await fetchPostData(url, token, profileAccountName)).post), 1000)
         const postBtnOption = document.querySelectorAll('main .btn-option');
         handlePostOptionModal(postBtnOption)
     };
@@ -18,27 +17,25 @@ async function fetchData(url, options) {
     try {
         const response = await fetch(url, options);
         const data = await response.json();
-        console.log(data);
         return data;
     } catch (err) {
-        console.error(err);
-        // throw err;
         location.href='./404.html'
     }
 }
 
-async function loadProfileData(url, token, accountName) { 
+async function fetchProfileData(url, token, accountName) { 
     const fullUrl = `${url}/profile/${accountName}`;
     const options = {
         method: "GET",
         headers: {
-            "Authorization": `Bearer ${token}`
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
         }
     };
     return fetchData(fullUrl, options);
 }
 
-async function loadProductData(url, token, accountName) { 
+async function fetchProductData(url, token, accountName) { 
     const fullUrl = `${url}/product/${accountName}`;
     const options = {
         method: "GET",
@@ -51,7 +48,7 @@ async function loadProductData(url, token, accountName) {
 }
 
 let reqCnt = 0;
-async function loadPostData(url, token, accountName) {
+async function fetchPostData(url, token, accountName) {
     console.log(2 * reqCnt)
     const fullUrl = `${url}/post/${accountName}/userpost?limit=6&skip=${reqCnt++ * 6}`;
     const options = {
@@ -64,8 +61,7 @@ async function loadPostData(url, token, accountName) {
     return fetchData(fullUrl, options);
 }
 
-function updateInfo(profile_data){
-
+function renderProfileInfo(profile_data){
     const userName = document.querySelector('.profile-name'),
     accountName = document.querySelector('.profile-id'),
     intro = document.querySelector('.profile-intro'),
@@ -92,7 +88,7 @@ function updateInfo(profile_data){
     document.querySelector('.profile-container').style.display = 'block'
 }
 
-function updateProduct(product_data,count){
+function renderProductList(product_data,count){
     if(count==0){
         document.querySelector('.product-container').style.display='none'
         document.querySelector('.skip-nav a:nth-child(3)').style.display='none'
@@ -117,15 +113,15 @@ function updateProduct(product_data,count){
             const productImg = document.createElement('img')
             productImg.className='product-img'
             productImg.setAttribute('src', `${checkImageUrl(item.itemImage, 'post')}`);
+            productImg.setAttribute('alt', "");
 
             const productPrice = document.createElement('strong')
             productPrice.className='product-price'
-            productPrice.insertAdjacentHTML('beforeend',`<span class="price">${Number(item.price).toLocaleString()}</span>`)
-            productPrice.insertAdjacentText('beforeend','원')
+            productPrice.insertAdjacentHTML('beforeend',`<span class="price">${Number(item.price).toLocaleString()}</span>원`)
             
-            button.appendChild(productName)
-            button.appendChild(productImg)
-            button.appendChild(productPrice)
+            button.append(productName,productImg,productPrice)
+            // appendChild => 한개씩 추가할 수 있음, IE지원
+            // append => 여러개 추가 가능, IE지원 x
             productItem.appendChild(button)
             fragment.appendChild(productItem)
         })
@@ -135,7 +131,7 @@ function updateProduct(product_data,count){
 }
 
 // 게시글 보는 섹션
-function updatePost(post_data) {
+function renderPosts(post_data) {
     const listUl = document.querySelector('.post-sec .post-list')
     const albumUl = document.querySelector('.post-album')
     // 첫 요청시 데이터가 없으면 섹션 숨기기
@@ -174,11 +170,13 @@ function updatePost(post_data) {
             userId.classList.add('user-id');
             userId.textContent = `${item.author.accountname}`;
 
-            userInfoDiv.appendChild(userName);
-            userInfoDiv.appendChild(userId);
+            // userInfoDiv.appendChild(userName);
+            // userInfoDiv.appendChild(userId);
+            userInfoDiv.append(userName, userId)
 
-            userInfo.appendChild(userImg);
-            userInfo.appendChild(userInfoDiv);
+            // userInfo.appendChild(userImg);
+            // userInfo.appendChild(userInfoDiv);
+            userInfo.append(userImg,userInfoDiv)
             post.appendChild(userInfo)
 
             const postEdit = document.createElement('div');
@@ -192,7 +190,7 @@ function updatePost(post_data) {
             if (item.content){
                 postEdit.querySelector('a').insertAdjacentHTML('beforeend',`<h3 class="post-text">${item.content}</h3>`)
             }else {
-                postEdit.querySelector('a').insertAdjacentHTML('beforeend', `<h3 class="a11y-hidden">이미지만 있는 게시물</h3>`)
+                postEdit.querySelector('a').insertAdjacentHTML('beforeend',`<h3 class="a11y-hidden">이미지만 있는 게시물</h3>`)
             }
             
             if (item.image) {
@@ -252,7 +250,6 @@ function updatePost(post_data) {
             const btnOption = document.createElement('button');
             btnOption.className = 'btn-option';
             btnOption.innerHTML = `<span class="a11y-hidden">게시물 옵션</span>`;
-            btnOption.setAttribute('data-postid',`${item.id}`)
 
             post.appendChild(btnOption);
             listLi.appendChild(post);
@@ -264,9 +261,7 @@ function updatePost(post_data) {
         listUl.appendChild(fragment);
         albumUl.appendChild(albumfragment);
     }
-
 }
-
 
 async function run(url, token, accountName) {
     const isMyProfile = (myAccountName !== profileAccountName)
@@ -276,58 +271,19 @@ async function run(url, token, accountName) {
     document.querySelector('li.tab-item-more a').classList.toggle('here',!isMyProfile)    
     document.querySelector('li.tab-item-home a').classList.toggle('here',isMyProfile)
 
-
-    
-    document.querySelector('.btn-link.profile-modification').addEventListener('click',()=>{
-        location.href = './profile_modification.html'
-    })
-    document.querySelector('.btn-link.add-product').addEventListener('click',()=>{
-        location.href = `./product_upload.html`
-    })
-
     // 동시에 호출할 비동기 함수들을 배열로 준비
     const loadPromises = [
-        loadProfileData(url, token, accountName),
-        loadProductData(url, token, accountName),
-        loadPostData(url, token, accountName)
+        fetchProfileData(url, token, accountName),
+        fetchProductData(url, token, accountName),
+        fetchPostData(url, token, accountName)
     ];
 
     // 모든 비동기 작업이 완료될 때까지 기다림
     const [profileData, productData, postData] = await Promise.all(loadPromises);
 
-    const updatePromises = [
-        updateInfo(profileData.profile),
-        updateProduct(productData.product,productData.data),
-        updatePost(postData.post)
-    ]
-    await Promise.all(updatePromises);
-
-    // const profilePromise = loadProfileData(url, token, accountName);
-    // const productPromise = loadProductData(url, token, accountName);
-    // const postPromise = loadPostData(url, token, accountName);
-
-    // // 각각의 비동기 작업을 순차적으로 실행하고 결과를 받음
-    // const profileData = await profilePromise;
-    // const productData = await productPromise;
-    // const postData = await postPromise;
-
-    // const updateProfilePromise = updateInfo(profileData.profile);
-    // const updateProductPromise = updateProduct(productData.product, productData.data);
-    // const updatePostPromise = updatePost(postData.post);
-
-    // 각각의 비동기 작업이 모두 완료될 때까지 기다림
-    // await updateProfilePromise;
-    // await updateProductPromise;
-    // await updatePostPromise;
-
-    // 직렬로 실행되는 코드
-    // const profileData = await loadProfileData(url, token, accountName);
-    // const productData = await loadProductData(url, token, accountName);
-    // const postData = await loadPostData(url, token, accountName);
-
-    // updateInfo(profileData.profile);
-    // updateProduct(productData.product, productData.data);
-    // updatePost(postData.post);
+    renderProfileInfo(profileData.profile),
+    renderProductList(productData.product,productData.data),
+    renderPosts(postData.post)
 
     document.querySelector('body').style.display = 'block'
     handleModal()
@@ -338,11 +294,11 @@ async function run(url, token, accountName) {
 (function  () {
     const btnPosts = document.querySelectorAll('.tab-btn-wrap > button')
     const posts = document.querySelectorAll('.post-sec > ul')
-    btnPosts.forEach((item,idx,array)=>{
+    btnPosts.forEach((item,idx,viewTypes)=>{
         item.addEventListener('click',()=>{
             if(!item.classList.contains('on')){
                 item.classList.add('on')
-                array[(idx+1)%2].classList.remove('on')
+                viewTypes[(idx+1)%2].classList.remove('on')
                 posts[idx].classList.remove('hidden')
                 posts[(idx+1)%2].classList.add('hidden')
             }
@@ -352,38 +308,31 @@ async function run(url, token, accountName) {
 
 // 팔로우버튼
 (function (url,token, accountName){
-
+    // 팔로우 버튼 선택
     const followBtns = document.querySelectorAll('.btn-wrap-your > .btn-follow')
 
-    followBtns.forEach((item,idx,arr)=>{
+    followBtns.forEach((item,idx,buttonTypes)=>{
         item.addEventListener('click', async ()=>{
             const isCancle = item.classList.contains('cancle')
             const METHOD = isCancle ? 'DELETE' : 'POST',
-                ACTION = isCancle ? 'unfollow' : 'follow'
-            
-            try {
-                let res = await fetch(url+`/profile/${accountName}/${ACTION}`, {
+                ACTION = isCancle ? 'unfollow' : 'follow',
+                options = {
                     method: METHOD,
                     headers : {
                         "Authorization" : `Bearer ${token}`,
                         "Content-type" : "application/json"
                     }
-                });
-            
-                const resJson = await res.json()
-                document.querySelector('.follower').textContent = resJson.profile.followerCount;
-                arr[idx].classList.add('hidden')
-                arr[(idx+1)%2].classList.remove('hidden');
-            } catch(err) {
-                console.log(err)
-                location.href='./404.html'
-            }
+            };
+
+            const resJson = await fetchData(`${url}/profile/${accountName}/${ACTION}`, options);
+            document.querySelector('.follower').textContent = resJson.profile.followerCount;
+            buttonTypes[idx].classList.add('hidden')
+            buttonTypes[(idx+1)%2].classList.remove('hidden');
         })
     })
 }(url,token,profileAccountName));
 
 run(url, token, profileAccountName);
-window.addEventListener('resize',touchScroll)
 
 function touchScroll(){
     const list = document.querySelector('.product-list')
@@ -434,7 +383,6 @@ function touchScroll(){
         }, 300);
     };
     const onClick = (e) => {
-        console.log(e.target)
         if (startX - endX !== 0) {
             e.preventDefault();
             e.stopPropagation();
@@ -461,3 +409,4 @@ function touchScroll(){
     };
     bindEvents();
 }
+window.addEventListener('resize',touchScroll)

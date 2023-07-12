@@ -73,7 +73,6 @@ function checkImageUrl(Img, position){
 
         const regex = /(\d+)\.(PNG|JPG|png|svg|jpg|jpeg|gif|webp)$/;
         const match = Img.match(regex);
-        console.log(match)
         const fileNameWithExtension = match && match[1].length === 13 ? match[1] + '.' + match[2] : null
 
         if(fileNameWithExtension){

@@ -74,16 +74,19 @@ function themeChange(inputs) {
             } else if (e.key === 'Enter') {
                 e.preventDefault();
                 inputs[i].click();
-                themeSection();
+                localStorage.setItem('theme',e.target.id)
             } else if (e.key === 'Tab' && e.shiftKey){
                 e.preventDefault();
                 const prevInput = inputs[i - 1] || inputs[inputs.length - 1]
                 prevInput.focus();
             }
         });
-        inputs[i].addEventListener('click', function () {
-            inputs[i].click();
-            themeSection();
+        inputs[i].addEventListener('click', function (e) {
+            if(!inputs[i].classList.contains('btn-cancel')){
+                inputs[i].click();
+                localStorage.setItem('theme',e.target.id)
+                colorChange()
+            }
         });
     }
 }
@@ -104,14 +107,16 @@ function handleHeaderModal(node){
 
         modalContent.querySelectorAll('.modal-description').forEach(item => {item.addEventListener('click', (e) => {
 
+            const currtheme = localStorage.getItem('theme')
+
             if(e.currentTarget.classList.contains('btn-theme')){
                 modalContent.innerHTML = `
                   <div class="mode_select">
-                    <label for="light">
-                      <input type="radio" name="colorSet" id="light" class="theme" checked>LIGHT
+                    <label for="light" class='modal-description'>
+                      <input type="radio" name="colorSet" id="light" ${currtheme==='light' ? 'checked' : ''} class="theme">LIGHT
                     </label>
-                    <label for="highContrast">
-                      <input type="radio" name="colorSet" id="highContrast" class="theme">highContrast
+                    <label for="highContrast" class='modal-description'>
+                      <input type="radio" name="colorSet" id="highContrast" ${currtheme==='highContrast' ? 'checked' : ''} class="theme">highContrast
                     </label>
                     <button class="modal-description btn-cancel theme">취소</button>
                   </div>
@@ -313,6 +318,7 @@ async function postDelete(targetPostId){
         }
     } catch(err){
         console.error(err);
+        location.href='./404.html'
     }
 }
 
@@ -329,6 +335,7 @@ async function postReport(targetPostId){
         await fetch(fullUrl,options)
     } catch (err){
         console.error(err)
+        location.href='./404.html'
     }
 }
 
@@ -344,11 +351,21 @@ async function commentDelete(targetPostId, targetCommentId){
     try{
         await fetch(fullUrl,options)
         
+        // const commentList = document.querySelector('.comment-list')
+        // const targetComment = commentList.querySelector(`[data-commentid="${targetCommentId}"]`);
+
+        // if (targetComment) {
+        //     const targetCommentElement = targetComment.closest('li');
+        //     commentList.removeChild(targetCommentElement);
+        // }
+        await fetch(fullUrl,options)
+        
         // if(!alert('댓글이 삭제되었습니다.')){
             location.reload()
         // }
     } catch (err){
         console.error(err)
+        // location.href='./404.html'
     }
 }
 
@@ -365,6 +382,7 @@ async function commentReport(targetPostId, targetCommentId){
         await fetch(fullUrl,options)
     } catch (err){
         console.error(err)
+        location.href='./404.html'
     }
 }
 
@@ -383,23 +401,30 @@ async function productDelete(productId){
         location.reload()
     } catch(err){
         console.error(err);
+        location.href='./404.html'
     }
 }
 
 function editPopUp(parent, desc, btnText, action){
     parent.querySelector('.modal-description').textContent = desc
     parent.querySelector('.right-button').textContent = btnText;
-    parent.querySelector('.right-button').addEventListener('click',async ()=>{
-        await action()
+    const rightButton = parent.querySelector('.right-button');
+    const clickHandler = async () => {
+        await action();
+        console.log('Done');
         postModal.style.display = 'none';
         popUpModal.style.visibility = 'hidden';
-    });
+        rightButton.removeEventListener('click', clickHandler);
+    };
+    
+    rightButton.addEventListener('click', clickHandler);
 }
 
 // 기능
 
 function logOut(){
-    localStorage.clear()
+    localStorage.removeItem('user-token')
+    localStorage.removeItem('user-accountname')
     location.href = './login.html'
 }
 
@@ -420,3 +445,12 @@ popUpModal.addEventListener('click', (event) => {
         popUpModal.style.visibility = 'hidden';
     }
 });
+
+
+
+
+// /////
+
+// profile_modification
+
+// colorchange render함수

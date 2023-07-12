@@ -1,3 +1,5 @@
+requestAnimationFrame(colorChange)
+
 if(localStorage.getItem('back')){
     location.reload()
     localStorage.removeItem('back')
@@ -21,19 +23,42 @@ if(document.querySelector('.btn-back')){
 }
 
 function checkImageExtension(file){
-    const validExtensions = ['.PNG','.JPG','.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+    const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
     const extension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
     return validExtensions.some(validExtension => extension.endsWith(validExtension));
 }
 
 function checkImageUrl(Img, position){
 
+    const LightProfile = 'https://api.mandarin.weniv.co.kr/1687141773353.png'
+    const LightPost = 'https://api.mandarin.weniv.co.kr/1687742174893.png'
+    const ContrastProfile = 'https://api.mandarin.weniv.co.kr/1687827693364.png'
+    const ContrastPost = 'https://api.mandarin.weniv.co.kr/1687742585629.png'
+
     Img += ''
 
     const pattern = /^https:\/\/api\.mandarin\.weniv\.co\.kr\/(\d{13})\.(JPG|PNG|png|svg|jpg|jpeg|gif|webp)$/;
 
     if(pattern.test(Img)){
-        console.log('통과!')
+
+        
+        if (localStorage.getItem('theme') === 'highContrast') {
+            if (position === 'profile' && Img === LightProfile) {
+                return ContrastProfile;
+            }
+            if (position === 'post' && Img === LightPost) {
+                return ContrastPost;
+            }
+        } else if (localStorage.getItem('theme') === 'light') {
+            if (position === 'profile' && Img === ContrastProfile) {
+                return LightProfile;
+            }
+            if (position === 'post' && Img === ContrastPost) {
+                return LightPost;
+            }
+        }
+        
+
         return Img
     }
     else{
@@ -57,11 +82,11 @@ function checkImageUrl(Img, position){
         
         if(Img.includes('Ellipse') || !fileNameWithExtension){
             if (position === 'profile'){
-                if(localStorage('theme') === 'light') return 'https://api.mandarin.weniv.co.kr/' + '1687141773353.png'
-                if(localStorage('theme') === 'highContrast') return 'https://api.mandarin.weniv.co.kr/' + '1687827693364.png'
+                if(localStorage.getItem('theme') === 'light') return LightProfile
+                if(localStorage.getItem('theme') === 'highContrast') return ContrastProfile
             } if (position === 'post'){
-                if(localStorage('theme') === 'light') return 'https://api.mandarin.weniv.co.kr/' + '1687742174893.png'
-                if(localStorage('theme') === 'highContrast') return 'https://api.mandarin.weniv.co.kr/' + '1687742585629.png '
+                if(localStorage.getItem('theme') === 'light') return LightPost
+                if(localStorage.getItem('theme') === 'highContrast') return ContrastPost
             }
         }
     }
@@ -98,6 +123,7 @@ async function reqLike(postId,act,method){
         return resJson.post
     } catch(err){
         console.error(err);
+        location.href='./404.html'
     }
 }
 

@@ -22,7 +22,8 @@ async function fetchData(url, options) {
         return data;
     } catch (err) {
         console.error(err);
-        throw err;
+        // throw err;
+        location.href='./404.html'
     }
 }
 
@@ -94,6 +95,7 @@ function updateInfo(profile_data){
 function updateProduct(product_data,count){
     if(count==0){
         document.querySelector('.product-container').style.display='none'
+        document.querySelector('.skip-nav a:nth-child(3)').style.display='none'
     } else{
 
         const productList = document.querySelector('.product-list')
@@ -139,6 +141,7 @@ function updatePost(post_data) {
     // 첫 요청시 데이터가 없으면 섹션 숨기기
     if (reqCnt == 1 && !post_data.length) {
         document.querySelector('.post-container').style.display = 'none'
+        document.querySelector('.skip-nav a:nth-child(4)').style.display='none'
     } else {
         const fragment = document.createDocumentFragment()
         const albumfragment = document.createDocumentFragment()
@@ -299,6 +302,33 @@ async function run(url, token, accountName) {
     ]
     await Promise.all(updatePromises);
 
+    // const profilePromise = loadProfileData(url, token, accountName);
+    // const productPromise = loadProductData(url, token, accountName);
+    // const postPromise = loadPostData(url, token, accountName);
+
+    // // 각각의 비동기 작업을 순차적으로 실행하고 결과를 받음
+    // const profileData = await profilePromise;
+    // const productData = await productPromise;
+    // const postData = await postPromise;
+
+    // const updateProfilePromise = updateInfo(profileData.profile);
+    // const updateProductPromise = updateProduct(productData.product, productData.data);
+    // const updatePostPromise = updatePost(postData.post);
+
+    // 각각의 비동기 작업이 모두 완료될 때까지 기다림
+    // await updateProfilePromise;
+    // await updateProductPromise;
+    // await updatePostPromise;
+
+    // 직렬로 실행되는 코드
+    // const profileData = await loadProfileData(url, token, accountName);
+    // const productData = await loadProductData(url, token, accountName);
+    // const postData = await loadPostData(url, token, accountName);
+
+    // updateInfo(profileData.profile);
+    // updateProduct(productData.product, productData.data);
+    // updatePost(postData.post);
+
     document.querySelector('body').style.display = 'block'
     handleModal()
     touchScroll()
@@ -346,6 +376,7 @@ async function run(url, token, accountName) {
                 arr[(idx+1)%2].classList.remove('hidden');
             } catch(err) {
                 console.log(err)
+                location.href='./404.html'
             }
         })
     })
@@ -429,19 +460,4 @@ function touchScroll(){
         list.addEventListener('click', onClick, true);
     };
     bindEvents();
-}
-
-//테마 작업 진행중.
-const wrapper = document.querySelector('.profile-info-wrapper');
-const theme = window.localStorage.getItem('theme');
-if (theme === 'highContrast') {
-    wrapper.classList.add('highContrast');
-    document.body.style.backgroundColor = '#000000';
-    document.getElementById("profile-back-btn").src = "../assets/icon/icon-arrow-left-hc.svg";
-    document.getElementById("profileInfo-more-icon").src = "../assets/icon/icon-more-vertical-hc.svg";
-
-} else {
-    wrapper.classList.remove('highContrast');
-    document.body.style.backgroundColor = '#ffffff'; 
-    
 }

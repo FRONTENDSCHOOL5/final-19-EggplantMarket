@@ -9,6 +9,9 @@ const apiUrl = "https://api.mandarin.weniv.co.kr",
     userToken = localStorage.getItem("user-token");
 
 ////////
+
+editButton.disabled = false
+
 async function Load_product(apiUrl, token, productID) {
     try {
         const res = await fetch(apiUrl + `/product/detail/${productID}`, {
@@ -23,6 +26,7 @@ async function Load_product(apiUrl, token, productID) {
         return resJson
     } catch (err) {
         console.error(err);
+        location.href='./404.html'
     }
 }    
 
@@ -143,8 +147,9 @@ async function saveProduct(url, token, productID){
         // console.log(json);
         return json;
     }
-    catch (error) {
-        console.error(error);
+    catch (err) {
+        console.error(err);
+        location.href='./404.html'
         // 저장 실패 시 에러 처리
         // 저장이 되지만 put에서 404 에러가 발생한다....
     }
@@ -215,7 +220,7 @@ function productUpdate(productData) {
     const imageSrc = productData.itemImage;
     if(imageSrc) {
         imageInput.src = imageSrc;
-        imageInput.style.backgroundImage = `url('${imageSrc}')`;
+        imageInput.style.backgroundImage = `url('${checkImageUrl(imageSrc,'post')}')`;
         imageInput.style.backgroundSize = 'cover';
         imageInput.style.backgroundPosition = 'center';
         imageInput.style.backgroundRepeat = 'no-repeat';

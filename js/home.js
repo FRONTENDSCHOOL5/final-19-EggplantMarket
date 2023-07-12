@@ -1,3 +1,5 @@
+
+
 const url = "https://api.mandarin.weniv.co.kr";
 const myAccountName = localStorage.getItem("user-accountname");
 
@@ -28,7 +30,7 @@ async function postFeed(postsData) {
 
     //팔로잉이 있으면서 게시글이 1개 이상인 경우
     if (postsData.length > 0) {
-        document.querySelector('.home-withoutfollower').style.display = 'none';
+        
         document.querySelector('.home-withfollower').style.display = '';
         console.log('한명이상있어요')
 
@@ -44,6 +46,7 @@ async function postFeed(postsData) {
                         <div class="user-follow">
                             <a class="profile-img img-cover" href="./profile_info.html?accountName=${item.author.accountname}">
                                 <span class="a11y-hidden">${item.author.username}의 프로필 보기</span>
+                                
                                 <img src="${checkImageUrl(item.author.image,'profile')}" alt="">
                             </a>
                             <a class="user-info" href="./profile_info.html?accountName=${item.author.accountname}">
@@ -78,6 +81,7 @@ async function postFeed(postsData) {
             if (item.image) {
                 item.image.split(',').forEach(item=>{
                     liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<div class="img-cover"><img class="post-img" src="${checkImageUrl(item,'post')}" alt="게시물 사진"></img></div>`)
+                    // liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<div class="img-cover"><img class="post-img" src="${item}" alt="게시물 사진"></img></div>`)
                 })
                 
             }
@@ -88,26 +92,27 @@ async function postFeed(postsData) {
 
         }
         ulNode.appendChild(frag);
-    }
+    } 
     handleModal()
 }
 
 async function run() {
-    postFeed(await getData());
+    await postFeed(await getData());
+    if(document.querySelector('.home-post-list').childNodes.length === 0){
+        document.querySelector('.home-withoutfollower').style.display = '';
+    }
 }
 run()
 
 //테마 작업 진행중.
-const wrapper = document.querySelector('.home-wrapper');
-const theme = window.localStorage.getItem('theme');
-if (theme === 'highContrast') {
-    wrapper.classList.add('highContrast');
-    document.body.style.backgroundColor = '#000000';
-    document.getElementById("search-icon").src = "../assets/icon/icon-search-highContrast.svg";
-    document.getElementById("more-icon").src = "../assets/icon/icon-more-vertical-hc.svg";
+// const wrapper = document.querySelector('.home-wrapper');
+// const theme = window.localStorage.getItem('theme');
+// if (theme === 'highContrast') {
+//     wrapper.classList.add('highContrast');
+//     document.body.style.backgroundColor = '#000000';
 
-} else {
-    wrapper.classList.remove('highContrast');
-    document.body.style.backgroundColor = '#ffffff'; 
+// } else {
+//     wrapper.classList.remove('highContrast');
+//     document.body.style.backgroundColor = '#ffffff'; 
     
-}
+// }

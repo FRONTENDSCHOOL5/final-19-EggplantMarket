@@ -9,22 +9,23 @@ let validEmail = false;
 
 inps.forEach(item => {
     item.addEventListener('change', async () => {
-        if(item.id === 'email'){
-            item.value = item.value.trim();
-        }
         await validateJoin(item)
 
         // email 형식에 맞고 가입 가능한 이메일 && pw 길이 맞으면 => 버튼 활성화
         if (validEmail && validPw) {
             console.log('다 통과했는디')
             nextButton.disabled = false;
+            nextButton.style.color = 'black';
         } else {
             nextButton.disabled = true;
+            nextButton.style.color = 'white';
         }
     })
 })
 
 async function validateJoin(target) {
+    const theme = window.localStorage.getItem('theme');
+    const borderColor = theme === 'highContrast' ? '#FFEB32' : 'red';
 
     // email validation
     if (target.type === 'email') {
@@ -34,8 +35,14 @@ async function validateJoin(target) {
         document.querySelector('.warning-msg-email').textContent = '*' + msg.message;
         document.querySelector('.warning-msg-email').style.display = 'block';
         if (msg.status == 422 || msg.message === '이미 가입된 이메일 주소 입니다.') {
+            email.style.borderBottom = `1px solid ${borderColor}`;
+            validEmail = false;
+        } else if (msg.message === '잘못된 접근입니다.') {
+            document.querySelector('.warning-msg-email').style.display = 'none';
+            email.style.borderBottom = `1px solid #DBDBDB`;
             validEmail = false;
         } else {
+            email.style.borderBottom = '1px solid #DBDBDB';
             validEmail = true;
         }
     }
@@ -44,11 +51,11 @@ async function validateJoin(target) {
     if (target.type === 'password') {
         if (target.validity.tooShort) {
             document.querySelector(`.warning-msg-pw`).style.display = 'block'
-            pw.style.borderBottom = '1px solid red';
+            pw.style.borderBottom = `1px solid ${borderColor}`;
             validPw = false
         } else {
             document.querySelector(`.warning-msg-pw`).style.display = 'none'
-            pw.style.borderBottom = '1px solid #f2f2f2';
+            pw.style.borderBottom = '1px solid #DBDBDB';
             validPw = true;
         }
     }
@@ -68,7 +75,7 @@ async function validateEmail() {
     const reqPath = "/user/emailvalid";
     const emailData = {
         "user": {
-            "email": email.value
+            "email": email.value.trim()
         }
     }
     const res = await fetch(url + reqPath, {

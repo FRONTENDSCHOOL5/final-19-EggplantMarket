@@ -8,7 +8,7 @@ const followings = document.querySelector('.follow-list');
 window.addEventListener("scroll", async () => {
     if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
         console.log('바닥이당! 데이터 불러올게 기다려!')
-        throttle(makeList(await getFollowingList()), 1000)
+        makeList(await getFollowingList())
     };
 })
 

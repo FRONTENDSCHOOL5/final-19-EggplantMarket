@@ -15,9 +15,9 @@ window.addEventListener("scroll", async () => {
     if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
         console.log('바닥이당! 데이터 불러올게 기다려!')
         if (viewMyFollowerList) {
-            throttle(makeMyFollowerList(await getFollowerList()), 1000)
+            makeMyFollowerList(await getFollowerList())
         } else {
-            throttle(makeUserFollowerList(await getFollowerList()), 1000)
+            makeUserFollowerList(await getFollowerList())
         }
     };
 })

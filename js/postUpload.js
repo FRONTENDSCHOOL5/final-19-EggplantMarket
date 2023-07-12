@@ -1,43 +1,120 @@
+/*
+TODO
+- 이미지 입력 로직 정리
+- 이미지 삭제버튼 이벤트
+- api 함수들 정리
+*/
+
 const token = localStorage.getItem('user-token');
 
-const writerImg = document.querySelector('.user-profile img');
-const uploadButton = document.querySelector('#upload-btn');
-const imglist = document.querySelector('.upload-imgs-list');
-const contentInp = document.querySelector('textarea');
-const imgInp = document.querySelector('#input-file');
+const uploadButton = document.querySelector('#upload-btn'),
+    writerImg = document.querySelector('.user-profile img'),
+    contentInp = document.querySelector('textarea'),
+    imglist = document.querySelector('.upload-imgs-list'),
+    imgInp = document.querySelector('#input-file');
 
-const pageUrl = new URL(window.location.href);
-const POSTID = pageUrl.searchParams.get('postId')
-const METHOD = POSTID ? 'PUT' : 'POST'
+const POSTID = new URLSearchParams(location.search).get('postId');
+const METHOD = POSTID ? 'PUT' : 'POST';
 
-async function getPostData(){
-    const res = await fetch(`https://api.mandarin.weniv.co.kr/post/${POSTID}`,{
-        method : "GET",
-        headers : {
-            "Authorization" : `Bearer ${token}`,
-            "Content-type" : "application/json"
-        }
+// 페이지 로드 시
+(async function () {
+    // 게시글 업로드페이지 or 수정페이지 확인
+    if (POSTID) {
+        uploadButton.textContent = '수정';
+        uploadButton.disabled = false; // 내용 수정 안해도 제출 가능
+        getPostData();
+    }
+
+    // 작성자 프로필 이미지 가져오기
+    writerImg.src = checkImageUrl(await getMyImg(), 'profile');
+
+    // textarea 높이 조절 이벤트 등록
+    contentInp.addEventListener('keyup', (e) => {
+        e.target.style.height = 0;
+        e.target.style.height = e.target.scrollHeight + 'px';
     })
-    const json = await res.json();
-    
-    console.log(json)
-    if(json.post.content){
-        document.querySelector('textarea').value=json.post.content
-    }
-    if(json.post.image){
-        json.post.image.split(',').forEach(item=>{
-            const li = document.createElement('li');
-                li.innerHTML = `<div class="img-cover">
-                <img src=${checkImageUrl(item,'post')} alt="">
-                <button class="btn-remove"></button>
-            </div>`;
-            imglist.append(li);
-        })
-    }
+})();
 
-    return json
+// 업로드/수정 버튼 클릭시
+uploadButton.addEventListener('click', async (e) => {
+    e.target.disabled = true
+    e.preventDefault();
+    await submitPostForm(METHOD);
+    location.href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
+})
+
+// ---- 버튼 활성화를 위한 입력 유효성 검사 ----
+let validContent = false;
+let validImg = false;
+
+function isValid() {
+    if (validImg || validContent) { // 둘 중 하나 입력시 버튼 활성화
+        uploadButton.disabled = false;
+    } else {
+        uploadButton.disabled = true;
+    }
 }
-// 작성자 프로필 이미지 가져오기
+
+// 텍스트 입력되면 valid
+contentInp.addEventListener('change', (e) => {
+    if (e.target.value !== '') {
+        validContent = true;
+    } else {
+        validContent = false;
+    }
+    isValid();
+});
+
+// 이미지 입력이 존재 && 유효한 이미지 파일이면 valid
+imgInp.addEventListener('change', (e) => readURL(e.target));
+function readURL(input) {
+    if (input.files && input.files[0]) {
+
+        [...input.files].forEach(item => {
+            if (checkImageExtension(item)) {
+                validImg = true;
+                isValid();
+
+                var reader = new FileReader();
+
+                reader.addEventListener('load', function (e) {
+                    const li = document.createElement('li');
+
+                    const imgItem = document.createElement('div');
+                    imgItem.className = 'img-cover';
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.alt = '';
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'btn-remove';
+
+                    // 삭제버튼 이벤트 바로 등록하기
+                    removeBtn.addEventListener('click', function () {
+                        // 파일 리스트에서 제거 및 미리보기에서 삭제
+                    });
+
+                    imgItem.append(img, removeBtn);
+                    li.appendChild(imgItem);
+                    imglist.append(li);
+                });
+
+                reader.readAsDataURL(item);
+            } else {
+                alert('유효하지 않은 파일 입니다')
+                input.value = ''; // 다시보기
+            }
+        })
+    } else {
+        validImg = false;
+        isValid()
+    }
+}
+// ---- end of 버튼 활성화 ----
+
+
+// --- API 함수들 ---
+
+// GET 프로필 이미지
 async function getMyImg() {
     const reqPath = "/user/myinfo";
     const res = await fetch("https://api.mandarin.weniv.co.kr" + reqPath, {
@@ -50,136 +127,36 @@ async function getMyImg() {
 
     return json.user.image;
 }
-(async function () {
-    writerImg.src =  checkImageUrl(await getMyImg(),'profile');
-})();
 
-// textarea 작성 길이 조절
-contentInp.addEventListener('keyup', (e) => {
-    e.target.style.height = 0;
-    e.target.style.height = e.target.scrollHeight + 'px';
-})
+// GET 기존 게시글 내용
+async function getPostData() {
+    const res = await fetch(`https://api.mandarin.weniv.co.kr/post/${POSTID}`, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-type": "application/json"
+        }
+    })
+    const json = await res.json();
 
-// ---- start of 버튼 활성화 ----
-
-let validContent = false;
-let validImg = false;
-
-if(POSTID){
-    uploadButton.textContent = '수정'
-    uploadButton.disabled = false
-    getPostData()
-}
-
-
-// 텍스트 입력
-contentInp.addEventListener('change', () => {
-    contentInp.value = contentInp.value.trim();
-    // 텍스트 입력되면 valid
-    if (contentInp.value !== '') {
-        validContent = true;
-    } else {
-        validContent = false;
+    if (json.post.content) {
+        document.querySelector('textarea').value = json.post.content
     }
-});
-
-// 이미지 입력
-(function () {
-    imgInp.addEventListener('change', (e) => readURL(e.target));
-
-    function readURL(input) {
-        // 이미지 하나씩 여러개 추가할 수 있는 상태, 3개 한정은 아직 구현하지 않음
-        if (input.files && input.files[0]) {
-            [...input.files].forEach(item=>{
-            if (checkImageExtension(item)) {
-                // 이미지 입력되면 valid
-                validImg = true;
-
-                var reader = new FileReader();
-                reader.addEventListener('load', function (e) {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<div class="img-cover">
-                    <img src=${e.target.result} alt="">
-                    <button class="btn-remove"></button>
-                </div>`;
-                    imglist.append(li);
-                });
-                reader.readAsDataURL(item);
-            } else {
-                alert('유효하지 않은 파일 입니다')
-                input.value = '';
-            }
+    if (json.post.image) {
+        json.post.image.split(',').forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = `<div class="img-cover">
+                <img src=${checkImageUrl(item, 'post')} alt="">
+                <button class="btn-remove"></button>
+            </div>`;
+            imglist.append(li);
         })
-        }
     }
-})()
 
-// 이미지 삭제
-imglist.addEventListener('click', (e) => {
-    e.preventDefault();
-    // 이벤트 위임
-    if (e.target.className === 'btn-remove') {
-        const removeIdx = [...imglist.childNodes].indexOf(e.target.closest('li'))
-
-        e.target.closest('li').remove();
-
-        const updatedFileList = removeFileFromList(imgInp.files,removeIdx)
-        imgInp.files = updatedFileList;
-
-        if (imglist.children.length === 0) {
-            // 이미지 추가한 거 다 삭제하면 invalid
-            validImg = false;
-            isValid()
-        }
-    }
-})
-
-function removeFileFromList(fileList, index) {
-    let files = Array.from(fileList); // FileList를 배열로 변환
-    files.splice(index, 1); // 해당 인덱스의 요소를 제외
-  
-    // 새로운 FileList를 생성하기 위해 DataTransfer 객체 사용
-    let dataTransfer = new DataTransfer();
-    files.forEach(function (file) {
-      dataTransfer.items.add(file); // 새로운 DataTransfer 객체에 파일 추가
-    });
-  
-    // DataTransfer 객체에서 FileList를 추출
-    const newFileList = dataTransfer.files;
-  
-    return newFileList; // 새로운 FileList 반환
+    return json
 }
 
-// 이벤트 리스너 차례로 동작함
-imgInp.addEventListener('change', isValid);
-contentInp.addEventListener('change', isValid);
-
-function isValid() {
-    // console.log('contentInp : ', validContent, 'validImg : ', validImg);
-    if (validImg || validContent) {
-        // console.log('둘중하나는 입력됨');
-        uploadButton.disabled = false;
-    } else {
-        // console.log('둘 다 입력안됨');
-        uploadButton.disabled = true;
-    }
-}
-
-// ---- end of 버튼 활성화 ----
-
-
-// --- start of 게시글 작성하기 ---
-
-uploadButton.addEventListener('click', async (e) => {
-    console.log(e.target)
-    e.target.disabled=true
-    e.preventDefault();
-    await submitPostForm(METHOD);
-    console.log('게시글 작성 완료');
-    location.href=`./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
-})
-
-// 작성 완료된 게시글 내용 post요청
+// POST/PUT 작성 완료된 게시글 내용
 async function submitPostForm(METHOD) {
     const token = localStorage.getItem('user-token');
 
@@ -201,7 +178,7 @@ async function submitPostForm(METHOD) {
 
     const data = {
         "post": {
-            "content": contentInp.value,
+            "content": contentInp.value.trim(),
             "image": fileName
         }
     }
@@ -221,7 +198,7 @@ async function submitPostForm(METHOD) {
     return json;
 }
 
-// 입력된 이미지 서버에 올리기
+// POST 입력된 이미지 서버에 올리기
 async function postImg() {
     const reqPath = "/image/uploadfile";
     if (document.querySelector('#input-file').files[0]) {
@@ -248,5 +225,3 @@ async function postImg() {
             return '';
         }
     }
-
-// --- end of 게시글 작성하기 ---

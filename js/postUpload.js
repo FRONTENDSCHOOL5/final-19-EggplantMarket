@@ -169,12 +169,9 @@ async function submitPostForm(METHOD) {
         if(document.querySelector('.img-cover img')){
             fileName = document.querySelector('.img-cover img').src
         }
-    } else{
-        console.log('POST!!!')
+    } else {
         fileName = await postImg();
     }
-
-    console.log(METHOD,fileName)
 
     const data = {
         "post": {
@@ -182,7 +179,6 @@ async function submitPostForm(METHOD) {
             "image": fileName
         }
     }
-    console.log(data)
 
     const res = await fetch(url + reqPath, {
         method: METHOD,

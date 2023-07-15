@@ -1,15 +1,15 @@
 import { validateProductName, validateProductPrice, validatePurchaseLink, validateProductImage, } from "./validation.js";
 
-const submitButton = document.querySelector(".btn-save");
-const inpsProduct = document.querySelectorAll("#upload-product input");
-const imgInp = document.querySelector("#product-img-upload");
-const imageInput = document.querySelector(".product-img");
-const productName = document.querySelector("#product-name");
-const productPrice = document.querySelector("#product-price");
-const purchaseLink = document.querySelector("#purchase-link");
-const warningMsgProductName = document.querySelector(".warning-msg-productname");
-const warningMsgProductPrice = document.querySelector(".warning-msg-productprice");
-const warningMsgPurchaseLink = document.querySelector(".warning-msg-purchaselink");
+const submitButton = document.querySelector(".btn-save"), 
+      inpsProduct = document.querySelectorAll("#upload-product input"),
+      imgInp = document.querySelector("#product-img-upload"),
+      imageInput = document.querySelector(".product-img"),
+      productName = document.querySelector("#product-name"),
+      productPrice = document.querySelector("#product-price"),
+      purchaseLink = document.querySelector("#purchase-link");
+const warningMsgProductName = document.querySelector(".warning-msg-productname"),
+      warningMsgProductPrice = document.querySelector(".warning-msg-productprice"),
+      warningMsgPurchaseLink = document.querySelector(".warning-msg-purchaselink");
 // const btnUpload = document.querySelector(".btn-upload");
 
 // 프로필 정보 불러오기
@@ -18,7 +18,7 @@ const url = "https://api.mandarin.weniv.co.kr",
 ///////
 
 const pageUrl = new URL(window.location.href);
-const productID = pageUrl.searchParams.get('productId')
+const productID = pageUrl.searchParams.get('productId');
 const METHOD = productID ? 'PUT' : 'POST'
 ///////
 
@@ -38,20 +38,23 @@ let validImage = false;
 
 inpsProduct.forEach((item) => {
   item.addEventListener("change", async () => {
-    if ( item === productName || item === productPrice || item === purchaseLink
-    ) {
+    if (item === productName || item === productPrice || item === purchaseLink) {
       item.value = item.value.trim();
     }
     await validateProduct(item);
 
-    if (validItemName && validItemPrice && validItemLink && validImage) {
-      if (productName.value === "" || productName.value.length === 1) {
-        submitButton.disabled = true;
-      } else {
+    if (productID) {
+      if (validItemName || validItemPrice || validItemLink || validImage) {
         submitButton.disabled = false;
+      } else {
+        submitButton.disabled = true;
       }
     } else {
-      submitButton.disabled = true;
+      if (validItemName && validItemPrice && validItemLink && validImage) {
+        submitButton.disabled = false;
+      } else {
+        submitButton.disabled = true;
+      }
     }
   });
 });
@@ -98,18 +101,24 @@ async function saveProduct(url, token, METHOD) {
   };
 
   if(METHOD === "POST"){
-    // 다른 부분
-    // post에 요청
-    const res = await fetch(url + reqPath, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    const json = await res.json();
-    return json;
+    try {
+      // POST 요청
+      const res = await fetch(url + reqPath, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      return json;
+    } catch (err) {
+      console.error(err);
+      location.href = "./404.html";
+      // 저장 실패 시 에러 처리
+      // 저장은 되지만 put에서 404 에러가 발생한다....
+    }
   } else {
     try {
       const currentImageSrc = imageInput.style.backgroundImage;
@@ -161,12 +170,10 @@ imgInp.addEventListener("change", async (e) => {
   if (checkImageExtension(imageFile)) {
     const formData = new FormData();
     formData.append("image", imageFile);
-    const res = await fetch( url + "/image/uploadfile",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
+    const res = await fetch( url + "/image/uploadfile", {
+      method: "POST",
+      body: formData,
+    });
     const json = await res.json();
     const imageURL = url + `/${json.filename}`;
 
@@ -182,7 +189,7 @@ imgInp.addEventListener("change", async (e) => {
 });
 
 submitButton.addEventListener("click", async (e) => {
-  if(METHOD=== "PUT"){
+  if(METHOD === "PUT"){
     e.target.disabled = true;
   }
   e.preventDefault();

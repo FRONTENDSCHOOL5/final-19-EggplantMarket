@@ -1,6 +1,6 @@
 // 상품명 validation
 export function validateProductName(productName, warningMsgProductName) {
-  if (!productName.validity.tooShort && !productName.validity.tooLong) {
+  if (productName.value.length >= 2 && productName.value.length <= 15) {
     warningMsgProductName.style.display = "none";
     productName.style.borderBottom = "1px solid #dbdbdb";
     return true;
@@ -14,10 +14,7 @@ export function validateProductName(productName, warningMsgProductName) {
 
 // 상품 가격 validation
 export function validateProductPrice(productPrice, warningMsgProductPrice) {
-  if (
-    !productPrice.validity.rangeUnderflow &&
-    !productPrice.validity.rangeOverflow
-  ) {
+  if (!productPrice.validity.rangeUnderflow && !productPrice.validity.rangeOverflow) {
     warningMsgProductPrice.style.display = "none";
     productPrice.style.borderBottom = "1px solid #dbdbdb";
     return true;

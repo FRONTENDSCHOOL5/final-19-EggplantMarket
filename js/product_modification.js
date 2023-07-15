@@ -42,14 +42,14 @@ inpsProduct.forEach((item) => {
     }
     await validateProduct(item);
 
-    if (productName.value === "" || productName.value.length === 1) {
-      submitButton.disabled = true;
-    } else {
+    // if (productName.value === "" || productName.value.length === 1) {
+    //   submitButton.disabled = true;
+    // } else {
       if (validItemName || validItemPrice || validItemLink || validImage) {
         submitButton.disabled = false;
       } else {
         submitButton.disabled = true;
-      }
+      // }
     }
   });
 });

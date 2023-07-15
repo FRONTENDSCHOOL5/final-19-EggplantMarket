@@ -16,6 +16,8 @@ const uploadButton = document.querySelector('#upload-btn'),
 const POSTID = new URLSearchParams(location.search).get('postId');
 const METHOD = POSTID ? 'PUT' : 'POST';
 
+const dataTransfer = new DataTransfer(); // 이미지 추가, 삭제 관리를 위한 전역변수
+
 // 페이지 로드 시
 (async function () {
     // 게시글 업로드페이지 or 수정페이지 확인
@@ -37,10 +39,11 @@ const METHOD = POSTID ? 'PUT' : 'POST';
 
 // 업로드/수정 버튼 클릭시
 uploadButton.addEventListener('click', async (e) => {
-    e.target.disabled = true
     e.preventDefault();
-    await submitPostForm(METHOD);
-    location.href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
+    if (await submitPostForm(METHOD)) {
+        e.target.disabled = true;
+        location.href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
+    }
 })
 
 // ---- 버튼 활성화를 위한 입력 유효성 검사 ----
@@ -75,6 +78,9 @@ function readURL(input) {
                 validImg = true;
                 isValid();
 
+                // 입력된 이미지 누적
+                dataTransfer.items.add(item);
+
                 var reader = new FileReader();
 
                 reader.addEventListener('load', function (e) {
@@ -89,7 +95,8 @@ function readURL(input) {
                     removeBtn.className = 'btn-remove';
 
                     // 삭제버튼 이벤트 바로 등록하기
-                    removeBtn.addEventListener('click', function () {
+                    removeBtn.addEventListener('click', function (e) {
+                        e.target.preventDefault();
                         // 파일 리스트에서 제거 및 미리보기에서 삭제
                     });
 
@@ -158,66 +165,57 @@ async function getPostData() {
 
 // POST/PUT 작성 완료된 게시글 내용
 async function submitPostForm(METHOD) {
-    const token = localStorage.getItem('user-token');
 
-    const url = "https://api.mandarin.weniv.co.kr";
-    const reqPath = METHOD=== "PUT" ? `/post/${POSTID}` : "/post"
+    // 1. 이미지는 3개까지 업로드 가능함
+    if (imglist.children.length <= 3) {
+        let fileName = [];
 
-    // 서버에 이미지 저장하고 가져오기
-    let fileName;
-    if(METHOD === "PUT" && !document.querySelector('#input-file').files[0]){
-        if(document.querySelector('.img-cover img')){
-            fileName = document.querySelector('.img-cover img').src
+        // 2. 
+        if (METHOD === "PUT" && !document.querySelector('#input-file').files[0]) {
+            // 게시글 수정이고 추가된 이미지 파일이 없으면 기존 이미지 파일명 가져옴
+            Array.from(imglist.querySelectorAll('img')).forEach(item => fileName.push(item.src.split('https://api.mandarin.weniv.co.kr/')[1]));
+        } else {
+            // 추가된 이미지가 있으면 새롭게 서버에 이미지 저장하고 가져오기
+            const newImg = Array.from(dataTransfer.files).map(item => postImg(item));
+            const newImgs = await Promise.all(newImg);
+            fileName.push(...newImgs);
         }
+
+        // 3. 게시물 내용 업로드/수정
+        const reqPath = METHOD === "PUT" ? `/post/${POSTID}` : "/post"
+
+        await fetch("https://api.mandarin.weniv.co.kr" + reqPath, {
+            method: METHOD,
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                "post": {
+                    "content": contentInp.value.trim(),
+                    "image": fileName.join(',')
+                }
+            })
+        })
+
+        return true;
     } else {
-        fileName = await postImg();
+        alert('사진은 3개까지만 업로드 가능합니다 :(');
+        return false;
     }
+}
 
-    const data = {
-        "post": {
-            "content": contentInp.value.trim(),
-            "image": fileName
-        }
-    }
+// POST 입력된 이미지 서버에 올리기 (한장씩)
+async function postImg(item) {
+    const formData = new FormData();
+    formData.append("image", item);
 
-    const res = await fetch(url + reqPath, {
-        method: METHOD,
-        headers: {
-            "Authorization": `Bearer ${token}`,
-            "Content-type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
+    const res = await fetch("https://api.mandarin.weniv.co.kr" + "/image/uploadfile", {
+        method: "POST",
+        body: formData
+    });
 
     const json = await res.json();
 
-    return json;
+    return json.filename;
 }
-
-// POST 입력된 이미지 서버에 올리기
-async function postImg() {
-    const reqPath = "/image/uploadfile";
-    if (document.querySelector('#input-file').files[0]) {
-        const files = Array.from(imgInp.files);
-    
-        const uploadPromises = files.map(async (item) => {
-            const formData = new FormData();
-            formData.append("image", item);
-        
-            const res = await fetch("https://api.mandarin.weniv.co.kr" + reqPath, {
-                method: "POST",
-                body: formData
-            });
-        
-            const json = await res.json();
-        
-            return json.filename;
-        });
-    
-        const uploadedFiles = await Promise.all(uploadPromises);
-        
-        return uploadedFiles.join(',');
-        } else {
-            return '';
-        }
-    }

@@ -94,23 +94,27 @@ function checkImageUrl(Img, position){
 // common
 
 async function handleLike(event){
-    const target = event.currentTarget;
-    
-    const postId = target.closest('.home-post').dataset.postid;
-    const isLiked = target.classList.contains('like');
+    const target = event.target;
 
-    const action = isLiked ? 'unheart' : 'heart'
-    const method = isLiked ? 'DELETE' : 'POST'
-    
-    result = await reqLike(postId, action, method)
-    target.querySelector('span').textContent = `${result.heartCount}`
-    result.hearted ? target.classList.add('like') : target.classList.remove('like')
+    if(target.tagName === 'path'){
+        const targetPost = target.closest('.home-post');
+        const likeBtn = targetPost.querySelector('.btn-like');
+        const postId = targetPost.getAttribute('data-postid');
+        const isLiked = likeBtn.classList.contains('like');
+
+        const action = isLiked ? 'unheart' : 'heart'
+        const method = isLiked ? 'DELETE' : 'POST'
+        
+        result = await reqLike(postId, action, method)
+        likeBtn.querySelector('.cnt').textContent = `${result.heartCount}`
+        result.hearted ? likeBtn.classList.add('like') : likeBtn.classList.remove('like')
+    }
     
 }
 
-async function reqLike(postId,act,method){
+async function reqLike(postId,action,method){
     try{
-        const res = await fetch(`${url}/post/${postId}/${act}`, {
+        const res = await fetch(`${url}/post/${postId}/${action}`, {
                         method: method,
                         headers : {
                             "Authorization" : `Bearer ${localStorage.getItem('user-token')}`,

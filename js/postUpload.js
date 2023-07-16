@@ -16,7 +16,7 @@ const $uploadButton = document.querySelector('#upload-btn'),
 const POSTID = new URLSearchParams(location.search).get('postId');
 const METHOD = POSTID ? 'PUT' : 'POST';
 
-const dataTransfer = new DataTransfer(); // 이미지 추가, 삭제 관리를 위한 전역변수
+let dataTransfer = new DataTransfer(); // 이미지 추가, 삭제 관리를 위한 전역변수
 const tempImgUrls = []; // 이미지 미리보기에서 임시URL 생성 및 해제를 위한 전역변수
 
 // 페이지 로드 시
@@ -98,11 +98,30 @@ function previewImg(input) {
                 const removeBtn = document.createElement('button');
                 removeBtn.className = 'btn-remove';
 
-                // 삭제버튼 이벤트 바로 등록하기
-                removeBtn.addEventListener('click', function (e) {
+                // 이미지 삭제 이벤트
+                removeBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    // 파일 리스트에서 제거 및 미리보기에서 삭제
-                });
+                    const removeElIdx = [...$imglist.childNodes].indexOf(li);
+                    const removeIdx = dataTransfer.files.length - $imglist.childNodes.length + removeElIdx;
+
+                    // 새로운 DataTransfer 객체에 삭제할 파일빼고 담아서 교체
+                    const files = [...dataTransfer.files]
+                    files.splice(removeIdx, 1);
+
+                    let newDataTransfer = new DataTransfer();
+                    files.forEach(item => newDataTransfer.items.add(item));
+
+                    dataTransfer = newDataTransfer;
+
+                    // 미리보기 목록에서 삭제
+                    $imglist.removeChild(li);
+
+                    // 이미지 추가한 거 다 삭제하면 invalid
+                    if ($imglist.childNodes.length === 0) {
+                        validImg = false;
+                        isValid();
+                    }
+                })
 
                 imgItem.append(img, removeBtn);
                 li.appendChild(imgItem);
@@ -120,6 +139,7 @@ function previewImg(input) {
         isValid();
     }
 }
+
 // ---- end of 버튼 활성화 ----
 
 
@@ -157,10 +177,29 @@ async function getPostData() {
     if (json.post.image) {
         json.post.image.split(',').forEach(item => {
             const li = document.createElement('li');
-            li.innerHTML = `<div class="img-cover">
-                <img src=${checkImageUrl(item, 'post')} alt="">
-                <button class="btn-remove"></button>
-            </div>`;
+
+            const imgItem = document.createElement('div');
+            imgItem.className = 'img-cover';
+            const img = document.createElement('img');
+            img.src = checkImageUrl(item, 'post');
+            img.alt = '';
+            const removeBtn = document.createElement('button');
+            removeBtn.className = 'btn-remove';
+
+            // 이미지 삭제 이벤트
+            removeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                $imglist.removeChild(li);
+
+                // 이미지 추가한 거 다 삭제하면 invalid
+                if ($imglist.childNodes.length === 0) {
+                    validImg = false;
+                    isValid();
+                }
+            })
+
+            imgItem.append(img, removeBtn);
+            li.append(imgItem);
             $imglist.append(li);
         })
     }
@@ -176,10 +215,15 @@ async function submitPostForm(METHOD) {
         let fileName = [];
 
         // 2. 
-        if (METHOD === "PUT" && !$imgInp.files[0]) {
-            // 게시글 수정이고 추가된 이미지 파일이 없으면 기존 이미지 파일명 가져옴
-            Array.from($imglist.querySelectorAll('img')).forEach(item => fileName.push(item.src.split('https://api.mandarin.weniv.co.kr/')[1]));
-        } else {
+        if (METHOD === "PUT") {
+            // 게시글 수정이면 기존 이미지 파일명 가져옴
+            const $preImg = $imglist.querySelectorAll('img');
+            const cnt = $preImg.length - dataTransfer.files.length; // 총 이미지 갯수에서 새로 추가된 이미지 갯수 빼기
+            for (let i = 0; i < cnt; i++) {
+                fileName.push($preImg[i].src.split('https://api.mandarin.weniv.co.kr/')[1])
+            }
+        }
+        if ($imgInp.files[0]) {
             // 추가된 이미지가 있으면 새롭게 서버에 이미지 저장하고 가져오기
             const newImg = Array.from(dataTransfer.files).map(item => postImg(item));
             const newImgs = await Promise.all(newImg);

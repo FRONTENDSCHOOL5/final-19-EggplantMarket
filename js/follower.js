@@ -2,7 +2,7 @@ const accountname = new URLSearchParams(location.search).get('accountName'),
     myAccountname = localStorage.getItem('user-accountname'),
     token = localStorage.getItem('user-token');
 
-const followers = document.querySelector('.follow-list');
+const $followers = document.querySelector('.follow-list');
 let reqCnt = 0;
 
 
@@ -34,7 +34,7 @@ run()
 // event
 if (viewMyFollowerList) {
     // (팔로우(하기) 버튼만 가능, 팔로워를 삭제하는 버튼은 있지만 기능은 없음 disabled 처리)
-    followers.addEventListener('click', async (e) => {
+    $followers.addEventListener('click', async (e) => {
         if (e.target.classList.contains('btn-follow')) {
             // 팔로우 기능
             // 클릭한 요소의 사용자계정 
@@ -47,7 +47,7 @@ if (viewMyFollowerList) {
     })
 } else {
     // (팔로우(하기) 버튼, 팔로잉(취소) 버튼)
-    followers.addEventListener('click', async (e) => {
+    $followers.addEventListener('click', async (e) => {
         if (e.target.classList.contains('btn-follow')) {
             // 클릭한 요소의 사용자계정 
             const clickedAccount = e.target.closest('li').querySelector('a').href.split('?accountName=')[1];
@@ -137,7 +137,7 @@ async function makeMyFollowerList(data) {
         li.setAttribute('class', 'follow-item');
         li.innerHTML = `<a class="user-img img-cover" href="./profile_info.html?accountName=${user.accountname}">
         <span class="a11y-hidden">${user.username}의 프로필 보기</span>
-        <img src=${user.image} alt="">
+        <img src=${checkImageUrl(user.image, 'profile')} alt="">
     </a>
     <div class="user-info">
         <strong class="user-name">
@@ -150,14 +150,12 @@ async function makeMyFollowerList(data) {
         frag.append(li);
     })
 
-    followers.append(frag);
+    $followers.append(frag);
 }
 
 // 다른 사용자 팔로워 목록 뿌리기 
 // : (팔로우(하기) 버튼, 팔로잉(취소) 버튼)
 async function makeUserFollowerList(data) {
-
-    console.log(data)
     const frag = document.createDocumentFragment();
 
     data.forEach(user => {
@@ -165,7 +163,7 @@ async function makeUserFollowerList(data) {
         li.setAttribute('class', 'follow-item');
         li.innerHTML = `<a class="user-img img-cover" href="./profile_info.html?accountName=${user.accountname}">
         <span class="a11y-hidden">${user.username}의 프로필 보기</span>
-        <img src=${user.image} alt="">
+        <img src=${checkImageUrl(user.image, 'profile')} alt="">
     </a>
     <div class="user-info">
         <strong class="user-name">
@@ -179,19 +177,5 @@ async function makeUserFollowerList(data) {
         frag.append(li);
     })
 
-    followers.append(frag);
+    $followers.append(frag);
 }
-
-//테마 작업 진행중.
-// const wrapper = document.querySelector('.profile-follower-wrapper');
-// const theme = window.localStorage.getItem('theme');
-// if (theme === 'highContrast') {
-//     wrapper.classList.add('highContrast');
-//     document.body.style.backgroundColor = '#000000';
-//     document.getElementById("profile-follower-back-btn").src = "../assets/icon/icon-arrow-left-hc.svg";
-
-// } else {
-//     wrapper.classList.remove('highContrast');
-//     document.body.style.backgroundColor = '#ffffff'; 
-    
-// }

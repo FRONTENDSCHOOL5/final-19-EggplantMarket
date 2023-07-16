@@ -7,11 +7,11 @@ TODO
 
 const token = localStorage.getItem('user-token');
 
-const uploadButton = document.querySelector('#upload-btn'),
-    writerImg = document.querySelector('.user-profile img'),
-    contentInp = document.querySelector('textarea'),
-    imglist = document.querySelector('.upload-imgs-list'),
-    imgInp = document.querySelector('#input-file');
+const $uploadButton = document.querySelector('#upload-btn'),
+    $writerImg = document.querySelector('.user-profile img'),
+    $contentInp = document.querySelector('textarea'),
+    $imglist = document.querySelector('.upload-imgs-list'),
+    $imgInp = document.querySelector('#input-file');
 
 const POSTID = new URLSearchParams(location.search).get('postId');
 const METHOD = POSTID ? 'PUT' : 'POST';
@@ -22,23 +22,23 @@ const dataTransfer = new DataTransfer(); // 이미지 추가, 삭제 관리를 �
 (async function () {
     // 게시글 업로드페이지 or 수정페이지 확인
     if (POSTID) {
-        uploadButton.textContent = '수정';
-        uploadButton.disabled = false; // 내용 수정 안해도 제출 가능
+        $uploadButton.textContent = '수정';
+        $uploadButton.disabled = false; // 내용 수정 안해도 제출 가능
         getPostData();
     }
 
     // 작성자 프로필 이미지 가져오기
-    writerImg.src = checkImageUrl(await getMyImg(), 'profile');
+    $writerImg.src = checkImageUrl(await getMyImg(), 'profile');
 
     // textarea 높이 조절 이벤트 등록
-    contentInp.addEventListener('keyup', (e) => {
+    $contentInp.addEventListener('keyup', (e) => {
         e.target.style.height = 0;
         e.target.style.height = e.target.scrollHeight + 'px';
     })
 })();
 
 // 업로드/수정 버튼 클릭시
-uploadButton.addEventListener('click', async (e) => {
+$uploadButton.addEventListener('click', async (e) => {
     e.preventDefault();
     if (await submitPostForm(METHOD)) {
         e.target.disabled = true;
@@ -52,14 +52,14 @@ let validImg = false;
 
 function isValid() {
     if (validImg || validContent) { // 둘 중 하나 입력시 버튼 활성화
-        uploadButton.disabled = false;
+        $uploadButton.disabled = false;
     } else {
-        uploadButton.disabled = true;
+        $uploadButton.disabled = true;
     }
 }
 
 // 텍스트 입력되면 valid
-contentInp.addEventListener('change', (e) => {
+$contentInp.addEventListener('change', (e) => {
     if (e.target.value !== '') {
         validContent = true;
     } else {
@@ -69,7 +69,7 @@ contentInp.addEventListener('change', (e) => {
 });
 
 // 이미지 입력이 존재 && 유효한 이미지 파일이면 valid
-imgInp.addEventListener('change', (e) => readURL(e.target));
+$imgInp.addEventListener('change', (e) => readURL(e.target));
 function readURL(input) {
     if (input.files && input.files[0]) {
 
@@ -81,8 +81,8 @@ function readURL(input) {
                 // 입력된 이미지 누적
                 dataTransfer.items.add(item);
 
+                // 이미지 미리보기
                 var reader = new FileReader();
-
                 reader.addEventListener('load', function (e) {
                     const li = document.createElement('li');
 
@@ -96,16 +96,16 @@ function readURL(input) {
 
                     // 삭제버튼 이벤트 바로 등록하기
                     removeBtn.addEventListener('click', function (e) {
-                        e.target.preventDefault();
+                        e.preventDefault();
                         // 파일 리스트에서 제거 및 미리보기에서 삭제
                     });
 
                     imgItem.append(img, removeBtn);
                     li.appendChild(imgItem);
-                    imglist.append(li);
+                    $imglist.append(li);
                 });
-
                 reader.readAsDataURL(item);
+
             } else {
                 alert('유효하지 않은 파일 입니다')
                 input.value = ''; // 다시보기
@@ -146,8 +146,9 @@ async function getPostData() {
     })
     const json = await res.json();
 
+    // 바로 게시글 입력창에 적용
     if (json.post.content) {
-        document.querySelector('textarea').value = json.post.content
+        $contentInp.value = json.post.content
     }
     if (json.post.image) {
         json.post.image.split(',').forEach(item => {
@@ -156,7 +157,7 @@ async function getPostData() {
                 <img src=${checkImageUrl(item, 'post')} alt="">
                 <button class="btn-remove"></button>
             </div>`;
-            imglist.append(li);
+            $imglist.append(li);
         })
     }
 
@@ -167,13 +168,13 @@ async function getPostData() {
 async function submitPostForm(METHOD) {
 
     // 1. 이미지는 3개까지 업로드 가능함
-    if (imglist.children.length <= 3) {
+    if ($imglist.children.length <= 3) {
         let fileName = [];
 
         // 2. 
-        if (METHOD === "PUT" && !document.querySelector('#input-file').files[0]) {
+        if (METHOD === "PUT" && !$imgInp.files[0]) {
             // 게시글 수정이고 추가된 이미지 파일이 없으면 기존 이미지 파일명 가져옴
-            Array.from(imglist.querySelectorAll('img')).forEach(item => fileName.push(item.src.split('https://api.mandarin.weniv.co.kr/')[1]));
+            Array.from($imglist.querySelectorAll('img')).forEach(item => fileName.push(item.src.split('https://api.mandarin.weniv.co.kr/')[1]));
         } else {
             // 추가된 이미지가 있으면 새롭게 서버에 이미지 저장하고 가져오기
             const newImg = Array.from(dataTransfer.files).map(item => postImg(item));
@@ -192,7 +193,7 @@ async function submitPostForm(METHOD) {
             },
             body: JSON.stringify({
                 "post": {
-                    "content": contentInp.value.trim(),
+                    "content": $contentInp.value.trim(),
                     "image": fileName.join(',')
                 }
             })

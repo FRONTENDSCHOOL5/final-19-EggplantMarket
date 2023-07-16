@@ -17,6 +17,7 @@ const POSTID = new URLSearchParams(location.search).get('postId');
 const METHOD = POSTID ? 'PUT' : 'POST';
 
 const dataTransfer = new DataTransfer(); // 이미지 추가, 삭제 관리를 위한 전역변수
+const tempImgUrls = []; // 이미지 미리보기에서 임시URL 생성 및 해제를 위한 전역변수
 
 // 페이지 로드 시
 (async function () {
@@ -42,6 +43,7 @@ $uploadButton.addEventListener('click', async (e) => {
     e.preventDefault();
     if (await submitPostForm(METHOD)) {
         e.target.disabled = true;
+        tempImgUrls.forEach(item => URL.revokeObjectURL(item));
         location.href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
     }
 })
@@ -69,12 +71,13 @@ $contentInp.addEventListener('change', (e) => {
 });
 
 // 이미지 입력이 존재 && 유효한 이미지 파일이면 valid
-$imgInp.addEventListener('change', (e) => readURL(e.target));
-function readURL(input) {
+$imgInp.addEventListener('change', (e) => previewImg(e.target));
+function previewImg(input) {
     if (input.files && input.files[0]) {
+        const frag = document.createDocumentFragment();
 
         [...input.files].forEach(item => {
-            if (checkImageExtension(item)) {
+            if (checkImageExtension(item)) { // 유효 확장자 : PNG|JPG|png|svg|jpg|jpeg|gif|webp
                 validImg = true;
                 isValid();
 
@@ -82,38 +85,39 @@ function readURL(input) {
                 dataTransfer.items.add(item);
 
                 // 이미지 미리보기
-                var reader = new FileReader();
-                reader.addEventListener('load', function (e) {
-                    const li = document.createElement('li');
+                const tempImgUrl = URL.createObjectURL(item);
+                tempImgUrls.push(tempImgUrl);
 
-                    const imgItem = document.createElement('div');
-                    imgItem.className = 'img-cover';
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.alt = '';
-                    const removeBtn = document.createElement('button');
-                    removeBtn.className = 'btn-remove';
+                const li = document.createElement('li');
 
-                    // 삭제버튼 이벤트 바로 등록하기
-                    removeBtn.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        // 파일 리스트에서 제거 및 미리보기에서 삭제
-                    });
+                const imgItem = document.createElement('div');
+                imgItem.className = 'img-cover';
+                const img = document.createElement('img');
+                img.src = tempImgUrl;
+                img.alt = '';
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'btn-remove';
 
-                    imgItem.append(img, removeBtn);
-                    li.appendChild(imgItem);
-                    $imglist.append(li);
+                // 삭제버튼 이벤트 바로 등록하기
+                removeBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    // 파일 리스트에서 제거 및 미리보기에서 삭제
                 });
-                reader.readAsDataURL(item);
+
+                imgItem.append(img, removeBtn);
+                li.appendChild(imgItem);
+                frag.appendChild(li);
 
             } else {
                 alert('유효하지 않은 파일 입니다')
-                input.value = ''; // 다시보기
             }
         })
+
+        $imglist.append(frag);
+
     } else {
         validImg = false;
-        isValid()
+        isValid();
     }
 }
 // ---- end of 버튼 활성화 ----

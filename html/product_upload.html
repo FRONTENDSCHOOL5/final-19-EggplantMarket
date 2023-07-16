@@ -61,48 +61,7 @@
     </div>
     <script src="../js/contrast.js"></script>
     <script src="../js/common.js"></script>
-    <script src="../js/product_add.js" type="module"></script>
-    <!-- <script>
-        const pageUrl = new URL(window.location.href);
-        const productID = pageUrl.searchParams.get('productId')
-
-        if (productID) {
-            console.log('수정')
-            let scriptEl = document.createElement('script');
-            scriptEl.src = "../js/product_modification.js";
-            scriptEl.type = "module";
-            document.body.appendChild(scriptEl);
-        } else {
-            console.log('업로드')
-            let scriptEl = document.createElement('script');
-            scriptEl.src = "../js/product_add.js";
-            scriptEl.type = "module";
-            document.body.appendChild(scriptEl);
-        }
-        document.addEventListener("DOMContentLoaded", function () {
-        const btnUpload = document.querySelector(".btn-upload");
-        const productImgUpload = document.getElementById("product-img-upload");
-
-        btnUpload.addEventListener("keydown", function (event) {
-        if (event.key === "Tab" && !event.shiftKey) {
-        event.preventDefault();
-        productImgUpload.focus();
-        }
-        });
-        });
-
-        // 테마 작업 진행중.
-        const wrapper = document.querySelector('.product-upload-wrapper');
-        const theme = window.localStorage.getItem('theme');
-        if (theme === 'highContrast') {
-            wrapper.classList.add('highContrast');
-            document.body.style.backgroundColor = '#000000';
-            document.getElementById("product-upload-backBtn").src = "../assets/icon/icon-arrow-left-hc.svg
-        } else {
-            wrapper.classList.remove('highContrast');
-            document.body.style.backgroundColor = '#ffffff'
-        }
-    </script> -->
+    <script src="../js/productUpload.js" type="module"></script>
 </body>
 
 </html>

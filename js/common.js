@@ -109,7 +109,6 @@ async function handleLike(event){
         likeBtn.querySelector('.cnt').textContent = `${result.heartCount}`
         result.hearted ? likeBtn.classList.add('like') : likeBtn.classList.remove('like')
     }
-    
 }
 
 async function reqLike(postId,action,method){

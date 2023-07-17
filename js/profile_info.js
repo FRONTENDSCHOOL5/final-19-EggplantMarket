@@ -241,8 +241,6 @@ function renderPosts(post_data) {
                 <span class="cnt">${item.commentCount}</span>
             </a>
         `;
-
-        // postIcon.querySelector('.btn-like').addEventListener('click',handleLike)
         
         postEdit.appendChild(postIcon);
         postEdit.insertAdjacentHTML('beforeend',`<p class="post-date">${dateProcess(item.createdAt)}</p>`)

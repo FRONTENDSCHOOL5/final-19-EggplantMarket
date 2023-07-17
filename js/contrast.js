@@ -41,7 +41,6 @@ function colorChange() {
             if(item.src === LightPost) item.src=ContrastPost
         })
     } else {
-        console.log('키키')
         window.localStorage.setItem('theme', 'light');
         if(!document.querySelector('.login-wrapper') && !document.querySelector('.join') && !document.querySelector('main.login')){
             document.querySelector('[class *= "wrapper"]').classList.remove('highContrast'); 

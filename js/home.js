@@ -89,7 +89,7 @@ async function postFeed(postsData) {
             frag.appendChild(liNode)
         }
         ulNode.appendChild(frag);
-        ulNode.addEventListener('click',handleLike,{capture: true})
+        ulNode.addEventListener('click',handleLike)
     } 
     handleModal()
 }

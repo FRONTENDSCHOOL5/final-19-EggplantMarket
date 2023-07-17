@@ -1,37 +1,88 @@
+/*
+- 팔로잉(취소) 버튼 기능 추가 예정
+*/
+
 const accountname = new URLSearchParams(location.search).get('accountName'),
     myAccountname = localStorage.getItem('user-accountname'),
     token = localStorage.getItem('user-token');
 
 const $followers = document.querySelector('.follow-list');
-let reqCnt = 0;
-
 
 // 1. 내가 내 팔로워 목록을 보는지, 내가 다른 사용자 팔로워 목록을 보는지
 const viewMyFollowerList = accountname === myAccountname ? true : false;
 
-
-// 무한 스크롤 
-window.addEventListener("scroll", async () => {
-    if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
-        console.log('바닥이당! 데이터 불러올게 기다려!')
-        if (viewMyFollowerList) {
-            throttle(makeMyFollowerList(await getFollowerList()), 1000)
-        } else {
-            throttle(makeUserFollowerList(await getFollowerList()), 1000)
-        }
-    };
-})
-
-async function run() {
+(async function () {
+    const getFollowerList = fetchFollowerList(); // 클로저 함수 반환
     const data = await getFollowerList();
-    if (viewMyFollowerList) makeMyFollowerList(data);
-    else makeUserFollowerList(data);
-};
+    if (viewMyFollowerList) displayMyFollowerList(data);
+    else displayUserFollowerList(data);
 
-run()
+    // 무한 스크롤 
+    window.addEventListener("scroll", async () => {
+        if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
+            if (viewMyFollowerList) {
+                displayMyFollowerList(await getFollowerList())
+            } else {
+                displayUserFollowerList(await getFollowerList())
+            }
+        };
+    })
+})();
 
+// 내 팔로워 목록 뿌리기 
+// : (팔로우(하기) 버튼만 가능, 팔로워를 삭제하는 버튼은 있지만 기능은 없음 disabled 처리)
+async function displayMyFollowerList(data) {
+    const frag = document.createDocumentFragment();
 
-// event
+    data.forEach(user => {
+        const li = document.createElement('li');
+        li.setAttribute('class', 'follow-item');
+        li.innerHTML = `<a class="user-img img-cover" href="./profile_info.html?accountName=${user.accountname}">
+        <span class="a11y-hidden">${user.username}의 프로필 보기</span>
+        <img src=${checkImageUrl(user.image, 'profile')} alt="">
+        </a>
+        <div class="user-info">
+            <strong class="user-name">
+                <a href="./profile_info.html?accountName=${user.accountname}">${user.username}<span class="a11y-hidden">의 프로필 보기</span></a>
+            </strong>
+            <p class="user-intro ellipsis">${user.intro}</p>
+        </div>
+        ${user.isfollow ? '<button class="btn-follow opposite">팔로잉<span class="a11y-hidden">취소</span></button>' : `<button class="btn-follow">팔로우<span class="a11y-hidden">하기</span></button>`}`
+        // <button class="btn-follow-cancle" disabled>삭제<span class="a11y-hidden">하기</span></button>
+
+        frag.append(li);
+    })
+
+    $followers.append(frag);
+}
+
+// 다른 사용자 팔로워 목록 뿌리기 
+// : (팔로우(하기) 버튼, 팔로잉(취소) 버튼)
+async function displayUserFollowerList(data) {
+    const frag = document.createDocumentFragment();
+
+    data.forEach(user => {
+        const li = document.createElement('li');
+        li.setAttribute('class', 'follow-item');
+        li.innerHTML = `<a class="user-img img-cover" href="./profile_info.html?accountName=${user.accountname}">
+        <span class="a11y-hidden">${user.username}의 프로필 보기</span>
+        <img src=${checkImageUrl(user.image, 'profile')} alt="">
+    </a>
+    <div class="user-info">
+        <strong class="user-name">
+            <a href="./profile_info.html?accountName=${user.accountname}">${user.username}<span class="a11y-hidden">의 프로필 보기</span></a>
+        </strong>
+        <p class="user-intro ellipsis">${user.intro}</p>
+    </div>
+    ${user.accountname !== myAccountname ? (user.isfollow ? `<button class="btn-follow opposite">팔로잉<span class="a11y-hidden">취소</span></button>` : `<button class="btn-follow">팔로우<span class="a11y-hidden">하기</span></button>`) : (``)}`
+
+        frag.append(li);
+    })
+
+    $followers.append(frag);
+}
+
+// 버튼 이벤트
 if (viewMyFollowerList) {
     // (팔로우(하기) 버튼만 가능, 팔로워를 삭제하는 버튼은 있지만 기능은 없음 disabled 처리)
     $followers.addEventListener('click', async (e) => {
@@ -70,22 +121,42 @@ if (viewMyFollowerList) {
     )
 }
 
+// --- API 함수들 ---
 
-// POST 팔로우
-async function postFollow(accountName) {
-    try {
-        let res = await fetch('https://api.mandarin.weniv.co.kr' + `/profile/${accountName}/follow`, {
-            method: 'POST',
+// GET 사용자 팔로워 목록 
+function fetchFollowerList() {
+    const url = "https://api.mandarin.weniv.co.kr";
+    const reqPath = `/profile/${accountname}/follower?limit=12&skip=`;
+    let reqCnt = 0; // 클로저로 사용될 요청 카운트 변수
+
+    const getFollowerList = async () => {
+        const res = await fetch(url + reqPath + reqCnt * 12, {
+            method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
                 "Content-type": "application/json"
             }
         });
 
-        const resJson = await res.json()
-        console.log('팔로우 완료 : ', resJson.profile);
+        reqCnt++; // 요청 후에 카운트를 증가시킴
+        const json = await res.json();
+        return json;
+    };
+
+    return getFollowerList; // 클로저 함수 반환
+}
+
+// POST 팔로우
+async function postFollow(accountName) {
+    try {
+        await fetch('https://api.mandarin.weniv.co.kr' + `/profile/${accountName}/follow`, {
+            method: 'POST',
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-type": "application/json"
+            }
+        });
     } catch (err) {
-        console.log(err)
         location.href='./404.html'
     }
 }
@@ -93,89 +164,14 @@ async function postFollow(accountName) {
 // DELETE 팔로우
 async function deleteFollow(accountName) {
     try {
-        let res = await fetch('https://api.mandarin.weniv.co.kr' + `/profile/${accountName}/unfollow`, {
+        await fetch('https://api.mandarin.weniv.co.kr' + `/profile/${accountName}/unfollow`, {
             method: 'DELETE',
             headers: {
                 "Authorization": `Bearer ${token}`,
                 "Content-type": "application/json"
             }
         });
-
-        const resJson = await res.json()
-        console.log('팔로우 취소 완료 : ', resJson.profile);
     } catch (err) {
-        console.log(err)
         location.href='./404.html'
     }
-}
-
-
-// GET 사용자 팔로워 목록 
-async function getFollowerList() {
-    const url = "https://api.mandarin.weniv.co.kr";
-    const reqPath = `/profile/${accountname}/follower?limit=12&skip=${reqCnt++ * 12}`;
-
-    const res = await fetch(url + reqPath, {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${token}`,
-            "Content-type": "application/json"
-        }
-    })
-
-    const json = await res.json();
-    return json;
-}
-
-// 내 팔로워 목록 뿌리기 
-// : (팔로우(하기) 버튼만 가능, 팔로워를 삭제하는 버튼은 있지만 기능은 없음 disabled 처리)
-async function makeMyFollowerList(data) {
-    const frag = document.createDocumentFragment();
-
-    data.forEach(user => {
-        const li = document.createElement('li');
-        li.setAttribute('class', 'follow-item');
-        li.innerHTML = `<a class="user-img img-cover" href="./profile_info.html?accountName=${user.accountname}">
-        <span class="a11y-hidden">${user.username}의 프로필 보기</span>
-        <img src=${checkImageUrl(user.image, 'profile')} alt="">
-    </a>
-    <div class="user-info">
-        <strong class="user-name">
-            <a href="./profile_info.html?accountName=${user.accountname}">${user.username}<span class="a11y-hidden">의 프로필 보기</span></a>
-        </strong>
-        <p class="user-intro ellipsis">${user.intro}</p>
-    </div>
-    ${user.isfollow ? '<button class="btn-follow" disabled>삭제<span class="a11y-hidden">하기</span></button>' : `<button class="btn-follow">팔로우<span class="a11y-hidden">하기</span></button>`}`
-
-        frag.append(li);
-    })
-
-    $followers.append(frag);
-}
-
-// 다른 사용자 팔로워 목록 뿌리기 
-// : (팔로우(하기) 버튼, 팔로잉(취소) 버튼)
-async function makeUserFollowerList(data) {
-    const frag = document.createDocumentFragment();
-
-    data.forEach(user => {
-        const li = document.createElement('li');
-        li.setAttribute('class', 'follow-item');
-        li.innerHTML = `<a class="user-img img-cover" href="./profile_info.html?accountName=${user.accountname}">
-        <span class="a11y-hidden">${user.username}의 프로필 보기</span>
-        <img src=${checkImageUrl(user.image, 'profile')} alt="">
-    </a>
-    <div class="user-info">
-        <strong class="user-name">
-            <a href="./profile_info.html?accountName=${user.accountname}">${user.username}<span class="a11y-hidden">의 프로필 보기</span></a>
-        </strong>
-        <p class="user-intro ellipsis">${user.intro}</p>
-    </div>
-    ${user.accountname !== myAccountname ? (user.isfollow ? `<button class="btn-follow opposite">팔로잉<span class="a11y-hidden">취소</span></button>` : `<button class="btn-follow">팔로우<span class="a11y-hidden">하기</span></button>`) : (``)}
-    `
-
-        frag.append(li);
-    })
-
-    $followers.append(frag);
 }

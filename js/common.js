@@ -1,4 +1,4 @@
-requestAnimationFrame(colorChange)
+applyTheme()
 
 if(localStorage.getItem('back')){
     location.reload()

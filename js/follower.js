@@ -28,22 +28,53 @@ async function displayFollowerList(data) {
     data.forEach(user => {
         const li = document.createElement('li');
         li.setAttribute('class', 'follow-item');
-        li.innerHTML = `<a class="user-img img-cover" href="./profile_info.html?accountName=${user.accountname}">
-        <span class="a11y-hidden">${user.username}의 프로필 보기</span>
-        <img src=${checkImageUrl(user.image, 'profile')} alt="">
-    </a>
-    <div class="user-info">
-        <strong class="user-name">
-            <a href="./profile_info.html?accountName=${user.accountname}">${user.username}<span class="a11y-hidden">의 프로필 보기</span></a>
-        </strong>
-        <p class="user-intro ellipsis">${user.intro}</p>
-    </div>`
+
+        const userImgLink = document.createElement('a'); //
+        userImgLink.classList.add('user-img', 'img-cover');
+        userImgLink.href = `./profile_info.html?accountName=${user.accountname}`;
+
+        const hiddenTextSpan = document.createElement('span');
+        hiddenTextSpan.classList.add('a11y-hidden');
+        hiddenTextSpan.textContent = `${user.username}의 프로필 보기`;
+
+        const userImg = document.createElement('img');
+        userImg.src = checkImageUrl(user.image, 'profile');
+        userImg.alt = '';
+
+        userImgLink.append(hiddenTextSpan, userImg);
+
+        const userInfoDiv = document.createElement('div'); //
+        userInfoDiv.classList.add('user-info');
+
+        const userNameStrong = document.createElement('strong');
+        userNameStrong.classList.add('user-name');
+
+        const userNameLink = document.createElement('a');
+        userNameLink.href = `./profile_info.html?accountName=${user.accountname}`;
+        userNameLink.textContent = user.username;
+
+        const userNameHiddenText = document.createElement('span');
+        userNameHiddenText.classList.add('a11y-hidden');
+        userNameHiddenText.textContent = '의 프로필 보기';
+
+        userNameLink.appendChild(userNameHiddenText);
+        userNameStrong.appendChild(userNameLink);
+
+        const userIntroParagraph = document.createElement('p');
+        userIntroParagraph.classList.add('user-intro', 'ellipsis');
+        userIntroParagraph.textContent = user.intro;
+
+        userInfoDiv.append(userNameStrong, userIntroParagraph);
+
+        li.append(userImgLink, userInfoDiv);
 
         const btn = user.accountname !== myAccountname ? (user.isfollow ? `<button class="btn-follow opposite">팔로잉<span class="a11y-hidden">취소</span></button>` : `<button class="btn-follow">팔로우<span class="a11y-hidden">하기</span></button>`) : (``)
         li.insertAdjacentHTML('beforeend', btn);
 
         if (viewMyFollowerList) {
-            li.insertAdjacentHTML('beforeend', `<button class="btn-follow-cancle" disabled>삭제<span class="a11y-hidden">하기</span></button>`);
+            userInfoDiv.style.width = 'calc(100% - 150px)';
+
+            li.insertAdjacentHTML('beforeend', `<button class="btn-follow-cancle" style='width: 20px;' disabled>삭제<span class="a11y-hidden">하기</span></button>`);
         }
 
         frag.append(li);

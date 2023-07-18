@@ -1,10 +1,3 @@
-/*
-TODO
-- 이미지 입력 로직 정리
-- 이미지 삭제버튼 이벤트
-- api 함수들 정리
-*/
-
 const token = localStorage.getItem('user-token');
 
 const $uploadButton = document.querySelector('#upload-btn'),

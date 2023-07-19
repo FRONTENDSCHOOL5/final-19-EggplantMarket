@@ -18,7 +18,7 @@ const tempImgUrls = []; // 이미지 미리보기에서 임시URL 생성 및 해
     if (POSTID) {
         $uploadButton.textContent = '수정';
         $uploadButton.disabled = false; // 내용 수정 안해도 제출 가능
-        getPostData();
+        displayExistingContent(await getPostData());
     }
 
     // 작성자 프로필 이미지 가져오기
@@ -30,6 +30,41 @@ const tempImgUrls = []; // 이미지 미리보기에서 임시URL 생성 및 해
         e.target.style.height = e.target.scrollHeight + 'px';
     })
 })();
+
+function displayExistingContent(data) {
+    if (data.content) {
+        $contentInp.value = data.content;
+    }
+    if (data.image) {
+        data.image.split(',').forEach(item => {
+            const li = document.createElement('li');
+
+            const imgItem = document.createElement('div');
+            imgItem.className = 'img-cover';
+            const img = document.createElement('img');
+            img.src = checkImageUrl(item, 'post');
+            img.alt = '';
+            const removeBtn = document.createElement('button');
+            removeBtn.className = 'btn-remove';
+
+            // 이미지 삭제 이벤트
+            removeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                $imglist.removeChild(li);
+
+                // 이미지 추가한 거 다 삭제하면 invalid
+                if ($imglist.childNodes.length === 0) {
+                    validImg = false;
+                    isValid();
+                }
+            })
+
+            imgItem.append(img, removeBtn);
+            li.append(imgItem);
+            $imglist.append(li);
+        })
+    }
+}
 
 // 업로드/수정 버튼 클릭시
 $uploadButton.addEventListener('click', async (e) => {
@@ -54,12 +89,8 @@ function isValid() {
 }
 
 // 텍스트 입력되면 valid
-$contentInp.addEventListener('change', (e) => {
-    if (e.target.value !== '') {
-        validContent = true;
-    } else {
-        validContent = false;
-    }
+$contentInp.addEventListener('input', (e) => {
+    validContent = e.target.value.trim() !== '' ? true : false;
     isValid();
 });
 
@@ -132,7 +163,6 @@ function previewImg(input) {
         isValid();
     }
 }
-
 // ---- end of 버튼 활성화 ----
 
 
@@ -148,7 +178,6 @@ async function getMyImg() {
         }
     });
     const json = await res.json();
-
     return json.user.image;
 }
 
@@ -162,42 +191,7 @@ async function getPostData() {
         }
     })
     const json = await res.json();
-
-    // 바로 게시글 입력창에 적용
-    if (json.post.content) {
-        $contentInp.value = json.post.content
-    }
-    if (json.post.image) {
-        json.post.image.split(',').forEach(item => {
-            const li = document.createElement('li');
-
-            const imgItem = document.createElement('div');
-            imgItem.className = 'img-cover';
-            const img = document.createElement('img');
-            img.src = checkImageUrl(item, 'post');
-            img.alt = '';
-            const removeBtn = document.createElement('button');
-            removeBtn.className = 'btn-remove';
-
-            // 이미지 삭제 이벤트
-            removeBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                $imglist.removeChild(li);
-
-                // 이미지 추가한 거 다 삭제하면 invalid
-                if ($imglist.childNodes.length === 0) {
-                    validImg = false;
-                    isValid();
-                }
-            })
-
-            imgItem.append(img, removeBtn);
-            li.append(imgItem);
-            $imglist.append(li);
-        })
-    }
-
-    return json
+    return json.post;
 }
 
 // POST/PUT 작성 완료된 게시글 내용
@@ -258,6 +252,5 @@ async function postImg(item) {
     });
 
     const json = await res.json();
-
     return json.filename;
 }

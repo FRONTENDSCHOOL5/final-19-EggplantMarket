@@ -5,7 +5,6 @@ if(localStorage.getItem('back')){
     localStorage.removeItem('back')
 }
 
-
 if(document.querySelector('.btn-back')){
     
     document.querySelector('.btn-back').addEventListener('click',()=>{
@@ -40,8 +39,6 @@ function checkImageUrl(Img, position){
     const pattern = /^https:\/\/api\.mandarin\.weniv\.co\.kr\/(\d{13})\.(JPG|PNG|png|svg|jpg|jpeg|gif|webp)$/;
 
     if(pattern.test(Img)){
-
-        
         if (localStorage.getItem('theme') === 'highContrast') {
             if (position === 'profile' && Img === LightProfile) {
                 return ContrastProfile;
@@ -57,8 +54,6 @@ function checkImageUrl(Img, position){
                 return LightPost;
             }
         }
-        
-
         return Img
     }
     else{
@@ -92,7 +87,6 @@ function checkImageUrl(Img, position){
 }
 
 // common
-
 async function handleLike(event){
     const target = event.target;
 
@@ -105,7 +99,7 @@ async function handleLike(event){
         const action = isLiked ? 'unheart' : 'heart'
         const method = isLiked ? 'DELETE' : 'POST'
         
-        result = await reqLike(postId, action, method)
+        const result = await reqLike(postId, action, method)
         likeBtn.querySelector('.cnt').textContent = `${result.heartCount}`
         result.hearted ? likeBtn.classList.add('like') : likeBtn.classList.remove('like')
     }
@@ -129,8 +123,11 @@ async function reqLike(postId,action,method){
     }
 }
 
-if(document.querySelector('.tab-item-more a') !== null){
+function setProfileLink(){
     document.querySelector('.tab-item-more a').href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
+}
+if(document.querySelector('.tab-item-more') !== null){
+    setProfileLink()
 }
 
 function dateProcess(createdAt) {

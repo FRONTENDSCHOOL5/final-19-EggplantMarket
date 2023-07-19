@@ -55,7 +55,7 @@ function applyTheme() {
         if(document.querySelector('.login-wrapper')){
             document.body.style.backgroundColor = '#635CA5'; 
         } else{
-            document.body.style.backgroundColor = '#fff'; 
+            document.body.style.backgroundColor = '#ffffff'; 
         }
 
         if(imgBtn) imgBtn.src = "../assets/img-button.svg";

@@ -79,7 +79,7 @@ async function postFeed(postsData) {
             }
             liNode.querySelector('.home-post').setAttribute('data-postid',item.id)
             liNode.querySelector('.btn-like').addEventListener('click',handleLike)
-            ulNode.appendChild(liNode)
+            frag.appendChild(liNode)
         }
         ulNode.appendChild(frag);
     } 

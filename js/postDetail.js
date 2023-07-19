@@ -20,12 +20,9 @@ const $postViewSec = document.querySelector('.home-post'),
     handleModal();
 })();
 
-$commentInp.addEventListener('keyup', (e) => {
-    if (e.target.value.trim() !== '') {
-        $commentSubmitButton.disabled = false;
-    } else {
-        $commentSubmitButton.disabled = true;
-    }
+$commentInp.addEventListener('input', (e) => {
+    console.log(e.target.value.trim());
+    $commentSubmitButton.disabled = e.target.value.trim() !== '' ? false : true;
 })
 
 $commentSubmitButton.addEventListener('click', async (e) => {
@@ -194,8 +191,7 @@ async function getOnePost() {
                 "Content-type": "application/json"
             }
         });
-        const resJson = await res.json();
-        return resJson;
+        return res.json();
     } catch (err) {
         location.href = './404.html'
     }
@@ -211,8 +207,7 @@ async function getComments() {
                 "Content-type": "application/json"
             }
         });
-        const resJson = await res.json();
-        return resJson;
+        return res.json();
     } catch (err) {
         location.href = './404.html'
     }

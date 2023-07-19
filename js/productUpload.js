@@ -34,12 +34,12 @@ let isValidPurchaseLink = false;
 let isValidImage = false;
 
 inputFields.forEach((item) => {
-    item.addEventListener("change", async () => {
-        if (item === productName || item === productPrice || item === purchaseLink) {
+    item.addEventListener("change", () => {
+        // item이 productName 혹은 purchaseLink일 때만 trim() 적용
+        if (item === productName || item === purchaseLink) {
             item.value = item.value.trim();
         }
-        await validateProduct(item);
-
+        validateProduct(item);
         validateForm();
     });
 });
@@ -53,7 +53,7 @@ function validateForm() {
     }
 }
 
-async function validateProduct(target) {
+function validateProduct(target) {
     // 상품명 validation
     if (target === productName) {
         isValidProductName = validateProductName(productName, warningMsgProductName);
@@ -77,12 +77,10 @@ async function validateProduct(target) {
 
 // 입력된 정보 저장하기
 async function saveProduct(url, token, METHOD) {
-    const reqPath = "/product";
-
     // 가격
     const price = parseInt(productPrice.value);
-    // 이미지 넣기
-    const fileName = await uploadImage();
+    // 이미지 저장
+    const fileName = await saveImage();
     const imageURL = url + `/${fileName}`;
 
     // 데이터 생성
@@ -95,55 +93,159 @@ async function saveProduct(url, token, METHOD) {
         },
     };
 
-    if(METHOD === "POST"){  // 상품 등록 클릭 시 
-        try {
-        // POST 요청
-            const res = await fetch(url + reqPath, {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
-            const json = await res.json();
-            return json;
-        } catch (err) {
-            console.error(err);
-            location.href = "./404.html";
-          // 저장 실패 시 에러 처리
+    try {
+        const currentImageSrc = imageInput.style.backgroundImage;
+        let updatedData = { ...data };
+        let checkURL = `url('${imageURL}')`;
+        const reqPath = (METHOD === "POST") ? url + "/product" : url + `/product/${productID}`
+        if (currentImageSrc !== checkURL) {
+            updatedData.product.itemImage = currentImageSrc.slice(5, -2);
         }
-    } else { // 상품 수정 클릭 시
-        try {
-            const currentImageSrc = imageInput.style.backgroundImage;
-            // 이미지 데이터 저장할 변수 선언
-            let updatedData;
-            let checkURL = `url('${imageURL}')`;
-            // 현재 이미지 소스와 다른 경우 데이터의 이미지 URL을 업데이트
-            if (currentImageSrc !== checkURL) {
-                updatedData = { ...data };
-                updatedData.product.itemImage = currentImageSrc.slice(5, -2);
-            }
-            // PUT에 요청
-            const res = await fetch(url + reqPath + `/${productID}`, {
-                method: "PUT",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(updatedData || data),
-            });
-            const json = await res.json();
-            return json;
-        } catch (err) {
-            console.error(err);
-            location.href = "./404.html";
-            // 저장 실패 시 에러 처리
-        }
+        
+        const res = await fetch(reqPath, {
+            method: METHOD,
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedData),
+        });
+        const json = await res.json();
+        return json;
+    } catch (err) {
+        console.error(err);
+        location.href = "./404.html";
+        // 저장 실패 시 에러 처리
     }
 }
 
-async function uploadImage() {
+imgInput.addEventListener("change", async (e) => {
+    const imageFile = e.target.files[0];
+    if (checkImageExtension(imageFile)) {
+        await postImg(imageFile);
+    } else {
+        alert("유효하지 않은 파일 입니다");
+        input.value = "";
+    }
+});
+
+submitButton.addEventListener("click", async (e) => {
+    e.preventDefault();
+    await saveProduct(url, token, METHOD);
+    location.href = `./profile_info.html?accountName=${localStorage.getItem(
+        "user-accountname"
+    )}`;
+});
+
+// productID가 있는 경우
+if(productID){
+    submitButton.disabled = false; // 수정을 잘못 누른 경우 고려 - 수정사항 없어도 바로 저장 가능하도록
+    getProduct(url, token, productID); // 저장된 데이터 불러오기
+}
+
+async function getProduct(url, token, productID) {
+    const productData = await loadProduct(url, token, productID);
+    updateProductInfo(productData.product);
+}
+
+function updateProductInfo(productData) { // 입력된 상품 정보 변경 시 새로 입력한 값 저장
+    // 상품 이미지 보여주기
+    const imageSrc = productData.itemImage;
+    if (imageSrc) {
+        imageInput.src = imageSrc;
+        imageInput.style.backgroundImage = `url('${checkImageUrl(imageSrc, "post")}')`;
+        imageInput.style.backgroundSize = "cover";
+        imageInput.style.backgroundPosition = "center";
+        imageInput.style.backgroundRepeat = "no-repeat";
+        isValidImage = true; // 입력된 이미지 유효성 검사
+    }
+    productName.value = productData.itemName;
+    isValidProductName = validateProductName(productName, warningMsgProductName); // 입력된 productName 유효성 검사
+    
+    productPrice.value = productData.price;
+    isValidProductPrice = validateProductPrice(productPrice, warningMsgProductPrice); // 입력된 productPrice 유효성 검사
+    
+    purchaseLink.value = productData.link;
+    isValidPurchaseLink = validatePurchaseLink(purchaseLink, warningMsgPurchaseLink); // 입력된 purchaseLink 유효성 검사
+
+    validateForm(); // 입력값 유효성 검사
+}
+
+// ======== validation 함수 ========
+// 상품명 validation 함수
+function validateProductName(productName, warningMsgProductName) {
+    const warningText = "*2~15자 이내여야 합니다.";
+    if (productName.value.length >= 2 && productName.value.length <= 15) {
+        validateTrueField(productName, warningMsgProductName);
+        return true;
+    } else {
+        validateFalseField(productName, warningMsgProductName, warningText);
+        return false;
+    }
+}
+
+// 상품 가격 validation 함수
+function validateProductPrice(productPrice, warningMsgProductPrice) {
+    const warningText = "*0에서 1,000,000,000 사이 숫자만 입력해주세요";
+    if (!productPrice.validity.rangeUnderflow && !productPrice.validity.rangeOverflow && productPrice.value !== '') {
+        validateTrueField(productPrice, warningMsgProductPrice);
+        return true;
+    } else {
+        validateFalseField(productPrice, warningMsgProductPrice, warningText);
+        return false;
+    }
+}
+
+// 상품 링크 validation 함수
+function validatePurchaseLink(purchaseLink, warningMsgPurchaseLink) {
+    const urlPattern = /^(https?:\/\/)?(www\.)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
+    const warningText = "URL 형식으로 입력해주세요";
+    if (urlPattern.test(purchaseLink.value)) {
+        validateTrueField(purchaseLink, warningMsgPurchaseLink);
+        return true;
+    } else {
+        validateFalseField(purchaseLink, warningMsgPurchaseLink, warningText);
+        return false;
+    }
+}
+
+// 상품 이미지 validation 함수
+function validateProductImage(imgInp) {
+    return !!imgInp.files[0];
+}
+
+// validation 조건문이 true인 경우
+function validateTrueField(input, warningMsg){
+    warningMsg.style.display = "none";
+    input.style.borderBottom = "1px solid #dbdbdb";
+}
+
+// validation 조건문이 false인 경우
+function validateFalseField(input, warningMsg, warningMsgText){
+    warningMsg.textContent = warningMsgText;
+    warningMsg.style.display = "block";
+    input.style.borderBottom = "1px solid red";
+}
+
+// ======== API 함수들 ========
+async function loadProduct(url, token, productID) { // 저장된 데이터 가져오기
+    try {
+        const res = await fetch(url + `/product/detail/${productID}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-type": "application/json",
+            },
+        });
+        const resJson = await res.json();
+        return resJson;
+    } catch (err) {
+        console.error(err);
+        location.href = "./404.html";
+    }
+}
+
+async function saveImage() {
     const file = imgInput.files[0];
     const formData = new FormData();
     const reqPath = "/image/uploadfile";
@@ -158,10 +260,8 @@ async function uploadImage() {
     }
 }
 
-imgInput.addEventListener("change", async (e) => {
-    const imageFile = e.target.files[0];
-    if (checkImageExtension(imageFile)) {
-        const formData = new FormData();
+async function postImg(imageFile){
+    const formData = new FormData();
         formData.append("image", imageFile);
         const res = await fetch( url + "/image/uploadfile", {
             method: "POST",
@@ -175,125 +275,4 @@ imgInput.addEventListener("change", async (e) => {
         imageInput.style.backgroundSize = "cover";
         imageInput.style.backgroundPosition = "center";
         imageInput.style.backgroundRepeat = "no-repeat";
-    } else {
-        alert("유효하지 않은 파일 입니다");
-        input.value = "";
-    }
-});
-
-submitButton.addEventListener("click", async (e) => {
-    if(METHOD === "PUT"){
-        e.target.disabled = true;
-    }
-    e.preventDefault();
-    await saveProduct(url, token, METHOD);
-    location.href = `./profile_info.html?accountName=${localStorage.getItem(
-        "user-accountname"
-    )}`;
-});
-
-// productID가 있는 경우
-if(productID){
-    submitButton.disabled = false; // 수정을 잘못 누른 경우 고려 - 수정사항 없어도 바로 저장 가능하도록
-
-    async function loadProduct(url, token, productID) { // 저장된 데이터 가져오기
-        try {
-            const res = await fetch(url + `/product/detail/${productID}`, {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-type": "application/json",
-                },
-            });
-            const resJson = await res.json();
-            return resJson;
-        } catch (err) {
-            console.error(err);
-            location.href = "./404.html";
-        }
-    }
-
-    // 저장된 상품 정보 화면에 보여주기
-    function updateProductInfo(productData) {
-        // 프로필 이미지 보여주기
-        const imageSrc = productData.itemImage;
-        if (imageSrc) {
-            imageInput.src = imageSrc;
-            imageInput.style.backgroundImage = `url('${checkImageUrl(imageSrc, "post")}')`;
-            imageInput.style.backgroundSize = "cover";
-            imageInput.style.backgroundPosition = "center";
-            imageInput.style.backgroundRepeat = "no-repeat";
-            isValidImage = true; // 입력된 이미지 유효성 검사
-        }
-        productName.value = productData.itemName;
-        isValidProductName = validateProductName(productName, warningMsgProductName); // 입력된 productName 유효성 검사
-        
-        productPrice.value = productData.price;
-        isValidProductPrice = validateProductPrice(productPrice, warningMsgProductPrice); // 입력된 productPrice 유효성 검사
-        
-        purchaseLink.value = productData.link;
-        isValidPurchaseLink = validatePurchaseLink(purchaseLink, warningMsgPurchaseLink); // 입력된 purchaseLink 유효성 검사
-
-        validateForm(); // 입력값 유효성 검사
-    }
-
-    async function getProduct(url, token, productID) {
-        const productData = await loadProduct(url, token, productID);
-        updateProductInfo(productData.product);
-    }
-
-    getProduct(url, token, productID);
-}
-
-// 상품명 validation 함수
-function validateProductName(productName, warningMsgProductName) {
-    if (productName.value.length >= 2 && productName.value.length <= 15) {
-        warningMsgProductName.style.display = "none";
-        productName.style.borderBottom = "1px solid #dbdbdb";
-        return true;
-    } else {
-        warningMsgProductName.textContent = "*2~15자 이내여야 합니다.";
-        warningMsgProductName.style.display = "block";
-        productName.style.borderBottom = "1px solid red";
-        return false;
-    }
-}
-
-// 상품 가격 validation 함수
-function validateProductPrice(productPrice, warningMsgProductPrice) {
-    if (!productPrice.validity.rangeUnderflow && !productPrice.validity.rangeOverflow) {
-        warningMsgProductPrice.style.display = "none";
-        productPrice.style.borderBottom = "1px solid #dbdbdb";
-        return true;
-    } else {
-        warningMsgProductPrice.textContent = "*너무 숫자가 커요!";
-        warningMsgProductPrice.style.display = "block";
-        productPrice.style.borderBottom = "1px solid red";
-        return false;
-    }
-}
-
-// 상품 링크 validation 함수
-function validatePurchaseLink(purchaseLink, warningMsgPurchaseLink) {
-    const urlPattern = /^(https?:\/\/)?(www\.)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
-    if (urlPattern.test(purchaseLink.value)) {
-        warningMsgPurchaseLink.style.display = "none";
-        purchaseLink.style.borderBottom = "1px solid #dbdbdb";
-        return true;
-    } else {
-        warningMsgPurchaseLink.textContent = "URL 형식으로 입력해주세요";
-        warningMsgPurchaseLink.style.display = "block";
-        purchaseLink.style.borderBottom = "1px solid red";
-        return false;
-    }
-}
-
-// 상품 이미지 validation 함수
-function validateProductImage(imgInp) {
-      // 이미지가 선택되었는지 확인
-    if (imgInp.files[0]) {
-        return true;
-    } else {
-        return false;
-    }
 }

@@ -362,7 +362,8 @@ a {
   height: 2.25rem;
   overflow: hidden;
   border-radius: 50%;
-  border: 1px solid #DBDBDB;
+  -webkit-box-shadow: 0 0 0px 1px #DBDBDB;
+          box-shadow: 0 0 0px 1px #DBDBDB;
 }
 .user-follow .img-cover img {
   width: 100%;
@@ -452,7 +453,8 @@ a {
   margin-bottom: 0.75rem;
   border-radius: 0.625rem;
   overflow: hidden;
-  border: 1px solid #DBDBDB;
+  -webkit-box-shadow: 0 0 0px 1px #DBDBDB;
+          box-shadow: 0 0 0px 1px #DBDBDB;
 }
 .post-edit .img-cover .post-img {
   width: 100%;

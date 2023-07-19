@@ -343,7 +343,7 @@ $theme: (
             height: 2.25rem;
         overflow: hidden;
         border-radius: 50%;
-        border: 1px solid #DBDBDB;
+        box-shadow: 0 0 0px 1px #DBDBDB;
     
         img {
             width: 100%;
@@ -420,7 +420,7 @@ $theme: (
     margin-bottom: .75rem;
     border-radius: .625rem;
     overflow: hidden;
-    border: 1px solid #DBDBDB;
+    box-shadow: 0 0 0px 1px #DBDBDB;
 
         .post-img {
             width: 100%;

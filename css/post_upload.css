@@ -102,6 +102,8 @@ form .img-cover button {
   width: 42px;
   overflow: hidden;
   border-radius: 50%;
+  -webkit-box-shadow: 0 0 0px 1px #DBDBDB;
+          box-shadow: 0 0 0px 1px #DBDBDB;
 }
 .user-profile img {
   width: 100%;

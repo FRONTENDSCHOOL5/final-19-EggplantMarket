@@ -89,6 +89,8 @@ main {
   height: 36px;
   overflow: hidden;
   border-radius: 50%;
+  -webkit-box-shadow: 0 0 0px 1px #DBDBDB;
+          box-shadow: 0 0 0px 1px #DBDBDB;
 }
 .comment-user-info .img-cover img {
   width: 100%;
@@ -117,6 +119,8 @@ main {
   height: 36px;
   overflow: hidden;
   border-radius: 50%;
+  -webkit-box-shadow: 0 0 0px 1px #DBDBDB;
+          box-shadow: 0 0 0px 1px #DBDBDB;
   margin-right: 10px;
 }
 .comment .img-cover img {

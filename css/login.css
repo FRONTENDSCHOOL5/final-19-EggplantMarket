@@ -44,7 +44,7 @@ body {
   background-position: 98% 98%;
 }
 .login-wrapper.highContrast .back {
-  background-image: url(../assets/symbol-logo-highContrast.svg);
+  background-image: url(../assets/symbol-logo-hc.svg);
 }
 
 .login {

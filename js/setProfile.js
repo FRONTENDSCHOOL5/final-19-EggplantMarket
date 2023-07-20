@@ -163,7 +163,7 @@ async function postImg() {
                 input.value = '';
             }
         } else {
-            document.querySelector('.img-cover img').src = "../assets/basic-profile-img.png";
+            document.querySelector('.img-cover img').src = "../assets/basic-profile.png";
         }
     }
 })()

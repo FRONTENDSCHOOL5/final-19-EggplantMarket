@@ -30,9 +30,9 @@ function colorChange() {
             document.body.style.backgroundColor = '#000000'; 
         }
 
-        if(imgBtn) imgBtn.src = "../assets/img-btn-hc.svg";
+        if (imgBtn) imgBtn.src = "../assets/upload-file-hc.svg";
         if(imgUploadBtn) imgUploadBtn.src = "../assets/upload-file-hc.svg";
-        if(symbol) symbol.src = "../assets/symbol-logo-hc.svg";
+        if (symbol) symbol.src = "../assets/symbol-logo-hc.svg";
         if(logo) logo.src = "../assets/logo-hc.svg"
         if(search) search.src = "../assets/icon/icon-search-highContrast.svg";
         

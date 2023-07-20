@@ -42,6 +42,7 @@ function focusOnOptionButton(nodes) {
 // tab focus
 function setFocusOnModalActions() {
     const focusableElements = Array.from(performModalActions.getElementsByTagName('button'));
+    modalTab(focusableElements);
     focusableElements[0].focus();
     focusableElements[1].addEventListener('click', () => {
         openPopUpModal.style.visibility = 'hidden';
@@ -50,18 +51,21 @@ function setFocusOnModalActions() {
     });
 }
 
-// 취소 버튼 기능
-function handleCancelClick(item) {
-    openPostModal.style.display = 'none';
-    const focusableElements = Array.from(document.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')), 
-        currentItemIndex = focusableElements.findIndex(element => element === item), currentElement = focusableElements[currentItemIndex];
-    if (currentElement) {
-        currentElement.focus();
+function changeTheme(inputs) {
+    modalTab(inputs); // tab 이동
+    for(let i = 0; i < inputs.length; i++){ // 테마 변경
+        inputs[i].addEventListener('click', function (e) {
+            if(!inputs[i].classList.contains('btn-cancel')){
+                inputs[i].click();
+                localStorage.setItem('theme',e.target.id);
+                colorChange();
+            }
+        });
     }
 }
 
-// 테마 변경
-function changeTheme(inputs) {
+// tab으로 이동
+function modalTab(inputs){
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].addEventListener('keydown', function (e) {
             if (e.key === 'Tab' && !e.shiftKey) {
@@ -76,13 +80,6 @@ function changeTheme(inputs) {
                 e.preventDefault();
                 const prevInput = inputs[i - 1] || inputs[inputs.length - 1];
                 prevInput.focus();
-            }
-        });
-        inputs[i].addEventListener('click', function (e) {
-            if(!inputs[i].classList.contains('btn-cancel')){
-                inputs[i].click();
-                localStorage.setItem('theme',e.target.id);
-                colorChange();
             }
         });
     }
@@ -100,7 +97,6 @@ function handleHeaderModal(node) {
             openPostModal.style.display = 'none';
             node.focus();
         });
-
         // 테마 변경 클릭 시 새로 생성되는 하단 모달창
         changeThemeBtn.addEventListener('click', () => {
             displayModal.textContent  = '';
@@ -119,9 +115,7 @@ function handleHeaderModal(node) {
                 openPostModal.style.display = 'none';
                 node.focus();
             });
-            modeSelectContainer.appendChild(lightRadio);
-            modeSelectContainer.appendChild(highContrastRadio);
-            modeSelectContainer.appendChild(cancelThemeBtn);
+            modeSelectContainer.append(lightRadio, highContrastRadio, cancelThemeBtn);
             displayModal.appendChild(modeSelectContainer);
         });
         logoutBtn.addEventListener('click', () => {
@@ -129,9 +123,9 @@ function handleHeaderModal(node) {
             openPopUpModal.style.visibility = 'visible';
             setFocusOnModalActions();
         });
-        displayModal.appendChild(changeThemeBtn);
-        displayModal.appendChild(logoutBtn);
-        displayModal.appendChild(cancelBtn);
+        displayModal.append(changeThemeBtn, logoutBtn, cancelBtn);
+        const inputs = [changeThemeBtn, logoutBtn, cancelBtn];
+        modalTab(inputs);
         openPostModal.style.display = 'block';
     });
 }
@@ -147,29 +141,16 @@ function handlePostOptionModal(nodes) {
             const options = [
                 { text: '수정', class: 'btn-edit' },
                 { text: '삭제', class: 'btn-delete' },
-                { text: '신고하기', class: 'btn-report' },
+                { text: '신고', class: 'btn-report' },
                 { text: '취소', class: 'btn-cancel' },
             ];
 
             if (myAccountName === postAccountName) {
-                options.splice(2, 1); // options에서 '신고하기' 없애기 
+                options.splice(2, 1); // options에서 '신고하기' 없애기
             } else {
                 options.splice(0, 2); // options에서 '수정', '삭제' 없애기
             }
-
-            displayModal.textContent  = '';
-            options.forEach((option) => {
-                const button = createModalButton(option.text, option.class);
-                button.addEventListener('click', () => {
-                    handlePostOptionClick(option.class, targetPostId);
-                });
-                displayModal.appendChild(button);
-            });
-            const cancelButton = displayModal.querySelector('.btn-cancel');
-            cancelButton.addEventListener('click', () => {
-                handleCancelClick(item);
-            });
-            openPostModal.style.display = 'block';
+            createOptionModal(options, targetPostId, handlePostOptionClick);
         });
         focusOnOptionButton(item);
     });
@@ -188,7 +169,7 @@ function handleCommentOptionModal(nodes) {
             
             const options = [
                 { text: '삭제', class: 'btn-delete' },
-                { text: '신고하기', class: 'btn-report' },
+                { text: '신고', class: 'btn-report' },
                 { text: '취소', class: 'btn-cancel' },
             ];
 
@@ -197,21 +178,7 @@ function handleCommentOptionModal(nodes) {
             } else {
                 options.splice(0, 1); // options에서 '삭제' 없애기
             }
-
-            displayModal.textContent  = '';
-            options.forEach((option) => {
-                const button = createModalButton(option.text, option.class);
-                button.addEventListener('click', () => {
-                    handleCommentOptionClick(option.class, targetPostId, targetCommentId);
-                });
-                displayModal.appendChild(button);
-            });
-            const cancelButton = displayModal.querySelector('.btn-cancel');
-            cancelButton.addEventListener('click', () => {
-                handleCancelClick(item);
-            });
-        
-            openPostModal.style.display = 'block';
+            createOptionModal(options, targetPostId, handleCommentOptionClick, targetCommentId);
             });
         focusOnOptionButton(item);
     });
@@ -232,22 +199,41 @@ function handleProductOptionModal(nodes, myAccountName) {
             if (accountName !== myAccountName) {
                 options.splice(0, 2); // options에서 '삭제', '수정' 없애기
             }
-            displayModal.textContent  = '';
-            options.forEach((option) => {
-                const button = createModalButton(option.text, option.class);
-                button.addEventListener('click', () => {
-                    handleProductOptionClick(option.class, productId);
-                });
-                displayModal.appendChild(button);
-            });
-            const cancelButton = displayModal.querySelector('.btn-cancel');
-            cancelButton.addEventListener('click', () => {
-                handleCancelClick(item);
-            });
-        openPostModal.style.display = 'block';
+            createOptionModal(options, productId, handleProductOptionClick);
         });
         focusOnOptionButton(item);
     });
+}
+
+// Option 모달창 생성 및 이벤트 처리
+function createOptionModal(options, targetId, clickEvent, commentId) {
+    lastFocusedElement = document.activeElement; // 하단 모달을 생성하기 전에 focus인 요소
+
+    displayModal.textContent = '';
+    options.forEach((option) => {
+        const button = createModalButton(option.text, option.class);
+        button.addEventListener('click', () => {
+            (commentId) ? clickEvent(option.text, option.class, targetId, commentId) : clickEvent(option.text, option.class, targetId);
+        });
+        displayModal.appendChild(button);
+    });
+    const cancelButton = displayModal.querySelector('.btn-cancel');
+    cancelButton.addEventListener('click', () => {
+        handleCancelClick(lastFocusedElement);
+    });
+    displayModal.appendChild(cancelButton);
+    const inputs = document.querySelectorAll('[class^="modal-description btn-"]');
+    modalTab(inputs);
+    openPostModal.style.display = 'block';
+}
+
+// 취소 버튼 기능
+function handleCancelClick(lastFocusedElement) {
+    openPostModal.style.display = 'none';
+    if (lastFocusedElement) {
+        lastFocusedElement.focus();
+        lastFocusedElement = null;
+    }
 }
 
 // 하단 모달창 option 생성
@@ -274,60 +260,57 @@ function createModalRadio(name, id, label, checked) {
     labelElem.classList.add('modal-description');
     const labelText = document.createElement('span');
     labelText.textContent = label;
-    labelElem.appendChild(inputElem);
-    labelElem.appendChild(labelText);
+    labelElem.append(inputElem, labelText);
     return labelElem;
 }
 
 // 게시물 삭제 및 신고 클릭 시
-function handlePostOptionClick(option, postId) {
-    if (option === 'btn-edit') {
+function handlePostOptionClick(optionText, optionClass, postId) {
+    if (optionClass === 'btn-edit') {
         location.href = `./post_upload.html?postId=${postId}`;
-    } else if (option === 'btn-delete') {
-        editPopUp(openPopUpModal, '게시글을 삭제할까요?', '삭제', () => {
-            deletePost(postId);
-        });
-        openPopUpModal.style.visibility = 'visible';
-        setFocusOnModalActions();
-    } else if (option === 'btn-report') {
-        editPopUp(openPopUpModal, '게시글을 신고할까요?', '신고', () => {
-            reportPost(postId);
-        });
-        openPopUpModal.style.visibility = 'visible';
-        setFocusOnModalActions();
+    } else if (optionClass === 'btn-delete') {
+        deletePopup('게시글', optionText, postId);
+    } else if (optionClass === 'btn-report') {
+        reportPopup('게시글', optionText, postId);
     }
 }
 
 // 댓글 삭제 및 신고 클릭 시
-function handleCommentOptionClick(option, postId, commentId) {
-    if (option === 'btn-delete') {
-        editPopUp(openPopUpModal, '댓글을 삭제할까요?', '삭제', () => {
-            deleteComment(postId, commentId);
-        });
-        openPopUpModal.style.visibility = 'visible';
-        setFocusOnModalActions();
-    } else if (option === 'btn-report') {
-        editPopUp(openPopUpModal, '댓글을 신고할까요?', '신고', () => {
-            reportComment(postId, commentId);
-        });
-        openPopUpModal.style.visibility = 'visible';
-        setFocusOnModalActions();
+function handleCommentOptionClick(optionText, optionClass, postId, commentId) {
+    if (optionClass === 'btn-delete') {
+        deletePopup('댓글', optionText, postId, commentId);
+    } else if (optionClass === 'btn-report') {
+        reportPopup('댓글', optionText, postId, commentId);
     }
 }
 
 // 상품 삭제 및 신고 클릭 시
-function handleProductOptionClick(option, productId) {
-    if (option === 'btn-product-delete') {
-        editPopUp(openPopUpModal, '상품을 삭제할까요?', '삭제', () => {
-            deleteProduct(productId);
-        });
-        openPopUpModal.style.visibility = 'visible';
-        setFocusOnModalActions();
-    } else if (option === 'btn-product-edit') {
+function handleProductOptionClick(optionText, optionClass, productId) {
+    if (optionClass === 'btn-product-delete') {
+        deletePopup('상품', optionText, productId);
+    } else if (optionClass === 'btn-product-edit') {
         location.href = `./product_upload.html?productId=${productId}`;
-    } else if (option === 'btn-product-link') {
+    } else if (optionClass === 'btn-product-link') {
         location.href = './404.html';
     }
+}
+
+// 삭제 선택 시 popup 생성
+function deletePopup( popupCase, optionText, productId, commentId ){
+    editPopUp(openPopUpModal, `${popupCase}을 ${optionText}할까요?`, optionText, () => {
+        commentId ? deleteItem(popupCase, productId, commentId) : deleteItem(popupCase, productId);
+    });
+    openPopUpModal.style.visibility = 'visible';
+    setFocusOnModalActions();
+}
+
+// 신고 선택 시 popup 생성
+function reportPopup( popupCase, optionText, productId, commentId ){
+    editPopUp(openPopUpModal, `${popupCase}을 ${optionText}할까요?`, optionText, () => {
+        commentId ? reportItem(productId) : reportItem(productId, commentId);
+    });
+    openPopUpModal.style.visibility = 'visible';
+    setFocusOnModalActions();
 }
 
 // 화면에 뜨는 팝업
@@ -354,7 +337,6 @@ function logOut(){
 // 하단에 띄어진 모달이 아닌 배경을 클릭하면 모달창 닫기
 openPostModal.addEventListener('click', (event) => {
     const targetElement = event.target;
-
     if (targetElement.classList.contains('post-modal-background')) {
         openPostModal.style.display = 'none';
     }
@@ -363,15 +345,15 @@ openPostModal.addEventListener('click', (event) => {
 // 팝업으로 띄어진 모달이 아닌 배경을 클릭하면 모달창 닫기
 openPopUpModal.addEventListener('click', (event) => {
     const targetElement = event.target;
-
     if (targetElement.classList.contains('modal-background') || targetElement.classList.contains('left-button')) {
         openPopUpModal.style.visibility = 'hidden';
     }
 });
 
-// 게시물 삭제 api 요청
-async function deletePost(targetPostId){
-    const fullUrl = `https://api.mandarin.weniv.co.kr/post/${targetPostId}`;
+// ============== API 함수들 ==========
+// 삭제 api
+async function deleteItem(targetType, targetId, targetCommentId){
+    const fullUrl = targetCommentId ? `https://api.mandarin.weniv.co.kr/post/${targetId}/comments/${targetCommentId}` : (targetType !== '상품') ? `https://api.mandarin.weniv.co.kr/post/${targetId}` : `https://api.mandarin.weniv.co.kr/product/${targetId}`;  // 순서대로 댓글 주소, 게시글 주소, 상품 주소
     const options = {
         method: "DELETE", 
         headers: {
@@ -381,9 +363,9 @@ async function deletePost(targetPostId){
     };
     try {
         await fetch(fullUrl, options);
-        if(window.location.href.includes('detail')){
+        if((targetType === '게시글' ) && window.location.href.includes('detail')){ // 게시글이면서 detail을 포함한 것을 삭제했을 경우 전화면으로 이동하면서 새로 로딩
             location.href = document.referrer;
-        } else{
+        } else{ // 그 외의 경우에는 위치한 페이지에서 바로 reload()
             location.reload();
         }
     } catch(err){
@@ -392,9 +374,10 @@ async function deletePost(targetPostId){
     }
 }
 
-// 게시물 작성 api 요청
-async function reportPost(targetPostId){
-    const fullUrl = `https://api.mandarin.weniv.co.kr/post/${targetPostId}/report`;
+// 신고 api
+async function reportItem(targetId, targetCommentId){
+    const fullUrl = targetCommentId ? `https://api.mandarin.weniv.co.kr/post/${targetId}/comments/${targetCommentId}/report` : `https://api.mandarin.weniv.co.kr/post/${targetId}/report`;
+
     const options = {
         method: "POST",
         headers: {
@@ -404,63 +387,7 @@ async function reportPost(targetPostId){
     };
     try{
         await fetch(fullUrl,options);
-    } catch (err){
-        console.error(err);
-        location.href='./404.html';
-    }
-}
-
-// 댓글 삭제 api 요청
-async function deleteComment(targetPostId, targetCommentId){
-    const fullUrl = `https://api.mandarin.weniv.co.kr/post/${targetPostId}/comments/${targetCommentId}`;
-    const options = {
-        method: "DELETE",
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem('user-token')}`,
-            "Content-type" : "application/json"
-        }
-    };
-    try{
-        await fetch(fullUrl,options);
-        location.reload();
-    } catch (err){
-        console.error(err);
-        location.href='./404.html';
-    }
-}
-
-// 댓글 작성 api 요청
-async function reportComment(targetPostId, targetCommentId){
-    const fullUrl = `https://api.mandarin.weniv.co.kr/post/${targetPostId}/comments/${targetCommentId}/report`;
-    const options = {
-        method: "POST",
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem('user-token')}`,
-            "Content-type" : "application/json"
-        }
-    };
-    try{
-        await fetch(fullUrl,options);
-    } catch (err){
-        console.error(err);
-        location.href='./404.html';
-    }
-}
-
-// 상품 삭제 api 요청
-async function deleteProduct(productId){
-    const fullUrl = `https://api.mandarin.weniv.co.kr/product/${productId}`;
-    const options = {
-        method: "DELETE",
-        headers: {
-            "Authorization" : `Bearer ${localStorage.getItem('user-token')}`,
-	        "Content-type" : "application/json"
-        }
-    };
-    try {
-        await fetch(fullUrl, options);
-        location.reload();
-    } catch(err){
+    } catch (err){;
         console.error(err);
         location.href='./404.html';
     }

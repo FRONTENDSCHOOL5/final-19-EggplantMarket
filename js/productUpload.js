@@ -46,11 +46,7 @@ inputFields.forEach((item) => {
 
 // 입력값 유효성 검사
 function validateForm() {
-    if (isValidProductName && isValidProductPrice && isValidPurchaseLink && isValidImage) {
-        submitButton.disabled = false;
-    } else {
-        submitButton.disabled = true;
-    }
+    (isValidProductName && isValidProductPrice && isValidPurchaseLink && isValidImage) ? submitButton.disabled = false : submitButton.disabled = true;
 }
 
 function validateProduct(target) {
@@ -110,8 +106,7 @@ async function saveProduct(url, token, METHOD) {
             },
             body: JSON.stringify(updatedData),
         });
-        const json = await res.json();
-        return json;
+        return res.json();
     } catch (err) {
         console.error(err);
         location.href = "./404.html";

@@ -1,5 +1,3 @@
-
-
 const url = "https://api.mandarin.weniv.co.kr";
 const myAccountName = localStorage.getItem("user-accountname");
 
@@ -13,7 +11,6 @@ window.addEventListener("scroll", async () => {
 
 let reqCnt = 0;
 async function getData() {
-    console.log(reqCnt)
     const res = await fetch(url + `/post/feed/?limit=10&skip=${reqCnt++ * 10}`, {
         method: "GET",
         headers: {
@@ -25,21 +22,17 @@ async function getData() {
     return resJson.posts;
 }
 
+//innerHTML 부분 template 태그 활용하여 변경예정
 async function postFeed(postsData) {
-    console.log(postsData)
-
     //팔로잉이 있으면서 게시글이 1개 이상인 경우
     if (postsData.length > 0) {
-        
         document.querySelector('.home-withfollower').style.display = '';
-        console.log('한명이상있어요')
 
         const ulNode = document.querySelector('.home-post-list');
         const frag = document.createDocumentFragment();
 
         for (let i = 0; i < postsData.length; i++) {
             const item = postsData[i];
-
             const liNode = document.createElement('li');
             liNode.innerHTML = `
                     <section class="home-post">
@@ -81,15 +74,12 @@ async function postFeed(postsData) {
             if (item.image) {
                 item.image.split(',').forEach(item=>{
                     liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<div class="img-cover"><img class="post-img" src="${checkImageUrl(item,'post')}" alt="게시물 사진"></img></div>`)
-                    // liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<div class="img-cover"><img class="post-img" src="${item}" alt="게시물 사진"></img></div>`)
                 })
                 
             }
             liNode.querySelector('.home-post').setAttribute('data-postid',item.id)
-
             liNode.querySelector('.btn-like').addEventListener('click',handleLike)
-            ulNode.appendChild(liNode)
-
+            frag.appendChild(liNode)
         }
         ulNode.appendChild(frag);
     } 
@@ -103,16 +93,3 @@ async function run() {
     }
 }
 run()
-
-//테마 작업 진행중.
-// const wrapper = document.querySelector('.home-wrapper');
-// const theme = window.localStorage.getItem('theme');
-// if (theme === 'highContrast') {
-//     wrapper.classList.add('highContrast');
-//     document.body.style.backgroundColor = '#000000';
-
-// } else {
-//     wrapper.classList.remove('highContrast');
-//     document.body.style.backgroundColor = '#ffffff'; 
-    
-// }

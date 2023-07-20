@@ -66,15 +66,24 @@ body {
   border-radius: 44px;
   font-size: 0.875rem;
   padding: 13px;
-  background-repeat: no-repeat;
-  background-position: 10px center;
+  position: relative;
 }
 .domain + .domain {
   margin-top: 10px;
 }
+.domain::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  top: 50%;
+  left: 10px;
+}
 .domain.kakao {
   border-color: #F2C94C;
-  background-image: url(../assets/message-circle.svg);
   color: #767676;
 }
 .login-wrapper.highContrast .domain.kakao {
@@ -85,9 +94,11 @@ body {
   color: #dbdbdb;
 }
 
+.domain.kakao::before {
+  background: no-repeat url(../assets/sns-logo-sprites.png) -10px -10px/132px 44px;
+}
 .domain.google {
   border-color: #767676;
-  background-image: url(../assets/Google__G__Logo\ 2.svg);
   color: #767676;
 }
 .login-wrapper.highContrast .domain.google {
@@ -98,9 +109,11 @@ body {
   color: #dbdbdb;
 }
 
+.domain.google::before {
+  background: no-repeat url(../assets/sns-logo-sprites.png) -54px -10px/132px 44px;
+}
 .domain.facebook {
   border-color: #2D9CDB;
-  background-image: url(../assets/facebook.svg);
   color: #767676;
 }
 .login-wrapper.highContrast .domain.facebook {
@@ -109,6 +122,10 @@ body {
 
 .login-wrapper.highContrast .domain.facebook {
   color: #dbdbdb;
+}
+
+.domain.facebook::before {
+  background: no-repeat url(../assets/sns-logo-sprites.png) -98px -10px/132px 44px;
 }
 
 .email {

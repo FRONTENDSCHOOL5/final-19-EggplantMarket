@@ -53,8 +53,6 @@ $theme: (
 }
 
 
-
-
 body{
     background-color: $enabled-color;
     position: relative;
@@ -64,15 +62,11 @@ body{
 .back{
     height: calc(100vh - 310px);
     @include get-color(background-image, bg-logo);
-    // background-image: url(../assets/symbol-logo.svg);
     background-repeat: no-repeat;
     background-position: 98% 98%;    
 }
 
-.login{
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
+.login {
     @include get-color(background-color, bg-color);
     border-radius: 20px 20px 0 0 ;
     padding : 50px 34px 82px;
@@ -89,29 +83,42 @@ body{
     border-radius: 44px;
     font-size: .875rem;
     padding: 13px;
+    position: relative;
 
     + .domain {
         margin-top: 10px;
     }
-    background: {
-        repeat : no-repeat;
-        position: 10px center;
-    };
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            transform: translateY(-50%);
+            top: 50%;
+            left: 10px;
+        }
 
     &.kakao{
         @include get-color(border-color, kakao-color);
-        background-image: url(../assets/message-circle.svg);
         @include get-color(color, gray-color);
+        &::before {
+                background: no-repeat url(../assets/sns-logo-sprites.png) -10px -10px / 132px 44px;
+            }
     }
     &.google{
         @include get-color(border-color, google-color);
-        background-image: url(../assets/Google__G__Logo\ 2.svg);
         @include get-color(color, gray-color);
+        &::before {
+                background: no-repeat url(../assets/sns-logo-sprites.png) -54px -10px / 132px 44px;
+            }
     }
     &.facebook{
         @include get-color(border-color, facebook-color);
-        background-image: url(../assets/facebook.svg);
         @include get-color(color, gray-color);
+        &::before {
+                background: no-repeat url(../assets/sns-logo-sprites.png) -98px -10px / 132px 44px;
+            }
     }
 }
 

@@ -1,46 +1,8 @@
 @import 'global';
 @import 'variables';
+@import 'mixin';
 
-$theme: (
-    light: (bg-color:#fff,
-        btn-color: #ffffff,
-        btn-font:#767676,
-        background-color: rgba(0, 0, 0, 0.5),
-        font-color: #000000,
-        btn-font-color: #ffffff,
-        gray-color: #767676,
-        point-color: #9747FF,
-        send-color:#9747FF,
-        mychat-color: #635CA5,
-        mychat-border: none,
-        mychat-font:#fff,
-        chat-image: url("../assets/icon/icon-message-circle-fill.svg"),
-    ),
-    highContrast: (bg-color:#000000,
-        btn-color: #E4D6FF,
-        btn-font: #000000,
-        background-color: rgb(236 236 236 / 34%),
-        font-color: #ffffff,
-        btn-font-color: #000000,
-        gray-color: #dbdbdb,
-        point-color: #FFEB32,
-        send-color:#FFEB32,
-        mychat-color: #000000,
-        mychat-border: 1px solid #C5A8FF,
-        mychat-font:#C5A8FF,
-        chat-image: url("../assets/icon/icon-message-circle-fill-hc.svg"),
-    )
-);
 
-@function get-color($key, $type: 'light') {
-
-    @each $name,
-    $color in map-get($theme, $type) {
-        @if($key ==$name) {
-            @return $color
-        }
-    }
-}
 
 @mixin get-color($property, $color) {
 
@@ -161,6 +123,9 @@ main{
         margin-right: 10px;
         @include get-color(color, font-color);
         @include get-color(background-color, bg-color);
+    }
+    .btn-comment:disabled{
+        @include get-color(color, btn-color);
     }
     .btn-comment:not(:disabled){
         @include get-color(color, send-color);

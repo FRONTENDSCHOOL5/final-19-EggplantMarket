@@ -161,7 +161,7 @@ a {
 }
 
 .comment {
-  background-color: #fff;
+  background-color: #ffffff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -211,7 +211,7 @@ a {
 }
 
 .post-modal-background .post-modal-content {
-  background-color: #fff;
+  background-color: #ffffff;
   padding-bottom: 0.625rem;
   border-radius: 1.25rem 1.25rem 0 0;
   position: absolute;
@@ -259,7 +259,7 @@ a {
 }
 .modal-background .modal-content {
   width: 15.75rem;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 0.625rem;
   text-align: center;
   position: absolute;
@@ -315,10 +315,6 @@ a {
   color: #9747FF;
   font-size: 0.875rem;
 }
-.highContrast .modal-actions .right-button {
-  color: #FFEB32;
-}
-
 .mode_select label {
   display: block;
   padding: 0.875rem 0rem;
@@ -498,10 +494,6 @@ a {
   color: #ffffff;
 }
 .highContrast .size-l, .highContrast .size-m, .highContrast .size-ms, .highContrast .size-s {
-  background-color: #E4D6FF;
-}
-
-.highContrast .size-l, .highContrast .size-m, .highContrast .size-ms, .highContrast .size-s {
   color: #000000;
 }
 
@@ -570,7 +562,7 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 .highContrast .tab-item-list {
   background-color: #000000;
@@ -611,10 +603,10 @@ footer {
   background-color: #F1F1F1;
 }
 .tab-item-list li:first-child a {
-  background-image: url("../assets/icon/icon-home.svg");
+  background-image: url(../assets/icon/icon-home.svg);
 }
 .highContrast .tab-item-list li:first-child a {
-  background-image: url("../assets/icon/icon-home-hc.svg");
+  background-image: url(../assets/icon/icon-home-hc.svg);
 }
 
 .tab-item-list li:first-child a.here {
@@ -627,17 +619,17 @@ footer {
   background-image: url("../assets/icon/icon-message-circle-fill.svg");
 }
 .tab-item-list li:nth-child(3) a {
-  background-image: url("../assets/icon/icon-edit.svg");
+  background-image: url(../assets/icon/icon-edit.svg);
 }
 .highContrast .tab-item-list li:nth-child(3) a {
-  background-image: url("../assets/icon/icon-edit-hc.svg");
+  background-image: url(../assets/icon/icon-edit-hc.svg);
 }
 
 .tab-item-list li:nth-child(4) a {
-  background-image: url("../assets/icon/icon-user.svg");
+  background-image: url(../assets/icon/icon-user.svg);
 }
 .highContrast .tab-item-list li:nth-child(4) a {
-  background-image: url("../assets/icon/icon-user-hc.svg");
+  background-image: url(../assets/icon/icon-user-hc.svg);
 }
 
 .tab-item-list li:nth-child(4) a.here {

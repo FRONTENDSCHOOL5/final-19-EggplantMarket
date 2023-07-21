@@ -1,61 +1,9 @@
 @import "variables";
 @import "global";
-
-$theme: (
-    light: (bg-color:#fff,
-    enabled-btn-color: #635CA5,
-    disabled-btn-color: #BCADDC,
-    font-color: #000000,
-    btn-font-color: #ffffff,
-    gray-color: #767676,
-    box-shadow : none,
-    border: none,
-    kakao-color : #F2C94C,
-    google-color : #767676,
-    facebook-color : #2D9CDB,
-    placeholder-color:#dbdbdb,
-    warning-color: #EB5757,
-    bg-logo:url(../assets/symbol-logo.svg),
-    ),
-    highContrast: (bg-color:#000000,
-    enabled-btn-color: #E4D6FF,
-    disabled-btn-color: transparent ,
-    font-color: #ffffff,
-    btn-font-color: #000000,
-    gray-color: #dbdbdb,
-    box-shadow: 0 0 0 2px #E4D6FF inset,
-    border: 2px solid #E4D6FF,
-    kakao-color : #FFEB32,
-    google-color : #65FB76,
-    facebook-color : #B3E3FF,
-    placeholder-color:#FFEB32,
-    warning-color: #FFEB32,
-    bg-logo:url(../assets/symbol-logo-highContrast.svg),
-    )
-);
-
-@function get-color($key, $type: 'light') {
-    @each $name,
-    $color in map-get($theme, $type) {
-        @if($key ==$name) {
-            @return $color
-        }
-    }
-}
-
-@mixin get-color($property, $color) {
-    
-    #{$property}: get-color($color);
-
-    @at-root .login-wrapper.highContrast & {
-        #{$property}: get-color($color, highContrast);
-    }
-}
-
-
-
+@import "mixin";
 
 body{
+    // @include get-color(background-color, login-background);
     background-color: $enabled-color;
     position: relative;
     text-align: center;
@@ -66,7 +14,7 @@ body{
     @include get-color(background-image, bg-logo);
     // background-image: url(../assets/symbol-logo.svg);
     background-repeat: no-repeat;
-    background-position: 98% 98%;    
+    background-position: 98% 98%;
 }
 
 .login{

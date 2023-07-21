@@ -70,7 +70,7 @@ form label {
   text-align: start;
   color: #767676;
 }
-.profile-modif-wrapper.highContrast form label {
+.theme-wrapper.highContrast form label {
   color: #dbdbdb;
 }
 
@@ -85,14 +85,14 @@ form label.btn-upload {
 form label.btn-upload svg > circle {
   fill: #635CA5;
 }
-.profile-modif-wrapper.highContrast form label.btn-upload svg > circle {
+.theme-wrapper.highContrast form label.btn-upload svg > circle {
   fill: #E4D6FF;
 }
 
 form label.btn-upload svg path {
-  stroke: #fff;
+  stroke: #ffffff;
 }
-.profile-modif-wrapper.highContrast form label.btn-upload svg path {
+.theme-wrapper.highContrast form label.btn-upload svg path {
   stroke: #000000;
 }
 
@@ -102,14 +102,14 @@ form input {
   border: none;
   border-bottom: 1px solid #dbdbdb;
   padding: 8px 0;
-  background-color: #fff;
+  background-color: #ffffff;
   color: #000000;
 }
-.profile-modif-wrapper.highContrast form input {
+.theme-wrapper.highContrast form input {
   background-color: #000000;
 }
 
-.profile-modif-wrapper.highContrast form input {
+.theme-wrapper.highContrast form input {
   color: #ffffff;
 }
 
@@ -136,19 +136,19 @@ form input::placeholder {
   font-size: 0.875rem;
   color: #767676;
 }
-.profile-modif-wrapper.highContrast form input::-webkit-input-placeholder {
+.theme-wrapper.highContrast form input::-webkit-input-placeholder {
   color: #dbdbdb;
 }
-.profile-modif-wrapper.highContrast form input::-moz-placeholder {
+.theme-wrapper.highContrast form input::-moz-placeholder {
   color: #dbdbdb;
 }
-.profile-modif-wrapper.highContrast form input:-ms-input-placeholder {
+.theme-wrapper.highContrast form input:-ms-input-placeholder {
   color: #dbdbdb;
 }
-.profile-modif-wrapper.highContrast form input::-ms-input-placeholder {
+.theme-wrapper.highContrast form input::-ms-input-placeholder {
   color: #dbdbdb;
 }
-.profile-modif-wrapper.highContrast form input::placeholder {
+.theme-wrapper.highContrast form input::placeholder {
   color: #dbdbdb;
 }
 
@@ -156,7 +156,7 @@ form input:focus {
   border-bottom: 1px solid #9747FF;
   outline: none;
 }
-.profile-modif-wrapper.highContrast form input:focus {
+.theme-wrapper.highContrast form input:focus {
   border-bottom: 1px solid #FFEB32;
 }
 
@@ -166,7 +166,7 @@ form [class^=warning-msg] {
   margin-top: 6px;
   display: none;
 }
-.profile-modif-wrapper.highContrast form [class^=warning-msg] {
+.theme-wrapper.highContrast form [class^=warning-msg] {
   color: #FFEB32;
 }
 

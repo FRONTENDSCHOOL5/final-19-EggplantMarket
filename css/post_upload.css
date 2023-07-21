@@ -19,7 +19,7 @@ form > * {
   display: block;
 }
 form textarea {
-  background-color: #fff;
+  background-color: #ffffff;
   color: #000000;
   width: calc(100% - 24px);
   min-height: 150px;

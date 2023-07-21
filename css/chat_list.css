@@ -72,12 +72,11 @@ a {
 }
 .user-chat-content .user-info .chat-content {
   display: block;
-  color: #767676;
   font-size: 0.75rem;
   font-weight: 400;
   margin-top: 2px;
 }
-.chat-list-wrapper.highContrast .user-chat-content .user-info .chat-content {
+.theme-wrapper.highContrast .user-chat-content .user-info .chat-content {
   color: #dbdbdb;
 }
 
@@ -121,16 +120,10 @@ a {
      object-fit: cover;
 }
 
-.tab-item-chat a {
-  background-image: url("../assets/icon/icon-message-circle-fill.svg");
-}
-.tab-item-chat a p {
-  color: #767676;
-}
-.chat-list-wrapper.highContrast .tab-item-chat a p {
+.theme-wrapper.highContrast .tab-item-chat a p {
   color: #dbdbdb;
 }
 
-.chat-list-wrapper.highContrast .tab-item-chat a {
-  background-image: url("../assets/icon/icon-message-circle-fill-hc.svg");
+.theme-wrapper.highContrast .tab-item-chat a {
+  background-image: url(../assets/icon/icon-message-circle-fill-hc.svg);
 }

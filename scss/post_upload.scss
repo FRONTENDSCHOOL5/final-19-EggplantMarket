@@ -1,47 +1,4 @@
-$theme: (
-    light: (bg-color:#fff,
-        btn-color: #ffffff,
-        btn-font:#767676,
-        disabled-btn-color: #BCADDC,
-        font-color: #000000,
-        btn-font-color: #ffffff,
-        gray-color: #767676,
-        box-shadow : none,
-        border: none,
-        price-color: #BF8DFF,
-        placeholder-color:#c4c4c4,
-        input-color: #F2F2F2,
-        strong-color: #9747FF,
-        follow-btn: #635CA5,
-        upload-btn: #635CA5,
-    ),
-    highContrast: (bg-color:#000000,
-        btn-color: #E4D6FF,
-        btn-font: #000000,
-        disabled-btn-color: transparent,
-        font-color: #ffffff,
-        btn-font-color: #000000,
-        gray-color: #dbdbdb,
-        box-shadow: 0 0 0 2px #E4D6FF inset,
-        border: 2px solid #E4D6FF,
-        price-color: #C5A8FF,
-        placeholder-color:#000000,
-        input-color: #bdbdbd,
-        strong-color: #FFEB32,
-        follow-btn: #E4D6FF,
-        upload-btn: #E4D6FF,
-    )
-);
-
-@function get-color($key, $type: 'light') {
-
-    @each $name,
-    $color in map-get($theme, $type) {
-        @if($key ==$name) {
-            @return $color
-        }
-    }
-}
+@import 'mixin';
 
 @mixin get-color($property, $color) {
 

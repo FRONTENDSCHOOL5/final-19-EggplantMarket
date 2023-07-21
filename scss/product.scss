@@ -1,63 +1,6 @@
 @import "variables";
 @import "global";
-
-$theme: (
-    light: (bg-color:#fff,
-        btn-color: #ffffff,
-        btn-font:#767676,
-        disabled-btn-color: #BCADDC,
-        font-color: #000000,
-        btn-font-color: #ffffff,
-        gray-color: #767676,
-        box-shadow : none,
-        border: none,
-        price-color: #BF8DFF,
-        placeholder-color:#dbdbdb,
-        bg-logo:url(../assets/symbol-logo.svg),
-        input-color: #F2F2F2,
-        strong-color: #EB5757,
-        upload-btn: #635CA5,
-        image-btn: #c4c4c4,
-        border-bottom: 1px solid #EB5757,
-    ),
-    highContrast: (bg-color:#000000,
-        btn-color: #E4D6FF,
-        btn-font: #000000,
-        disabled-btn-color: transparent,
-        font-color: #ffffff,
-        btn-font-color: #000000,
-        gray-color: #dbdbdb,
-        box-shadow: 0 0 0 2px #E4D6FF inset,
-        border: 2px solid #E4D6FF,
-        price-color: #C5A8FF,
-        placeholder-color:#FFEB32,
-        bg-logo:url(../assets/symbol-logo-highContrast.svg),
-        input-color: #bdbdbd,
-        strong-color: #FFEB32,
-        upload-btn: #E4D6FF,
-        image-btn: #000000,
-        border-bottom: 1px solid #FFEB32,
-    )
-);
-
-@function get-color($key, $type: 'light') {
-
-    @each $name,
-    $color in map-get($theme, $type) {
-        @if($key ==$name) {
-            @return $color
-        }
-    }
-}
-
-@mixin get-color($property, $color) {
-
-    #{$property}: get-color($color);
-
-    @at-root .product-upload-wrapper.highContrast & {
-        #{$property}: get-color($color, highContrast);
-    }
-}
+@import "mixin";
 
 body{
     min-width: 390px;
@@ -141,7 +84,13 @@ form{
 }
 
 .warning-msg-productname {
-    color: $warning-color-text;
+    @include get-color(color, strong-color);
+    font-size: 12px;
+    display: none;
+}
+
+.warning-msg-productprice{
+    @include get-color(color, strong-color);
     font-size: 12px;
     display: none;
 }
@@ -152,9 +101,9 @@ form{
     display: none;
 }
 
-#purchase-link {
-    // @include get-color(border-bottom, border-bottom);
-}
+// #purchase-link {
+//     // @include get-color(border-bottom, border-bottom);
+// }
 
 .size-ms:disabled{
     @include get-color(background-color, disabled-btn-color);

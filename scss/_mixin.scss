@@ -1,1 +1,138 @@
 // 믹스인
+
+$theme: (
+    light: (
+        bg-color:#ffffff,
+        root-color: #f2f2f2,
+        btn-color: #ffffff,
+        btn-font:#767676,
+        enabled-btn-color: #635CA5, //home_withoutfollowers, home_search
+        disabled-btn-color: #BCADDC, // component
+        font-color: #000000,
+        btn-font-color: #ffffff,
+        gray-color: #767676,
+        box-shadow : none,
+        border: none,
+        profile-border : 1px solid #dbdbdb,
+        icon-border : 1px solid #767676,
+        price-color: #BF8DFF,
+        placeholder-color:#c4c4c4,
+        warning-color: #EB5757,
+        bg-logo:url(../assets/symbol-logo.svg),
+        home-image: url(../assets/icon/icon-home.svg),
+        chat-image: url(../assets/icon/icon-message-circle.svg),
+        post-image: url(../assets/icon/icon-edit.svg),
+        profile-image: url(../assets/icon/icon-user.svg),
+        input-color: #F2F2F2,
+        strong-color: #9747FF,
+        chat-btn:url(../assets//icon/icon-message-circle.svg),
+        share-btn:url(../assets//icon/icon-share.svg),
+        // product
+        image-btn: #c4c4c4,
+        border-bottom: 1px solid #EB5757,
+        // post_upload
+        follow-btn: #635CA5,
+        upload-btn: #635CA5,
+        // chat_room
+        background-color: rgba(0, 0, 0, 0.5), // component, profile_modification
+        send-color:#9747FF, //profile_modification
+        mychat-color: #635CA5,
+        mychat-border: none,
+        mychat-font:#ffffff,
+        // component
+        point-color: #9747FF, //profile_modification 등
+        enabled-color : #635CA5,
+        // disabled-color : #BCADDC,
+        // home_withoutfollowers, home_search
+        bg-image: url(../assets/symbol-logo-gray.svg),
+        kakao-color : #F2C94C,
+        google-color : #767676,
+        facebook-color : #2D9CDB,
+        // profile_follow
+        following-btn-bg:white,
+        following-btn-color:#767676,
+        following-btn-border:1px solid #dbdbdb,
+        // join_membership
+        profile-image-btn: #9C85C5,
+        // post_detail
+        comment-placeholder :#c4c4c4,
+        comment-btn:#635CA5,
+        // profile_modification
+        img-icon: #635CA5,
+        profile-border-bottom:1px solid #9747FF,
+    ),
+    highContrast: (
+        bg-color:#000000,
+        root-color: #000000,
+        btn-color: #E4D6FF,
+        btn-font: #000000,
+        enabled-btn-color: #E4D6FF,//withoutfollowers
+        disabled-btn-color: transparent ,
+        font-color: #ffffff,
+        btn-font-color: #000000,
+        gray-color: #dbdbdb,
+        box-shadow: 0 0 0 2px #E4D6FF inset,
+        border: 2px solid #E4D6FF,
+        profile-border : none,
+        icon-border : 1px solid #dbdbdb,
+        price-color: #C5A8FF,
+        placeholder-color:#FFEB32,
+        // placeholder-color:#000000, 
+        warning-color: #FFEB32,
+        bg-logo:url(../assets/symbol-logo-highContrast.svg),
+        home-image: url(../assets/icon/icon-home-hc.svg),
+        chat-image: url(../assets/icon/icon-message-circle-hc.svg),
+        post-image: url(../assets/icon/icon-edit-hc.svg),
+        profile-image: url(../assets/icon/icon-user-hc.svg),
+        input-color: #bdbdbd,
+        strong-color: #FFEB32,
+        chat-btn:url(../assets//icon/icon-message-circle-hc.svg),
+        share-btn:url(../assets//icon/icon-share-hc.svg),
+        // product
+        image-btn: #000000,
+        border-bottom: 1px solid #FFEB32,
+        // chat_room
+        background-color: rgb(236 236 236 / 34%),
+        send-color:#FFEB32,
+        mychat-color: #000000,
+        mychat-border: 1px solid #C5A8FF,
+        mychat-font:#C5A8FF,
+        // post_upload
+        follow-btn: #E4D6FF,
+        upload-btn: #E4D6FF,
+        // 
+        bg-image: url(../assets/symbol-logo-theme.svg),
+        kakao-color : #FFEB32,
+        google-color : #65FB76,
+        facebook-color : #B3E3FF,
+        //
+        following-btn-bg:transparent,
+        following-btn-color:#E4D6FF,
+        following-btn-border:2px solid #E4D6FF,
+        // join_membership
+        profile-image-btn: #E4D6FF,
+        //
+        comment-placeholder :#bdbdbd,
+        comment-btn:#FFEB32,
+        //
+        img-icon: #E4D6FF,
+        profile-border-bottom:1px solid #FFEB32,
+    )
+);
+
+@function get-color($key, $type: 'light') {
+    @each $name, $color in map-get($theme, $type) {
+        @if ($key == $name) {
+            @return $color;
+        }
+    }
+    @return null; // 기본값으로 null 반환
+}
+
+@mixin get-color($property, $color) {
+    #{$property}: get-color($color);
+
+    @at-root .theme-wrapper.highContrast & {
+        #{$property}: get-color($color, highContrast);
+    }
+}

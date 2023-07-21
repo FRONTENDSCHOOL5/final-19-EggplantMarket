@@ -43,12 +43,12 @@ body {
   background-repeat: no-repeat;
   background-position: 98% 98%;
 }
-.login-wrapper.highContrast .back {
+.theme-wrapper.highContrast .back {
   background-image: url(../assets/symbol-logo-highContrast.svg);
 }
 
 .login {
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 20px 20px 0 0;
   padding: 50px 34px 82px;
   min-width: 390px;
@@ -56,7 +56,7 @@ body {
   position: fixed;
   bottom: 0;
 }
-.login-wrapper.highContrast .login {
+.theme-wrapper.highContrast .login {
   background-color: #000000;
 }
 
@@ -77,11 +77,11 @@ body {
   background-image: url(../assets/message-circle.svg);
   color: #767676;
 }
-.login-wrapper.highContrast .domain.kakao {
+.theme-wrapper.highContrast .domain.kakao {
   border-color: #FFEB32;
 }
 
-.login-wrapper.highContrast .domain.kakao {
+.theme-wrapper.highContrast .domain.kakao {
   color: #dbdbdb;
 }
 
@@ -90,11 +90,11 @@ body {
   background-image: url(../assets/Google__G__Logo\ 2.svg);
   color: #767676;
 }
-.login-wrapper.highContrast .domain.google {
+.theme-wrapper.highContrast .domain.google {
   border-color: #65FB76;
 }
 
-.login-wrapper.highContrast .domain.google {
+.theme-wrapper.highContrast .domain.google {
   color: #dbdbdb;
 }
 
@@ -103,11 +103,11 @@ body {
   background-image: url(../assets/facebook.svg);
   color: #767676;
 }
-.login-wrapper.highContrast .domain.facebook {
+.theme-wrapper.highContrast .domain.facebook {
   border-color: #B3E3FF;
 }
 
-.login-wrapper.highContrast .domain.facebook {
+.theme-wrapper.highContrast .domain.facebook {
   color: #dbdbdb;
 }
 
@@ -116,14 +116,14 @@ body {
   margin-top: 20px;
   color: #767676;
 }
-.login-wrapper.highContrast .email {
+.theme-wrapper.highContrast .email {
   color: #dbdbdb;
 }
 
 .email a {
   color: #767676;
 }
-.login-wrapper.highContrast .email a {
+.theme-wrapper.highContrast .email a {
   color: #dbdbdb;
 }
 

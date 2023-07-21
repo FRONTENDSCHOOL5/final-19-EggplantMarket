@@ -55,65 +55,65 @@ form > label {
   display: block;
   margin-bottom: 2px;
 }
-.product-upload-wrapper.highContrast form > label {
+.theme-wrapper.highContrast form > label {
   color: #dbdbdb;
 }
 
 form > input {
   display: block;
   width: 100%;
-  background-color: #fff;
+  background-color: #ffffff;
   color: #000000;
   margin-bottom: 6px;
   border: none;
   border-bottom: 1px solid #dbdbdb;
   padding: 8px 0;
 }
-.product-upload-wrapper.highContrast form > input {
+.theme-wrapper.highContrast form > input {
   background-color: #000000;
 }
 
-.product-upload-wrapper.highContrast form > input {
+.theme-wrapper.highContrast form > input {
   color: #ffffff;
 }
 
 form > input::-webkit-input-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #c4c4c4;
 }
 
 form > input::-moz-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #c4c4c4;
 }
 
 form > input:-ms-input-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #c4c4c4;
 }
 
 form > input::-ms-input-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #c4c4c4;
 }
 
 form > input::placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #c4c4c4;
 }
-.product-upload-wrapper.highContrast form > input::-webkit-input-placeholder {
+.theme-wrapper.highContrast form > input::-webkit-input-placeholder {
   color: #FFEB32;
 }
-.product-upload-wrapper.highContrast form > input::-moz-placeholder {
+.theme-wrapper.highContrast form > input::-moz-placeholder {
   color: #FFEB32;
 }
-.product-upload-wrapper.highContrast form > input:-ms-input-placeholder {
+.theme-wrapper.highContrast form > input:-ms-input-placeholder {
   color: #FFEB32;
 }
-.product-upload-wrapper.highContrast form > input::-ms-input-placeholder {
+.theme-wrapper.highContrast form > input::-ms-input-placeholder {
   color: #FFEB32;
 }
-.product-upload-wrapper.highContrast form > input::placeholder {
+.theme-wrapper.highContrast form > input::placeholder {
   color: #FFEB32;
 }
 
@@ -145,7 +145,7 @@ form label[for=purchase-link] {
 .upload-img circle {
   fill: #c4c4c4;
 }
-.product-upload-wrapper.highContrast .upload-img circle {
+.theme-wrapper.highContrast .upload-img circle {
   fill: #000000;
 }
 
@@ -154,17 +154,29 @@ form label[for=purchase-link] {
 }
 
 .warning-msg-productname {
-  color: #EB5757;
+  color: #9747FF;
   font-size: 12px;
   display: none;
+}
+.theme-wrapper.highContrast .warning-msg-productname {
+  color: #FFEB32;
+}
+
+.warning-msg-productprice {
+  color: #9747FF;
+  font-size: 12px;
+  display: none;
+}
+.theme-wrapper.highContrast .warning-msg-productprice {
+  color: #FFEB32;
 }
 
 .warning-msg-purchaselink {
-  color: #EB5757;
+  color: #9747FF;
   font-size: 12px;
   display: none;
 }
-.product-upload-wrapper.highContrast .warning-msg-purchaselink {
+.theme-wrapper.highContrast .warning-msg-purchaselink {
   color: #FFEB32;
 }
 
@@ -174,16 +186,16 @@ form label[for=purchase-link] {
           box-shadow: none;
   color: #767676;
 }
-.product-upload-wrapper.highContrast .size-ms:disabled {
+.theme-wrapper.highContrast .size-ms:disabled {
   background-color: transparent;
 }
 
-.product-upload-wrapper.highContrast .size-ms:disabled {
+.theme-wrapper.highContrast .size-ms:disabled {
   -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
           box-shadow: 0 0 0 2px #E4D6FF inset;
 }
 
-.product-upload-wrapper.highContrast .size-ms:disabled {
+.theme-wrapper.highContrast .size-ms:disabled {
   color: #dbdbdb;
 }
 
@@ -191,17 +203,17 @@ form label[for=purchase-link] {
   background-color: #635CA5;
   color: #ffffff;
 }
-.product-upload-wrapper.highContrast .size-ms {
+.theme-wrapper.highContrast .size-ms {
   background-color: #E4D6FF;
 }
 
-.product-upload-wrapper.highContrast .size-ms {
+.theme-wrapper.highContrast .size-ms {
   color: #000000;
 }
 
 h2 {
   color: #767676;
 }
-.product-upload-wrapper.highContrast h2 {
+.theme-wrapper.highContrast h2 {
   color: #dbdbdb;
 }

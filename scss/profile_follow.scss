@@ -1,54 +1,6 @@
 @import 'global';
 @import 'variables';
-
-$theme: (
-    light: (bg-color:#fff,
-        btn-color: #ffffff,
-        btn-font:#767676,
-        disabled-btn-color: #BCADDC,
-        following-btn-bg:white,
-        following-btn-color:#767676,
-        following-btn-border:1px solid #dbdbdb,
-        font-color: #000000,
-        btn-font-color: #ffffff,
-        gray-color: #767676,
-        box-shadow : none,
-        border: none,
-        price-color: #BF8DFF,
-        placeholder-color:#c4c4c4,
-        bg-logo:url(../assets/symbol-logo.svg),
-        home-image: url(../assets/icon/icon-home.svg),
-        chat-image: url(../assets/icon/icon-message-circle.svg),
-        post-image: url(../assets/icon/icon-edit.svg),
-        profile-image: url(../assets/icon/icon-user-fill.svg),
-        input-color: #F2F2F2,
-        strong-color: #9747FF,
-        follow-btn: #635CA5,
-    ),
-    highContrast: (bg-color:#000000,
-        btn-color: #E4D6FF,
-        btn-font: #000000,
-        disabled-btn-color: transparent,
-        following-btn-bg:transparent,
-        following-btn-color:#E4D6FF,
-        following-btn-border:2px solid #E4D6FF,
-        font-color: #ffffff,
-        btn-font-color: #000000,
-        gray-color: #dbdbdb,
-        box-shadow: 0 0 0 2px #E4D6FF inset,
-        border: 2px solid #E4D6FF,
-        price-color: #C5A8FF,
-        placeholder-color:#000000,
-        bg-logo:url(../assets/symbol-logo-highContrast.svg),
-        home-image: url(../assets/icon/icon-home-hc.svg),
-        chat-image: url(../assets/icon/icon-message-circle-hc.svg),
-        post-image: url(../assets/icon/icon-edit-hc.svg),
-        profile-image: url(../assets/icon/icon-user-fill-hc.svg),
-        input-color: #bdbdbd,
-        strong-color: #FFEB32,
-        follow-btn: #E4D6FF,
-    )
-);
+@import 'mixin';
 
 @function get-color($key, $type: 'light') {
 
@@ -57,15 +9,6 @@ $theme: (
         @if($key ==$name) {
             @return $color
         }
-    }
-}
-
-@mixin get-color($property, $color) {
-
-    #{$property}: get-color($color);
-
-    @at-root .following-wrapper.highContrast & {
-        #{$property}: get-color($color, highContrast);
     }
 }
 

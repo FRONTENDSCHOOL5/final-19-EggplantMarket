@@ -1,52 +1,6 @@
 @import 'global';
 @import 'variables';
-
-$theme: (
-    light: (bg-color:#fff,
-        btn-color: #ffffff,
-        btn-font:#767676,
-        background-color: rgba(0, 0, 0, 0.5),
-        font-color: #000000,
-        btn-font-color: #ffffff,
-        gray-color: #767676,
-        point-color: #9747FF,
-        enabled-color : #635CA5,
-        disabled-color : #BCADDC,
-        border : none,
-        home-icon: url("../assets/icon/icon-home.svg"),
-        message-icon: url("../assets/icon/icon-message-circle.svg"),
-        message-fill:url("../assets/icon/icon-message-circle-fill.svg"),
-        edit-icon:url("../assets/icon/icon-edit.svg"),
-        profile-icon:url("../assets/icon/icon-user.svg"),
-    ),
-    highContrast: (bg-color:#000000,
-        btn-color: #E4D6FF,
-        btn-font: #000000,
-        background-color: rgb(236 236 236 / 34%),
-        font-color: #ffffff,
-        btn-font-color: #000000,
-        gray-color: #dbdbdb,
-        point-color: #FFEB32,
-        enabled-color : #E4D6FF,
-        disabled-color : transparent,
-        border : 2px solid #E4D6FF,
-        home-icon: url("../assets/icon/icon-home-hc.svg"),
-        message-icon: url("../assets/icon/icon-message-circle-hc.svg"),
-        message-fill:url("../assets/icon/icon-message-circle-fill-hc.svg"),
-        edit-icon:url("../assets/icon/icon-edit-hc.svg"),
-        profile-icon:url("../assets/icon/icon-user-hc.svg"),
-    )
-);
-
-@function get-color($key, $type: 'light') {
-
-    @each $name,
-    $color in map-get($theme, $type) {
-        @if($key ==$name) {
-            @return $color
-        }
-    }
-}
+@import 'mixin';
 
 @mixin get-color($property, $color) {
 
@@ -455,7 +409,7 @@ $theme: (
     @include get-color(color, btn-font-color);
 }
 .size-l:disabled, .size-m:disabled, .size-ms:disabled, .size-s:disabled {
-    @include get-color(background-color, disabled-color);
+    @include get-color(background-color, disabled-btn-color);
     @include get-color(border, border);
     color: $white-color;
 }
@@ -539,7 +493,7 @@ footer{
     }
     li:first-child { //여기하는중
         a{
-            @include get-color(background-image, home-icon);
+            @include get-color(background-image, home-image);
         }
         a.here{
             background-image: url("../assets/icon/icon-home-fill.svg");
@@ -555,12 +509,12 @@ footer{
     }
     li:nth-child(3) {
         a{
-            @include get-color(background-image, edit-icon);
+            @include get-color(background-image, post-image);
         }
     }
     li:nth-child(4) {
         a{
-            @include get-color(background-image, profile-icon);
+            @include get-color(background-image, profile-image);
         }
         a.here{
             background-image: url("../assets/icon/icon-user-fill.svg");

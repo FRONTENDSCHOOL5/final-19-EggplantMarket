@@ -32,7 +32,7 @@ a {
 }
 
 .top {
-  background-color: #fff;
+  background-color: #ffffff;
 }
 .chat-room-wrapper.highContrast .top {
   background-color: #000000;
@@ -106,7 +106,7 @@ main {
 }
 .follow-chat .content-text {
   border-radius: 0px 12px 12px 12px;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 .chat-room-wrapper.highContrast .follow-chat .content-text {
   background-color: #000000;
@@ -125,7 +125,7 @@ main {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
-  color: #fff;
+  color: #ffffff;
   margin: 0 16px 0 12px;
   border-radius: 12px 0px 12px 12px;
   border: none;
@@ -181,7 +181,7 @@ main {
   padding: 8px;
   margin-right: 10px;
   color: #000000;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 .chat-room-wrapper.highContrast .comment #commemt-input {
   color: #ffffff;
@@ -189,6 +189,13 @@ main {
 
 .chat-room-wrapper.highContrast .comment #commemt-input {
   background-color: #000000;
+}
+
+.comment .btn-comment:disabled {
+  color: #ffffff;
+}
+.chat-room-wrapper.highContrast .comment .btn-comment:disabled {
+  color: #E4D6FF;
 }
 
 .comment .btn-comment:not(:disabled) {

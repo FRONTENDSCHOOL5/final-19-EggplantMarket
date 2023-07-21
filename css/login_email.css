@@ -40,7 +40,7 @@ a {
   font-size: 24px;
   color: #000000;
 }
-.login.highContrast .title {
+.theme-wrapper.highContrast .title {
   color: #ffffff;
 }
 
@@ -59,7 +59,7 @@ form {
   color: #767676;
   font-size: 0.75rem;
 }
-.login.highContrast form {
+.theme-wrapper.highContrast form {
   color: #dbdbdb;
 }
 
@@ -69,25 +69,25 @@ form > label {
   margin-bottom: 2px;
   margin-top: 16px;
 }
-.login.highContrast form > label {
+.theme-wrapper.highContrast form > label {
   color: #dbdbdb;
 }
 
 form > input {
   display: block;
   width: 100%;
-  background-color: #fff;
+  background-color: #ffffff;
   color: #000000;
   border: none;
   border-bottom: 1px solid #dbdbdb;
   padding: 8px 0;
   margin-bottom: 16p;
 }
-.login.highContrast form > input {
+.theme-wrapper.highContrast form > input {
   background-color: #000000;
 }
 
-.login.highContrast form > input {
+.theme-wrapper.highContrast form > input {
   color: #ffffff;
 }
 
@@ -127,11 +127,11 @@ form > input::placeholder {
   border-radius: 44px;
   font-size: 0.875rem;
 }
-.login.highContrast .size-l {
+.theme-wrapper.highContrast .size-l {
   background-color: #E4D6FF;
 }
 
-.login.highContrast .size-l {
+.theme-wrapper.highContrast .size-l {
   color: #000000;
 }
 
@@ -142,15 +142,15 @@ form > input::placeholder {
           box-shadow: none;
   color: #FFFFFF;
 }
-.login.highContrast .size-l:disabled {
+.theme-wrapper.highContrast .size-l:disabled {
   background-color: transparent;
 }
 
-.login.highContrast .size-l:disabled {
+.theme-wrapper.highContrast .size-l:disabled {
   color: #ffffff;
 }
 
-.login.highContrast .size-l:disabled {
+.theme-wrapper.highContrast .size-l:disabled {
   -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
           box-shadow: 0 0 0 2px #E4D6FF inset;
 }
@@ -162,7 +162,7 @@ form > input::placeholder {
   margin-top: 6px;
   display: none;
 }
-.login.highContrast [class^=warning-msg] {
+.theme-wrapper.highContrast [class^=warning-msg] {
   color: #FFEB32;
 }
 
@@ -172,7 +172,7 @@ form > input::placeholder {
 .email-join a {
   color: #767676;
 }
-.login.highContrast .email-join a {
+.theme-wrapper.highContrast .email-join a {
   color: #dbdbdb;
 }
 
@@ -182,8 +182,8 @@ input:focus {
 }
 
 .color-wrapper {
-  background-color: #fff;
+  background-color: #ffffff;
 }
-.login.highContrast .color-wrapper {
+.theme-wrapper.highContrast .color-wrapper {
   background-color: #000000;
 }

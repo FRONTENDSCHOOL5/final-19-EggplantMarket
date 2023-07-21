@@ -41,14 +41,14 @@ function fetchPostData(){
     const url = "https://api.mandarin.weniv.co.kr";
     const reqPath = `/post/${profileAccountName}/userpost?limit=6&skip=`
     let reqCnt = 0;
-    const option = {
+    const options = {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-type": "application/json"
         }
     }
-    const getPostData = async () => await fetchData(url + reqPath + reqCnt++ * 6,option)
+    const getPostData = async () => await fetchData(url + reqPath + reqCnt++ * 6, options)
 
     return getPostData
 }

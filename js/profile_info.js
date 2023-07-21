@@ -282,8 +282,6 @@ async function run() {
     document.querySelector('.btn-wrap-my').style.display = isMyProfile ? 'none' : 'block'
     document.querySelector('li.tab-item-more a').classList.toggle('here',!isMyProfile)    
     document.querySelector('li.tab-item-home a').classList.toggle('here',isMyProfile)
-
-
     const getPostData = fetchPostData();
 
     // 동시에 호출할 비동기 함수들을 배열로 준비

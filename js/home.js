@@ -1,6 +1,12 @@
 const url = "https://api.mandarin.weniv.co.kr";
 const myAccountName = localStorage.getItem("user-accountname");
 
+//post 컴포넌트 불러옵니다.
+const homePostList = document.querySelector(".home-post-list");
+fetch('./component/post.html')
+.then(res => res.text())
+.then(data => homePostList.innerHTML = data);
+
 // 무한 스크롤 
 window.addEventListener("scroll", async () => {
     if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {

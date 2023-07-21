@@ -96,16 +96,13 @@ async function handleLike(event){
         const postId = targetPost.getAttribute('data-postid');
         const isLiked = likeBtn.classList.contains('like');
 
-        const action = isLiked ? 'unheart' : 'heart'
-        const method = isLiked ? 'DELETE' : 'POST'
-        
-        const result = await reqLike(postId, action, method)
-        likeBtn.querySelector('.cnt').textContent = `${result.heartCount}`
-        result.hearted ? likeBtn.classList.add('like') : likeBtn.classList.remove('like')
+        const result = isLiked ? await fetchLike(postId, 'unheart', 'DELETE') : await fetchLike(postId, 'heart', 'POST')
+        likeBtn.querySelector('.cnt').textContent = `${result.post.heartCount}`
+        result.post.hearted ? likeBtn.classList.add('like') : likeBtn.classList.remove('like')
     }
 }
 
-async function reqLike(postId,action,method){
+async function requestLike(postId,action,method){
     try{
         const res = await fetch(`${url}/post/${postId}/${action}`, {
                         method: method,
@@ -116,7 +113,7 @@ async function reqLike(postId,action,method){
                     });
         const resJson = await res.json();
 
-        return resJson.post
+        return resJson
     } catch(err){
         console.error(err);
         location.href='./404.html'

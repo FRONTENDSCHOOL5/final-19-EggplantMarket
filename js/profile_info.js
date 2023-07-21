@@ -14,7 +14,7 @@ async function fetchData(url, options) {
     }
 }
 
-async function fetchProfileData() { 
+async function getProfileData() { 
     const fullUrl = `${url}/profile/${profileAccountName}`;
     const options = {
         method: "GET",
@@ -26,7 +26,7 @@ async function fetchProfileData() {
     return fetchData(fullUrl, options);
 }
 
-async function fetchProductData() { 
+async function getProductData() { 
     const fullUrl = `${url}/product/${profileAccountName}`;
     const options = {
         method: "GET",
@@ -39,7 +39,7 @@ async function fetchProductData() {
 }
 
 let reqCnt = 0;
-async function fetchPostData() {
+async function getPostData() {
     const fullUrl = `${url}/post/${profileAccountName}/userpost?limit=6&skip=${reqCnt++ * 6}`;
     const options = {
         method: "GET",
@@ -53,13 +53,13 @@ async function fetchPostData() {
 
 window.addEventListener("scroll", async () => {
     if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
-        displayPosts((await fetchPostData()).post)
+        displayPosts((await getPostData()).post)
         const postBtnOption = document.querySelectorAll('main .btn-option');
         handlePostOptionModal(postBtnOption)
     };
 })
 
-async function fetchFollow() {
+async function postFollow() {
     const fullUrl = `${url}/profile/${profileAccountName}/follow`,
     options = {
         method: "POST",
@@ -71,7 +71,7 @@ async function fetchFollow() {
     return fetchData(fullUrl, options);
 }
 
-async function fetchUnfollow() {
+async function deletefollow() {
     const fullUrl = `${url}/profile/${profileAccountName}/unfollow`,
     options = {
         method: "DELETE",
@@ -291,9 +291,9 @@ async function run() {
 
     // 동시에 호출할 비동기 함수들을 배열로 준비
     const fetchPromises = [
-        fetchProfileData(),
-        fetchProductData(),
-        fetchPostData()
+        getProfileData(),
+        getProductData(),
+        getPostData()
     ];
 
     // 모든 비동기 작업이 완료될 때까지 기다림

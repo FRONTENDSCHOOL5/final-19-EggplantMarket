@@ -7,8 +7,7 @@ const url = "https://api.mandarin.weniv.co.kr",
 async function fetchData(url, options) {
     try {
         const response = await fetch(url, options);
-        const data = await response.json();
-        return data;
+        return response.json();
     } catch (err) {
         location.href='./404.html'
     }
@@ -38,26 +37,21 @@ async function getProductData() {
     return fetchData(fullUrl, options);
 }
 
-let reqCnt = 0;
-async function getPostData() {
-    const fullUrl = `${url}/post/${profileAccountName}/userpost?limit=6&skip=${reqCnt++ * 6}`;
-    const options = {
+function fetchPostData(){
+    const url = "https://api.mandarin.weniv.co.kr";
+    const reqPath = `/post/${profileAccountName}/userpost?limit=6&skip=`
+    let reqCnt = 0;
+    const option = {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json"
+            "Content-type": "application/json"
         }
-    };
-    return fetchData(fullUrl, options);
-}
+    }
+    const getPostData = async () => await fetchData(url + reqPath + reqCnt++ * 6,option)
 
-window.addEventListener("scroll", async () => {
-    if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
-        displayPosts((await getPostData()).post)
-        const postBtnOption = document.querySelectorAll('main .btn-option');
-        handlePostOptionModal(postBtnOption)
-    };
-})
+    return getPostData
+}
 
 async function postFollow() {
     const fullUrl = `${url}/profile/${profileAccountName}/follow`,
@@ -160,7 +154,7 @@ function displayProductList(product_data,count){
 // 게시글 보는 섹션
 function displayPosts(post_data) {
     // 첫 요청시 데이터가 없으면 섹션 숨기기
-    if (reqCnt == 1 && !post_data.length) {
+    if (!document.querySelector('.post-list').childNodes.length && !post_data.length) {
         document.querySelector('.post-container').style.display = 'none'
         document.querySelector('.skip-nav a:nth-child(4)').style.display='none'
         return
@@ -289,6 +283,9 @@ async function run() {
     document.querySelector('li.tab-item-more a').classList.toggle('here',!isMyProfile)    
     document.querySelector('li.tab-item-home a').classList.toggle('here',isMyProfile)
 
+
+    const getPostData = fetchPostData();
+
     // 동시에 호출할 비동기 함수들을 배열로 준비
     const fetchPromises = [
         getProfileData(),
@@ -307,6 +304,13 @@ async function run() {
     handleModal()
     touchScroll()
     window.addEventListener('resize',touchScroll)
+    window.addEventListener("scroll", async () => {
+        if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
+            displayPosts((await getPostData()).post)
+            const postBtnOption = document.querySelectorAll('main .btn-option');
+            handlePostOptionModal(postBtnOption)
+        };
+    })
 };
 
 run();

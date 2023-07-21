@@ -43,23 +43,14 @@ async function search(userInp) {
             const name = content.querySelector(".user-name");
             const parent = name.parentElement;
             parent.removeChild(name);
-            // const h3Node = document.createElement('h3');
-            // parent.insertAdjacentHTML('afterBegin',h3Node);
             parent.insertAdjacentHTML('afterbegin', `<h3 class="user-name">${userName.split(userInp)[0]}<strong>${sameUserName}</strong>${userName.split(userInp)[1]}</h3>`);
         }
         else {
             const name = content.querySelector(".user-name");
             const parent = name.parentElement;
             parent.removeChild(name);
-            // const h3Node = document.createElement('h3');
-            // parent.insertAdjacentHTML('afterBegin',h3Node);
             parent.insertAdjacentHTML('afterbegin', `<p class="user-name">${userData[i].username}</p>`);
         }
-
-        // const name = content.querySelector(".user-name");
-        // userName.indexOf(userInp) != -1 ? `<h3 class="user-name">${userName.split(userInp)[0]}<strong>${sameUserName}</strong>${userName.split(userInp)[1]}</h3>` : `<p class="user-name">${userData[i].username}</p>`;
-        
-
 
 
         const account = content.querySelector(".user-id");
@@ -68,12 +59,10 @@ async function search(userInp) {
         profileImage.src = checkImageUrl(userData[i].image, 'profile');
 
 
-
         ulNode.appendChild(liNode);
         liNode.appendChild(content);
 
     }
-
     ulNode.append(frag);
 }
 //키보드 값을 다시 입력 받을 때 마다 리스트 삭제

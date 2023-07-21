@@ -270,7 +270,7 @@ function updatePost(post_data) {
 
 async function run(url, token, accountName) {
     const isMyProfile = (myAccountName !== profileAccountName)
-    
+
     document.querySelector('.btn-wrap-your').style.display = isMyProfile ? 'flex' : 'none'
     document.querySelector('.btn-wrap-my').style.display = isMyProfile ? 'none' : 'block'
     document.querySelector('li.tab-item-more a').classList.toggle('here',!isMyProfile)    

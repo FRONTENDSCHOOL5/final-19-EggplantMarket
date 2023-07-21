@@ -97,15 +97,20 @@ footer {
     @include get-color(color, placeholder-color);
 }
 
-.tab-item-list {
-    .here {
-        p {
-            @include get-color(color, gray-color);
+.tab-menu {
+    .tab-item-list{
+        .tab-item-home {
+            a {
+                p {
+                    @include get-color(color, gray-color);
+                }
+                @include get-color(background-image, home-image);
+            }
+            @include get-color(background-color, bg-color);
         }
-        @include get-color(background-image, home-image);
     }
-    @include get-color(background-color, bg-color);
 }
+
 
 .tab-item-chat{
     a {

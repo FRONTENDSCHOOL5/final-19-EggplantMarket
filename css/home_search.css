@@ -98,24 +98,24 @@ footer {
   color: #000000;
 }
 
-.tab-item-list {
+.tab-menu .tab-item-list .tab-item-home {
   background-color: #fff;
 }
-.tab-item-list .here {
+.tab-menu .tab-item-list .tab-item-home a {
   background-image: url(../assets/icon/icon-home-fill.svg);
 }
-.tab-item-list .here p {
+.tab-menu .tab-item-list .tab-item-home a p {
   color: #767676;
 }
-.search-wrapper.highContrast .tab-item-list .here p {
+.search-wrapper.highContrast .tab-menu .tab-item-list .tab-item-home a p {
   color: #dbdbdb;
 }
 
-.search-wrapper.highContrast .tab-item-list .here {
+.search-wrapper.highContrast .tab-menu .tab-item-list .tab-item-home a {
   background-image: url(../assets/icon/icon-home-fill-hc.svg);
 }
 
-.search-wrapper.highContrast .tab-item-list {
+.search-wrapper.highContrast .tab-menu .tab-item-list .tab-item-home {
   background-color: #000000;
 }
 

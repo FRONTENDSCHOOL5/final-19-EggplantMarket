@@ -126,7 +126,7 @@ async function reqLike(postId,act,method){
         location.href='./404.html'
     }
 }
-
+//이부분 지워도 될 것 같네용 ~
 if(document.querySelector('.tab-item-more a') !== null){
     document.querySelector('.tab-item-more a').href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
 }

@@ -109,24 +109,24 @@ footer {
   bottom: 0;
 }
 
-.tab-item-list {
+.tab-menu .tab-item-list {
   background-color: #fff;
 }
-.tab-item-list .here {
+.tab-menu .tab-item-list .tab-item-home a {
   background-image: url(../assets/icon/icon-home-fill.svg);
 }
-.tab-item-list .here p {
+.tab-menu .tab-item-list .tab-item-home a p {
   color: #767676;
 }
-.home-wrapper.highContrast .tab-item-list .here p {
+.home-wrapper.highContrast .tab-menu .tab-item-list .tab-item-home a p {
   color: #dbdbdb;
 }
 
-.home-wrapper.highContrast .tab-item-list .here {
+.home-wrapper.highContrast .tab-menu .tab-item-list .tab-item-home a {
   background-image: url(../assets/icon/icon-home-fill-hc.svg);
 }
 
-.home-wrapper.highContrast .tab-item-list {
+.home-wrapper.highContrast .tab-menu .tab-item-list {
   background-color: #000000;
 }
 
@@ -158,17 +158,17 @@ footer {
   background-image: url(../assets/icon/icon-edit-hc.svg);
 }
 
-.tab-item-more a {
+.tab-menu .tab-item-more a {
   background-image: url(../assets/icon/icon-user.svg);
 }
-.tab-item-more a p {
+.tab-menu .tab-item-more a p {
   color: #767676;
 }
-.home-wrapper.highContrast .tab-item-more a p {
+.home-wrapper.highContrast .tab-menu .tab-item-more a p {
   color: #dbdbdb;
 }
 
-.home-wrapper.highContrast .tab-item-more a {
+.home-wrapper.highContrast .tab-menu .tab-item-more a {
   background-image: url(../assets/icon/icon-user-hc.svg);
 }
 

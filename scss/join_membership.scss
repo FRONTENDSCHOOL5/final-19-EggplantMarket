@@ -10,12 +10,11 @@ h2,
 p {
     @include get-color(color, gray-color);
     text-align: center;
-    font-size: 14px
-    ;
+    font-size: map-get($font-sizes, "size14" );
 }
 
 .title {
-    font-size: 24px;
+    font-size: map-get($font-sizes, "size24");
     @include get-color(color, font-color);
 }
 
@@ -40,7 +39,7 @@ form {
     margin: 0 auto;
     @include get-color(color, gray-color);
     color: $gray300-color;
-    font-size: .75rem;
+    font-size: map-get($font-sizes, "size12");
 
     .profile-img {
         position: relative;
@@ -112,7 +111,7 @@ form {
     }
 
     input::placeholder {
-        font-size: .875rem;
+        font-size: map-get($font-sizes, "size14");
         color: $gray100-color;
     }
 
@@ -123,7 +122,7 @@ form {
 
 [class^=warning-msg] {
     @include get-color(color, warning-color);
-        font-size: 12px;
+        font-size: map-get($font-sizes, "size12");
         margin-top: 6px;
         display: none;
     }
@@ -149,12 +148,6 @@ button {
     border-radius: 44px;
     font-size: map-get($font-sizes, "size14");
 }
-
-// .size-l:disabled {
-//     // @include get-color(background-color, disabled-btn-color);
-//     // @include get-color(color, font-color);
-//     // @include get-color(box-shadow, box-shadow);
-// }
 
 .btn-next {
     border: none;

@@ -2,15 +2,6 @@
 @import 'variables';
 @import 'mixin';
 
-// 다른 부분 + 적용되지 않는 부분
-$theme: (
-    highContrast: (
-        font-color: #ffffff,
-        gray-color: #dbdbdb,
-        chat-image: url(../assets/icon/icon-message-circle-fill-hc.svg),
-    )
-);
-
 .chat-list{
     padding: 24px 16px;
 }
@@ -92,6 +83,6 @@ $theme: (
         p {
             @include get-color(color, gray-color);
         }
-        @include get-color(background-image, chat-image);
+        @include get-color(background-image, chat-fill-image);
     }
 }

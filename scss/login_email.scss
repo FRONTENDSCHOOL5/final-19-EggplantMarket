@@ -7,13 +7,13 @@
 }
 .title {
     text-align: center;
-    font-size: 24px;
+    font-size: map-get($font-sizes, "size24");
     @include get-color(color, font-color);
 }
 
 .join {
     color: $gray300-color;
-    font-size: .75rem;
+    font-size: map-get($font-sizes, "size12");
     display: inline-block;
     margin: 20px auto 0;
 }
@@ -25,7 +25,7 @@ form {
     margin-top: 40px;
 
     @include get-color(color, gray-color);
-    font-size: .75rem;
+    font-size: map-get($font-sizes, "size12");
 
     &>label {
         @include get-color(color, gray-color);
@@ -47,7 +47,7 @@ form {
 
 
     &>input::placeholder {
-        font-size: .875rem;
+        font-size: map-get($font-sizes, "size14");
         color: $gray100-color;
     }
 }
@@ -74,7 +74,7 @@ form {
 
 [class^="warning-msg"] {
     @include get-color(color, warning-color);
-    font-size: 12px;
+    font-size: map-get($font-sizes, "size12");
     display: block;
     margin-top: 6px;
     display: none;

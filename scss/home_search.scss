@@ -6,20 +6,6 @@ main{
     padding-bottom: 65px;
 }
 
-// 다른 부분 + 적용되지 않는 부분
-$theme: (
-    light : (
-        strong-color: #9747FF,
-    ),
-    highContrast: (
-        placeholder-color:#000000,
-        input-color: #bdbdbd,
-        strong-color: #FFEB32,
-        chat-image: url(../assets/icon/icon-message-circle-hc.svg),
-        home-image: url(../assets/icon/icon-home-fill-hc.svg),
-    )
-);
-
 footer {
     width: 100%;
     position: fixed;
@@ -45,7 +31,7 @@ footer {
 }
 
 #inp-search::placeholder {
-    @include get-color(color, placeholder-color);
+    @include get-color(color, search-placeholder-color);
 }
 
 .tab-item-list {
@@ -53,7 +39,7 @@ footer {
         p {
             @include get-color(color, gray-color);
         }
-        @include get-color(background-image, home-image);
+        @include get-color(background-image, home-fill-image);
     }
     @include get-color(background-color, bg-color);
 }

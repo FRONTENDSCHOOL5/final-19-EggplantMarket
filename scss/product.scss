@@ -18,7 +18,7 @@ form{
     margin: 0 auto;
 
     color: $gray300-color;
-    font-size: .75rem;
+    font-size: map-get($font-sizes, "size12");
 
     & > label{
         @include get-color(color, gray-color);
@@ -37,7 +37,7 @@ form{
         padding: 8px 0
     }
     & > input::placeholder{
-        font-size: .875rem;
+        font-size: map-get($font-sizes, "size14");
         @include get-color(color, placeholder-color);
     }
 
@@ -85,25 +85,21 @@ form{
 
 .warning-msg-productname {
     @include get-color(color, strong-color);
-    font-size: 12px;
+    font-size: map-get($font-sizes, "size12");
     display: none;
 }
 
 .warning-msg-productprice{
     @include get-color(color, strong-color);
-    font-size: 12px;
+    font-size: map-get($font-sizes, "size12");
     display: none;
 }
 
 .warning-msg-purchaselink {
     @include get-color(color, strong-color);
-    font-size: 12px;
+    font-size: map-get($font-sizes, "size12");
     display: none;
 }
-
-// #purchase-link {
-//     // @include get-color(border-bottom, border-bottom);
-// }
 
 .size-ms:disabled{
     @include get-color(background-color, disabled-btn-color);

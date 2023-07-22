@@ -18,46 +18,34 @@ margin: 0 .9375rem;
     .comment-item {
         margin-top: 20px;
         position: relative;
-
-.comment-time {
-display: inline-block;
-    font-size: 10px;
-    @include get-color(color, gray-color);
-    line-height: 18px;
-        vertical-align: top;
-        margin-top: 6px;
-        // position: relative;
-        padding-left: 12px;
-    
-    
-        // .comment-time::before {
-        //     content: '';
-        //     display: inline-block;
-        //     width: 4px;
-        //     height: 4px;
-        //     background-color: inherit;
-        //     position: absolute;
-        //     top: 0;
-        //     left: 0;
-        // }
-}
-
-.comment-text {
-    margin-left: 54px;
-    margin-right: 24px;
-    line-height: 1.5;
-    font-weight: 400;
-    font-size: 14px;
-    @include get-color(color, font-color);
-}
-
-.btn-more {
-    position: absolute;
-    top: 0;
-    left: calc(100% - 44px);
-    transform: translate(0, 25%);
-}
-}
+        
+        .comment-time {
+            display: inline-block;
+            font-size: map-get($font-sizes, "size10");
+            @include get-color(color, gray-color);
+            line-height: 18px;
+                vertical-align: top;
+                margin-top: 6px;
+                // position: relative;
+                padding-left: 12px;
+        }
+        
+        .comment-text {
+            margin-left: 54px;
+            margin-right: 24px;
+            line-height: 1.5;
+            font-weight: 400;
+            font-size: map-get($font-sizes, "size14");
+            @include get-color(color, font-color);
+        }
+        
+        .btn-more {
+            position: absolute;
+            top: 0;
+            left: calc(100% - 44px);
+            transform: translate(0, 25%);
+        }
+    }
 }
 
 .comment-user-info {
@@ -85,7 +73,7 @@ display: inline-block;
             margin-top: 6px;
             margin-left: 12px;
             font-weight: 500;
-            font-size: .875rem;
+            font-size: map-get($font-sizes, "size14");
             @include get-color(color, font-color);
     }
 }

@@ -54,6 +54,34 @@ a {
   margin-left: 16px;
   background-repeat: no-repeat;
 }
+.tab-btn-wrap .btn-post-list {
+  background-image: url("../assets/icon/icon-post-list-off.svg");
+}
+.theme-wrapper.highContrast .tab-btn-wrap .btn-post-list {
+  background-image: url("../assets/icon/icon-post-list-off-hc.svg");
+}
+
+.tab-btn-wrap .btn-post-list.on {
+  background-image: url("../assets/icon/icon-post-list-on.svg");
+}
+.theme-wrapper.highContrast .tab-btn-wrap .btn-post-list.on {
+  background-image: url("../assets/icon/icon-post-list-on-hc.svg");
+}
+
+.tab-btn-wrap .btn-post-album {
+  background-image: url("../assets/icon/icon-post-album-off.svg");
+}
+.theme-wrapper.highContrast .tab-btn-wrap .btn-post-album {
+  background-image: url("../assets/icon/icon-post-album-off-hc.svg");
+}
+
+.tab-btn-wrap .btn-post-album.on {
+  background-image: url("../assets/icon/icon-post-album-on.svg");
+}
+.theme-wrapper.highContrast .tab-btn-wrap .btn-post-album.on {
+  background-image: url("../assets/icon/icon-post-album-on-hc.svg");
+}
+
 .post-sec {
   width: 100%;
   padding: 16px;

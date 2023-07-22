@@ -20,7 +20,7 @@ form {
     margin: 0 auto;
 
     color: $gray300-color;
-    font-size: .75rem;
+    font-size: map-get($font-sizes, "size12");
 
     .profile-img {
         position: relative;
@@ -83,7 +83,7 @@ form {
     }
 
     input::placeholder {
-        font-size: .875rem;
+        font-size: map-get($font-sizes, "size14");
         @include get-color(color, gray-color);
     }
 
@@ -94,7 +94,7 @@ form {
 
 [class^=warning-msg] {
         @include get-color(color, warning-color);
-        font-size: 12px;
+        font-size: map-get($font-sizes, "size12");
         margin-top: 6px;
         display: none;
     }

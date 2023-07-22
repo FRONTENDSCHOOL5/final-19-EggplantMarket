@@ -162,7 +162,7 @@ form input:focus {
 
 form [class^=warning-msg] {
   color: #EB5757;
-  font-size: 12px;
+  font-size: 0.75rem;
   margin-top: 6px;
   display: none;
 }

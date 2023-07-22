@@ -2,19 +2,6 @@
 @import "variables";
 @import "mixin";
 
-$theme: (
-    highContrast: (
-        bg-color:#000000,
-        font-color: #ffffff,
-        gray-color: #dbdbdb,
-        btn-color: #E4D6FF,
-        btn-font: #000000,
-        price-color: #C5A8FF,
-        chat-image: url(../assets/icon/icon-message-circle-hc.svg),
-        profile-image: url(../assets/icon/icon-user-fill-hc.svg),
-    )
-);
-
 .img-crop {
     margin: 0 auto;
     width: 110px;
@@ -82,11 +69,11 @@ header{
         order: -1;
         p {
             margin-top: 6px;
-            font-size: .5rem;
+            font-size: map-get($font-sizes, "size8");
             @include get-color(color, gray-color);
         }
         & > strong {
-            font-size: 1.125rem;
+            font-size: map-get($font-sizes, "size18");
             font-weight: 700;
             color: $gray300-color;
         }
@@ -101,7 +88,7 @@ header{
 
     .profile-name {
         display: block;
-        font-size: 1rem;
+        font-size: map-get($font-sizes, "size16");
         font-weight: 700;
         margin : {
             top: 16px;
@@ -110,7 +97,7 @@ header{
     }
 
     .profile-id {
-        font-size: .75rem;
+        font-size: map-get($font-sizes, "size12");
     }
     .profile-id::before {
         content: "@ ";
@@ -118,7 +105,7 @@ header{
 
     .profile-intro {
         @include get-color(color, gray-color);
-        font-size: .875rem;
+        font-size: map-get($font-sizes, "size14");
         margin: {
             top: 16px;
             bottom: 24px;
@@ -148,7 +135,7 @@ header{
             border-radius: 30px;
             padding: 8px 27px;
 
-            font-size: .875rem;
+            font-size: map-get($font-sizes, "size14");
             font-weight: 500;
         }
     }
@@ -233,7 +220,7 @@ header{
         p {
             @include get-color(color, gray-color);
         }
-        @include get-color(background-image, profile-image);
+        @include get-color(background-image, profile-fill-image);
     }
     @include get-color(background-color, bg-color);
 }

@@ -39,7 +39,7 @@ h2,
 p {
   color: #767676;
   text-align: center;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 .theme-wrapper.highContrast h2,
 .theme-wrapper.highContrast p {
@@ -47,7 +47,7 @@ p {
 }
 
 .title {
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #000000;
 }
 .theme-wrapper.highContrast .title {
@@ -212,7 +212,7 @@ form input:focus {
 }
 form [class^=warning-msg] {
   color: #EB5757;
-  font-size: 12px;
+  font-size: 0.75rem;
   margin-top: 6px;
   display: none;
 }

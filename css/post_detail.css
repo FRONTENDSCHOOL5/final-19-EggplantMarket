@@ -49,7 +49,7 @@ main {
 }
 .comment-list .comment-item .comment-time {
   display: inline-block;
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #767676;
   line-height: 18px;
   vertical-align: top;
@@ -65,7 +65,7 @@ main {
   margin-right: 24px;
   line-height: 1.5;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #000000;
 }
 .theme-wrapper.highContrast .comment-list .comment-item .comment-text {

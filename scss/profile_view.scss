@@ -2,18 +2,6 @@
 @import './variables';
 @import './mixin';
 
-// 다른 부분 + 적용되지 않는 부분
-// $theme: (
-//     highContrast: (
-//         btn-list-on:url('../assets/icon/icon-post-list-on-hc.svg'),
-//         btn-list-off:url('../assets/icon/icon-post-list-off-hc.svg'),
-//         btn-album-off:url('../assets/icon/icon-post-album-off-hc.svg'),
-//         btn-album-on:url('../assets/icon/icon-post-album-on-hc.svg'),
-//         home-image: url(../assets/icon/icon-home-fill-hc.svg),
-//         profile-image: url(../assets/icon/icon-user-hc.svg),
-//     )
-// );
-
 // 게시글 보기 탭
 .post-tab {
     height: 44px;

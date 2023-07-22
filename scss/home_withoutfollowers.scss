@@ -2,19 +2,6 @@
 @import "variables";
 @import "mixin";
 
-// 다른 부분 + 적용되지 않는 부분
-$theme: (
-    light: (
-        home-image: url(../assets/icon/icon-home-fill.svg),
-    ),
-    highContrast: (
-        font-color: #ffffff,
-        gray-color: #dbdbdb,
-        home-image: url(../assets/icon/icon-home-fill-hc.svg),
-        chat-image: url(../assets/icon/icon-message-circle-hc.svg),
-    )
-);
-
 @mixin get-color($property, $color) {
     
     #{$property}: get-color($color);
@@ -39,7 +26,7 @@ $theme: (
     }
 
     p {
-        font-size: 14px;
+        font-size: map-get($font-sizes, "size14" );
         @include get-color(color, gray-color);
     }
 
@@ -77,7 +64,7 @@ $theme: (
     width: 120px;
     padding: 13px 0px;
     border-radius: 44px;
-    font-size: 14px;
+    font-size: map-get($font-sizes, "size14" );
 }
 
 footer {
@@ -91,7 +78,7 @@ footer {
         p {
             @include get-color(color, gray-color);
         }
-        @include get-color(background-image, home-image);
+        @include get-color(background-image, home-fill-image);
     }
     @include get-color(background-color, bg-color);
 }

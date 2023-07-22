@@ -121,58 +121,12 @@
     border-bottom: .0625rem solid $gray100-color;
     padding: 3px 5px;
     button{
-        font-size: .875rem;
+        font-size: map-get($font-sizes, "size14" );
     }
     input::placeholder{
         color: $gray200-color;
     }
 }
-
-// .modal-background{
-//     // 모달창 완성 후
-//     position: fixed;
-//     /* top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     background-color: rgba(0, 0, 0, 0.5);
-//     display: flex;
-//     justify-content: center;
-//     align-items: center; */
-//     .modal-content{
-//         width: 15.75rem;
-//         background-color: $white-color;
-//         border-radius: .625rem;
-//         text-align: center;
-//         .modal-description {
-//             padding: 1.375rem 3.8125rem;
-//             font-size: map-get($font-sizes, "size16");
-//             border-bottom: .0313rem solid $gray100-color;
-//             font-weight: 500;
-//         }
-//     }
-// }
-
-// .modal-actions {
-//     display: flex;
-//     justify-content: center;
-//     font-weight: 400;
-//     .left-button {
-//         order: 0;
-//         width: 7.875rem;
-//         padding: .875rem 3rem;
-//         font-size: map-get($font-sizes, "size14");
-//         border-right: .0313rem solid $gray100-color;
-//     }
-//     .right-button {
-//         order: 1;
-//         width: 7.875rem;
-//         padding: .875rem 3.0625rem;
-//         color: $highlight-color;
-//         font-size: map-get($font-sizes, "size14");
-//     }
-// }
-
 
 // 모달창
 // 하단 모달창 부분
@@ -405,7 +359,7 @@
 
 /* button */
 .size-l, .size-m, .size-ms, .size-s {
-    @include get-color(background-color, enabled-color);
+    @include get-color(background-color, enabled-btn-color);
     @include get-color(color, btn-font-color);
 }
 .size-l:disabled, .size-m:disabled, .size-ms:disabled, .size-s:disabled {
@@ -533,7 +487,7 @@ footer{
         height:1px;
         margin-bottom:-1px;  
         font-weight:bold;
-        font-size:14px;
+        font-size: map-get($font-sizes, "size14" );
         text-align:center;
         white-space:nowrap;
         background:#1c1c1c;
@@ -544,7 +498,7 @@ footer{
             width:fit-content;
             height:auto;
             padding:15px;
-            font-size:16px;
+            font-size: map-get($font-sizes, "size16" );
         }
     }
 }

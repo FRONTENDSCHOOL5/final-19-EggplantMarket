@@ -34,7 +34,7 @@ a {
 .top {
   background-color: #ffffff;
 }
-.chat-room-wrapper.highContrast .top {
+.theme-wrapper.highContrast .top {
   background-color: #000000;
 }
 
@@ -45,7 +45,7 @@ body {
 .title-chat {
   color: #000000;
 }
-.chat-room-wrapper.highContrast .title-chat {
+.theme-wrapper.highContrast .title-chat {
   color: #ffffff;
 }
 
@@ -88,7 +88,7 @@ main {
   color: #000000;
   border: 1px solid #C4C4C4;
 }
-.chat-room-wrapper.highContrast .chat-content .content-text {
+.theme-wrapper.highContrast .chat-content .content-text {
   color: #ffffff;
 }
 
@@ -108,7 +108,7 @@ main {
   border-radius: 0px 12px 12px 12px;
   background-color: #ffffff;
 }
-.chat-room-wrapper.highContrast .follow-chat .content-text {
+.theme-wrapper.highContrast .follow-chat .content-text {
   background-color: #000000;
 }
 
@@ -131,15 +131,15 @@ main {
   border: none;
   background-color: #635CA5;
 }
-.chat-room-wrapper.highContrast .my-chat .content-text {
+.theme-wrapper.highContrast .my-chat .content-text {
   color: #C5A8FF;
 }
 
-.chat-room-wrapper.highContrast .my-chat .content-text {
+.theme-wrapper.highContrast .my-chat .content-text {
   border: 1px solid #C5A8FF;
 }
 
-.chat-room-wrapper.highContrast .my-chat .content-text {
+.theme-wrapper.highContrast .my-chat .content-text {
   background-color: #000000;
 }
 
@@ -183,25 +183,25 @@ main {
   color: #000000;
   background-color: #ffffff;
 }
-.chat-room-wrapper.highContrast .comment #commemt-input {
+.theme-wrapper.highContrast .comment #commemt-input {
   color: #ffffff;
 }
 
-.chat-room-wrapper.highContrast .comment #commemt-input {
+.theme-wrapper.highContrast .comment #commemt-input {
   background-color: #000000;
 }
 
 .comment .btn-comment:disabled {
   color: #ffffff;
 }
-.chat-room-wrapper.highContrast .comment .btn-comment:disabled {
+.theme-wrapper.highContrast .comment .btn-comment:disabled {
   color: #E4D6FF;
 }
 
 .comment .btn-comment:not(:disabled) {
   color: #9747FF;
 }
-.chat-room-wrapper.highContrast .comment .btn-comment:not(:disabled) {
+.theme-wrapper.highContrast .comment .btn-comment:not(:disabled) {
   color: #FFEB32;
 }
 
@@ -224,19 +224,19 @@ main {
 #comment-input::placeholder {
   color: #767676;
 }
-.chat-room-wrapper.highContrast #comment-input::-webkit-input-placeholder {
+.theme-wrapper.highContrast #comment-input::-webkit-input-placeholder {
   color: #dbdbdb;
 }
-.chat-room-wrapper.highContrast #comment-input::-moz-placeholder {
+.theme-wrapper.highContrast #comment-input::-moz-placeholder {
   color: #dbdbdb;
 }
-.chat-room-wrapper.highContrast #comment-input:-ms-input-placeholder {
+.theme-wrapper.highContrast #comment-input:-ms-input-placeholder {
   color: #dbdbdb;
 }
-.chat-room-wrapper.highContrast #comment-input::-ms-input-placeholder {
+.theme-wrapper.highContrast #comment-input::-ms-input-placeholder {
   color: #dbdbdb;
 }
-.chat-room-wrapper.highContrast #comment-input::placeholder {
+.theme-wrapper.highContrast #comment-input::placeholder {
   color: #dbdbdb;
 }
 

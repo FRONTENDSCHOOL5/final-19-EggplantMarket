@@ -315,6 +315,10 @@ a {
   color: #9747FF;
   font-size: 0.875rem;
 }
+.highContrast .modal-actions .right-button {
+  color: #FFEB32;
+}
+
 .mode_select label {
   display: block;
   padding: 0.875rem 0rem;
@@ -494,6 +498,10 @@ a {
   color: #ffffff;
 }
 .highContrast .size-l, .highContrast .size-m, .highContrast .size-ms, .highContrast .size-s {
+  background-color: #E4D6FF;
+}
+
+.highContrast .size-l, .highContrast .size-m, .highContrast .size-ms, .highContrast .size-s {
   color: #000000;
 }
 
@@ -648,7 +656,7 @@ footer {
   height: 1px;
   margin-bottom: -1px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 0.875rem;
   text-align: center;
   white-space: nowrap;
   background: #1c1c1c;
@@ -661,7 +669,7 @@ footer {
   width: fit-content;
   height: auto;
   padding: 15px;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .highContrast .skip-nav a {

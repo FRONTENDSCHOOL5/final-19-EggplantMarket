@@ -2,16 +2,6 @@
 @import 'variables';
 @import 'mixin';
 
-@function get-color($key, $type: 'light') {
-
-    @each $name,
-    $color in map-get($theme, $type) {
-        @if($key ==$name) {
-            @return $color
-        }
-    }
-}
-
 .title-chat {
     @include get-color(color, font-color);
 }

@@ -155,7 +155,7 @@ form label[for=purchase-link] {
 
 .warning-msg-productname {
   color: #9747FF;
-  font-size: 12px;
+  font-size: 0.75rem;
   display: none;
 }
 .theme-wrapper.highContrast .warning-msg-productname {
@@ -164,7 +164,7 @@ form label[for=purchase-link] {
 
 .warning-msg-productprice {
   color: #9747FF;
-  font-size: 12px;
+  font-size: 0.75rem;
   display: none;
 }
 .theme-wrapper.highContrast .warning-msg-productprice {
@@ -173,7 +173,7 @@ form label[for=purchase-link] {
 
 .warning-msg-purchaselink {
   color: #9747FF;
-  font-size: 12px;
+  font-size: 0.75rem;
   display: none;
 }
 .theme-wrapper.highContrast .warning-msg-purchaselink {

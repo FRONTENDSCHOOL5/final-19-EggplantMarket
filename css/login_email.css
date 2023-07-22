@@ -37,7 +37,7 @@ a {
 
 .title {
   text-align: center;
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #000000;
 }
 .theme-wrapper.highContrast .title {
@@ -157,7 +157,7 @@ form > input::placeholder {
 
 [class^=warning-msg] {
   color: #EB5757;
-  font-size: 12px;
+  font-size: 0.75rem;
   display: block;
   margin-top: 6px;
   display: none;

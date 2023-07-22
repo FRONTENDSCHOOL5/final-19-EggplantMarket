@@ -2,17 +2,6 @@
 @import 'variables';
 @import 'mixin';
 
-
-
-@mixin get-color($property, $color) {
-
-    #{$property}: get-color($color);
-
-    @at-root .chat-room-wrapper.highContrast & {
-        #{$property}: get-color($color, highContrast);
-    }
-}
-
 .top{
     @include get-color(background-color, bg-color);
 }

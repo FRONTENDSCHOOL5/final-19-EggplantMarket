@@ -1,14 +1,5 @@
 @import 'mixin';
 
-@mixin get-color($property, $color) {
-
-    #{$property}: get-color($color);
-
-    @at-root .post-upload-wrapper.highContrast & {
-        #{$property}: get-color($color, highContrast);
-    }
-}
-
 main {
     padding: 20px 16px;
     display: flex;

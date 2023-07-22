@@ -72,6 +72,7 @@ a {
 }
 .user-chat-content .user-info .chat-content {
   display: block;
+  color: #767676;
   font-size: 0.75rem;
   font-weight: 400;
   margin-top: 2px;
@@ -120,6 +121,12 @@ a {
      object-fit: cover;
 }
 
+.tab-item-chat a {
+  background-image: url(../assets/icon/icon-message-circle-fill.svg);
+}
+.tab-item-chat a p {
+  color: #767676;
+}
 .theme-wrapper.highContrast .tab-item-chat a p {
   color: #dbdbdb;
 }

@@ -7,14 +7,13 @@ const url = "https://api.mandarin.weniv.co.kr",
 async function fetchData(url, options) {
     try {
         const response = await fetch(url, options);
-        const data = await response.json();
-        return data;
+        return response.json();
     } catch (err) {
         location.href='./404.html'
     }
 }
 
-async function fetchProfileData() { 
+async function getProfileData() { 
     const fullUrl = `${url}/profile/${profileAccountName}`;
     const options = {
         method: "GET",
@@ -26,7 +25,7 @@ async function fetchProfileData() {
     return fetchData(fullUrl, options);
 }
 
-async function fetchProductData() { 
+async function getProductData() { 
     const fullUrl = `${url}/product/${profileAccountName}`;
     const options = {
         method: "GET",
@@ -38,23 +37,26 @@ async function fetchProductData() {
     return fetchData(fullUrl, options);
 }
 
-let reqCnt = 0;
-async function fetchPostData() {
-    const fullUrl = `${url}/post/${profileAccountName}/userpost?limit=6&skip=${reqCnt++ * 6}`;
+function fetchPostData(){
+    const url = "https://api.mandarin.weniv.co.kr";
+    const reqPath = `/post/${profileAccountName}/userpost?limit=6&skip=`
+    let reqCnt = 0;
     const options = {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json"
+            "Content-type": "application/json"
         }
-    };
-    return fetchData(fullUrl, options);
+    }
+    const getPostData = async () => await fetchData(url + reqPath + reqCnt++ * 6, options)
+
+    return getPostData
 }
 
-async function fetchFollow(METHOD, ACTION) {
-    const fullUrl = `${url}/profile/${profileAccountName}/${ACTION}`,
+async function postFollow() {
+    const fullUrl = `${url}/profile/${profileAccountName}/follow`,
     options = {
-        method: METHOD,
+        method: "POST",
         headers : {
             "Authorization" : `Bearer ${token}`,
             "Content-type" : "application/json"
@@ -63,7 +65,19 @@ async function fetchFollow(METHOD, ACTION) {
     return fetchData(fullUrl, options);
 }
 
-function renderProfileInfo(profile_data){
+async function deletefollow() {
+    const fullUrl = `${url}/profile/${profileAccountName}/unfollow`,
+    options = {
+        method: "DELETE",
+        headers : {
+            "Authorization" : `Bearer ${token}`,
+            "Content-type" : "application/json"
+        }
+    };
+    return fetchData(fullUrl, options);
+}
+
+function displayProfileInfo(profile_data){
     const userName = document.querySelector('.profile-name'),
     accountName = document.querySelector('.profile-id'),
     intro = document.querySelector('.profile-intro'),
@@ -119,7 +133,7 @@ function createProductItem(item){
     return productItem
 }
 
-function renderProductList(product_data,count){
+function displayProductList(product_data,count){
     if(count==0){
         document.querySelector('.product-container').style.display='none'
         document.querySelector('.skip-nav a:nth-child(3)').style.display='none'
@@ -138,9 +152,9 @@ function renderProductList(product_data,count){
 }
 
 // 게시글 보는 섹션
-function renderPosts(post_data) {
+function displayPosts(post_data) {
     // 첫 요청시 데이터가 없으면 섹션 숨기기
-    if (reqCnt == 1 && !post_data.length) {
+    if (!document.querySelector('.post-list').childNodes.length && !post_data.length) {
         document.querySelector('.post-container').style.display = 'none'
         document.querySelector('.skip-nav a:nth-child(4)').style.display='none'
         return
@@ -268,25 +282,33 @@ async function run() {
     document.querySelector('.btn-wrap-my').style.display = isMyProfile ? 'none' : 'block'
     document.querySelector('li.tab-item-more a').classList.toggle('here',!isMyProfile)    
     document.querySelector('li.tab-item-home a').classList.toggle('here',isMyProfile)
+    const getPostData = fetchPostData();
 
     // 동시에 호출할 비동기 함수들을 배열로 준비
     const fetchPromises = [
-        fetchProfileData(),
-        fetchProductData(),
-        fetchPostData()
+        getProfileData(),
+        getProductData(),
+        getPostData()
     ];
 
     // 모든 비동기 작업이 완료될 때까지 기다림
     const [profileData, productData, postData] = await Promise.all(fetchPromises);
 
-    renderProfileInfo(profileData.profile),
-    renderProductList(productData.product, productData.data),
-    renderPosts(postData.post)
+    displayProfileInfo(profileData.profile),
+    displayProductList(productData.product, productData.data),
+    displayPosts(postData.post)
 
     document.querySelector('body').style.display = 'block'
     handleModal()
     touchScroll()
     window.addEventListener('resize',touchScroll)
+    window.addEventListener("scroll", async () => {
+        if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
+            displayPosts((await getPostData()).post)
+            const postBtnOption = document.querySelectorAll('main .btn-option');
+            handlePostOptionModal(postBtnOption)
+        };
+    })
 };
 
 run();
@@ -315,11 +337,8 @@ run();
 
     followBtns.forEach((item,idx,buttonTypes)=>{
         item.addEventListener('click', async ()=>{
-            const isCancle = item.classList.contains('cancle')
-            const METHOD = isCancle ? 'DELETE' : 'POST',
-                ACTION = isCancle ? 'unfollow' : 'follow';
-
-            const resJson = await fetchFollow(METHOD, ACTION);
+            const isCancel = item.classList.contains('cancle');
+            const resJson = isCancel ? await fetchUnfollow() : await fetchFollow();
 
             document.querySelector('.follower').textContent = resJson.profile.followerCount;
             buttonTypes[idx].classList.add('hidden')
@@ -329,13 +348,6 @@ run();
 }());
 
 // 무한 스크롤 
-window.addEventListener("scroll", async () => {
-    if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
-        throttle(renderPosts((await fetchPostData(url, token, profileAccountName)).post), 1000)
-        const postBtnOption = document.querySelectorAll('main .btn-option');
-        handlePostOptionModal(postBtnOption)
-    };
-})
 
 function touchScroll(){
     const list = document.querySelector('.product-list')

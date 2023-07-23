@@ -66,24 +66,24 @@ function changeTheme(inputs) {
 }
 
 // tab으로 이동
-function modalTab(inputs) {
-  for (let i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener("keydown", function (e) {
-      if (e.key === "Tab" && !e.shiftKey) {
-        e.preventDefault();
-        const nextInput = inputs[i + 1] || inputs[0];
-        nextInput.focus();
-      } else if (e.key === "Enter") {
-        e.preventDefault();
-        inputs[i].click();
-        localStorage.setItem("theme", e.target.id);
-      } else if (e.key === "Tab" && e.shiftKey) {
-        e.preventDefault();
-        const prevInput = inputs[i - 1] || inputs[inputs.length - 1];
-        prevInput.focus();
-      }
-    });
-  }
+function modalTab(inputs){
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('keydown', function (e) {
+            if (e.key === 'Tab' && !e.shiftKey) {
+                e.preventDefault();
+                const nextInput = inputs[i + 1] || inputs[0];
+                nextInput.focus();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                inputs[i].click();
+                localStorage.setItem('theme',e.target.id);
+            } else if (e.key === 'Tab' && e.shiftKey){
+                e.preventDefault();
+                const prevInput = inputs[i - 1] || inputs[inputs.length - 1];
+                prevInput.focus();
+            }
+        });
+    }
 }
 
 // 모달창 기능 - 상단 option 모달창

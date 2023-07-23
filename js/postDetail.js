@@ -1,138 +1,60 @@
-const postId = new URLSearchParams(location.search).get('postId') || '648bbcfdb2cb205663363788';
+const postId = new URLSearchParams(location.search).get('postId');
 
-const url = "https://api.mandarin.weniv.co.kr";
-const token = localStorage.getItem("user-token");
-const myAccountName = localStorage.getItem("user-accountname");
+const url = "https://api.mandarin.weniv.co.kr",
+    token = localStorage.getItem("user-token"),
+    myAccountName = localStorage.getItem("user-accountname");
 let userAccountName = '';
 
-const postViewSec = document.querySelector('.home-post');
-const commentList = document.querySelector('.comment-list');
-const profileImg = document.querySelector('.profile-img');
-const commentInp = document.querySelector('#commemt-input');
-const commentSubmitButton = document.querySelector('.btn-comment');
+const $postViewSec = document.querySelector('.home-post'),
+    $commentList = document.querySelector('.comment-list'),
+    $profileImg = document.querySelector('.profile-img'),
+    $commentInp = document.querySelector('#commemt-input'),
+    $commentSubmitButton = document.querySelector('.btn-comment');
 
-// 작성자 프로필 이미지 가져오기
-async function getMyImg() {
-    const reqPath = "/user/myinfo";
-    const res = await fetch(url + reqPath, {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${token}`
-        }
-    });
-    const json = await res.json();
-    return json.user.image;
-}
 (async function () {
-    profileImg.src = await getMyImg();
+    const [profileImg, dataPost, dataComments] = await Promise.all([getMyImg(), getOnePost(), getComments()]);
+    $profileImg.src = profileImg;
+    displayPost(dataPost.post);
+    displayComment(dataComments.comments);
+
+    handleModal();
 })();
 
-commentInp.addEventListener('keyup', (e) => {
-    if (e.target.value.trim() !== '') {
-        commentSubmitButton.disabled = false;
-    } else {
-        commentSubmitButton.disabled = true;
-    }
+$commentInp.addEventListener('input', (e) => {
+    console.log(e.target.value.trim());
+    $commentSubmitButton.disabled = e.target.value.trim() !== '' ? false : true;
 })
 
-commentSubmitButton.addEventListener('click', async (e) => {
+$commentSubmitButton.addEventListener('click', async (e) => {
     e.target.disabled = true
-    await postComment(commentInp.value)
-    commentInp.value = '';
+    await postComment($commentInp.value)
+    $commentInp.value = '';
     // 댓글 다시 뿌리기
     const dataComments = await getComments();
-    await displayComment(dataComments.comments);
+    displayComment(dataComments.comments);
     document.querySelector('.btn-comment .cnt').textContent = document.querySelector('.comment-list').childNodes.length
 });
-
-// POST 댓글
-async function postComment(content) {
-    try {
-        const data = {
-            "comment": {
-                "content": content
-            }
-        }
-        const res = await fetch(url + `/post/${postId}/comments`, {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
-        const resJson = await res.json();
-        console.log(resJson);
-
-    } catch (err) {
-        console.error(err);
-        location.href='./404.html'
-    }
-}
-
-// GET 게시글 데이터
-async function getOnePost() {
-    try {
-        const res = await fetch(url + `/post/${postId}`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-type": "application/json"
-            }
-        });
-        const resJson = await res.json();
-        // console.log(resJson);
-        return resJson;
-    } catch (err) {
-        console.error(err);
-        location.href='./404.html'
-    }
-}
-
-// GET 댓글 데이터 
-async function getComments() {
-    try {
-        const res = await fetch(url + `/post/${postId}/comments`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-type": "application/json"
-            }
-        });
-        const resJson = await res.json();
-        // console.log(resJson);
-        return resJson;
-    } catch (err) {
-        console.error(err);
-        location.href='./404.html'
-    }
-}
 
 // 게시글 내용 화면에 뿌리기
 function displayPost(post) {
     const frag = document.createDocumentFragment();
 
-    // h2
     const hd = document.querySelector('.home-post h2');
     hd.parentNode.setAttribute('data-postid',post.id)
     const headingContent = post.content ? post.content : '사진만 있는 게시글';
-    hd.innerHTML = headingContent;
+    hd.textContent = headingContent;
 
-    // section .게시글 작성자
     const userInfoSec = document.createElement('div');
     userInfoSec.setAttribute('class', 'user-follow');
-    userInfoSec.innerHTML = `
-    <a class="profile-img img-cover" href="./profile_info.html?accountName=${post.author.accountname}">
+    userInfoSec.innerHTML = `<a class="profile-img img-cover" href="./profile_info.html?accountName=${post.author.accountname}">
         <span class="a11y-hidden">${post.author.username}의 프로필 보기</span>
         <img src=${checkImageUrl(post.author.image,'profile')} alt="">
-    </a>
-    <a class="user-info" href="./profile_info.html?accountName=${post.author.accountname}">
-        <p class="user-name">${post.author.username}<span class="a11y-hidden">의 프로필 보기</span></p>
-        <p class="user-id">${post.author.accountname}</p>
-    </a>`
+        </a>
+        <a class="user-info" href="./profile_info.html?accountName=${post.author.accountname}">
+            <p class="user-name">${post.author.username}<span class="a11y-hidden">의 프로필 보기</span></p>
+            <p class="user-id">${post.author.accountname}</p>
+        </a>`
 
-    // section .게시글 내용
-    // 좋아요 부분 수정하기
     const postInfoSec = document.createElement('div');
     postInfoSec.setAttribute('class', 'post-edit');
     postInfoSec.innerHTML = `<div></div>
@@ -155,53 +77,86 @@ function displayPost(post) {
     if(post.image){
         post.image.split(',').forEach(item=>{
             postInfoSec.querySelector('div').insertAdjacentHTML('beforeend',`<div class="img-cover">
-                <img class="post-img" src=${checkImageUrl(item,'post')} alt="게시물 사진">
+                <img class="post-img" src=${checkImageUrl(item, 'post')} alt="">
             </div>`)
         })
-        
-    postInfoSec.querySelector('.btn-like').addEventListener('click',handleLike)
     }
+    postInfoSec.querySelector('.btn-like').addEventListener('click', handleLike)
 
-    // 더보기 버튼
     const btnOption = document.createElement('button');
     btnOption.setAttribute('class', 'btn-option');
     btnOption.innerHTML = `<span class="a11y-hidden">게시물 옵션</span>`;
 
     frag.append(userInfoSec, postInfoSec, btnOption);
-    postViewSec.append(frag);
+    $postViewSec.append(frag);
 
 }
-
 
 // 댓글 화면에 뿌리기
 function displayComment(comments) {
     const frag = document.createDocumentFragment();
 
-    comments.forEach(i => {
+    comments.forEach((i) => {
         const li = document.createElement('li');
         li.setAttribute('class', 'comment-item');
-        li.innerHTML = `
-        <div class="comment-user-info">
-            <a class="user-img img-cover" href="./profile_info.html?accountName=${i.author.accountname}">
-                <span class="a11y-hidden">${i.author.username}의 프로필 보기</span>
-                <img src=${i.author.image} alt="">
-            </a>
-            <a class="user-name" href="./profile_info.html?accountName=${i.author.accountname}">
-                <span class="a11y-hidden">${i.author.username}의 프로필 보기</span>
-                ${i.author.accountname}
-            </a>
-    </div>
-    <p class="comment-time">${displayedAt(i.createdAt)}</p>
-    <h3 class="comment-text">${i.content}</h3>
-    <button class="btn-more" data-commentId=${i.id}><span class="a11y-hidden">댓글 옵션</span></button>`;
 
-        frag.append(li);
-    })
+        const commentUserInfoDiv = document.createElement('div');
+        commentUserInfoDiv.setAttribute('class', 'comment-user-info');
 
-    while (commentList.hasChildNodes()) {
-        commentList.removeChild(commentList.firstChild);
+        const userImgLink = document.createElement('a');
+        userImgLink.setAttribute('class', 'user-img img-cover');
+        userImgLink.href = `./profile_info.html?accountName=${i.author.accountname}`;
+
+        const hiddenTextSpan = document.createElement('span');
+        hiddenTextSpan.setAttribute('class', 'a11y-hidden');
+        hiddenTextSpan.textContent = `${i.author.username}의 프로필 보기`;
+
+        const userImg = document.createElement('img');
+        userImg.src = i.author.image;
+        userImg.alt = '';
+
+        userImgLink.append(hiddenTextSpan, userImg);
+
+        const userNameLink = document.createElement('a');
+        userNameLink.setAttribute('class', 'user-name');
+        userNameLink.href = `./profile_info.html?accountName=${i.author.accountname}`;
+        userNameLink.textContent = i.author.accountname;
+
+        const userNameHiddenText = document.createElement('span');
+        userNameHiddenText.setAttribute('class', 'a11y-hidden');
+        userNameHiddenText.textContent = `의 프로필 보기`;
+
+        userImgLink.append(hiddenTextSpan)
+
+        commentUserInfoDiv.append(userImgLink, userNameLink);
+
+        const commentTimeParagraph = document.createElement('p');
+        commentTimeParagraph.setAttribute('class', 'comment-time');
+        commentTimeParagraph.textContent = displayedAt(i.createdAt);
+
+        const commentTextHeading = document.createElement('h3');
+        commentTextHeading.setAttribute('class', 'comment-text');
+        commentTextHeading.textContent = i.content;
+
+        const commentOptionsButton = document.createElement('button');
+        commentOptionsButton.setAttribute('class', 'btn-more');
+        commentOptionsButton.setAttribute('data-commentId', i.id);
+
+        const commentOptionsHiddenText = document.createElement('span');
+        commentOptionsHiddenText.setAttribute('class', 'a11y-hidden');
+        commentOptionsHiddenText.textContent = '댓글 옵션';
+
+        commentOptionsButton.appendChild(commentOptionsHiddenText);
+
+        li.append(commentUserInfoDiv, commentTimeParagraph, commentTextHeading, commentOptionsButton);
+
+        frag.appendChild(li);
+    });
+
+    while ($commentList.hasChildNodes()) {
+        $commentList.removeChild($commentList.firstChild);
     }
-    commentList.append(frag);
+    $commentList.append(frag);
 
     const commentBtnOption = document.querySelectorAll('.btn-more');
     if(commentBtnOption.length !== 0){
@@ -211,29 +166,74 @@ function displayComment(comments) {
     }
 }
 
-async function run() {
-    // 추후 promiseAll 사용해보기
-    const dataPost = await getOnePost();
-    const dataComments = await getComments();
 
-    // 모달창 관련
-    userAccountName = dataPost.post.author.accountname;
-    if (myAccountName !== userAccountName) {
-        // 게시글 신고하기 모달
-        // 댓글 신고하기 모달
-    } else {
-        // 게시글 삭제, 수정 모달
-        // 댓글 삭제하기 모달
-    }
+// --- API 함수들 ---
 
-    // 데이터 뿌리기
-    displayPost(dataPost.post);
-    displayComment(dataComments.comments);
-    handleModal()
+// GET 프로필 이미지
+async function getMyImg() {
+    const res = await fetch(url + "/user/myinfo", {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const json = await res.json();
+    return json.user.image;
 }
 
+// GET 게시글 데이터
+async function getOnePost() {
+    try {
+        const res = await fetch(url + `/post/${postId}`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-type": "application/json"
+            }
+        });
+        return res.json();
+    } catch (err) {
+        location.href = './404.html'
+    }
+}
 
-run();
+// GET 댓글 데이터 
+async function getComments() {
+    try {
+        const res = await fetch(url + `/post/${postId}/comments`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-type": "application/json"
+            }
+        });
+        return res.json();
+    } catch (err) {
+        location.href = './404.html'
+    }
+}
+
+// POST 댓글
+async function postComment(content) {
+    try {
+        await fetch(url + `/post/${postId}/comments`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                "comment": {
+                    "content": content
+                }
+            })
+        });
+    } catch (err) {
+        location.href = './404.html'
+    }
+}
+
+// --- ---
 
 
 function displayedAt(createdAt) {
@@ -251,18 +251,4 @@ function displayedAt(createdAt) {
     else{
         return dateProcess(createdAt)
     }
- }
-
- //테마 작업 진행중.
-// const wrapper = document.querySelector('.post-detail-wrapper');
-// const theme = window.localStorage.getItem('theme');
-// if (theme === 'highContrast') {
-//     wrapper.classList.add('highContrast');
-//     document.body.style.backgroundColor = '#000000';
-//     document.getElementById("post-detail-back-btn").src = "../assets/icon/icon-arrow-left-hc.svg";
-
-// } else {
-//     wrapper.classList.remove('highContrast');
-//     document.body.style.backgroundColor = '#ffffff'; 
-    
-// }
+}

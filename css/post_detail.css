@@ -37,7 +37,7 @@ main {
 }
 
 .home-post {
-  border-bottom: 1px solid #DBDBDB;
+  border-bottom: 1px solid #dbdbdb;
 }
 
 .comment-list {
@@ -57,7 +57,7 @@ main {
   padding-left: 12px;
 }
 .theme-wrapper.highContrast .comment-list .comment-item .comment-time {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .comment-list .comment-item .comment-text {
@@ -85,10 +85,10 @@ main {
 }
 .comment-user-info .img-cover {
   display: inline-block;
-  width: 36px;
-  height: 36px;
   overflow: hidden;
   border-radius: 50%;
+  width: 36px;
+  height: 36px;
 }
 .comment-user-info .img-cover img {
   width: 100%;
@@ -113,10 +113,10 @@ main {
 
 .comment .img-cover {
   display: inline-block;
-  width: 36px;
-  height: 36px;
   overflow: hidden;
   border-radius: 50%;
+  width: 36px;
+  height: 36px;
   margin-right: 10px;
 }
 .comment .img-cover img {
@@ -186,12 +186,12 @@ main {
   stroke: #767676;
 }
 .theme-wrapper.highContrast .post-icon path {
-  stroke: #dbdbdb;
+  stroke: #f2f2f2;
 }
 
 .post-icon span {
   color: #767676;
 }
 .theme-wrapper.highContrast .post-icon span {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }

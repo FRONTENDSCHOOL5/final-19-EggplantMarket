@@ -1,5 +1,4 @@
 @import 'global';
-@import 'variables';
 @import 'mixin';
 
 .title-chat {
@@ -62,7 +61,7 @@
     margin-left: auto;
 
     @include get-color(color, btn-font-color);
-    @include get-color(background-color, follow-btn);
+    @include get-color(background-color, btn-color);
     border-radius: 26px;
 }
 
@@ -79,11 +78,9 @@
 
 // 재사용되는 코드
 .img-cover {
-    display: inline-block;
+    @include image-cover;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
 
     img {
         width: 100%;

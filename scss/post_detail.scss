@@ -1,5 +1,4 @@
 @import "global";
-@import "variables";
 @import "mixin";
 
 main {
@@ -9,7 +8,7 @@ margin: 0 .9375rem;
 
 // 게시글 내용 영역
 .home-post {
-    border-bottom: 1px solid #DBDBDB;
+    border-bottom: 1px solid $gray100-color;
 }
 // 게시글 댓글 영역
 .comment-list {
@@ -24,10 +23,9 @@ margin: 0 .9375rem;
             font-size: map-get($font-sizes, "size10");
             @include get-color(color, gray-color);
             line-height: 18px;
-                vertical-align: top;
-                margin-top: 6px;
-                // position: relative;
-                padding-left: 12px;
+            vertical-align: top;
+            margin-top: 6px;
+            padding-left: 12px;
         }
         
         .comment-text {
@@ -52,18 +50,16 @@ margin: 0 .9375rem;
     display: inline-block;
 
     .img-cover {
-            display: inline-block;
+            @include image-cover;
             width: 36px;
             height: 36px;
-            overflow: hidden;
-            border-radius: 50%;
     
             img {
                 width: 100%;
                 height: 100%;
                 aspect-ratio: 1/1;
                 object-fit: cover;
-        }
+            }
         }
         
         .user-name {
@@ -79,11 +75,9 @@ margin: 0 .9375rem;
 }
 .comment {
     .img-cover {
-        display: inline-block;
+        @include image-cover;
         width: 36px;
         height: 36px;
-        overflow: hidden;
-        border-radius: 50%;
         margin-right: 10px;
 
         img {

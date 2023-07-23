@@ -57,19 +57,19 @@ form textarea::placeholder {
   color: #767676;
 }
 .theme-wrapper.highContrast form textarea::-webkit-input-placeholder {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 .theme-wrapper.highContrast form textarea::-moz-placeholder {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 .theme-wrapper.highContrast form textarea:-ms-input-placeholder {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 .theme-wrapper.highContrast form textarea::-ms-input-placeholder {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 .theme-wrapper.highContrast form textarea::placeholder {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 form .img-cover {
@@ -98,10 +98,10 @@ form .img-cover button {
 
 .user-profile {
   display: inline-block;
-  height: 42px;
-  width: 42px;
   overflow: hidden;
   border-radius: 50%;
+  height: 42px;
+  width: 42px;
 }
 .user-profile img {
   width: 100%;
@@ -159,7 +159,7 @@ form .img-cover button {
 }
 
 .theme-wrapper.highContrast .size-ms:disabled {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .size-ms {

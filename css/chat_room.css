@@ -33,6 +33,10 @@ a {
 
 .top {
   background-color: #ffffff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 .theme-wrapper.highContrast .top {
   background-color: #000000;
@@ -51,10 +55,10 @@ body {
 
 .img-cover {
   display: inline-block;
+  overflow: hidden;
+  border-radius: 50%;
   width: 42px;
   height: 42px;
-  border-radius: 50%;
-  overflow: hidden;
 }
 .img-cover img {
   width: 100%;
@@ -66,7 +70,12 @@ body {
 main {
   position: fixed;
   width: 100%;
-  bottom: 73px;
+  bottom: 0;
+  padding: 100vh 0px 73px;
+  background-color: #f2f2f2;
+}
+.theme-wrapper.highContrast main {
+  background-color: #000000;
 }
 
 .chat-content {
@@ -86,7 +95,7 @@ main {
   font-size: 0.875rem;
   line-height: 17.53px;
   color: #000000;
-  border: 1px solid #C4C4C4;
+  border: 1px solid #c4c4c4;
 }
 .theme-wrapper.highContrast .chat-content .content-text {
   color: #ffffff;
@@ -169,7 +178,7 @@ main {
 }
 
 .comment {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -192,7 +201,7 @@ main {
 }
 
 .comment .btn-comment:disabled {
-  color: #ffffff;
+  color: #635CA5;
 }
 .theme-wrapper.highContrast .comment .btn-comment:disabled {
   color: #E4D6FF;
@@ -225,19 +234,19 @@ main {
   color: #767676;
 }
 .theme-wrapper.highContrast #comment-input::-webkit-input-placeholder {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 .theme-wrapper.highContrast #comment-input::-moz-placeholder {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 .theme-wrapper.highContrast #comment-input:-ms-input-placeholder {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 .theme-wrapper.highContrast #comment-input::-ms-input-placeholder {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 .theme-wrapper.highContrast #comment-input::placeholder {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .post-modal-background {
@@ -249,7 +258,7 @@ main {
   background-color: rgba(0, 0, 0, 0.5);
 }
 .post-modal-background .post-modal-content {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding-bottom: 10px;
   border-radius: 20px 20px 0 0;
   position: absolute;

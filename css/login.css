@@ -82,7 +82,7 @@ body {
 }
 
 .theme-wrapper.highContrast .domain.kakao {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .domain.google {
@@ -95,7 +95,7 @@ body {
 }
 
 .theme-wrapper.highContrast .domain.google {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .domain.facebook {
@@ -108,7 +108,7 @@ body {
 }
 
 .theme-wrapper.highContrast .domain.facebook {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .email {
@@ -117,14 +117,14 @@ body {
   color: #767676;
 }
 .theme-wrapper.highContrast .email {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .email a {
   color: #767676;
 }
 .theme-wrapper.highContrast .email a {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .email span {

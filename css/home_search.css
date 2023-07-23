@@ -57,7 +57,7 @@ footer {
 }
 
 #inp-search {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
 }
 .theme-wrapper.highContrast #inp-search {
   background-color: #bdbdbd;
@@ -93,7 +93,7 @@ footer {
   color: #767676;
 }
 .theme-wrapper.highContrast .tab-item-list .here p {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .theme-wrapper.highContrast .tab-item-list .here {
@@ -111,7 +111,7 @@ footer {
   color: #767676;
 }
 .theme-wrapper.highContrast .tab-item-chat a p {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .theme-wrapper.highContrast .tab-item-chat a {
@@ -125,7 +125,7 @@ footer {
   color: #767676;
 }
 .theme-wrapper.highContrast .tab-item-follow a p {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .theme-wrapper.highContrast .tab-item-follow a {
@@ -139,7 +139,7 @@ footer {
   color: #767676;
 }
 .theme-wrapper.highContrast .tab-item-more a p {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .theme-wrapper.highContrast .tab-item-more a {
@@ -157,5 +157,5 @@ footer {
   color: #767676;
 }
 .theme-wrapper.highContrast .user-id {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }

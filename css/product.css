@@ -56,7 +56,7 @@ form > label {
   margin-bottom: 2px;
 }
 .theme-wrapper.highContrast form > label {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 form > input {
@@ -154,7 +154,7 @@ form label[for=purchase-link] {
 }
 
 .warning-msg-productname {
-  color: #9747FF;
+  color: #EB5757;
   font-size: 0.75rem;
   display: none;
 }
@@ -163,7 +163,7 @@ form label[for=purchase-link] {
 }
 
 .warning-msg-productprice {
-  color: #9747FF;
+  color: #EB5757;
   font-size: 0.75rem;
   display: none;
 }
@@ -172,7 +172,7 @@ form label[for=purchase-link] {
 }
 
 .warning-msg-purchaselink {
-  color: #9747FF;
+  color: #EB5757;
   font-size: 0.75rem;
   display: none;
 }
@@ -196,7 +196,7 @@ form label[for=purchase-link] {
 }
 
 .theme-wrapper.highContrast .size-ms:disabled {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .size-ms {
@@ -215,5 +215,5 @@ h2 {
   color: #767676;
 }
 .theme-wrapper.highContrast h2 {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }

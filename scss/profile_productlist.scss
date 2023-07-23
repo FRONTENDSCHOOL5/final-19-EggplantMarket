@@ -2,7 +2,7 @@
 @import "variables";
 
 main {
-    min-width: 390px
+    min-width: 390px;
 }
 
 .product{
@@ -35,7 +35,6 @@ main {
             margin-right: 18px;
         }
         transform: translate(0,0);
-        // position : absolute
     }
 
     &-img{

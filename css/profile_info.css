@@ -36,7 +36,7 @@ a {
   width: 110px;
   border-radius: 50%;
   overflow: hidden;
-  border: 1px solid #DBDBDB;
+  border: 1px solid #dbdbdb;
 }
 .img-crop img {
   width: 100%;
@@ -48,7 +48,7 @@ a {
 
 body {
   height: calc(100% + 61px);
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 main {
@@ -57,7 +57,7 @@ main {
   margin-bottom: 61px;
 }
 main > section {
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 header {
@@ -68,7 +68,7 @@ header {
 }
 
 .profile-container {
-  border: 1px solid #dbdbdb;
+  border: 1px solid #f2f2f2;
   border-top: 0;
   background-color: #ffffff;
   position: relative;
@@ -109,7 +109,7 @@ header {
   color: #767676;
 }
 .theme-wrapper.highContrast .profile-container .profile-header .profile-id {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .profile-container .follow-wrap {
@@ -135,7 +135,7 @@ header {
   color: #767676;
 }
 .theme-wrapper.highContrast .profile-container .follow-wrap p {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .profile-container .follow-wrap > strong {
@@ -148,7 +148,7 @@ header {
           transform: translateX(calc(-50% - 1.5rem - 94px));
 }
 .profile-container .follow-wrap:nth-of-type(1) > strong {
-  color: #000;
+  color: #000000;
 }
 .profile-container .profile-name {
   display: block;
@@ -170,7 +170,7 @@ header {
   margin-bottom: 24px;
 }
 .theme-wrapper.highContrast .profile-container .profile-intro {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .profile-container .btn-wrap-my {
@@ -193,7 +193,7 @@ header {
   margin-right: 12px;
 }
 .profile-container .btn-wrap-my .btn-link {
-  background-color: #fff;
+  background-color: #ffffff;
   border: 1px solid #dbdbdb;
   color: #767676;
   border-radius: 30px;
@@ -219,7 +219,7 @@ header {
   background: no-repeat center center;
 }
 .theme-wrapper.highContrast .profile-container .btn-wrap-your .circle {
-  border: 1px solid #dbdbdb;
+  border: 1px solid #f2f2f2;
 }
 
 .profile-container .btn-wrap-your .btn-chat {
@@ -288,7 +288,7 @@ header {
   color: #767676;
 }
 .theme-wrapper.highContrast .user-follow .user-info .user-id {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .theme-wrapper.highContrast .user-follow .user-info {
@@ -306,21 +306,21 @@ header {
   color: #767676;
 }
 .theme-wrapper.highContrast .cnt {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .btn-comment {
   color: #767676;
 }
 .theme-wrapper.highContrast .btn-comment {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .post-date {
   color: #767676;
 }
 .theme-wrapper.highContrast .post-date {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .tab-item-list {
@@ -340,7 +340,7 @@ header {
   color: #767676;
 }
 .theme-wrapper.highContrast .tab-item-list .here p {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .theme-wrapper.highContrast .tab-item-list .here {
@@ -358,7 +358,7 @@ header {
   color: #767676;
 }
 .theme-wrapper.highContrast .tab-item-chat a p {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .theme-wrapper.highContrast .tab-item-chat a {
@@ -372,7 +372,7 @@ header {
   color: #767676;
 }
 .theme-wrapper.highContrast .tab-item-follow a p {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .theme-wrapper.highContrast .tab-item-follow a {
@@ -386,7 +386,7 @@ header {
   color: #767676;
 }
 .theme-wrapper.highContrast .tab-item-home a p {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .theme-wrapper.highContrast .tab-item-home a {

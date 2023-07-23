@@ -1,4 +1,3 @@
-@import "variables";
 @import "global";
 @import "mixin";
 
@@ -53,7 +52,7 @@ form{
 
 .product-img {
     border-radius: 20px;
-    background: #f2f2f2;
+    background: $gray50-color;
     position: relative;
     aspect-ratio: 5/3;
     .btn-upload {
@@ -79,24 +78,24 @@ form{
 
 .btn-upload .upload-img{
     circle:hover {
-        fill: #E4D6FF;
+        fill: $purple100-color;
     }
 }
 
 .warning-msg-productname {
-    @include get-color(color, strong-color);
+    @include get-color(color, warning-color);
     font-size: map-get($font-sizes, "size12");
     display: none;
 }
 
 .warning-msg-productprice{
-    @include get-color(color, strong-color);
+    @include get-color(color, warning-color);
     font-size: map-get($font-sizes, "size12");
     display: none;
 }
 
 .warning-msg-purchaselink {
-    @include get-color(color, strong-color);
+    @include get-color(color, warning-color);
     font-size: map-get($font-sizes, "size12");
     display: none;
 }
@@ -108,7 +107,7 @@ form{
 }
 
 .size-ms{
-    @include get-color(background-color, upload-btn);
+    @include get-color(background-color, btn-color);
     @include get-color(color, btn-font-color);
 }
 

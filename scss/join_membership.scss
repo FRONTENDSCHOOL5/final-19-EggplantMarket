@@ -1,4 +1,3 @@
-@import 'variables';
 @import 'global';
 @import 'mixin';
 
@@ -151,7 +150,7 @@ button {
 
 .btn-next {
     border: none;
-    color: white;
+    color: $white-color;
     @include get-color(background-color, enabled-btn-color);
     margin-top: 30px;
     padding: 13px;
@@ -159,7 +158,7 @@ button {
 
 .btn-next:disabled {
     @include get-color(background-color, disabled-btn-color);
-    color: white;
+    color: $white-color;
     @include get-color(box-shadow, box-shadow);
 }
 

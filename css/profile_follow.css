@@ -76,7 +76,7 @@ a {
   color: #767676;
 }
 .theme-wrapper.highContrast .follow-list .follow-item .user-info p {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .follow-list .follow-item .user-info .user-name {
@@ -114,8 +114,8 @@ a {
 
 .btn-follow.opposite {
   color: #767676;
-  background-color: white;
-  border: 1px solid #dbdbdb;
+  background-color: #ffffff;
+  border: 1px solid #f2f2f2;
 }
 .theme-wrapper.highContrast .btn-follow.opposite {
   color: #E4D6FF;
@@ -131,18 +131,18 @@ a {
 
 .btn-follow:disabled {
   background-color: #767676;
-  color: #fff;
+  color: #ffffff;
 }
 .theme-wrapper.highContrast .btn-follow:disabled {
-  background-color: #dbdbdb;
+  background-color: #f2f2f2;
 }
 
 .img-cover {
   display: inline-block;
+  overflow: hidden;
+  border-radius: 50%;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  overflow: hidden;
 }
 .img-cover img {
   width: 100%;

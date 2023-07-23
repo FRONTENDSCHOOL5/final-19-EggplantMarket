@@ -1,5 +1,4 @@
 @import 'global';
-@import 'variables';
 @import 'mixin';
 
 .login {
@@ -42,7 +41,7 @@ form {
         border: none;
         border-bottom: 1px solid $gray100-color;
         padding: 8px 0;
-        margin-bottom: 16p;
+        margin-bottom: 16px;
     }
 
 
@@ -69,7 +68,7 @@ form {
     @include get-color(background-color, disabled-btn-color);
     @include get-color(color, font-color);
     @include get-color(box-shadow, box-shadow);
-    color: #FFFFFF;
+    color: $white-color;
 }
 
 [class^="warning-msg"] {

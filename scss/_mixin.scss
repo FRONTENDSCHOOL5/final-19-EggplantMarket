@@ -17,3 +17,9 @@
         #{$property}: get-color($color, highContrast);
     }
 }
+
+@mixin image-cover{
+	display: inline-block;
+    overflow: hidden;
+    border-radius: 50%;
+}

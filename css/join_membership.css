@@ -43,7 +43,7 @@ p {
 }
 .theme-wrapper.highContrast h2,
 .theme-wrapper.highContrast p {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .title {
@@ -74,7 +74,7 @@ form {
   font-size: 0.75rem;
 }
 .theme-wrapper.highContrast form {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 form .profile-img {
@@ -117,7 +117,7 @@ form label {
   text-align: start;
 }
 .theme-wrapper.highContrast form label {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 form label.btn-upload {
@@ -254,7 +254,7 @@ button {
 
 .btn-next {
   border: none;
-  color: white;
+  color: #ffffff;
   background-color: #635CA5;
   margin-top: 30px;
   padding: 13px;
@@ -265,7 +265,7 @@ button {
 
 .btn-next:disabled {
   background-color: #BCADDC;
-  color: white;
+  color: #ffffff;
   -webkit-box-shadow: none;
           box-shadow: none;
 }

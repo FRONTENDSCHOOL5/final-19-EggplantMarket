@@ -30,7 +30,6 @@ form {
         &::-webkit-scrollbar {
             display: none;
         }
-        // overflow: hidden;
     }
     textarea::placeholder {
         @include get-color(color, gray-color);
@@ -63,11 +62,9 @@ form {
 }
 
 .user-profile {
-    display: inline-block;
+    @include image-cover;
     height: 42px;
     width: 42px;
-    overflow: hidden;
-    border-radius: 50%;
 
     img {
         width: 100%;
@@ -123,6 +120,6 @@ form {
 }
 
 .size-ms{
-    @include get-color(background-color, upload-btn);
+    @include get-color(background-color, btn-color);
     @include get-color(color, btn-font-color);
 }

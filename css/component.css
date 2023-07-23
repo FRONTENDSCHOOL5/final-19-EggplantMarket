@@ -135,19 +135,19 @@ a {
   line-height: 1.125rem;
 }
 .nav-search input::-webkit-input-placeholder {
-  color: #C4C4C4;
+  color: #c4c4c4;
 }
 .nav-search input::-moz-placeholder {
-  color: #C4C4C4;
+  color: #c4c4c4;
 }
 .nav-search input:-ms-input-placeholder {
-  color: #C4C4C4;
+  color: #c4c4c4;
 }
 .nav-search input::-ms-input-placeholder {
-  color: #C4C4C4;
+  color: #c4c4c4;
 }
 .nav-search input::placeholder {
-  color: #C4C4C4;
+  color: #c4c4c4;
 }
 
 .nav-main .title-main {
@@ -183,19 +183,19 @@ a {
   font-size: 0.875rem;
 }
 .comment input::-webkit-input-placeholder {
-  color: #C4C4C4;
+  color: #c4c4c4;
 }
 .comment input::-moz-placeholder {
-  color: #C4C4C4;
+  color: #c4c4c4;
 }
 .comment input:-ms-input-placeholder {
-  color: #C4C4C4;
+  color: #c4c4c4;
 }
 .comment input::-ms-input-placeholder {
-  color: #C4C4C4;
+  color: #c4c4c4;
 }
 .comment input::placeholder {
-  color: #C4C4C4;
+  color: #c4c4c4;
 }
 
 .post-modal-background {
@@ -257,6 +257,10 @@ a {
   display: -ms-flexbox;
   display: flex;
 }
+.highContrast .modal-background {
+  background-color: rgba(236, 236, 236, 0.34);
+}
+
 .modal-background .modal-content {
   width: 15.75rem;
   background-color: #ffffff;
@@ -362,7 +366,7 @@ a {
   height: 2.25rem;
   overflow: hidden;
   border-radius: 50%;
-  border: 1px solid #DBDBDB;
+  border: 1px solid #dbdbdb;
 }
 .user-follow .img-cover img {
   width: 100%;
@@ -422,7 +426,7 @@ a {
   margin-top: 0.125rem;
 }
 .highContrast .user-info .user-id {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 .user-info .user-id:before {
@@ -452,7 +456,7 @@ a {
   margin-bottom: 0.75rem;
   border-radius: 0.625rem;
   overflow: hidden;
-  border: 1px solid #DBDBDB;
+  border: 1px solid #dbdbdb;
 }
 .post-edit .img-cover .post-img {
   width: 100%;
@@ -489,7 +493,7 @@ a {
   font-size: 0.625rem;
 }
 .highContrast .post-date {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 /* button */
@@ -508,7 +512,7 @@ a {
 .size-l:disabled, .size-m:disabled, .size-ms:disabled, .size-s:disabled {
   background-color: #BCADDC;
   border: none;
-  color: #fff;
+  color: #ffffff;
 }
 .highContrast .size-l:disabled, .highContrast .size-m:disabled, .highContrast .size-ms:disabled, .highContrast .size-s:disabled {
   background-color: transparent;
@@ -548,7 +552,7 @@ a {
 }
 
 .cancle {
-  background: #fff;
+  background: #ffffff;
   color: #767676;
   border: 0.0625rem solid #dbdbdb;
 }
@@ -557,7 +561,7 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 .tab-item-list {
@@ -660,7 +664,7 @@ footer {
   text-align: center;
   white-space: nowrap;
   background: #1c1c1c;
-  color: #fff;
+  color: #ffffff;
   overflow: hidden;
 }
 .skip-nav a:focus, .skip-nav a:active {
@@ -673,7 +677,7 @@ footer {
 }
 
 .highContrast .skip-nav a {
-  background: #fff;
+  background: #ffffff;
   color: #1c1c1c;
 }
 

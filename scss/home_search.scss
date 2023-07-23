@@ -1,5 +1,4 @@
 @import "global";
-@import "variables";
 @import 'mixin';
 
 main{
@@ -22,7 +21,7 @@ footer {
 
 .user-id, .user-name{
     strong {
-        @include get-color(color, strong-color);
+        @include get-color(color, point-color);
     }
 }
 

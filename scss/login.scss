@@ -1,9 +1,7 @@
-@import "variables";
 @import "global";
 @import "mixin";
 
 body{
-    // @include get-color(background-color, login-background);
     background-color: $enabled-color;
     position: relative;
     text-align: center;
@@ -12,21 +10,16 @@ body{
 .back{
     height: calc(100vh - 310px);
     @include get-color(background-image, bg-logo);
-    // background-image: url(../assets/symbol-logo.svg);
     background-repeat: no-repeat;
     background-position: 98% 98%;
 }
 
 .login{
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
     @include get-color(background-color, bg-color);
     border-radius: 20px 20px 0 0 ;
     padding : 50px 34px 82px;
     min-width: 390px;
     width: 100%;
-
     position: fixed;
     bottom: 0;
 }

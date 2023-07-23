@@ -71,7 +71,7 @@ form label {
   color: #767676;
 }
 .theme-wrapper.highContrast form label {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 form label.btn-upload {
@@ -137,19 +137,19 @@ form input::placeholder {
   color: #767676;
 }
 .theme-wrapper.highContrast form input::-webkit-input-placeholder {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 .theme-wrapper.highContrast form input::-moz-placeholder {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 .theme-wrapper.highContrast form input:-ms-input-placeholder {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 .theme-wrapper.highContrast form input::-ms-input-placeholder {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 .theme-wrapper.highContrast form input::placeholder {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 form input:focus {

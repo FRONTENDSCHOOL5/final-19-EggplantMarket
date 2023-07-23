@@ -1,5 +1,4 @@
 @import 'global';
-@import 'variables';
 @import 'mixin';
 
 .chat-list{
@@ -59,17 +58,15 @@
 .tab-item-list{
     li:nth-child(2) {
         a{
-            background-image: url("../assets/icon/icon-message-circle-fill.svg");
+            @include get-color(background-image, chat-fill-image);
         }
     }    
 }
 
 .img-cover {
-    display: inline-block;
+    @include image-cover;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
 
     img {
         width: 100%;

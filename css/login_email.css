@@ -60,7 +60,7 @@ form {
   font-size: 0.75rem;
 }
 .theme-wrapper.highContrast form {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 form > label {
@@ -70,7 +70,7 @@ form > label {
   margin-top: 16px;
 }
 .theme-wrapper.highContrast form > label {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 form > input {
@@ -81,7 +81,7 @@ form > input {
   border: none;
   border-bottom: 1px solid #dbdbdb;
   padding: 8px 0;
-  margin-bottom: 16p;
+  margin-bottom: 16px;
 }
 .theme-wrapper.highContrast form > input {
   background-color: #000000;
@@ -140,7 +140,7 @@ form > input::placeholder {
   color: #000000;
   -webkit-box-shadow: none;
           box-shadow: none;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .theme-wrapper.highContrast .size-l:disabled {
   background-color: transparent;
@@ -173,7 +173,7 @@ form > input::placeholder {
   color: #767676;
 }
 .theme-wrapper.highContrast .email-join a {
-  color: #dbdbdb;
+  color: #f2f2f2;
 }
 
 input:focus {

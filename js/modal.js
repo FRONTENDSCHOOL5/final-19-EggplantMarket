@@ -75,7 +75,6 @@ function modalTab(inputs){
             } else if (e.key === 'Enter') {
                 e.preventDefault();
                 inputs[i].click();
-                localStorage.setItem('theme',e.target.id);
             } else if (e.key === 'Tab' && e.shiftKey){
                 e.preventDefault();
                 const prevInput = inputs[i - 1] || inputs[inputs.length - 1];

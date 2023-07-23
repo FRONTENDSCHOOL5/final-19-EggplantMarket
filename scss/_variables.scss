@@ -8,32 +8,37 @@ $highlight-color: #9747FF;
 $active-color: #9C85C5;
 $price-color: #BF8DFF;
 $warning-color-text: #EB5757;
-$white-color : #fff;
+$white-color : #ffffff;
 $gray50-color : #f2f2f2;
 $gray100-color: #dbdbdb;
-$gray200-color: #C4C4C4;
+$gray200-color: #c4c4c4;
+$gray250-color:#bdbdbd;
 $gray300-color: #767676;
-$black-color: #000;
+$black-color: #000000;
+$purple100-color: #E4D6FF;
+$purple200-color: #C5A8FF;
+$highContrast-point-color: #FFEB32;
 
 // 테마
 $theme: (
     light: (
-        bg-color:#ffffff,
-        root-color: #f2f2f2,
-        btn-color: #ffffff,
-        btn-font:#767676,
-        enabled-btn-color: #635CA5, //home_withoutfollowers, home_search
-        disabled-btn-color: #BCADDC, // component
-        font-color: #000000,
-        btn-font-color: #ffffff,
-        gray-color: #767676,
+        bg-color:$white-color,
+        root-color: $gray50-color,
+        btn-color: $enabled-color,
+        btn-back-color: $white-color,
+        btn-font:$gray300-color,
+        enabled-btn-color: $enabled-color,
+        disabled-btn-color: $disabled-color,
+        font-color: $black-color,
+        btn-font-color: $white-color,
+        gray-color: $gray300-color,
         box-shadow : none,
         border: none,
-        profile-border : 1px solid #dbdbdb,
-        icon-border : 1px solid #767676,
-        price-color: #BF8DFF,
-        placeholder-color:#c4c4c4,
-        warning-color: #EB5757,
+        profile-border : 1px solid $gray50-color,
+        icon-border : 1px solid $gray300-color,
+        price-color: $price-color,
+        placeholder-color:$gray200-color,
+        warning-color: $warning-color-text,
         bg-logo:url(../assets/symbol-logo.svg),
         home-image: url(../assets/icon/icon-home.svg),
         home-fill-image: url(../assets/icon/icon-home-fill.svg),
@@ -46,63 +51,50 @@ $theme: (
         btn-list-off:url('../assets/icon/icon-post-list-off.svg'),
         btn-album-on:url('../assets/icon/icon-post-album-on.svg'),
         btn-album-off:url('../assets/icon/icon-post-album-off.svg'),
-        input-color: #F2F2F2,
-        strong-color: #9747FF,
+        input-color: $gray50-color,
         chat-btn:url(../assets//icon/icon-message-circle.svg),
         chat-btn-fill: url(../assets/icon/icon-message-circle-fill.svg),
         share-btn:url(../assets//icon/icon-share.svg),
-        // product
-        image-btn: #c4c4c4,
-        border-bottom: 1px solid #EB5757,
-        // post_upload
-        follow-btn: #635CA5,
-        upload-btn: #635CA5,
-        // chat_room
-        background-color: rgba(0, 0, 0, 0.5), // component, profile_modification
-        send-color:#9747FF, //profile_modification
-        mychat-color: #635CA5,
+        image-btn: $gray200-color,
+        border-bottom: 1px solid $warning-color-text,
+        background-color: rgba(0, 0, 0, 0.5),
+        send-color:$highlight-color,
+        mychat-color: $enabled-color,
         mychat-border: none,
-        mychat-font:#ffffff,
-        // component
-        point-color: #9747FF, //profile_modification 등
-        enabled-color : #635CA5,
-        // disabled-color : #BCADDC,
-        // home_withoutfollowers, home_search
+        mychat-font:$white-color,
+        point-color: $highlight-color,
         bg-image: url(../assets/symbol-logo-gray.svg),
         kakao-color : #F2C94C,
-        google-color : #767676,
+        google-color : $gray300-color,
         facebook-color : #2D9CDB,
-        // profile_follow
-        following-btn-bg:white,
-        following-btn-color:#767676,
-        following-btn-border:1px solid #dbdbdb,
-        // join_membership
-        profile-image-btn: #9C85C5,
-        // post_detail
-        comment-placeholder :#c4c4c4,
-        comment-btn:#635CA5,
-        // profile_modification
-        img-icon: #635CA5,
-        profile-border-bottom:1px solid #9747FF,
+        following-btn-bg:$white-color,
+        following-btn-color:$gray300-color,
+        following-btn-border:1px solid $gray50-color,
+        profile-image-btn: $active-color,
+        comment-placeholder :$gray200-color,
+        comment-btn:$enabled-color,
+        img-icon: $enabled-color,
+        profile-border-bottom:1px solid $highlight-color,
     ),
     highContrast: (
-        bg-color:#000000,
-        root-color: #000000,
-        btn-color: #E4D6FF,
-        btn-font: #000000,
-        enabled-btn-color: #E4D6FF,//withoutfollowers
+        bg-color:$black-color,
+        root-color: $black-color,
+        btn-color: $purple100-color,
+        btn-back-color: $purple100-color,
+        btn-font: $black-color,
+        enabled-btn-color: $purple100-color,
         disabled-btn-color: transparent ,
-        font-color: #ffffff,
-        btn-font-color: #000000,
-        gray-color: #dbdbdb,
-        box-shadow: 0 0 0 2px #E4D6FF inset,
-        border: 2px solid #E4D6FF,
+        font-color: $white-color,
+        btn-font-color: $black-color,
+        gray-color: $gray50-color,
+        box-shadow: 0 0 0 2px $purple100-color inset,
+        border: 2px solid $purple100-color,
         profile-border : none,
-        icon-border : 1px solid #dbdbdb,
-        price-color: #C5A8FF,
-        placeholder-color:#FFEB32,
-        search-placeholder-color:#000000,
-        warning-color: #FFEB32,
+        icon-border : 1px solid $gray50-color,
+        price-color: $purple200-color,
+        placeholder-color:$highContrast-point-color,
+        search-placeholder-color:$black-color,
+        warning-color: $highContrast-point-color,
         bg-logo:url(../assets/symbol-logo-highContrast.svg),
         home-image: url(../assets/icon/icon-home-hc.svg),
         home-fill-image: url(../assets/icon/icon-home-fill-hc.svg),
@@ -115,41 +107,29 @@ $theme: (
         btn-list-off:url('../assets/icon/icon-post-list-off-hc.svg'),
         btn-album-off:url('../assets/icon/icon-post-album-off-hc.svg'),
         btn-album-on:url('../assets/icon/icon-post-album-on-hc.svg'),
-        input-color: #bdbdbd,
-        strong-color: #FFEB32,
+        input-color: $gray250-color,
         chat-btn:url(../assets//icon/icon-message-circle-hc.svg),
         chat-btn-fill: url(../assets/icon/icon-message-circle-fill-hc.svg),
         share-btn:url(../assets//icon/icon-share-hc.svg),
-        // product
-        image-btn: #000000,
-        border-bottom: 1px solid #FFEB32,
-        // chat_room
+        image-btn: $black-color,
+        border-bottom: 1px solid $highContrast-point-color,
         background-color: rgb(236 236 236 / 34%),
-        send-color:#FFEB32,
-        mychat-color: #000000,
-        mychat-border: 1px solid #C5A8FF,
-        mychat-font:#C5A8FF,
-        // component
-        point-color: #FFEB32,
-        // post_upload
-        follow-btn: #E4D6FF,
-        upload-btn: #E4D6FF,
-        // 
+        send-color:$highContrast-point-color,
+        mychat-color: $black-color,
+        mychat-border: 1px solid $purple200-color,
+        mychat-font:$purple200-color,
+        point-color: $highContrast-point-color,
         bg-image: url(../assets/symbol-logo-theme.svg),
-        kakao-color : #FFEB32,
+        kakao-color : $highContrast-point-color,
         google-color : #65FB76,
         facebook-color : #B3E3FF,
-        //
         following-btn-bg:transparent,
-        following-btn-color:#E4D6FF,
-        following-btn-border:2px solid #E4D6FF,
-        // join_membership
-        profile-image-btn: #E4D6FF,
-        // post_detail
-        comment-placeholder :#bdbdbd,
-        comment-btn:#FFEB32,
-        // profile_modification
-        img-icon: #E4D6FF,
-        profile-border-bottom:1px solid #FFEB32,
+        following-btn-color:$purple100-color,
+        following-btn-border:2px solid $purple100-color,
+        profile-image-btn: $purple100-color,
+        comment-placeholder :$gray250-color,
+        comment-btn:$highContrast-point-color,
+        img-icon: $purple100-color,
+        profile-border-bottom:1px solid $highContrast-point-color,
     )
 );

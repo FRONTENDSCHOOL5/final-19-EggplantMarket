@@ -61,7 +61,6 @@ async function search(userInp) {
 
         ulNode.appendChild(liNode);
         liNode.appendChild(content);
-
     }
     ulNode.append(frag);
 }

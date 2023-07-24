@@ -1,10 +1,9 @@
-requestAnimationFrame(colorChange)
+applyTheme()
 
 if(localStorage.getItem('back')){
     location.reload()
     localStorage.removeItem('back')
 }
-
 
 if(document.querySelector('.btn-back')){
     
@@ -40,8 +39,6 @@ function checkImageUrl(Img, position){
     const pattern = /^https:\/\/api\.mandarin\.weniv\.co\.kr\/(\d{13})\.(JPG|PNG|png|svg|jpg|jpeg|gif|webp)$/;
 
     if(pattern.test(Img)){
-
-        
         if (localStorage.getItem('theme') === 'highContrast') {
             if (position === 'profile' && Img === LightProfile) {
                 return ContrastProfile;
@@ -57,8 +54,6 @@ function checkImageUrl(Img, position){
                 return LightPost;
             }
         }
-        
-
         return Img
     }
     else{
@@ -73,7 +68,6 @@ function checkImageUrl(Img, position){
 
         const regex = /(\d+)\.(PNG|JPG|png|svg|jpg|jpeg|gif|webp)$/;
         const match = Img.match(regex);
-        console.log(match)
         const fileNameWithExtension = match && match[1].length === 13 ? match[1] + '.' + match[2] : null
 
         if(fileNameWithExtension){
@@ -93,25 +87,24 @@ function checkImageUrl(Img, position){
 }
 
 // common
-
 async function handleLike(event){
-    const target = event.currentTarget;
-    
-    const postId = target.closest('.home-post').dataset.postid;
-    const isLiked = target.classList.contains('like');
+    const target = event.target;
 
-    const action = isLiked ? 'unheart' : 'heart'
-    const method = isLiked ? 'DELETE' : 'POST'
-    
-    result = await reqLike(postId, action, method)
-    target.querySelector('span').textContent = `${result.heartCount}`
-    result.hearted ? target.classList.add('like') : target.classList.remove('like')
-    
+    if(target.tagName === 'path'){
+        const targetPost = target.closest('.home-post');
+        const likeBtn = targetPost.querySelector('.btn-like');
+        const postId = targetPost.getAttribute('data-postid');
+        const isLiked = likeBtn.classList.contains('like');
+
+        const result = isLiked ? await fetchLike(postId, 'unheart', 'DELETE') : await fetchLike(postId, 'heart', 'POST')
+        likeBtn.querySelector('.cnt').textContent = `${result.post.heartCount}`
+        result.post.hearted ? likeBtn.classList.add('like') : likeBtn.classList.remove('like')
+    }
 }
 
-async function reqLike(postId,act,method){
+async function requestLike(postId,action,method){
     try{
-        const res = await fetch(`${url}/post/${postId}/${act}`, {
+        const res = await fetch(`${url}/post/${postId}/${action}`, {
                         method: method,
                         headers : {
                             "Authorization" : `Bearer ${localStorage.getItem('user-token')}`,
@@ -120,15 +113,18 @@ async function reqLike(postId,act,method){
                     });
         const resJson = await res.json();
 
-        return resJson.post
+        return resJson
     } catch(err){
         console.error(err);
         location.href='./404.html'
     }
 }
-//이부분 지워도 될 것 같네용 ~
-if(document.querySelector('.tab-item-more a') !== null){
+
+function setProfileLink(){
     document.querySelector('.tab-item-more a').href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
+}
+if(document.querySelector('.tab-item-more') !== null){
+    setProfileLink()
 }
 
 function dateProcess(createdAt) {

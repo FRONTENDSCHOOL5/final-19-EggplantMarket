@@ -58,7 +58,6 @@ function validate(target) {
 async function login() {
     const url = "https://api.mandarin.weniv.co.kr";
     const reqPath = "/user/login/";
-    console.log(email.value, pw.value)
     const loginData = {
         "user": {
             "email": email.value,
@@ -73,10 +72,8 @@ async function login() {
         body: JSON.stringify({ ...loginData })
     })
     const json = await res.json()
-    console.log(json, "제이손입니다")
 
     if (json.status !== 422) { // 로그인 성공
-        console.log(json.user.token)
         localStorage.setItem("user-token", json.user.token);
         localStorage.setItem("user-accountname", json.user.accountname);
         location.href = './home.html';

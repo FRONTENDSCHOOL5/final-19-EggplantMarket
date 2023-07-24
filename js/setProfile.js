@@ -20,7 +20,6 @@ inpsProfile.forEach(item => {
 
         // 사용자이름 길이 맞고 && 계정ID 형식 맞고 사용가능한 ID면 => 버튼 활성화
         if (validAccountName && validUserName) {
-            console.log('다 통과했는디')
             submitButton.disabled = false;
         } else {
             submitButton.disabled = true;
@@ -47,14 +46,12 @@ async function validateProfile(target) {
     if (target.id === 'userid') {
 
         // 1. pattern 검사
-        console.log(target.validity.patternMismatch)
         if (target.validity.patternMismatch) {
             document.querySelector('.warning-msg-userid').textContent = '*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.'
             document.querySelector('.warning-msg-userid').style.display = 'block';
         } else {
             // 2. 계정 중복 검사
             const msg = await validateUserId();
-
             document.querySelector('.warning-msg-userid').textContent = '*' + msg.message;
             document.querySelector('.warning-msg-userid').style.display = 'block';
             if (msg.message === '이미 가입된 계정ID 입니다.') {
@@ -70,7 +67,6 @@ async function validateProfile(target) {
 submitButton.addEventListener('click', async (e) => {
     e.preventDefault()
     await SubmitJoinForm();
-    console.log('회원가입 완료')
     location.href = './login.html';
 })
 
@@ -145,7 +141,6 @@ async function postImg() {
 
 (function () {
     const uploadInp = document.querySelector('#btn-upload')
-    console.log(uploadInp.files);
 
     uploadInp.addEventListener('change', (e) => readURL(e.target));
 

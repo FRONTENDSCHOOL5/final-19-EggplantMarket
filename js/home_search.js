@@ -54,13 +54,11 @@ function delInput() {
 
 //입력된 값 하나씩 받아오기(O)
 function filter() {
-    console.log(window.event.key)
     const inp = document.getElementById("inp-search").value;
     if (window.event.key === 'Enter') {
         delInput();
         search(inp);
     }
-    console.log(inp);
 }
 
 //테마 작업 진행중.

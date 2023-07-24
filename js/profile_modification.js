@@ -54,7 +54,6 @@ async function saveProfile(url, token) {
         });
 
         const json = await res.json();
-        console.log(json);
         // 성공적으로 저장되었을 때 추가적인 처리 가능
     } catch (err) {
         console.error(err);
@@ -109,7 +108,6 @@ imgInp.addEventListener('change', async (e) => {
 });
 
 // 이메일 비밀번호 입력 후 포커스 잃으면 형식 및 유효성 검사
-let validAccountName = false;
 let validUserName = true;
 let validInfo = false;
 let validImage = false;
@@ -121,8 +119,7 @@ inpsProfile.forEach(item => {
         }
         await validateProfile(item);
 
-        if (validAccountName || validUserName || validInfo || validImage) {
-            console.log('다 통과했는디');
+        if (validUserName || validInfo || validImage) {
             submitButton.disabled = false;
         } else {
             submitButton.disabled = true;
@@ -159,30 +156,11 @@ async function validateProfile(target) {
 submitButton.addEventListener('click', async (e) => {
     e.preventDefault();
     await saveProfile(url, token);
-    console.log('프로필 수정 완료');
     location.href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
 });
 
 
 // api 연동 
-async function validateUserId() {
-    const url = "https://api.mandarin.weniv.co.kr";
-    const reqPath = "/user/accountnamevalid";
-    const accountNameData = {
-        "user": {
-            "accountname": acNameInp.value
-        }
-    };
-    const res = await fetch(url + reqPath, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(accountNameData)
-    });
-    const json = await res.json();
-    return json;
-}
 
 // 프로필 정보 가져오기
 async function Load_userinfo(url, token, accountName) {
@@ -194,7 +172,6 @@ async function Load_userinfo(url, token, accountName) {
             }
         });
         const resJson = await res.json();
-        console.log(resJson);
         return resJson
     } catch (err) {
         console.error(err);
@@ -211,7 +188,6 @@ function introUpdate(profileData) {
 
     // 프로필 이미지 보여주기
     const imageSrc = profileData.image;
-    console.log(imageSrc)
     if(imageSrc) {
         imageInput.insertAdjacentHTML('beforeend',`<img src="${checkImageUrl(imageSrc,'profile')}" alt="기본 프로필 이미지">`)
     }

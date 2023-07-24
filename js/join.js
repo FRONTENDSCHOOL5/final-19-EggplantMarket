@@ -13,7 +13,6 @@ inps.forEach(item => {
 
         // email 형식에 맞고 가입 가능한 이메일 && pw 길이 맞으면 => 버튼 활성화
         if (validEmail && validPw) {
-            console.log('다 통과했는디')
             nextButton.disabled = false;
             nextButton.style.color = 'black';
         } else {
@@ -31,7 +30,6 @@ async function validateJoin(target) {
     if (target.type === 'email') {
         const msg = await validateEmail();
 
-        console.log(msg);
         document.querySelector('.warning-msg-email').textContent = '*' + msg.message;
         document.querySelector('.warning-msg-email').style.display = 'block';
         if (msg.status == 422 || msg.message === '이미 가입된 이메일 주소 입니다.') {

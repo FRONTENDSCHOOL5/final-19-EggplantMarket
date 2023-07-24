@@ -6,14 +6,12 @@ const myAccountName = localStorage.getItem("user-accountname");
 // 무한 스크롤 
 window.addEventListener("scroll", async () => {
     if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
-        console.log('바닥이당! 데이터 불러올게 기다려!')
         postFeed(await getData())
     };
 })
 
 let reqCnt = 0;
 async function getData() {
-    console.log(reqCnt)
     const res = await fetch(url + `/post/feed/?limit=10&skip=${reqCnt++ * 10}`, {
         method: "GET",
         headers: {
@@ -26,13 +24,10 @@ async function getData() {
 }
 
 async function postFeed(postsData) {
-    console.log(postsData)
-
     //팔로잉이 있으면서 게시글이 1개 이상인 경우
     if (postsData.length > 0) {
         
         document.querySelector('.home-withfollower').style.display = '';
-        console.log('한명이상있어요')
 
         const ulNode = document.querySelector('.home-post-list');
         const frag = document.createDocumentFragment();

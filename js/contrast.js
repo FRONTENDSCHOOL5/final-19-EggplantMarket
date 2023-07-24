@@ -64,9 +64,7 @@ function applyTheme() {
         if(logo) logo.src = "../assets/logo.svg";
         if(search) search.src = "../assets/icon/icon-search.svg";
 
-        console.log(document.querySelectorAll('img'))
         document.querySelectorAll('img').forEach(item=>{
-            console.log('변경',item)
             if(item.src === ContrastProfile) item.src= LightProfile
             if(item.src === ContrastPost) item.src= LightPost
         })

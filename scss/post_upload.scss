@@ -1,16 +1,16 @@
 @import 'mixin';
 
 main {
-    padding: 20px 16px;
+    padding: 1.25rem 1rem;
     display: flex;
     justify-content: center;
-    max-width: 800px;
+    max-width: 50rem;
     margin: auto;
 }
 
 form {
     width: 100%;
-    max-height: 500px;
+    max-height: 31.25rem;
     overflow: hidden;
 
     &>* {
@@ -20,10 +20,9 @@ form {
     textarea {
         @include get-color(background-color, bg-color);
         @include get-color(color, font-color);
-        width: calc(100% - 24px);
-        min-height: 150px;
-        height: fit-content;
-        margin: 12px;
+        @include width-height(calc(100% - 24px), fit-content);
+        min-height: 9.375rem;
+        margin: 0.75rem;
         border: none;
         resize: none;
 
@@ -37,52 +36,37 @@ form {
 
     .img-cover {
         width: 30vw;
-        max-width: 304px;
-        min-width: 168px;
+        max-width: 19rem;
+        min-width: 10.5rem;
         aspect-ratio: 304/228;
-        border-radius: 10px;
+        border-radius: 0.625rem;
         overflow: hidden;
 
         position: relative;
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
-        img {
-            width: 100%;
-            height: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-        }
+        box-shadow: rgba(99, 99, 99, 0.2) 0 0.125rem 0.5rem 0;
+        
+        @include profile-img-tag;
 
         button {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 0.625rem;
+            right: 0.625rem;
         }
     }
 }
 
 .user-profile {
     @include image-cover;
-    height: 42px;
-    width: 42px;
-
-    img {
-        width: 100%;
-        height: 100%;
-        aspect-ratio: 1/1;
-        object-fit: cover;
-    }
+    @include width-height(2.625rem, 2.625rem);
+    @include profile-img-tag;
 }
 
 
 .input-file-btn {
     img {
-        width: 50px;
-        height: 50px;
+        @include width-height(3.125rem, 3.125rem);
     }
-
-    width: 50px;
-    height: 50px;
+    @include width-height(3.125rem, 3.125rem);
     margin-left: auto;
     cursor: pointer;
 }
@@ -92,14 +76,14 @@ form {
     overflow-x: scroll;
 
     margin: {
-        top: 16px;
-        left: 12px;
-        bottom: 10px;
+        top: 1rem;
+        left: 0.75rem;
+        bottom: 0.625rem;
     }
 
     &>li {
         display: inline-block;
-        margin-right: 8px;
+        margin-right: 0.5rem;
     }
 
     &::-webkit-scrollbar {
@@ -109,14 +93,11 @@ form {
 
 .btn-remove {
     background-image: url('../assets/icon/x.svg');
-    width: 22px;
-    height: 22px;
+    @include width-height(1.375rem, 1.375rem);
 }
 
 .size-ms:disabled{
-    @include get-color(background-color, disabled-btn-color);
-    @include get-color(box-shadow, box-shadow);
-    @include get-color(color, gray-color);
+    @include btn-disabled(color, gray-color);
 }
 
 .size-ms{

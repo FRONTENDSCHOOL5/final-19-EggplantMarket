@@ -1,10 +1,10 @@
 .a11y-hidden {
-  clip: rect(1px, 1px, 1px, 1px);
+  clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
   -webkit-clip-path: inset(50%);
           clip-path: inset(50%);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  margin: -0.0625rem;
   overflow: hidden;
   padding: 0;
   position: absolute;
@@ -19,7 +19,7 @@
 button {
   border: none;
   background-color: initial;
-  padding: 0px;
+  padding: 0;
 }
 
 input {
@@ -33,36 +33,36 @@ a {
 
 main {
   margin: 0 0.9375rem;
-  margin-bottom: 61px;
+  margin-bottom: 3.8125rem;
 }
 
 .home-post {
-  border-bottom: 1px solid #dbdbdb;
+  border-bottom: 0.0625rem solid #dbdbdb;
 }
 
 .comment-list {
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 .comment-list .comment-item {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   position: relative;
 }
 .comment-list .comment-item .comment-time {
   display: inline-block;
   font-size: 0.625rem;
   color: #767676;
-  line-height: 18px;
+  line-height: 1.125rem;
   vertical-align: top;
-  margin-top: 6px;
-  padding-left: 12px;
+  margin-top: 0.375rem;
+  padding-left: 0.75rem;
 }
 .theme-wrapper.highContrast .comment-list .comment-item .comment-time {
   color: #f2f2f2;
 }
 
 .comment-list .comment-item .comment-text {
-  margin-left: 54px;
-  margin-right: 24px;
+  margin-left: 3.375rem;
+  margin-right: 1.5rem;
   line-height: 1.5;
   font-weight: 400;
   font-size: 0.875rem;
@@ -87,8 +87,8 @@ main {
   display: inline-block;
   overflow: hidden;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  width: 2.25rem;
+  height: 2.25rem;
 }
 .comment-user-info .img-cover img {
   width: 100%;
@@ -99,10 +99,10 @@ main {
 }
 .comment-user-info .user-name {
   display: inline-block;
-  line-height: 19px;
+  line-height: 1.1875rem;
   vertical-align: top;
-  margin-top: 6px;
-  margin-left: 12px;
+  margin-top: 0.375rem;
+  margin-left: 0.75rem;
   font-weight: 500;
   font-size: 0.875rem;
   color: #000000;
@@ -115,9 +115,9 @@ main {
   display: inline-block;
   overflow: hidden;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  margin-right: 10px;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-right: 0.625rem;
 }
 .comment .img-cover img {
   width: 100%;
@@ -127,8 +127,8 @@ main {
      object-fit: cover;
 }
 .comment #commemt-input {
-  padding: 8px;
-  margin-right: 10px;
+  padding: 0.5rem;
+  margin-right: 0.625rem;
   color: #000000;
   background-color: #ffffff;
 }

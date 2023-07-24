@@ -23,3 +23,49 @@
     overflow: hidden;
     border-radius: 50%;
 }
+
+@mixin width-height($width, $height){
+    width: $width;
+    height: $height;
+}
+
+// img 태그 사용 시 공통 부분
+@mixin profile-img-tag{
+    img{
+        @include width-height(100%, 100%);
+        aspect-ratio: 1/1;
+        object-fit: cover;
+    }
+}
+
+@mixin warning-message($property, $color){
+    @include get-color($property, $color);
+    font-size: map-get($font-sizes, "size12");
+    display: none;
+}
+
+@mixin join-btn-size-l{
+    .size-l {
+        margin-top: 1.875rem;
+        @include get-color(background-color, enabled-btn-color);
+        @include get-color(color, btn-font-color);
+        @include get-color(box-shadow, box-shadow);
+        font-weight: 500;
+        width: 100%;
+        padding: 0.8125rem 0rem;
+        border-radius: 2.75rem;
+        font-size: map-get($font-sizes, "size14");
+    }
+}
+
+@mixin btn-disabled($property, $color) {
+    @include get-color(background-color, disabled-btn-color);
+    @include get-color($property, $color);
+    @include get-color(box-shadow, box-shadow);
+}
+
+@mixin label-tag{
+    @include get-color(color, gray-color);
+    margin-bottom: 0.125rem;
+    display: block;
+}

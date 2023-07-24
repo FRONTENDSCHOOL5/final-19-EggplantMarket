@@ -16,11 +16,10 @@
 
 
 .main-container {
-
     p,
     div,
     a {
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
         text-align: center;
     }
 
@@ -41,18 +40,17 @@
 
 .home-post-list{
     padding : {
-        left: 16px;
-        right : 16px;
+        left: 1rem;
+        right : 1rem;
     }
 
-    margin-bottom: 65px;
+    margin-bottom: 4.0625rem;
 }
 
 .home-background {
     @include get-color(background-image, bg-image);
     background-size: contain;
-    width: 72px;
-    height: 100px;
+    @include width-height(4.5rem, 6.25rem);
 }
 
 .search-btn {
@@ -60,16 +58,10 @@
     @include get-color(color, btn-font-color);
     font-weight: 500;
     text-align: center;
-    width: 120px;
-    padding: 13px 0px;
-    border-radius: 44px;
+    width: 7.5rem;
+    padding: 0.8125rem 0;
+    border-radius: 2.75rem;
     font-size: map-get($font-sizes, "size14" );
-}
-
-footer {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
 }
 
 .tab-item-list {

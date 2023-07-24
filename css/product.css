@@ -1,10 +1,10 @@
 .a11y-hidden {
-  clip: rect(1px, 1px, 1px, 1px);
+  clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
   -webkit-clip-path: inset(50%);
           clip-path: inset(50%);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  margin: -0.0625rem;
   overflow: hidden;
   padding: 0;
   position: absolute;
@@ -19,7 +19,7 @@
 button {
   border: none;
   background-color: initial;
-  padding: 0px;
+  padding: 0;
 }
 
 input {
@@ -32,13 +32,13 @@ a {
 }
 
 body {
-  min-width: 390px;
+  min-width: 24.375rem;
 }
 
 main {
   width: inherit;
-  padding: 0 34px;
-  margin-top: 30px;
+  padding: 0 2.125rem;
+  margin-top: 1.875rem;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -52,8 +52,8 @@ form {
 }
 form > label {
   color: #767676;
+  margin-bottom: 0.125rem;
   display: block;
-  margin-bottom: 2px;
 }
 .theme-wrapper.highContrast form > label {
   color: #f2f2f2;
@@ -64,10 +64,10 @@ form > input {
   width: 100%;
   background-color: #ffffff;
   color: #000000;
-  margin-bottom: 6px;
+  margin-bottom: 0.375rem;
   border: none;
-  border-bottom: 1px solid #dbdbdb;
-  padding: 8px 0;
+  border-bottom: 0.0625rem solid #dbdbdb;
+  padding: 0.5rem 0;
 }
 .theme-wrapper.highContrast form > input {
   background-color: #000000;
@@ -118,24 +118,24 @@ form > input::placeholder {
 }
 
 form label[for=product-price] {
-  margin-top: 16px;
+  margin-top: 1rem;
 }
 form label[for=purchase-link] {
-  margin-top: 16px;
+  margin-top: 1rem;
 }
 
 .product-img {
-  border-radius: 20px;
+  border-radius: 1.25rem;
   background: #f2f2f2;
   position: relative;
   aspect-ratio: 5/3;
-  margin-top: 18px;
-  margin-bottom: 30px;
+  margin-top: 1.125rem;
+  margin-bottom: 1.875rem;
 }
 .product-img .btn-upload {
   position: absolute;
-  right: 12px;
-  bottom: 12px;
+  right: 0.75rem;
+  bottom: 0.75rem;
 }
 
 #product-img-upload {
@@ -182,21 +182,21 @@ form label[for=purchase-link] {
 
 .size-ms:disabled {
   background-color: #BCADDC;
+  color: #767676;
   -webkit-box-shadow: none;
           box-shadow: none;
-  color: #767676;
 }
 .theme-wrapper.highContrast .size-ms:disabled {
   background-color: transparent;
 }
 
 .theme-wrapper.highContrast .size-ms:disabled {
-  -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
-          box-shadow: 0 0 0 2px #E4D6FF inset;
+  color: #f2f2f2;
 }
 
 .theme-wrapper.highContrast .size-ms:disabled {
-  color: #f2f2f2;
+  -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
+          box-shadow: 0 0 0 2px #E4D6FF inset;
 }
 
 .size-ms {

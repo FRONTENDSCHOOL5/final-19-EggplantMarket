@@ -3,10 +3,10 @@
 
 // 게시글 보기 탭
 .post-tab {
-    height: 44px;
-    padding: 9px 21px;
-    border-top: 1px solid $gray100-color;
-    border-bottom: 1px solid $gray100-color;
+    height: 2.75rem;
+    padding: 0.5625rem 1.3125rem;
+    border-top: $border-gray100-1px;
+    border-bottom: $border-gray100-1px;
 }
 
 .tab-btn-wrap {
@@ -14,11 +14,10 @@
     justify-content: flex-end;
 
     button {
+        @include width-height(1.625rem, 1.625rem);
         border: none;
         background-color: inherit;
-        width: 26px;
-        height: 26px;
-        margin-left: 16px;
+        margin-left: 1rem;
         background-repeat: no-repeat;
     }
 
@@ -42,7 +41,7 @@
 // 게시글 목록 섹션
 .post-sec {
     width: 100%;
-    padding: 16px;
+    padding: 1rem;
     
     .post-list {
         // 목록형 최상단 게시글 마진 삭제
@@ -53,7 +52,7 @@
     .post-album {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
+        gap: 0.5rem;
     }
 
     .post-list.hidden,
@@ -67,28 +66,21 @@
 
 // 재사용 코드
 .post-album-item {
-    width: 100%;
-    height: 100%;
+    @include width-height(100%, 100%);
     overflow: hidden;
 
     a {
         display: inline-block;
-        width: 100%;
-        height: 100%;
+        @include width-height(100%, 100%);
     }
     
     a:focus{
-        border: 4px solid currentColor;
+        border: 0.25rem solid currentColor;
     }
-
-    img {
-        width: 100%;
-        aspect-ratio: 1/1;
-        object-fit: cover;
-    }
+    @include profile-img-tag;
 }
 
 .post-container{
     background-color: $white-color;
-    margin-top: 3px;
+    margin-top: 0.1875rem;
 }

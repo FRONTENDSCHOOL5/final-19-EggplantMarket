@@ -1,10 +1,10 @@
 .a11y-hidden {
-  clip: rect(1px, 1px, 1px, 1px);
+  clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
   -webkit-clip-path: inset(50%);
           clip-path: inset(50%);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  margin: -0.0625rem;
   overflow: hidden;
   padding: 0;
   position: absolute;
@@ -19,7 +19,7 @@
 button {
   border: none;
   background-color: initial;
-  padding: 0px;
+  padding: 0;
 }
 
 input {
@@ -58,7 +58,7 @@ a {
 .main-container p,
 .main-container div,
 .main-container a {
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   text-align: center;
 }
 .main-container p {
@@ -70,16 +70,16 @@ a {
 }
 
 .home-post-list {
-  padding-left: 16px;
-  padding-right: 16px;
-  margin-bottom: 65px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-bottom: 4.0625rem;
 }
 
 .home-background {
   background-image: url(../assets/symbol-logo-gray.svg);
   background-size: contain;
-  width: 72px;
-  height: 100px;
+  width: 4.5rem;
+  height: 6.25rem;
 }
 .home-wrapper.highContrast .home-background {
   background-image: url(../assets/symbol-logo-theme.svg);
@@ -90,9 +90,9 @@ a {
   color: #ffffff;
   font-weight: 500;
   text-align: center;
-  width: 120px;
-  padding: 13px 0px;
-  border-radius: 44px;
+  width: 7.5rem;
+  padding: 0.8125rem 0;
+  border-radius: 2.75rem;
   font-size: 0.875rem;
 }
 .home-wrapper.highContrast .search-btn {
@@ -101,12 +101,6 @@ a {
 
 .home-wrapper.highContrast .search-btn {
   color: #000000;
-}
-
-footer {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
 }
 
 .tab-item-list {

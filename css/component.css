@@ -1,11 +1,11 @@
 @charset "UTF-8";
 .a11y-hidden {
-  clip: rect(1px, 1px, 1px, 1px);
+  clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
   -webkit-clip-path: inset(50%);
           clip-path: inset(50%);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  margin: -0.0625rem;
   overflow: hidden;
   padding: 0;
   position: absolute;
@@ -20,7 +20,7 @@
 button {
   border: none;
   background-color: initial;
-  padding: 0px;
+  padding: 0;
 }
 
 input {
@@ -50,27 +50,27 @@ a {
 }
 
 .nav-main {
-  padding: 13px 1rem;
+  padding: 0.8125rem 1rem;
 }
 .nav-search {
   padding: 0.5625rem 1rem;
 }
 .nav-basic, .nav-chat {
-  padding: 3px 5px;
+  padding: 0.1875rem 0.3125rem;
 }
 .nav-upload {
-  padding: 3px 1rem 5px 3px;
+  padding: 0.1875rem 1rem 0.3125rem 0.1875rem;
 }
 
 .btn-back {
-  height: 44px;
-  width: 44px;
+  width: 2.75rem;
+  height: 2.75rem;
   background: url("../assets/icon/icon-arrow-left.svg") no-repeat center;
 }
 
 .btn-option, .btn-more {
-  height: 44px;
-  width: 44px;
+  width: 2.75rem;
+  height: 2.75rem;
   background: url("../assets/icon/icon-more-vertical.svg") no-repeat center;
 }
 
@@ -173,7 +173,7 @@ a {
           align-items: center;
   border-top: 0.0625rem solid #dbdbdb;
   border-bottom: 0.0625rem solid #dbdbdb;
-  padding: 3px 5px;
+  padding: 0.1875rem 0.3125rem;
 }
 .highContrast .comment {
   background-color: #000000;
@@ -362,11 +362,11 @@ a {
 }
 .user-follow .img-cover {
   display: inline-block;
-  width: 2.25rem;
-  height: 2.25rem;
   overflow: hidden;
   border-radius: 50%;
-  border: 1px solid #dbdbdb;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0.0625rem solid #dbdbdb;
 }
 .user-follow .img-cover img {
   width: 100%;
@@ -395,7 +395,7 @@ a {
   width: 1.5rem;
   position: absolute;
   top: 0;
-  right: -12px;
+  right: -0.75rem;
   -webkit-transform: translateX(-25%);
           transform: translateX(-25%);
 }
@@ -456,7 +456,7 @@ a {
   margin-bottom: 0.75rem;
   border-radius: 0.625rem;
   overflow: hidden;
-  border: 1px solid #dbdbdb;
+  border: 0.0625rem solid #dbdbdb;
 }
 .post-edit .img-cover .post-img {
   width: 100%;
@@ -472,8 +472,8 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
   color: #767676;
   font-size: 0.75rem;
 }
@@ -484,7 +484,7 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 4px;
+  gap: 0.25rem;
   color: inherit;
 }
 
@@ -511,15 +511,21 @@ a {
 
 .size-l:disabled, .size-m:disabled, .size-ms:disabled, .size-s:disabled {
   background-color: #BCADDC;
-  border: none;
-  color: #ffffff;
+  background-color: #BCADDC;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 .highContrast .size-l:disabled, .highContrast .size-m:disabled, .highContrast .size-ms:disabled, .highContrast .size-s:disabled {
   background-color: transparent;
 }
 
 .highContrast .size-l:disabled, .highContrast .size-m:disabled, .highContrast .size-ms:disabled, .highContrast .size-s:disabled {
-  border: 2px solid #E4D6FF;
+  background-color: transparent;
+}
+
+.highContrast .size-l:disabled, .highContrast .size-m:disabled, .highContrast .size-ms:disabled, .highContrast .size-s:disabled {
+  -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
+          box-shadow: 0 0 0 2px #E4D6FF inset;
 }
 
 .size-l {
@@ -558,9 +564,9 @@ a {
 }
 
 footer {
+  width: 100%;
   position: fixed;
   bottom: 0;
-  width: 100%;
   background-color: #ffffff;
 }
 
@@ -656,9 +662,9 @@ footer {
 }
 .skip-nav a {
   display: block;
-  width: 1px;
-  height: 1px;
-  margin-bottom: -1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  margin-bottom: -0.0625rem;
   font-weight: bold;
   font-size: 0.875rem;
   text-align: center;
@@ -672,7 +678,7 @@ footer {
   width: -moz-fit-content;
   width: fit-content;
   height: auto;
-  padding: 15px;
+  padding: 0.9375rem;
   font-size: 1rem;
 }
 
@@ -682,5 +688,5 @@ footer {
 }
 
 .mode_select label > input {
-  margin-right: 15px;
+  margin-right: 0.9375rem;
 }

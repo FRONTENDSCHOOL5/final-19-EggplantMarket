@@ -6,7 +6,7 @@
 }
 
 .follow-list {
-    padding: 24px 16px;
+    padding: 1.5rem 1rem;
 
     li:first-child {
         margin-top: 0;
@@ -15,12 +15,12 @@
     .follow-item {
         display: flex;
         align-items: center;
-        height: 50px;
-        margin-top: 16px;
+        height: 3.125rem;
+        margin-top: 1rem;
 
         .user-img {
             flex-shrink: 0;
-            margin-right: 12px;
+            margin-right: 0.75rem;
         }
 
         .user-info {
@@ -34,19 +34,19 @@
 
             width: calc(100% - 130px);
             flex-shrink: 1;
-            margin-right: 12px;
+            margin-right: 0.75rem;
 
             .user-name {
                 display: inline-block;
-                margin-bottom: 6px;
+                margin-bottom: 0.375rem;
                 font-weight: 500;
-                line-height: 18px;
+                line-height: 1.125rem;
                 font-size: map-get($font-sizes, "size14");
             }
 
             .user-intro {
                 font-weight: 400;
-                line-height: 15px;
+                line-height: 0.9375rem;
                 font-size: map-get($font-sizes, "size12");
                 color: $gray300-color;
             }
@@ -56,13 +56,13 @@
 
 .btn-follow {
     flex-shrink: 0;
-    flex-basis: 56px;
-    height: 28px;
+    flex-basis: 3.5rem;
+    height: 1.75rem;
     margin-left: auto;
 
     @include get-color(color, btn-font-color);
     @include get-color(background-color, btn-color);
-    border-radius: 26px;
+    border-radius: 1.625rem;
 }
 
 .btn-follow.opposite {
@@ -71,20 +71,9 @@
     @include get-color(border, following-btn-border);
 }
 
-.btn-follow:disabled {
-    @include get-color(background-color, gray-color);
-    color: $white-color;
-}
-
 // 재사용되는 코드
 .img-cover {
     @include image-cover;
-    width: 50px;
-    height: 50px;
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+    @include width-height(3.125rem, 3.125rem);
+    @include profile-img-tag;
 }

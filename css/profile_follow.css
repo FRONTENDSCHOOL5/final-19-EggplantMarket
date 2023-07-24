@@ -1,10 +1,10 @@
 .a11y-hidden {
-  clip: rect(1px, 1px, 1px, 1px);
+  clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
   -webkit-clip-path: inset(50%);
           clip-path: inset(50%);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  margin: -0.0625rem;
   overflow: hidden;
   padding: 0;
   position: absolute;
@@ -19,7 +19,7 @@
 button {
   border: none;
   background-color: initial;
-  padding: 0px;
+  padding: 0;
 }
 
 input {
@@ -39,7 +39,7 @@ a {
 }
 
 .follow-list {
-  padding: 24px 16px;
+  padding: 1.5rem 1rem;
 }
 .follow-list li:first-child {
   margin-top: 0;
@@ -51,19 +51,19 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 50px;
-  margin-top: 16px;
+  height: 3.125rem;
+  margin-top: 1rem;
 }
 .follow-list .follow-item .user-img {
   -ms-flex-negative: 0;
       flex-shrink: 0;
-  margin-right: 12px;
+  margin-right: 0.75rem;
 }
 .follow-list .follow-item .user-info {
   width: calc(100% - 130px);
   -ms-flex-negative: 1;
       flex-shrink: 1;
-  margin-right: 12px;
+  margin-right: 0.75rem;
 }
 .follow-list .follow-item .user-info a {
   color: #000000;
@@ -81,14 +81,14 @@ a {
 
 .follow-list .follow-item .user-info .user-name {
   display: inline-block;
-  margin-bottom: 6px;
+  margin-bottom: 0.375rem;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 1.125rem;
   font-size: 0.875rem;
 }
 .follow-list .follow-item .user-info .user-intro {
   font-weight: 400;
-  line-height: 15px;
+  line-height: 0.9375rem;
   font-size: 0.75rem;
   color: #767676;
 }
@@ -96,13 +96,13 @@ a {
 .btn-follow {
   -ms-flex-negative: 0;
       flex-shrink: 0;
-  -ms-flex-preferred-size: 56px;
-      flex-basis: 56px;
-  height: 28px;
+  -ms-flex-preferred-size: 3.5rem;
+      flex-basis: 3.5rem;
+  height: 1.75rem;
   margin-left: auto;
   color: #ffffff;
   background-color: #635CA5;
-  border-radius: 26px;
+  border-radius: 1.625rem;
 }
 .theme-wrapper.highContrast .btn-follow {
   color: #000000;
@@ -129,24 +129,17 @@ a {
   border: 2px solid #E4D6FF;
 }
 
-.btn-follow:disabled {
-  background-color: #767676;
-  color: #ffffff;
-}
-.theme-wrapper.highContrast .btn-follow:disabled {
-  background-color: #f2f2f2;
-}
-
 .img-cover {
   display: inline-block;
   overflow: hidden;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
 }
 .img-cover img {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
 }

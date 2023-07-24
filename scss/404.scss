@@ -14,17 +14,17 @@
     }
 
     .desc {
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
         color: $gray300-color;
-        padding-top: 250px;
+        padding-top: 15.625rem;
         background: url(../assets/icon/icon-404.svg) no-repeat center/contain;
     }
 
     .btn-back {
-        padding: 13px 26px;
+        padding: 0.8125rem 1.625rem;
         background-color: $enabled-color;
         border: none;
-        border-radius: 44px;
+        border-radius: 2.75rem;
         color: $white-color;
     }
 }

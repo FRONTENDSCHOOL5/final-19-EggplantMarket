@@ -1,18 +1,18 @@
 main {
-  padding: 20px 16px;
+  padding: 1.25rem 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  max-width: 800px;
+  max-width: 50rem;
   margin: auto;
 }
 
 form {
   width: 100%;
-  max-height: 500px;
+  max-height: 31.25rem;
   overflow: hidden;
 }
 form > * {
@@ -22,11 +22,11 @@ form textarea {
   background-color: #ffffff;
   color: #000000;
   width: calc(100% - 24px);
-  min-height: 150px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  margin: 12px;
+  min-height: 9.375rem;
+  margin: 0.75rem;
   border: none;
   resize: none;
 }
@@ -74,14 +74,14 @@ form textarea::placeholder {
 
 form .img-cover {
   width: 30vw;
-  max-width: 304px;
-  min-width: 168px;
+  max-width: 19rem;
+  min-width: 10.5rem;
   aspect-ratio: 304/228;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   overflow: hidden;
   position: relative;
-  -webkit-box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  -webkit-box-shadow: rgba(99, 99, 99, 0.2) 0 0.125rem 0.5rem 0;
+          box-shadow: rgba(99, 99, 99, 0.2) 0 0.125rem 0.5rem 0;
 }
 form .img-cover img {
   width: 100%;
@@ -92,16 +92,16 @@ form .img-cover img {
 }
 form .img-cover button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0.625rem;
+  right: 0.625rem;
 }
 
 .user-profile {
   display: inline-block;
   overflow: hidden;
   border-radius: 50%;
-  height: 42px;
-  width: 42px;
+  width: 2.625rem;
+  height: 2.625rem;
 }
 .user-profile img {
   width: 100%;
@@ -112,26 +112,26 @@ form .img-cover button {
 }
 
 .input-file-btn {
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
   margin-left: auto;
   cursor: pointer;
 }
 .input-file-btn img {
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
 }
 
 .upload-imgs-list {
   white-space: nowrap;
   overflow-x: scroll;
-  margin-top: 16px;
-  margin-left: 12px;
-  margin-bottom: 10px;
+  margin-top: 1rem;
+  margin-left: 0.75rem;
+  margin-bottom: 0.625rem;
 }
 .upload-imgs-list > li {
   display: inline-block;
-  margin-right: 8px;
+  margin-right: 0.5rem;
 }
 .upload-imgs-list::-webkit-scrollbar {
   display: none;
@@ -139,27 +139,27 @@ form .img-cover button {
 
 .btn-remove {
   background-image: url("../assets/icon/x.svg");
-  width: 22px;
-  height: 22px;
+  width: 1.375rem;
+  height: 1.375rem;
 }
 
 .size-ms:disabled {
   background-color: #BCADDC;
+  color: #767676;
   -webkit-box-shadow: none;
           box-shadow: none;
-  color: #767676;
 }
 .theme-wrapper.highContrast .size-ms:disabled {
   background-color: transparent;
 }
 
 .theme-wrapper.highContrast .size-ms:disabled {
-  -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
-          box-shadow: 0 0 0 2px #E4D6FF inset;
+  color: #f2f2f2;
 }
 
 .theme-wrapper.highContrast .size-ms:disabled {
-  color: #f2f2f2;
+  -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
+          box-shadow: 0 0 0 2px #E4D6FF inset;
 }
 
 .size-ms {

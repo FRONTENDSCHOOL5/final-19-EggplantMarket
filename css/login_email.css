@@ -1,10 +1,10 @@
 .a11y-hidden {
-  clip: rect(1px, 1px, 1px, 1px);
+  clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
   -webkit-clip-path: inset(50%);
           clip-path: inset(50%);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  margin: -0.0625rem;
   overflow: hidden;
   padding: 0;
   position: absolute;
@@ -19,7 +19,7 @@
 button {
   border: none;
   background-color: initial;
-  padding: 0px;
+  padding: 0;
 }
 
 input {
@@ -32,7 +32,7 @@ a {
 }
 
 .login {
-  padding: 30px;
+  padding: 1.875rem;
 }
 
 .title {
@@ -48,14 +48,14 @@ a {
   color: #767676;
   font-size: 0.75rem;
   display: inline-block;
-  margin: 20px auto 0;
+  margin: 1.25rem auto 0;
 }
 
 form {
   min-width: 330px;
   max-width: 40%;
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 2.5rem;
   color: #767676;
   font-size: 0.75rem;
 }
@@ -65,9 +65,9 @@ form {
 
 form > label {
   color: #767676;
+  margin-bottom: 0.125rem;
   display: block;
-  margin-bottom: 2px;
-  margin-top: 16px;
+  margin-top: 1rem;
 }
 .theme-wrapper.highContrast form > label {
   color: #f2f2f2;
@@ -79,9 +79,9 @@ form > input {
   background-color: #ffffff;
   color: #000000;
   border: none;
-  border-bottom: 1px solid #dbdbdb;
-  padding: 8px 0;
-  margin-bottom: 16px;
+  border-bottom: 0.0625rem solid #dbdbdb;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
 }
 .theme-wrapper.highContrast form > input {
   background-color: #000000;
@@ -117,14 +117,15 @@ form > input::placeholder {
 }
 
 .size-l {
-  margin-top: 30px;
-  background-color: #635CA5;
+  margin-top: 1.875rem;
   background-color: #635CA5;
   color: #ffffff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   font-weight: 500;
   width: 100%;
-  padding: 13px 0px;
-  border-radius: 44px;
+  padding: 0.8125rem 0rem;
+  border-radius: 2.75rem;
   font-size: 0.875rem;
 }
 .theme-wrapper.highContrast .size-l {
@@ -135,12 +136,16 @@ form > input::placeholder {
   color: #000000;
 }
 
+.theme-wrapper.highContrast .size-l {
+  -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
+          box-shadow: 0 0 0 2px #E4D6FF inset;
+}
+
 .size-l:disabled {
   background-color: #BCADDC;
   color: #000000;
   -webkit-box-shadow: none;
           box-shadow: none;
-  color: #ffffff;
 }
 .theme-wrapper.highContrast .size-l:disabled {
   background-color: transparent;
@@ -158,9 +163,8 @@ form > input::placeholder {
 [class^=warning-msg] {
   color: #EB5757;
   font-size: 0.75rem;
-  display: block;
-  margin-top: 6px;
   display: none;
+  margin-top: 0.375rem;
 }
 .theme-wrapper.highContrast [class^=warning-msg] {
   color: #FFEB32;
@@ -177,7 +181,7 @@ form > input::placeholder {
 }
 
 input:focus {
-  border-bottom: 1px solid #9747FF;
+  border-bottom: 0.0625rem solid #9747FF;
   outline: none;
 }
 

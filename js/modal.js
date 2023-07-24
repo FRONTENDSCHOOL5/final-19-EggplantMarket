@@ -58,7 +58,7 @@ function changeTheme(inputs) {
             if(!inputs[i].classList.contains('btn-cancel')){
                 inputs[i].click();
                 localStorage.setItem('theme',e.target.id);
-                colorChange();
+                applyTheme();
             }
         });
     }

@@ -1,11 +1,11 @@
 // global
 
 .a11y-hidden {
-    clip: rect(1px, 1px, 1px, 1px);
+    clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
     clip-path: inset(50%);
-    width: 1px;
-    height: 1px;
-    margin: -1px;
+    width: 0.0625rem;
+    height: 0.0625rem;
+    margin: -0.0625rem;
     overflow: hidden;
     padding: 0;
     position: absolute;
@@ -20,7 +20,7 @@
 button{
     border: none;
     background-color: initial;
-    padding: 0px;
+    padding: 0;
 }
 input{
     border: none;

@@ -19,6 +19,9 @@ $purple100-color: #E4D6FF;
 $purple200-color: #C5A8FF;
 $highContrast-point-color: #FFEB32;
 
+// border-line
+$border-gray100-1px: 0.0625rem solid $gray100-color;
+
 // 테마
 $theme: (
     light: (

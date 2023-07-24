@@ -1,10 +1,10 @@
 .a11y-hidden {
-  clip: rect(1px, 1px, 1px, 1px);
+  clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
   -webkit-clip-path: inset(50%);
           clip-path: inset(50%);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  margin: -0.0625rem;
   overflow: hidden;
   padding: 0;
   position: absolute;
@@ -19,7 +19,7 @@
 button {
   border: none;
   background-color: initial;
-  padding: 0px;
+  padding: 0;
 }
 
 input {
@@ -44,15 +44,15 @@ a {
   text-align: center;
 }
 .error .desc {
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   color: #767676;
-  padding-top: 250px;
+  padding-top: 15.625rem;
   background: url(../assets/icon/icon-404.svg) no-repeat center/contain;
 }
 .error .btn-back {
-  padding: 13px 26px;
+  padding: 0.8125rem 1.625rem;
   background-color: #635CA5;
   border: none;
-  border-radius: 44px;
+  border-radius: 2.75rem;
   color: #ffffff;
 }

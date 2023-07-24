@@ -2,7 +2,7 @@
 @import 'mixin';
 
 .join {
-    padding: 34px;
+    padding: 2.125rem;
 }
 
 h2,
@@ -18,16 +18,16 @@ p {
 }
 
 .join-email form {
-    margin-top: 40px;
+    margin-top: 2.5rem;
 }
 
 .profile-setting {
     form {
-        margin-top: 30px;
+        margin-top: 1.875rem;
     }
 
     .title {
-        margin-bottom: 12px;
+        margin-bottom: 0.75rem;
     }
 }
 
@@ -42,18 +42,13 @@ form {
 
     .profile-img {
         position: relative;
-        width: 110px;
-        margin: 0 auto 30px;
+        width: 6.875rem;
+        margin: 0 auto 1.875rem;
 
         .img-cover {
-            width: 110px;
-            border-radius: 50%;
-            overflow: hidden;
-            img {
-                    width: 100%;
-                    aspect-ratio: 1/1;
-                    object-fit: cover;
-                }
+            width: 6.875rem;
+            @include image-cover;
+            @include profile-img-tag;
         }
     }
 
@@ -68,13 +63,11 @@ form {
 
 
     &>fieldset {
-        margin-bottom: 16px;
+        margin-bottom: 1rem;
     }
 
     label {
-        @include get-color(color, gray-color);
-        display: block;
-        margin-bottom: 2px;
+        @include label-tag;
         text-align: start;
     }
 
@@ -97,8 +90,8 @@ form {
         @include get-color(color, font-color);
         width: 100%;
         border: none;
-        border-bottom: 1px solid $gray100-color;
-        padding: 8px 0
+        border-bottom: $border-gray100-1px;
+        padding: 0.5rem 0;
     }
 
     input::placeholder{
@@ -115,51 +108,34 @@ form {
     }
 
     input:focus {
-        border-bottom: 1px solid $highlight-color;
+        border-bottom: 0.0625rem solid $highlight-color;
         outline: none;
     }
 
-[class^=warning-msg] {
-    @include get-color(color, warning-color);
-        font-size: map-get($font-sizes, "size12");
-        margin-top: 6px;
-        display: none;
+    [class^=warning-msg] {
+        @include warning-message(color, warning-color);
+        margin-top: 0.375rem;
     }
 }
-
 
 // button
 button {
     display: block;
-    border: solid 1px;
-    border-radius: 44px;
+    border: solid 0.0625rem;
+    border-radius: 2.75rem;
     margin: 0 auto;
 }
 
-.size-l {
-    margin-top: 30px;
-    @include get-color(background-color, disabled-btn-color);
-    @include get-color(color, font-color);
-    @include get-color(box-shadow, box-shadow);
-    font-weight: 500;
-    width: 100%;
-    padding: 13px 0px;
-    border-radius: 44px;
-    font-size: map-get($font-sizes, "size14");
-}
+@include join-btn-size-l; //size-l button
 
 .btn-next {
     border: none;
-    color: $white-color;
-    @include get-color(background-color, enabled-btn-color);
-    margin-top: 30px;
-    padding: 13px;
+    margin-top: 1.875rem;
+    padding: 0.8125rem;
 }
 
 .btn-next:disabled {
-    @include get-color(background-color, disabled-btn-color);
-    color: $white-color;
-    @include get-color(box-shadow, box-shadow);
+    @include btn-disabled(color, font-color);
 }
 
 .btn-upload {

@@ -2,7 +2,7 @@
 @import 'mixin';
 
 .login {
-    padding: 30px;
+    padding: 1.875rem;
 }
 .title {
     text-align: center;
@@ -14,23 +14,21 @@
     color: $gray300-color;
     font-size: map-get($font-sizes, "size12");
     display: inline-block;
-    margin: 20px auto 0;
+    margin: 1.25rem auto 0;
 }
 
 form {
     min-width: calc(390px - 30px * 2);
     max-width: 40%;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 2.5rem;
 
     @include get-color(color, gray-color);
     font-size: map-get($font-sizes, "size12");
 
     &>label {
-        @include get-color(color, gray-color);
-        display: block;
-        margin-bottom: 2px;
-        margin-top: 16px
+        @include label-tag;
+        margin-top: 1rem
     }
 
     &>input {
@@ -39,9 +37,9 @@ form {
         @include get-color(background-color, bg-color);
         @include get-color(color, font-color);
         border: none;
-        border-bottom: 1px solid $gray100-color;
-        padding: 8px 0;
-        margin-bottom: 16px;
+        border-bottom: $border-gray100-1px;
+        padding: 0.5rem 0;
+        margin-bottom: 1rem;
     }
 
 
@@ -52,31 +50,15 @@ form {
 }
 
 // button
-.size-l {
-    margin-top: 30px;
-    background-color: $enabled-color;
-    @include get-color(background-color, enabled-btn-color);
-    @include get-color(color, btn-font-color);
-    font-weight: 500;
-    width: 100%;
-    padding: 13px 0px;
-    border-radius: 44px;
-    font-size: map-get($font-sizes, "size14");
-}
+@include join-btn-size-l; //size-l button
 
 .size-l:disabled {
-    @include get-color(background-color, disabled-btn-color);
-    @include get-color(color, font-color);
-    @include get-color(box-shadow, box-shadow);
-    color: $white-color;
+    @include btn-disabled(color, font-color);
 }
 
 [class^="warning-msg"] {
-    @include get-color(color, warning-color);
-    font-size: map-get($font-sizes, "size12");
-    display: block;
-    margin-top: 6px;
-    display: none;
+    @include warning-message(color, warning-color);
+    margin-top: 0.375rem;
 }
 
 .email-join {
@@ -88,7 +70,7 @@ form {
 }
 
 input:focus {
-    border-bottom: 1px solid $highlight-color;
+    border-bottom: 0.0625rem solid $highlight-color;
     outline: none;
 }
 

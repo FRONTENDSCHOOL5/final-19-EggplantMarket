@@ -1,6 +1,6 @@
 // profile_modification
 // colorchange render함수
-function colorChange() {
+function applyTheme() {
     const LightProfile = 'https://api.mandarin.weniv.co.kr/1687141773353.png'
     const LightPost = 'https://api.mandarin.weniv.co.kr/1687742174893.png'
     const ContrastProfile = 'https://api.mandarin.weniv.co.kr/1687827693364.png'
@@ -41,7 +41,6 @@ function colorChange() {
             if(item.src === LightPost) item.src=ContrastPost
         })
     } else {
-        console.log('키키')
         window.localStorage.setItem('theme', 'light');
         if(!document.querySelector('.login-wrapper') && !document.querySelector('.join') && !document.querySelector('main.login')){
             document.querySelector('[class *= "wrapper"]').classList.remove('highContrast'); 
@@ -56,7 +55,7 @@ function colorChange() {
         if(document.querySelector('.login-wrapper')){
             document.body.style.backgroundColor = '#635CA5'; 
         } else{
-            document.body.style.backgroundColor = '#fff'; 
+            document.body.style.backgroundColor = '#ffffff'; 
         }
 
         if(imgBtn) imgBtn.src = "../assets/img-button.svg";

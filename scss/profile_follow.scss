@@ -1,80 +1,12 @@
 @import 'global';
-@import 'variables';
-
-$theme: (
-    light: (bg-color:#fff,
-        btn-color: #ffffff,
-        btn-font:#767676,
-        disabled-btn-color: #BCADDC,
-        following-btn-bg:white,
-        following-btn-color:#767676,
-        following-btn-border:1px solid #dbdbdb,
-        font-color: #000000,
-        btn-font-color: #ffffff,
-        gray-color: #767676,
-        box-shadow : none,
-        border: none,
-        price-color: #BF8DFF,
-        placeholder-color:#c4c4c4,
-        bg-logo:url(../assets/symbol-logo.svg),
-        home-image: url(../assets/icon/icon-home.svg),
-        chat-image: url(../assets/icon/icon-message-circle.svg),
-        post-image: url(../assets/icon/icon-edit.svg),
-        profile-image: url(../assets/icon/icon-user-fill.svg),
-        input-color: #F2F2F2,
-        strong-color: #9747FF,
-        follow-btn: #635CA5,
-    ),
-    highContrast: (bg-color:#000000,
-        btn-color: #E4D6FF,
-        btn-font: #000000,
-        disabled-btn-color: transparent,
-        following-btn-bg:transparent,
-        following-btn-color:#E4D6FF,
-        following-btn-border:2px solid #E4D6FF,
-        font-color: #ffffff,
-        btn-font-color: #000000,
-        gray-color: #dbdbdb,
-        box-shadow: 0 0 0 2px #E4D6FF inset,
-        border: 2px solid #E4D6FF,
-        price-color: #C5A8FF,
-        placeholder-color:#000000,
-        bg-logo:url(../assets/symbol-logo-highContrast.svg),
-        home-image: url(../assets/icon/icon-home-hc.svg),
-        chat-image: url(../assets/icon/icon-message-circle-hc.svg),
-        post-image: url(../assets/icon/icon-edit-hc.svg),
-        profile-image: url(../assets/icon/icon-user-fill-hc.svg),
-        input-color: #bdbdbd,
-        strong-color: #FFEB32,
-        follow-btn: #E4D6FF,
-    )
-);
-
-@function get-color($key, $type: 'light') {
-
-    @each $name,
-    $color in map-get($theme, $type) {
-        @if($key ==$name) {
-            @return $color
-        }
-    }
-}
-
-@mixin get-color($property, $color) {
-
-    #{$property}: get-color($color);
-
-    @at-root .following-wrapper.highContrast & {
-        #{$property}: get-color($color, highContrast);
-    }
-}
+@import 'mixin';
 
 .title-chat {
     @include get-color(color, font-color);
 }
 
 .follow-list {
-    padding: 24px 16px;
+    padding: 1.5rem 1rem;
 
     li:first-child {
         margin-top: 0;
@@ -83,12 +15,12 @@ $theme: (
     .follow-item {
         display: flex;
         align-items: center;
-        height: 50px;
-        margin-top: 16px;
+        height: 3.125rem;
+        margin-top: 1rem;
 
         .user-img {
             flex-shrink: 0;
-            margin-right: 12px;
+            margin-right: 0.75rem;
         }
 
         .user-info {
@@ -102,19 +34,19 @@ $theme: (
 
             width: calc(100% - 130px);
             flex-shrink: 1;
-            margin-right: 12px;
+            margin-right: 0.75rem;
 
             .user-name {
                 display: inline-block;
-                margin-bottom: 6px;
+                margin-bottom: 0.375rem;
                 font-weight: 500;
-                line-height: 18px;
+                line-height: 1.125rem;
                 font-size: map-get($font-sizes, "size14");
             }
 
             .user-intro {
                 font-weight: 400;
-                line-height: 15px;
+                line-height: 0.9375rem;
                 font-size: map-get($font-sizes, "size12");
                 color: $gray300-color;
             }
@@ -124,13 +56,13 @@ $theme: (
 
 .btn-follow {
     flex-shrink: 0;
-    flex-basis: 56px;
-    height: 28px;
+    flex-basis: 3.5rem;
+    height: 1.75rem;
     margin-left: auto;
 
     @include get-color(color, btn-font-color);
-    @include get-color(background-color, follow-btn);
-    border-radius: 26px;
+    @include get-color(background-color, btn-color);
+    border-radius: 1.625rem;
 }
 
 .btn-follow.opposite {
@@ -139,22 +71,9 @@ $theme: (
     @include get-color(border, following-btn-border);
 }
 
-.btn-follow:disabled {
-    @include get-color(background-color, gray-color);
-    color: $white-color;
-}
-
 // 재사용되는 코드
 .img-cover {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+    @include image-cover;
+    @include width-height(3.125rem, 3.125rem);
+    @include profile-img-tag;
 }

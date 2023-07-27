@@ -76,7 +76,7 @@ form{
 
 .btn-upload .upload-img{
     circle:hover {
-        fill: $purple100-color;
+        @include get-color(fill, enabled-btn-color);
     }
 }
 

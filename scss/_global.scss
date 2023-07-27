@@ -1,11 +1,11 @@
 // global
 
 .a11y-hidden {
-    clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
+    clip: rect(1px, 1px, 1px, 1px);
     clip-path: inset(50%);
-    width: 0.0625rem;
-    height: 0.0625rem;
-    margin: -0.0625rem;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
     overflow: hidden;
     padding: 0;
     position: absolute;

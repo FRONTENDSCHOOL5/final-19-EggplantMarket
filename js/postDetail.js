@@ -76,6 +76,8 @@ function displayPost(post) {
     const likeBtn = document.querySelector(".btn-like");
     likeBtn.className = `btn-like ${post.hearted ? 'like' : ''}`;
     like.textContent = post.heartCount;
+    const heartsvg = document.querySelector('.btn-like svg');
+    heartsvg.setAttribute('fill','transparent');
     const comment = document.querySelector(".btn-comment .cnt");
     comment.textContent = post.comments.length;
     const date = document.querySelector(".post-date");
@@ -132,7 +134,7 @@ function displayPost(post) {
             </div>`)
         })
     }
-    postInfoSec.querySelector('.btn-like').addEventListener('click', handleLike)
+    postInfoSec.querySelector('.btn-like').addEventListener('click', handleLike);
 
     const btnOption = document.createElement('button');
     btnOption.setAttribute('class', 'btn-option');

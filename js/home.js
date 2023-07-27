@@ -4,8 +4,8 @@ const myAccountName = localStorage.getItem("user-accountname");
 //post 컴포넌트 불러옵니다.
 const homePostList = document.querySelector(".home-post-list");
 fetch('./component/post.html')
-.then(res => res.text())
-.then(data => homePostList.innerHTML = data);
+    .then(res => res.text())
+    .then(data => homePostList.innerHTML = data);
 
 // 무한 스크롤 
 window.addEventListener("scroll", async () => {
@@ -61,6 +61,8 @@ async function postFeed(postsData) {
             like.textContent = item.heartCount;
             const likeBtn = content.querySelector(".btn-like");
             likeBtn.className = `btn-like ${item.hearted ? 'like' : ''}`;
+            const commentIconSvg = content.querySelector('.btn-like svg');
+            commentIconSvg.setAttribute('fill', 'transparent');
             const comment = content.querySelector(".btn-comment .cnt");
             comment.textContent = item.commentCount;
             const date = content.querySelector(".post-date");
@@ -80,9 +82,9 @@ async function postFeed(postsData) {
                     liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<div class="img-cover"><img class="post-img" src="${checkImageUrl(item, 'post')}" alt="게시물 사진"></img></div>`)
                 })
             }
-            //좋아요 버튼 제어
             liNode.querySelector('.home-post').setAttribute('data-postid', item.id)
-            liNode.querySelector('.btn-like').addEventListener('click', handleLike)
+            //좋아요 버튼 제어
+            ulNode.addEventListener('click', handleLike);
         }
         ulNode.appendChild(frag);
     }

@@ -9,15 +9,13 @@ if(localStorage.getItem('back')){
 }
 
 if(document.querySelector('.btn-back')){
-    
     document.querySelector('.btn-back').addEventListener('click',()=>{
         const prevLink = document.referrer
         const isPrevUpload = prevLink.includes('modification') || prevLink.includes('upload')
         
         if(isPrevUpload){
             location.href = './home.html'
-        }
-        else{
+        } else{
             history.back()
             localStorage.setItem('back',true);
         }

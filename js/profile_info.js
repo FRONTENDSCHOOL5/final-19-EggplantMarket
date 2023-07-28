@@ -32,8 +32,7 @@ function displayProfileInfo(profile_data){
     profileImg = document.querySelector('.img-crop img'),
     followBtn = document.querySelector('.btn-follow'),
     unFollowBtn = document.querySelector('.btn-follow.cancle');
-
-
+    
     userName.insertAdjacentText('beforeend',profile_data.username)
     accountName.insertAdjacentText('beforeend',profile_data.accountname)
     if(profile_data.intro !== ""){
@@ -295,7 +294,6 @@ run();
 }());
 
 // 무한 스크롤 
-
 function touchScroll(){
     const list = document.querySelector('.product-list')
     const listScrollWidth = list.scrollWidth;

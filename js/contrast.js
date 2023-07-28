@@ -14,15 +14,7 @@ export function applyTheme() {
 
     if ( localStorage.getItem('theme') === 'highContrast' ) {
         window.localStorage.setItem('theme', 'highContrast');
-        if(!document.querySelector('.login-wrapper') && !document.querySelector('.join') && !document.querySelector('main.login')){
-            document.querySelector('[class *= "wrapper"]').classList.add('highContrast');
-        }else if (document.querySelector('.login-wrapper')){
-            document.querySelector('.login-wrapper').classList.add('highContrast');
-        }else if(document.querySelector('main.login')){
-            document.querySelector('main.login').classList.add('highContrast');
-        }else{
-            document.querySelector('.join').classList.add('highContrast');
-        }
+        document.querySelector('.theme-wrapper').classList.add('highContrast');
 
         if(document.querySelector('.login-wrapper')){
             document.body.style.backgroundColor = '#E4D6FF';
@@ -42,15 +34,7 @@ export function applyTheme() {
         })
     } else {
         window.localStorage.setItem('theme', 'light');
-        if(!document.querySelector('.login-wrapper') && !document.querySelector('.join') && !document.querySelector('main.login')){
-            document.querySelector('[class *= "wrapper"]').classList.remove('highContrast'); 
-        }else if (document.querySelector('.login-wrapper')){
-            document.querySelector('.login-wrapper').classList.remove('highContrast');
-        }else if(document.querySelector('main.login')){
-            document.querySelector('main.login').classList.remove('highContrast');
-        }else{
-            document.querySelector('.join').classList.remove('highContrast');
-        }
+        document.querySelector('.theme-wrapper').classList.remove('highContrast'); 
 
         if(document.querySelector('.login-wrapper')){
             document.body.style.backgroundColor = '#635CA5'; 

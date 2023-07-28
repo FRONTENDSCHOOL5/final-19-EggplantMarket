@@ -1,3 +1,5 @@
+import { fetchApi } from "./fetch/fetchRefact.js";
+
 const nextButton = document.querySelector('#next-btn');
 const inps = document.querySelectorAll('.join-email input');
 const email = document.querySelector('#email');
@@ -69,43 +71,13 @@ nextButton.addEventListener('click', (e) => {
 
 // api 연동 
 async function validateEmail() {
-    const url = "https://api.mandarin.weniv.co.kr";
-    const reqPath = "/user/emailvalid";
     const emailData = {
         "user": {
             "email": email.value.trim()
         }
     }
-    const res = await fetch(url + reqPath, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(emailData)
-    })
-    const json = await res.json();
-    return json;
+    return fetchApi("/user/emailvalid", "POST", emailData, true, false)
 }
-
-
-//테마 작업 진행중.
-// const wrapper = document.querySelector('.join');
-// const theme = window.localStorage.getItem('theme');
-// if (theme === 'highContrast') {
-//     wrapper.classList.add('highContrast');
-//     document.body.style.backgroundColor = '#000000';
-// } else {
-//     wrapper.classList.remove('highContrast');
-//     document.body.style.backgroundColor = '#ffffff'; 
-// }
-
-
-
-
-
-
-
-
 
 // // SUCCESS
 // // 사용 가능한 이메일인 경우

@@ -1,9 +1,8 @@
-const postId = new URLSearchParams(location.search).get('postId');
+import { fetchApi } from './fetch/fetchRefact.js';
+import { handleModal, handleCommentOptionModal } from './modal.js';
+import {checkImageUrl, dateProcess, handleLike} from './common.js'
 
-const url = "https://api.mandarin.weniv.co.kr",
-    token = localStorage.getItem("user-token"),
-    myAccountName = localStorage.getItem("user-accountname");
-let userAccountName = '';
+const postId = new URLSearchParams(location.search).get('postId');
 
 const $postViewSec = document.querySelector('.home-post'),
     $commentList = document.querySelector('.comment-list'),
@@ -12,7 +11,7 @@ const $postViewSec = document.querySelector('.home-post'),
     $commentSubmitButton = document.querySelector('.btn-comment');
 
 (async function () {
-    const [profileImg, dataPost, dataComments] = await Promise.all([getMyImg(), getOnePost(), getComments()]);
+    const [profileImg, dataPost, dataComments] = await Promise.all([getMyImg(), getOnePost(postId), getComments(postId)]);
     $profileImg.src = profileImg;
     displayPost(dataPost.post);
     displayComment(dataComments.comments);
@@ -21,7 +20,6 @@ const $postViewSec = document.querySelector('.home-post'),
 })();
 
 $commentInp.addEventListener('input', (e) => {
-    console.log(e.target.value.trim());
     $commentSubmitButton.disabled = e.target.value.trim() !== '' ? false : true;
 })
 
@@ -30,7 +28,7 @@ $commentSubmitButton.addEventListener('click', async (e) => {
     await postComment($commentInp.value)
     $commentInp.value = '';
     // 댓글 다시 뿌리기
-    const dataComments = await getComments();
+    const dataComments = await getComments(postId);
     displayComment(dataComments.comments);
     document.querySelector('.btn-comment .cnt').textContent = document.querySelector('.comment-list').childNodes.length
 });
@@ -171,66 +169,28 @@ function displayComment(comments) {
 
 // GET 프로필 이미지
 async function getMyImg() {
-    const res = await fetch(url + "/user/myinfo", {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${token}`
-        }
-    });
-    const json = await res.json();
+    const json = await fetchApi("/user/myinfo", "GET");
     return json.user.image;
 }
 
 // GET 게시글 데이터
-async function getOnePost() {
-    try {
-        const res = await fetch(url + `/post/${postId}`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-type": "application/json"
-            }
-        });
-        return res.json();
-    } catch (err) {
-        location.href = './404.html'
-    }
+async function getOnePost(POSTID) {
+    return fetchApi(`/post/${POSTID}`,"GET")
 }
 
 // GET 댓글 데이터 
-async function getComments() {
-    try {
-        const res = await fetch(url + `/post/${postId}/comments`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-type": "application/json"
-            }
-        });
-        return res.json();
-    } catch (err) {
-        location.href = './404.html'
-    }
+async function getComments(POSTID) {
+    return fetchApi(`/post/${POSTID}/comments`,"GET")
 }
 
-// POST 댓글
+  // POST 댓글
 async function postComment(content) {
-    try {
-        await fetch(url + `/post/${postId}/comments`, {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify({
-                "comment": {
-                    "content": content
-                }
-            })
-        });
-    } catch (err) {
-        location.href = './404.html'
+    const data = {
+        "comment": {
+            "content": content
+        }
     }
+    fetchApi(`/post/${postId}/comments`, "POST", data, false)
 }
 
 // --- ---

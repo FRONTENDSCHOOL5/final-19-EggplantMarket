@@ -1,9 +1,13 @@
+import {applyTheme} from "./contrast.js"
+
+const myAccountName = localStorage.getItem("user-accountname")
+
 const openPostModal = document.querySelector(".post-modal-background"),
   openPopUpModal = document.querySelector(".modal-background"),
   displayModal = document.querySelector(".modal-content"),
   performModalActions = openPopUpModal.querySelector(".modal-content .modal-actions");
 
-function handleModal() {
+export function handleModal() {
   const openHeaderOptions = document.querySelector("header .btn-option"),
     openPostOptions = document.querySelectorAll("main .btn-option"),
     openProductOptions = document.querySelectorAll("main .product"),
@@ -59,7 +63,7 @@ function changeTheme(inputs) {
       if (!inputs[i].classList.contains("btn-cancel")) {
         inputs[i].click();
         localStorage.setItem("theme", e.target.id);
-        colorChange();
+        applyTheme();
       }
     });
   }
@@ -158,7 +162,7 @@ function handlePostOptionModal(nodes) {
 }
 
 // 댓글 option 모달창
-function handleCommentOptionModal(nodes) {
+export function handleCommentOptionModal(nodes) {
   nodes.forEach((item) => {
     item.addEventListener("click", (e) => {
       const targetButton = e.currentTarget,

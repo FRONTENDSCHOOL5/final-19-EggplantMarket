@@ -1,19 +1,12 @@
+import { fetchApi } from "./fetch/fetchRefact.js";
+import { checkImageUrl } from "./common.js";
+
 //피드백 반영
 const ulNode = document.querySelector('.search-user-list');
 
 // api 연동 
 async function getData(userInp) {
-    const url = "https://api.mandarin.weniv.co.kr";
-    const reqPath = "/user/searchuser/?keyword=";
-    const res = await fetch(url + reqPath + userInp, {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem("user-token")}`,
-            "Content-Type": "application/json"
-        },
-    })
-    const json = await res.json();
-    return json;
+    return fetchApi(`/user/searchuser/?keyword=${userInp}`, "GET");
 }
 
 async function search(userInp) {
@@ -53,24 +46,11 @@ function delInput() {
 }
 
 //입력된 값 하나씩 받아오기(O)
-function filter() {
+
+document.querySelector("#inp-search").addEventListener("keypress",()=>{
     const inp = document.getElementById("inp-search").value;
     if (window.event.key === 'Enter') {
         delInput();
         search(inp);
     }
-}
-
-//테마 작업 진행중.
-// const wrapper = document.querySelector('.search-wrapper');
-// const theme = window.localStorage.getItem('theme');
-// if (theme === 'highContrast') {
-//     wrapper.classList.add('highContrast');
-//     document.body.style.backgroundColor = '#000000';
-//     document.getElementById("back-btn").src = "../assets/icon/icon-arrow-left-hc.svg";
-
-// } else {
-//     wrapper.classList.remove('highContrast');
-//     document.body.style.backgroundColor = '#ffffff'; 
-    
-// }
+})

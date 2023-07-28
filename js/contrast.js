@@ -1,6 +1,6 @@
 // profile_modification
 // colorchange render함수
-function applyTheme() {
+export function applyTheme() {
     const LightProfile = 'https://api.mandarin.weniv.co.kr/1687141773353.png'
     const LightPost = 'https://api.mandarin.weniv.co.kr/1687742174893.png'
     const ContrastProfile = 'https://api.mandarin.weniv.co.kr/1687827693364.png'

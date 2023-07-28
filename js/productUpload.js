@@ -1,3 +1,6 @@
+import { fetchApi, PostImage } from "./fetch/fetchRefact.js";
+import { checkImageExtension, checkImageUrl } from "./common.js";
+
 const submitButton = document.querySelector(".btn-save"),
     inputFields = document.querySelectorAll("#upload-product input"),
     imgInput = document.querySelector("#product-img-upload"),
@@ -9,11 +12,7 @@ const warningMsgProductName = document.querySelector(".warning-msg-productname")
     warningMsgProductPrice = document.querySelector(".warning-msg-productprice"),
     warningMsgPurchaseLink = document.querySelector(".warning-msg-purchaselink");
 
-// 프로필 정보 불러오기
-const url = "https://api.mandarin.weniv.co.kr",
-    token = localStorage.getItem("user-token");
-///////
-
+const url = "https://api.mandarin.weniv.co.kr";
 const pageUrl = new URL(window.location.href);
 const productID = pageUrl.searchParams.get('productId');
 const METHOD = productID ? 'PUT' : 'POST'
@@ -71,8 +70,9 @@ function validateProduct(target) {
     }
 }
 
+// productUpload
 // 입력된 정보 저장하기
-async function saveProduct(url, token, METHOD) {
+async function saveProduct(METHOD) {
     // 가격
     const price = parseInt(productPrice.value);
     // 이미지 저장
@@ -88,30 +88,15 @@ async function saveProduct(url, token, METHOD) {
             itemImage: imageURL,
         },
     };
+    const updatedData = { ...data };
 
-    try {
-        const currentImageSrc = imageInput.style.backgroundImage;
-        let updatedData = { ...data };
-        let checkURL = `url('${imageURL}')`;
-        const reqPath = (METHOD === "POST") ? url + "/product" : url + `/product/${productID}`
-        if (currentImageSrc !== checkURL) {
-            updatedData.product.itemImage = currentImageSrc.slice(5, -2);
-        }
-        
-        const res = await fetch(reqPath, {
-            method: METHOD,
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updatedData),
-        });
-        return res.json();
-    } catch (err) {
-        console.error(err);
-        location.href = "./404.html";
-        // 저장 실패 시 에러 처리
+    const currentImageSrc = imageInput.style.backgroundImage;
+    if (currentImageSrc !== `url('${imageURL}')`) {
+        updatedData.product.itemImage = currentImageSrc.slice(5, -2);
     }
+    const reqPath = (METHOD === "POST") ? "/product" : `/product/${productID}`
+
+    await fetchApi(reqPath, METHOD, updatedData, false)
 }
 
 imgInput.addEventListener("change", async (e) => {
@@ -126,7 +111,8 @@ imgInput.addEventListener("change", async (e) => {
 
 submitButton.addEventListener("click", async (e) => {
     e.preventDefault();
-    await saveProduct(url, token, METHOD);
+    e.target.disabled = true
+    await saveProduct(METHOD);
     location.href = `./profile_info.html?accountName=${localStorage.getItem(
         "user-accountname"
     )}`;
@@ -135,11 +121,11 @@ submitButton.addEventListener("click", async (e) => {
 // productID가 있는 경우
 if(productID){
     submitButton.disabled = false; // 수정을 잘못 누른 경우 고려 - 수정사항 없어도 바로 저장 가능하도록
-    getProduct(url, token, productID); // 저장된 데이터 불러오기
+    getProduct(productID); // 저장된 데이터 불러오기
 }
 
-async function getProduct(url, token, productID) {
-    const productData = await loadProduct(url, token, productID);
+async function getProduct(productID) {
+    const productData = await loadProduct(productID);
     updateProductInfo(productData.product);
 }
 
@@ -223,51 +209,24 @@ function validateFalseField(input, warningMsg, warningMsgText){
 }
 
 // ======== API 함수들 ========
-async function loadProduct(url, token, productID) { // 저장된 데이터 가져오기
-    try {
-        const res = await fetch(url + `/product/detail/${productID}`, {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-type": "application/json",
-            },
-        });
-        const resJson = await res.json();
-        return resJson;
-    } catch (err) {
-        console.error(err);
-        location.href = "./404.html";
-    }
+async function loadProduct(productID) { // 저장된 데이터 가져오기
+    return fetchApi(`/product/detail/${productID}`, "GET");
 }
 
 async function saveImage() {
     const file = imgInput.files[0];
-    const formData = new FormData();
-    const reqPath = "/image/uploadfile";
     if (file) {
-        formData.append("image", file);
-        const res = await fetch(url + reqPath, {
-            method: "POST",
-            body: formData,
-        });
-        const json = await res.json();
-        return json.filename;
+        return PostImage(file)
     }
 }
 
 async function postImg(imageFile){
-    const formData = new FormData();
-        formData.append("image", imageFile);
-        const res = await fetch( url + "/image/uploadfile", {
-            method: "POST",
-            body: formData,
-        });
-        const json = await res.json();
-        const imageURL = url + `/${json.filename}`;
+    const filename = await PostImage(imageFile);
+    const imageURL = "https://api.mandarin.weniv.co.kr" + `/${filename}`;
 
-        // 보여지는 이미지 업데이트
-        imageInput.style.backgroundImage = `url('${imageURL}')`;
-        imageInput.style.backgroundSize = "cover";
-        imageInput.style.backgroundPosition = "center";
-        imageInput.style.backgroundRepeat = "no-repeat";
+    // 보여지는 이미지 업데이트
+    imageInput.style.backgroundImage = `url('${imageURL}')`;
+    imageInput.style.backgroundSize = "cover";
+    imageInput.style.backgroundPosition = "center";
+    imageInput.style.backgroundRepeat = "no-repeat";
 }

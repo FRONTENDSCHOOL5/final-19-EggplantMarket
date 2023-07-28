@@ -1,27 +1,15 @@
+import {checkImageUrl, dateProcess, handleLike} from "./common.js"
+import { fetchClosure } from "./fetch/fetchRefact.js";
+import { handleModal } from "./modal.js";
 
-
-const url = "https://api.mandarin.weniv.co.kr";
-const myAccountName = localStorage.getItem("user-accountname");
+const getFeedData = fetchClosure(`/post/feed/`,10)
 
 // 무한 스크롤 
 window.addEventListener("scroll", async () => {
     if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
-        postFeed(await getData())
+        postFeed((await getFeedData()).posts)
     };
 })
-
-let reqCnt = 0;
-async function getData() {
-    const res = await fetch(url + `/post/feed/?limit=10&skip=${reqCnt++ * 10}`, {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem("user-token")}`,
-            "Content-Type": "application/json"
-        },
-    });
-    const resJson = await res.json();
-    return resJson.posts;
-}
 
 async function postFeed(postsData) {
     //팔로잉이 있으면서 게시글이 1개 이상인 경우
@@ -90,22 +78,9 @@ async function postFeed(postsData) {
 }
 
 async function run() {
-    await postFeed(await getData());
+    await postFeed((await getFeedData()).posts);
     if(document.querySelector('.home-post-list').childNodes.length === 0){
         document.querySelector('.home-withoutfollower').style.display = '';
     }
 }
 run()
-
-//테마 작업 진행중.
-// const wrapper = document.querySelector('.home-wrapper');
-// const theme = window.localStorage.getItem('theme');
-// if (theme === 'highContrast') {
-//     wrapper.classList.add('highContrast');
-//     document.body.style.backgroundColor = '#000000';
-
-// } else {
-//     wrapper.classList.remove('highContrast');
-//     document.body.style.backgroundColor = '#ffffff'; 
-    
-// }

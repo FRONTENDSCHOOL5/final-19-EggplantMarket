@@ -1,4 +1,6 @@
-const token = localStorage.getItem('user-token');
+import { checkImageUrl, checkImageExtension } from "./common.js";
+import { PostImage, fetchApi } from "./fetch/fetchRefact.js";
+
 
 const $uploadButton = document.querySelector('#upload-btn'),
     $writerImg = document.querySelector('.user-profile img'),
@@ -18,7 +20,7 @@ const tempImgUrls = []; // 이미지 미리보기에서 임시URL 생성 및 해
     if (POSTID) {
         $uploadButton.textContent = '수정';
         $uploadButton.disabled = false; // 내용 수정 안해도 제출 가능
-        displayExistingContent(await getPostData());
+        displayExistingContent((await getPostData(POSTID)).post);
     }
 
     // 작성자 프로필 이미지 가져오기
@@ -170,28 +172,13 @@ function previewImg(input) {
 
 // GET 프로필 이미지
 async function getMyImg() {
-    const reqPath = "/user/myinfo";
-    const res = await fetch("https://api.mandarin.weniv.co.kr" + reqPath, {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${token}`
-        }
-    });
-    const json = await res.json();
+    const json = await fetchApi("/user/myinfo", "GET");
     return json.user.image;
 }
 
 // GET 기존 게시글 내용
-async function getPostData() {
-    const res = await fetch(`https://api.mandarin.weniv.co.kr/post/${POSTID}`, {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${token}`,
-            "Content-type": "application/json"
-        }
-    })
-    const json = await res.json();
-    return json.post;
+async function getPostData(POSTID) {
+    return fetchApi(`post/${POSTID}`,"GET");
 }
 
 // POST/PUT 작성 완료된 게시글 내용
@@ -212,45 +199,24 @@ async function submitPostForm(METHOD) {
         }
         if ($imgInp.files[0]) {
             // 추가된 이미지가 있으면 새롭게 서버에 이미지 저장하고 가져오기
-            const newImg = Array.from(dataTransfer.files).map(item => postImg(item));
+            const newImg = Array.from(dataTransfer.files).map(item => PostImage(item));
             const newImgs = await Promise.all(newImg);
             fileName.push(...newImgs);
         }
 
         // 3. 게시물 내용 업로드/수정
         const reqPath = METHOD === "PUT" ? `/post/${POSTID}` : "/post"
-
-        await fetch("https://api.mandarin.weniv.co.kr" + reqPath, {
-            method: METHOD,
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify({
-                "post": {
-                    "content": $contentInp.value.trim(),
-                    "image": fileName.join(',')
-                }
-            })
-        })
+        const data = {
+            "post": {
+                "content": $contentInp.value.trim(),
+                "image": fileName.join(',')
+            }
+        }
+        await fetchApi(reqPath, METHOD, data, false)
 
         return true;
     } else {
         alert('사진은 3개까지만 업로드 가능합니다 :(');
         return false;
     }
-}
-
-// POST 입력된 이미지 서버에 올리기 (한장씩)
-async function postImg(item) {
-    const formData = new FormData();
-    formData.append("image", item);
-
-    const res = await fetch("https://api.mandarin.weniv.co.kr" + "/image/uploadfile", {
-        method: "POST",
-        body: formData
-    });
-
-    const json = await res.json();
-    return json.filename;
 }

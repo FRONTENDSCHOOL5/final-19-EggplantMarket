@@ -1,3 +1,6 @@
+import { fetchApi } from "./fetch/fetchRefact.js"
+import { applyTheme } from "./contrast.js"
+
 applyTheme()
 
 if(localStorage.getItem('back')){
@@ -21,13 +24,13 @@ if(document.querySelector('.btn-back')){
     })
 }
 
-function checkImageExtension(file){
+export function checkImageExtension(file){
     const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
     const extension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
     return validExtensions.some(validExtension => extension.endsWith(validExtension));
 }
 
-function checkImageUrl(Img, position){
+export function checkImageUrl(Img, position){
 
     const LightProfile = 'https://api.mandarin.weniv.co.kr/1687141773353.png'
     const LightPost = 'https://api.mandarin.weniv.co.kr/1687742174893.png'
@@ -87,7 +90,7 @@ function checkImageUrl(Img, position){
 }
 
 // common
-async function handleLike(event){
+export async function handleLike(event){
     const target = event.target;
 
     if(target.tagName === 'path'){
@@ -96,28 +99,14 @@ async function handleLike(event){
         const postId = targetPost.getAttribute('data-postid');
         const isLiked = likeBtn.classList.contains('like');
 
-        const result = isLiked ? await fetchLike(postId, 'unheart', 'DELETE') : await fetchLike(postId, 'heart', 'POST')
+        const result = isLiked ? await requestLike(postId, 'unheart', 'DELETE') : await requestLike(postId, 'heart', 'POST')
         likeBtn.querySelector('.cnt').textContent = `${result.post.heartCount}`
         result.post.hearted ? likeBtn.classList.add('like') : likeBtn.classList.remove('like')
     }
 }
 
 async function requestLike(postId,action,method){
-    try{
-        const res = await fetch(`${url}/post/${postId}/${action}`, {
-                        method: method,
-                        headers : {
-                            "Authorization" : `Bearer ${localStorage.getItem('user-token')}`,
-                            "Content-type" : "application/json"
-                        }
-                    });
-        const resJson = await res.json();
-
-        return resJson
-    } catch(err){
-        console.error(err);
-        location.href='./404.html'
-    }
+    return fetchApi(`/post/${postId}/${action}`,method)
 }
 
 function setProfileLink(){
@@ -127,7 +116,7 @@ if(document.querySelector('.tab-item-more') !== null){
     setProfileLink()
 }
 
-function dateProcess(createdAt) {
+export function dateProcess(createdAt) {
     const itemDate = new Date(createdAt)
     const YEAR = itemDate.getFullYear()
     const MONTH = (itemDate.getMonth()+1) >= 10 ? (itemDate.getMonth()+1) : '0'+(itemDate.getMonth()+1)

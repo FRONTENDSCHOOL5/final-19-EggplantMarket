@@ -1,3 +1,6 @@
+import { checkImageUrl } from "./common.js";
+import { fetchApi, PostImage } from "./fetch/fetchRefact.js";
+
 const submitButton = document.querySelector('#submit-btn');
 const inpsProfile = document.querySelectorAll('.profile-setting input');
 const imgInp = document.querySelector('#btn-upload')
@@ -73,28 +76,17 @@ submitButton.addEventListener('click', async (e) => {
 
 // api 연동 
 async function validateUserId() {
-    const url = "https://api.mandarin.weniv.co.kr";
-    const reqPath = "/user/accountnamevalid";
     const accountNameData = {
         "user": {
             "accountname": acNameInp.value
         }
     }
-    const res = await fetch(url + reqPath, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(accountNameData)
-    })
-    const json = await res.json();
-    return json;
+    
+    return fetchApi("/user/accountnamevalid", "POST", accountNameData, true, false)
 }
 
-async function SubmitJoinForm() {
-    const url = "https://api.mandarin.weniv.co.kr";
-    const reqPath = "/user"
 
+async function SubmitJoinForm() {
     // 이미지 넣기
     const fileName = await postImg()
 
@@ -109,30 +101,12 @@ async function SubmitJoinForm() {
         }
     }
 
-    const res = await fetch(url + reqPath, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
-
-    const json = await res.json();
-    return json;
+    fetchApi("/user", "POST", data, false, false)
 }
 
 async function postImg() {
-    const formData = new FormData();
-    const reqPath = "/image/uploadfile";
     if (document.querySelector('#btn-upload').files[0]) {
-        formData.append("image", document.querySelector('#btn-upload').files[0])
-        const res = await fetch("https://api.mandarin.weniv.co.kr" + reqPath, {
-            method: "POST",
-            body: formData
-        });
-        const json = await res.json();
-
-        return json.filename;
+        return PostImage(document.querySelector('#btn-upload').files[0])
     } else {
         return "1687141773353.png";
         // 기본 이미지

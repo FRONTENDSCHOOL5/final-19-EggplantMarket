@@ -19,22 +19,41 @@
         background-color: inherit;
         margin-left: 1rem;
         background-repeat: no-repeat;
+    // }
+        // .btn-post-list {
+        //     @include get-color(background-image, btn-list-off);
+        // }
+    
+        // .btn-post-list.on {
+        //     @include get-color(background-image, btn-list-on);
+        // }
+    
+        // .btn-post-album {
+        //     @include get-color(background-image, btn-album-off);
+        // }
+    
+        // .btn-post-album.on {
+        //     @include get-color(background-image, btn-album-on);
+        // }
+        // 이미지 스프라이트
+        background-size: 124px 31px;
+@include get-color(background-image, btn-post-view);
+}
+
+.btn-post-list {
+        background-position: -64.5px -2.5px;
     }
 
-    .btn-post-list {
-        @include get-color(background-image, btn-list-off);
+.btn-post-list.on {
+        background-position: -95.5px -2.5px;
     }
 
-    .btn-post-list.on {
-        @include get-color(background-image, btn-list-on);
+.btn-post-album {
+        background-position: -2.5px -2.5px;
     }
 
-    .btn-post-album {
-        @include get-color(background-image, btn-album-off);
-    }
-
-    .btn-post-album.on {
-        @include get-color(background-image, btn-album-on);
+.btn-post-album.on {
+        background-position: -33.5px -2.5px;
     }
 }
 

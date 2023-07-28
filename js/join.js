@@ -16,10 +16,8 @@ inps.forEach(item => {
         // email 형식에 맞고 가입 가능한 이메일 && pw 길이 맞으면 => 버튼 활성화
         if (validEmail && validPw) {
             nextButton.disabled = false;
-            nextButton.style.color = 'black';
         } else {
             nextButton.disabled = true;
-            nextButton.style.color = 'white';
         }
     })
 })

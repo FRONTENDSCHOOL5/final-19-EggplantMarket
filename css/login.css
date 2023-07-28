@@ -19,7 +19,7 @@
 button {
   border: none;
   background-color: initial;
-  padding: 0px;
+  padding: 0;
 }
 
 input {
@@ -38,51 +38,51 @@ body {
 }
 
 .back {
-  height: calc(100vh - 310px);
+  height: calc(100vh - 19.375rem);
   background-image: url(../assets/symbol-logo.svg);
   background-repeat: no-repeat;
   background-position: 98% 98%;
 }
-.login-wrapper.highContrast .back {
+.theme-wrapper.highContrast .back {
   background-image: url(../assets/symbol-logo-highContrast.svg);
 }
 
 .login {
-  background-color: #fff;
-  border-radius: 20px 20px 0 0;
-  padding: 50px 34px 82px;
-  min-width: 390px;
+  background-color: #ffffff;
+  border-radius: 1.25rem 1.25rem 0 0;
+  padding: 3.125rem 2.125rem 5.125rem;
+  min-width: 24.375rem;
   width: 100%;
   position: fixed;
   bottom: 0;
 }
-.login-wrapper.highContrast .login {
+.theme-wrapper.highContrast .login {
   background-color: #000000;
 }
 
 .domain {
   display: block;
-  border: 1px solid #767676;
-  border-radius: 44px;
+  border: 0.0625rem solid #767676;
+  border-radius: 2.75rem;
   font-size: 0.875rem;
-  padding: 13px;
+  padding: 0.8125rem;
   background-repeat: no-repeat;
-  background-position: 10px center;
+  background-position: 0.625rem center;
 }
 .domain + .domain {
-  margin-top: 10px;
+  margin-top: 0.625rem;
 }
 .domain.kakao {
   border-color: #F2C94C;
   background-image: url(../assets/message-circle.svg);
   color: #767676;
 }
-.login-wrapper.highContrast .domain.kakao {
+.theme-wrapper.highContrast .domain.kakao {
   border-color: #FFEB32;
 }
 
-.login-wrapper.highContrast .domain.kakao {
-  color: #dbdbdb;
+.theme-wrapper.highContrast .domain.kakao {
+  color: #f2f2f2;
 }
 
 .domain.google {
@@ -90,12 +90,12 @@ body {
   background-image: url(../assets/Google__G__Logo\ 2.svg);
   color: #767676;
 }
-.login-wrapper.highContrast .domain.google {
+.theme-wrapper.highContrast .domain.google {
   border-color: #65FB76;
 }
 
-.login-wrapper.highContrast .domain.google {
-  color: #dbdbdb;
+.theme-wrapper.highContrast .domain.google {
+  color: #f2f2f2;
 }
 
 .domain.facebook {
@@ -103,30 +103,30 @@ body {
   background-image: url(../assets/facebook.svg);
   color: #767676;
 }
-.login-wrapper.highContrast .domain.facebook {
+.theme-wrapper.highContrast .domain.facebook {
   border-color: #B3E3FF;
 }
 
-.login-wrapper.highContrast .domain.facebook {
-  color: #dbdbdb;
+.theme-wrapper.highContrast .domain.facebook {
+  color: #f2f2f2;
 }
 
 .email {
   font-size: 0.75rem;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   color: #767676;
 }
-.login-wrapper.highContrast .email {
-  color: #dbdbdb;
+.theme-wrapper.highContrast .email {
+  color: #f2f2f2;
 }
 
 .email a {
   color: #767676;
 }
-.login-wrapper.highContrast .email a {
-  color: #dbdbdb;
+.theme-wrapper.highContrast .email a {
+  color: #f2f2f2;
 }
 
 .email span {
-  margin: 0 12px;
+  margin: 0 0.75rem;
 }

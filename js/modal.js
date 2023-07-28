@@ -57,17 +57,16 @@ function setFocusOnModalActions() {
 }
 
 function changeTheme(inputs) {
-  modalTab(inputs); // tab 이동
-  for (let i = 0; i < inputs.length; i++) {
-    // 테마 변경
-    inputs[i].addEventListener("click", function (e) {
-      if (!inputs[i].classList.contains("btn-cancel")) {
-        inputs[i].click();
-        localStorage.setItem("theme", e.target.id);
-        applyTheme();
-      }
-    });
-  }
+    modalTab(inputs); // tab 이동
+    for(let i = 0; i < inputs.length; i++){ // 테마 변경
+        inputs[i].addEventListener('click', function (e) {
+            if(!inputs[i].classList.contains('btn-cancel')){
+                inputs[i].click();
+                localStorage.setItem('theme',e.target.id);
+                applyTheme();
+            }
+        });
+    }
 }
 
 // tab으로 이동
@@ -81,7 +80,6 @@ function modalTab(inputs){
             } else if (e.key === 'Enter') {
                 e.preventDefault();
                 inputs[i].click();
-                localStorage.setItem('theme',e.target.id);
             } else if (e.key === 'Tab' && e.shiftKey){
                 e.preventDefault();
                 const prevInput = inputs[i - 1] || inputs[inputs.length - 1];

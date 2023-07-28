@@ -6,7 +6,7 @@ const getFeedData = fetchClosure(`/post/feed/`,10)
 
 // 무한 스크롤 
 window.addEventListener("scroll", async () => {
-    if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
+    if (Math.ceil(getScrollTop()) >= getDocumentHeight() - window.innerHeight) {
         postFeed((await getFeedData()).posts)
     };
 })

@@ -26,7 +26,6 @@ function fetchClosure(reqpath, cnt){
     const getData = async () => {
        return fetchApi(reqpath + `?limit=${cnt}&skip=${reqCnt++ * cnt}`, "GET");
     }
-    console.log(getData)
     return getData
 }
 

@@ -1,59 +1,5 @@
-@import "variables";
 @import "global";
-
-$theme: (
-    light: (bg-color:#fff,
-    enabled-btn-color: #635CA5,
-    disabled-btn-color: #BCADDC,
-    font-color: #000000,
-    btn-font-color: #ffffff,
-    gray-color: #767676,
-    box-shadow : none,
-    border: none,
-    kakao-color : #F2C94C,
-    google-color : #767676,
-    facebook-color : #2D9CDB,
-    placeholder-color:#dbdbdb,
-    warning-color: #EB5757,
-    bg-logo:url(../assets/symbol-logo.svg),
-    ),
-    highContrast: (bg-color:#000000,
-    enabled-btn-color: #E4D6FF,
-    disabled-btn-color: transparent ,
-    font-color: #ffffff,
-    btn-font-color: #000000,
-    gray-color: #dbdbdb,
-    box-shadow: 0 0 0 2px #E4D6FF inset,
-    border: 2px solid #E4D6FF,
-    kakao-color : #FFEB32,
-    google-color : #65FB76,
-    facebook-color : #B3E3FF,
-    placeholder-color:#FFEB32,
-    warning-color: #FFEB32,
-    bg-logo:url(../assets/symbol-logo-highContrast.svg),
-    )
-);
-
-@function get-color($key, $type: 'light') {
-    @each $name,
-    $color in map-get($theme, $type) {
-        @if($key ==$name) {
-            @return $color
-        }
-    }
-}
-
-@mixin get-color($property, $color) {
-    
-    #{$property}: get-color($color);
-
-    @at-root .login-wrapper.highContrast & {
-        #{$property}: get-color($color, highContrast);
-    }
-}
-
-
-
+@import "mixin";
 
 body{
     background-color: $enabled-color;
@@ -62,40 +8,35 @@ body{
 }
 
 .back{
-    height: calc(100vh - 310px);
+    height: calc(100vh - 19.375rem);
     @include get-color(background-image, bg-logo);
-    // background-image: url(../assets/symbol-logo.svg);
     background-repeat: no-repeat;
-    background-position: 98% 98%;    
+    background-position: 98% 98%;
 }
 
 .login{
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
     @include get-color(background-color, bg-color);
-    border-radius: 20px 20px 0 0 ;
-    padding : 50px 34px 82px;
-    min-width: 390px;
+    border-radius: 1.25rem 1.25rem 0 0 ;
+    padding : 3.125rem 2.125rem 5.125rem;
+    min-width: 24.375rem;
     width: 100%;
-
     position: fixed;
     bottom: 0;
 }
 
 .domain{
     display: block;
-    border: 1px solid $gray300-color;
-    border-radius: 44px;
-    font-size: .875rem;
-    padding: 13px;
+    border: 0.0625rem solid $gray300-color;
+    border-radius: 2.75rem;
+    font-size: map-get($font-sizes, "size14");
+    padding: 0.8125rem;
 
     + .domain {
-        margin-top: 10px;
+        margin-top: 0.625rem;
     }
     background: {
         repeat : no-repeat;
-        position: 10px center;
+        position: 0.625rem center;
     };
 
     &.kakao{
@@ -116,14 +57,14 @@ body{
 }
 
 .email {
-    font-size: .75rem;
-    margin-top: 20px;
+    font-size: map-get($font-sizes, "size12");
+    margin-top: 1.25rem;
     @include get-color(color, gray-color);
     a {
         @include get-color(color, gray-color);
     }
 
     span{
-        margin: 0 12px;
+        margin: 0 0.75rem;
     }
 }

@@ -19,7 +19,7 @@
 button {
   border: none;
   background-color: initial;
-  padding: 0px;
+  padding: 0;
 }
 
 input {
@@ -34,12 +34,12 @@ a {
 .title-chat {
   color: #000000;
 }
-.following-wrapper.highContrast .title-chat {
+.theme-wrapper.highContrast .title-chat {
   color: #ffffff;
 }
 
 .follow-list {
-  padding: 24px 16px;
+  padding: 1.5rem 1rem;
 }
 .follow-list li:first-child {
   margin-top: 0;
@@ -51,44 +51,44 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 50px;
-  margin-top: 16px;
+  height: 3.125rem;
+  margin-top: 1rem;
 }
 .follow-list .follow-item .user-img {
   -ms-flex-negative: 0;
       flex-shrink: 0;
-  margin-right: 12px;
+  margin-right: 0.75rem;
 }
 .follow-list .follow-item .user-info {
   width: calc(100% - 130px);
   -ms-flex-negative: 1;
       flex-shrink: 1;
-  margin-right: 12px;
+  margin-right: 0.75rem;
 }
 .follow-list .follow-item .user-info a {
   color: #000000;
 }
-.following-wrapper.highContrast .follow-list .follow-item .user-info a {
+.theme-wrapper.highContrast .follow-list .follow-item .user-info a {
   color: #ffffff;
 }
 
 .follow-list .follow-item .user-info p {
   color: #767676;
 }
-.following-wrapper.highContrast .follow-list .follow-item .user-info p {
-  color: #dbdbdb;
+.theme-wrapper.highContrast .follow-list .follow-item .user-info p {
+  color: #f2f2f2;
 }
 
 .follow-list .follow-item .user-info .user-name {
   display: inline-block;
-  margin-bottom: 6px;
+  margin-bottom: 0.375rem;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 1.125rem;
   font-size: 0.875rem;
 }
 .follow-list .follow-item .user-info .user-intro {
   font-weight: 400;
-  line-height: 15px;
+  line-height: 0.9375rem;
   font-size: 0.75rem;
   color: #767676;
 }
@@ -96,57 +96,50 @@ a {
 .btn-follow {
   -ms-flex-negative: 0;
       flex-shrink: 0;
-  -ms-flex-preferred-size: 56px;
-      flex-basis: 56px;
-  height: 28px;
+  -ms-flex-preferred-size: 3.5rem;
+      flex-basis: 3.5rem;
+  height: 1.75rem;
   margin-left: auto;
   color: #ffffff;
   background-color: #635CA5;
-  border-radius: 26px;
+  border-radius: 1.625rem;
 }
-.following-wrapper.highContrast .btn-follow {
+.theme-wrapper.highContrast .btn-follow {
   color: #000000;
 }
 
-.following-wrapper.highContrast .btn-follow {
+.theme-wrapper.highContrast .btn-follow {
   background-color: #E4D6FF;
 }
 
 .btn-follow.opposite {
   color: #767676;
-  background-color: white;
-  border: 1px solid #dbdbdb;
+  background-color: #ffffff;
+  border: 1px solid #f2f2f2;
 }
-.following-wrapper.highContrast .btn-follow.opposite {
+.theme-wrapper.highContrast .btn-follow.opposite {
   color: #E4D6FF;
 }
 
-.following-wrapper.highContrast .btn-follow.opposite {
+.theme-wrapper.highContrast .btn-follow.opposite {
   background-color: transparent;
 }
 
-.following-wrapper.highContrast .btn-follow.opposite {
+.theme-wrapper.highContrast .btn-follow.opposite {
   border: 2px solid #E4D6FF;
-}
-
-.btn-follow:disabled {
-  background-color: #767676;
-  color: #fff;
-}
-.following-wrapper.highContrast .btn-follow:disabled {
-  background-color: #dbdbdb;
 }
 
 .img-cover {
   display: inline-block;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
   overflow: hidden;
+  border-radius: 50%;
+  width: 3.125rem;
+  height: 3.125rem;
 }
 .img-cover img {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
 }

@@ -178,7 +178,7 @@ async function getMyImg() {
 
 // GET 기존 게시글 내용
 async function getPostData(POSTID) {
-    return fetchApi(`post/${POSTID}`,"GET");
+    return fetchApi(`/post/${POSTID}`,"GET");
 }
 
 // POST/PUT 작성 완료된 게시글 내용

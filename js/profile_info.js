@@ -1,6 +1,6 @@
 import { fetchApi, fetchClosure } from "./fetch/fetchRefact.js";
 import { checkImageUrl, dateProcess, handleLike } from "./common.js";
-import { handleModal } from './modal.js';
+import { handleModal, handlePostOptionModal } from './modal.js';
 
 const pageUrl = new URL(window.location.href);
 const myAccountName = localStorage.getItem("user-accountname"),

@@ -190,7 +190,7 @@ async function postComment(content) {
             "content": content
         }
     }
-    fetchApi(`/post/${postId}/comments`, "POST", data, false)
+    await fetchApi(`/post/${postId}/comments`, "POST", data, false)
 }
 
 // --- ---

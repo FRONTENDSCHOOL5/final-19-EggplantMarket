@@ -101,7 +101,7 @@ async function SubmitJoinForm() {
         }
     }
 
-    fetchApi("/user", "POST", data, false, false)
+    await fetchApi("/user", "POST", data, false, false)
 }
 
 async function postImg() {

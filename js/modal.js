@@ -1,4 +1,5 @@
 import {applyTheme} from "./contrast.js"
+import { fetchApi } from "./fetch/fetchRefact.js";
 
 const myAccountName = localStorage.getItem("user-accountname")
 
@@ -136,7 +137,7 @@ function handleHeaderModal(node) {
 }
 
 // 게시물 option 모달창
-function handlePostOptionModal(nodes) {
+export function handlePostOptionModal(nodes) {
   nodes.forEach((item) => {
     item.addEventListener("click", (e) => {
       const targetButton = e.currentTarget,
@@ -358,50 +359,26 @@ openPopUpModal.addEventListener("click", (event) => {
 // ============== API 함수들 ==========
 // 삭제 api
 async function deleteItem(targetType, targetId, targetCommentId) {
-  const fullUrl = targetCommentId
-    ? `https://api.mandarin.weniv.co.kr/post/${targetId}/comments/${targetCommentId}`
+  const reqPath = targetCommentId
+    ? `/post/${targetId}/comments/${targetCommentId}`
     : targetType !== "상품"
-    ? `https://api.mandarin.weniv.co.kr/post/${targetId}`
-    : `https://api.mandarin.weniv.co.kr/product/${targetId}`; // 순서대로 댓글 주소, 게시글 주소, 상품 주소
-  const options = {
-    method: "DELETE",
-    headers: {
-      "Authorization": `Bearer ${localStorage.getItem("user-token")}`,
-      "Content-type": "application/json",
-    },
-  };
-  try {
-    await fetch(fullUrl, options);
-    if (targetType === "게시글" && window.location.href.includes("detail")) {
-      // 게시글이면서 detail을 포함한 것을 삭제했을 경우 전화면으로 이동하면서 새로 로딩
-      location.href = document.referrer;
-    } else {
-      // 그 외의 경우에는 위치한 페이지에서 바로 reload()
-      location.reload();
-    }
-  } catch (err) {
-    console.error(err);
-    location.href = "./404.html";
+    ? `/post/${targetId}`
+    : `/product/${targetId}`; // 순서대로 댓글 주소, 게시글 주소, 상품 주소
+
+  await fetchApi(reqPath,"DELETE",null,false)
+  if (targetType === "게시글" && window.location.href.includes("detail")) {
+    // 게시글이면서 detail을 포함한 것을 삭제했을 경우 전화면으로 이동하면서 새로 로딩
+    location.href = document.referrer;
+  } else {
+    // 그 외의 경우에는 위치한 페이지에서 바로 reload()
+    location.reload();
   }
 }
 
 // 신고 api
 async function reportItem(targetId, targetCommentId) {
-  const fullUrl = targetCommentId ? `https://api.mandarin.weniv.co.kr/post/${targetId}/comments/${targetCommentId}/report` : `https://api.mandarin.weniv.co.kr/post/${targetId}/report`;
-
-  const options = {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${localStorage.getItem("user-token")}`,
-      "Content-type": "application/json",
-    },
-  };
-  try {
-    await fetch(fullUrl, options);
-  } catch (err) {
-    console.error(err);
-    location.href = "./404.html";
-  }
+  const reqPath = targetCommentId ? `/post/${targetId}/comments/${targetCommentId}/report` : `/post/${targetId}/report`;
+  await fetchApi(reqPath,"POST",null,false)
 }
 
 handleModal(); // 모달 실행

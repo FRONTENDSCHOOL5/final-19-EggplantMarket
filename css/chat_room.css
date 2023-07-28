@@ -19,7 +19,7 @@
 button {
   border: none;
   background-color: initial;
-  padding: 0px;
+  padding: 0;
 }
 
 input {
@@ -32,9 +32,13 @@ a {
 }
 
 .top {
-  background-color: #fff;
+  background-color: #ffffff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
-.chat-room-wrapper.highContrast .top {
+.theme-wrapper.highContrast .top {
   background-color: #000000;
 }
 
@@ -45,20 +49,21 @@ body {
 .title-chat {
   color: #000000;
 }
-.chat-room-wrapper.highContrast .title-chat {
+.theme-wrapper.highContrast .title-chat {
   color: #ffffff;
 }
 
 .img-cover {
   display: inline-block;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
   overflow: hidden;
+  border-radius: 50%;
+  width: 2.625rem;
+  height: 2.625rem;
 }
 .img-cover img {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -66,14 +71,19 @@ body {
 main {
   position: fixed;
   width: 100%;
-  bottom: 73px;
+  bottom: 0;
+  padding: 100vh 0rem 4.5625rem;
+  background-color: #f2f2f2;
+}
+.theme-wrapper.highContrast main {
+  background-color: #000000;
 }
 
 .chat-content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 10px;
+  margin-top: 0.625rem;
 }
 .chat-content .user-img {
   -ms-flex-negative: 0;
@@ -81,39 +91,39 @@ main {
 }
 .chat-content .content-text {
   max-width: 100%;
-  padding: 12px;
+  padding: 0.75rem;
   font-weight: 400;
   font-size: 0.875rem;
-  line-height: 17.53px;
+  line-height: 1.0956rem;
   color: #000000;
-  border: 1px solid #C4C4C4;
+  border: 1px solid #c4c4c4;
 }
-.chat-room-wrapper.highContrast .chat-content .content-text {
+.theme-wrapper.highContrast .chat-content .content-text {
   color: #ffffff;
 }
 
 .chat-content .chat-time {
   font-size: 0.625rem;
   color: #767676;
-  margin-right: 16px;
-  padding-bottom: 5px;
+  margin-right: 1rem;
+  padding-bottom: 0.3125rem;
   -ms-flex-item-align: end;
       align-self: flex-end;
 }
 
 .follow-chat .user-img {
-  margin: 0 12px 0 16px;
+  margin: 0 0.75rem 0 1rem;
 }
 .follow-chat .content-text {
-  border-radius: 0px 12px 12px 12px;
-  background-color: #fff;
+  border-radius: 0 0.75rem 0.75rem 0.75rem;
+  background-color: #ffffff;
 }
-.chat-room-wrapper.highContrast .follow-chat .content-text {
+.theme-wrapper.highContrast .follow-chat .content-text {
   background-color: #000000;
 }
 
 .follow-chat .chat-time {
-  margin-left: 6px;
+  margin-left: 0.375rem;
 }
 
 .my-chat {
@@ -125,21 +135,21 @@ main {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
-  color: #fff;
-  margin: 0 16px 0 12px;
-  border-radius: 12px 0px 12px 12px;
+  color: #ffffff;
+  margin: 0 1rem 0 0.75rem;
+  border-radius: 0.75rem 0rem 0.75rem 0.75rem;
   border: none;
   background-color: #635CA5;
 }
-.chat-room-wrapper.highContrast .my-chat .content-text {
+.theme-wrapper.highContrast .my-chat .content-text {
   color: #C5A8FF;
 }
 
-.chat-room-wrapper.highContrast .my-chat .content-text {
+.theme-wrapper.highContrast .my-chat .content-text {
   border: 1px solid #C5A8FF;
 }
 
-.chat-room-wrapper.highContrast .my-chat .content-text {
+.theme-wrapper.highContrast .my-chat .content-text {
   background-color: #000000;
 }
 
@@ -147,7 +157,7 @@ main {
   -webkit-box-ordinal-group: 1;
       -ms-flex-order: 0;
           order: 0;
-  margin-right: 6px;
+  margin-right: 0.375rem;
 }
 
 .my-chat-img {
@@ -159,8 +169,8 @@ main {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
-  max-width: 240px;
-  margin: 0 16px 0 12px;
+  max-width: 15rem;
+  margin: 0 1rem 0 0.75rem;
 }
 .my-chat-img .content-text {
   -webkit-box-ordinal-group: 1;
@@ -169,32 +179,39 @@ main {
 }
 
 .comment {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   position: fixed;
   bottom: 0;
   width: 100%;
 }
 .comment img {
-  width: 36px;
+  width: 2.25rem;
 }
 .comment #commemt-input {
-  padding: 8px;
-  margin-right: 10px;
+  padding: 0.5rem;
+  margin-right: 0.625rem;
   color: #000000;
-  background-color: #fff;
+  background-color: #ffffff;
 }
-.chat-room-wrapper.highContrast .comment #commemt-input {
+.theme-wrapper.highContrast .comment #commemt-input {
   color: #ffffff;
 }
 
-.chat-room-wrapper.highContrast .comment #commemt-input {
+.theme-wrapper.highContrast .comment #commemt-input {
   background-color: #000000;
+}
+
+.comment .btn-comment:disabled {
+  color: #635CA5;
+}
+.theme-wrapper.highContrast .comment .btn-comment:disabled {
+  color: #E4D6FF;
 }
 
 .comment .btn-comment:not(:disabled) {
   color: #9747FF;
 }
-.chat-room-wrapper.highContrast .comment .btn-comment:not(:disabled) {
+.theme-wrapper.highContrast .comment .btn-comment:not(:disabled) {
   color: #FFEB32;
 }
 
@@ -217,20 +234,20 @@ main {
 #comment-input::placeholder {
   color: #767676;
 }
-.chat-room-wrapper.highContrast #comment-input::-webkit-input-placeholder {
-  color: #dbdbdb;
+.theme-wrapper.highContrast #comment-input::-webkit-input-placeholder {
+  color: #f2f2f2;
 }
-.chat-room-wrapper.highContrast #comment-input::-moz-placeholder {
-  color: #dbdbdb;
+.theme-wrapper.highContrast #comment-input::-moz-placeholder {
+  color: #f2f2f2;
 }
-.chat-room-wrapper.highContrast #comment-input:-ms-input-placeholder {
-  color: #dbdbdb;
+.theme-wrapper.highContrast #comment-input:-ms-input-placeholder {
+  color: #f2f2f2;
 }
-.chat-room-wrapper.highContrast #comment-input::-ms-input-placeholder {
-  color: #dbdbdb;
+.theme-wrapper.highContrast #comment-input::-ms-input-placeholder {
+  color: #f2f2f2;
 }
-.chat-room-wrapper.highContrast #comment-input::placeholder {
-  color: #dbdbdb;
+.theme-wrapper.highContrast #comment-input::placeholder {
+  color: #f2f2f2;
 }
 
 .post-modal-background {
@@ -242,25 +259,25 @@ main {
   background-color: rgba(0, 0, 0, 0.5);
 }
 .post-modal-background .post-modal-content {
-  background-color: #FFFFFF;
-  padding-bottom: 10px;
-  border-radius: 20px 20px 0 0;
+  background-color: #ffffff;
+  padding-bottom: 0.625rem;
+  border-radius: 1.25rem 1.25rem 0 0;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
 }
 .post-modal-background .modal-content {
-  padding: 14px 26px 14px;
+  padding: 0.875rem 1.625rem 0.875rem;
   font-size: 0.875rem;
   font-weight: 400;
-  line-height: 18px;
+  line-height: 1.125rem;
 }
 .post-modal-background .post-modal-bar {
   background-color: #dbdbdb;
-  width: 50px;
-  height: 4px;
-  margin: 16px auto;
+  width: 3.125rem;
+  height: 0.25rem;
+  margin: 1rem auto;
 }
 .post-modal-background .modal-description {
   width: 100%;

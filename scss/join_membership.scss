@@ -1,90 +1,33 @@
-@import 'variables';
 @import 'global';
-
-$theme: (
-    light: (bg-color:#fff,
-    enabled-btn-color: #635CA5,
-    disabled-btn-color: #BCADDC,
-    font-color: #000000,
-    btn-font-color: #ffffff,
-    gray-color: #767676,
-    box-shadow : none,
-    border: none,
-    placeholder-color:#dbdbdb,
-    warning-color: #EB5757,
-    image-btn: #9C85C5,
-    ),
-    highContrast: (bg-color:#000000,
-    enabled-btn-color: #E4D6FF,
-    disabled-btn-color: transparent ,
-    font-color: #ffffff,
-    btn-font-color: #000000,
-    gray-color: #dbdbdb,
-    box-shadow: 0 0 0 2px #E4D6FF inset,
-    border: 2px solid #E4D6FF,
-    placeholder-color:#FFEB32,
-    warning-color: #FFEB32,
-    image-btn: #E4D6FF,
-    )
-);
-
-//function의 특징은 return을 통해 값을 반환.
-@function get-color($key, $type: 'light') {
-    //each 는 map데이터를 반복할때 사용.
-    //@each $key변수, $value변수 in 데이터
-    //아래의 map-get 의미는 map $coloers 변수에서 입력받은 light 혹은 dark 를 넣어서 해당값을 말함. 예를들어 bg-color 를 key 에 입력 받으면 그 값과 컬러값의 키값이 일치한다면 해당 값을 출력해준다는 의미.
-    @each $name,
-    $color in map-get($theme, $type) {
-        @if($key ==$name) {
-            @return $color
-        }
-    }
-}
-
-@mixin get-color($property, $color) {
-    
-    #{$property}: get-color($color); //보간법
-
-    @at-root .join.highContrast & {
-        #{$property}: get-color($color, highContrast);
-    }
-} //mixin은 재사용할 css 스타일을 선언한다고 생각하면 된다.
-
-
-
-
-.profile-setting {
-    // display: none;
-}
+@import 'mixin';
 
 .join {
-    padding: 34px;
+    padding: 2.125rem;
 }
 
 h2,
 p {
     @include get-color(color, gray-color);
     text-align: center;
-    font-size: 14px
-    ;
+    font-size: map-get($font-sizes, "size14" );
 }
 
 .title {
-    font-size: 24px;
+    font-size: map-get($font-sizes, "size24");
     @include get-color(color, font-color);
 }
 
 .join-email form {
-    margin-top: 40px;
+    margin-top: 2.5rem;
 }
 
 .profile-setting {
     form {
-        margin-top: 30px;
+        margin-top: 1.875rem;
     }
 
     .title {
-        margin-bottom: 12px;
+        margin-bottom: 0.75rem;
     }
 }
 
@@ -95,28 +38,23 @@ form {
     margin: 0 auto;
     @include get-color(color, gray-color);
     color: $gray300-color;
-    font-size: .75rem;
+    font-size: map-get($font-sizes, "size12");
 
     .profile-img {
         position: relative;
-        width: 110px;
-        margin: 0 auto 30px;
+        width: 6.875rem;
+        margin: 0 auto 1.875rem;
 
         .img-cover {
-            width: 110px;
-            border-radius: 50%;
-            overflow: hidden;
-            img {
-                    width: 100%;
-                    aspect-ratio: 1/1;
-                    object-fit: cover;
-                }
+            width: 6.875rem;
+            @include image-cover;
+            @include profile-img-tag;
         }
     }
 
     .upload-img{
         circle {
-            @include get-color(fill, image-btn);
+            @include get-color(fill, profile-image-btn);
         }
         path {
             @include get-color(stroke, btn-font-color);
@@ -125,13 +63,11 @@ form {
 
 
     &>fieldset {
-        margin-bottom: 16px;
+        margin-bottom: 1rem;
     }
 
     label {
-        @include get-color(color, gray-color);
-        display: block;
-        margin-bottom: 2px;
+        @include label-tag;
         text-align: start;
     }
 
@@ -154,8 +90,8 @@ form {
         @include get-color(color, font-color);
         width: 100%;
         border: none;
-        border-bottom: 1px solid $gray100-color;
-        padding: 8px 0
+        border-bottom: $border-gray100-1px;
+        padding: 0.5rem 0;
     }
 
     input::placeholder{
@@ -167,62 +103,39 @@ form {
     }
 
     input::placeholder {
-        font-size: .875rem;
+        font-size: map-get($font-sizes, "size14");
         color: $gray100-color;
     }
 
     input:focus {
-        border-bottom: 1px solid $highlight-color;
+        border-bottom: 0.0625rem solid $highlight-color;
         outline: none;
     }
 
-[class^=warning-msg] {
-    @include get-color(color, warning-color);
-        font-size: 12px;
-        margin-top: 6px;
-        display: none;
+    [class^=warning-msg] {
+        @include warning-message(color, warning-color);
+        margin-top: 0.375rem;
     }
 }
-
 
 // button
 button {
     display: block;
-    border: solid 1px;
-    border-radius: 44px;
+    border: solid 0.0625rem;
+    border-radius: 2.75rem;
     margin: 0 auto;
 }
 
-.size-l {
-    margin-top: 30px;
-    @include get-color(background-color, disabled-btn-color);
-    @include get-color(color, font-color);
-    @include get-color(box-shadow, box-shadow);
-    font-weight: 500;
-    width: 100%;
-    padding: 13px 0px;
-    border-radius: 44px;
-    font-size: map-get($font-sizes, "size14");
-}
-
-.size-l:disabled {
-    // @include get-color(background-color, disabled-btn-color);
-    // @include get-color(color, font-color);
-    // @include get-color(box-shadow, box-shadow);
-}
+@include join-btn-size-l; //size-l button
 
 .btn-next {
     border: none;
-    color: white;
-    @include get-color(background-color, enabled-btn-color);
-    margin-top: 30px;
-    padding: 13px;
+    margin-top: 1.875rem;
+    padding: 0.8125rem;
 }
 
 .btn-next:disabled {
-    @include get-color(background-color, disabled-btn-color);
-    color: white;
-    @include get-color(box-shadow, box-shadow);
+    @include btn-disabled(color, font-color);
 }
 
 .btn-upload {

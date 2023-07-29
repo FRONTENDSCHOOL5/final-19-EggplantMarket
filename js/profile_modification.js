@@ -46,17 +46,11 @@ async function postImg() {
 
 // 프로필 이미지 버튼
 imgInp.addEventListener('change', async (e) => {
-    const formData = new FormData();
+    
     const imageFile = e.target.files[0];
     if (checkImageExtension(imageFile)) {
-
-        formData.append("image", imageFile);
-        const res = await fetch("https://api.mandarin.weniv.co.kr/image/uploadfile", {
-            method: "POST",
-            body: formData
-        });
-        const json = await res.json();
-        const imageURL = "https://api.mandarin.weniv.co.kr/" + json.filename;
+        const filename = await PostImage(imageFile)
+        const imageURL = "https://api.mandarin.weniv.co.kr/" + filename;
 
         // 보여지는 이미지 업데이트
         const imageInput = document.querySelector('.img-cover img');

@@ -54,6 +54,7 @@ a {
   margin-left: 1rem;
   background-repeat: no-repeat;
   background-size: 124px 31px;
+  background-image: url("../assets/post-view-sprites.png");
 }
 .theme-wrapper.highContrast .tab-btn-wrap button {
   background-image: url("../assets/post-view-sprites-hc.png");

@@ -41,9 +41,6 @@ async function postFeed(postsData) {
             const template = document.getElementById('post-template');
             const content = template.content.cloneNode(true);
 
-            //테스트 중입니다.
-            console.log(content);
-
             const profileImageLink = content.querySelector(".profile-img");
             profileImageLink.href = `./profile_info.html?accountName=${item.author.accountname}`;
             const profileImage = content.getElementById("profile-image");
@@ -72,7 +69,6 @@ async function postFeed(postsData) {
             const date = content.querySelector(".post-date");
             date.textContent = dateProcess(item.createdAt);
 
-            ulNode.appendChild(liNode);
             liNode.appendChild(content);
 
             //게시물 종류에 따라서 추가해주는 기능
@@ -87,10 +83,10 @@ async function postFeed(postsData) {
                 })
             }
             liNode.querySelector('.home-post').setAttribute('data-postid', item.id)
-            //좋아요 버튼 제어
-            ulNode.addEventListener('click', handleLike);
+            frag.appendChild(liNode)
         }
         ulNode.appendChild(frag);
+        ulNode.addEventListener('click', handleLike);
     }
     handleModal()
 }

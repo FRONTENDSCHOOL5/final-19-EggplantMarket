@@ -96,7 +96,7 @@ async function handleLike(event){
         const postId = targetPost.getAttribute('data-postid');
         const isLiked = likeBtn.classList.contains('like');
 
-        const result = isLiked ? await fetchLike(postId, 'unheart', 'DELETE') : await fetchLike(postId, 'heart', 'POST')
+        const result = isLiked ? await requestLike(postId, 'unheart', 'DELETE') : await requestLike(postId, 'heart', 'POST')
         likeBtn.querySelector('.cnt').textContent = `${result.post.heartCount}`
         result.post.hearted ? likeBtn.classList.add('like') : likeBtn.classList.remove('like')
     }

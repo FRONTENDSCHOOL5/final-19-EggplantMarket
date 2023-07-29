@@ -201,47 +201,6 @@ main {
     @include get-color(color, gray-color);
 }
 
-.tab-item-list {
-    @include get-color(background-color, bg-color);
-}
-
-.tab-item-list {
-    .here {
-        p {
-            @include get-color(color, gray-color);
-        }
-        @include get-color(background-image, profile-fill-image);
-    }
-    @include get-color(background-color, bg-color);
-}
-
-.tab-item-chat{
-    a {
-        p {
-            @include get-color(color, gray-color);
-        }
-        @include get-color(background-image, chat-image);
-    }
-}
-
-.tab-item-follow {
-    a {
-        p {
-            @include get-color(color, gray-color);
-        }
-        @include get-color(background-image, post-image);
-    }
-}
-
-.tab-item-home {
-    a {
-        p {
-            @include get-color(color, gray-color);
-        }
-        @include get-color(background-image, home-image);
-    }
-}
-
 .content-wrap {
     margin-top: 3px;
 }

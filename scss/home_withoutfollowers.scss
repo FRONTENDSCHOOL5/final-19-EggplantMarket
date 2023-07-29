@@ -14,7 +14,6 @@
     @include get-color(color, font-color);
 }
 
-
 .main-container {
     p,
     div,
@@ -62,48 +61,6 @@
     padding: 0.8125rem 0;
     border-radius: 2.75rem;
     font-size: map-get($font-sizes, "size14" );
-}
-
-.tab-item-list {
-    .here {
-        p {
-            @include get-color(color, gray-color);
-        }
-        @include get-color(background-image, home-fill-image);
-    }
-    @include get-color(background-color, bg-color);
-}
-
-.tab-item-chat {
-    a {
-        p {
-            @include get-color(color, gray-color);
-        }
-
-        @include get-color(background-image, chat-image);
-    }
-}
-
-.tab-item-follow {
-    a {
-        p {
-            @include get-color(color, gray-color);
-        }
-
-        @include get-color(background-image, post-image);
-    }
-}
-
-.tab-menu {
-    .tab-item-more {
-        a {
-            p {
-                @include get-color(color, gray-color);
-            }
-    
-            @include get-color(background-image, profile-image);
-        }
-    }
 }
 
 .home-post .user-follow .user-info {

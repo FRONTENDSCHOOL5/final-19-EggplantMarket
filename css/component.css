@@ -245,6 +245,13 @@ a {
   color: #ffffff;
 }
 
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: #ffffff;
+}
+
 .modal-background {
   visibility: hidden;
   position: fixed;
@@ -561,97 +568,6 @@ a {
   background: #ffffff;
   color: #767676;
   border: 0.0625rem solid #dbdbdb;
-}
-
-footer {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  background-color: #ffffff;
-}
-
-.tab-item-list {
-  border-top: 0.0313rem solid #dbdbdb;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: #ffffff;
-}
-.highContrast .tab-item-list {
-  background-color: #000000;
-}
-
-.tab-item-list li {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-.tab-item-list li a {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  top: 0;
-  width: 5.25rem;
-  display: inline-block;
-  font-size: 0.625rem;
-  color: #767676;
-  text-align: center;
-  background-repeat: no-repeat;
-  background-position: 50% 40%;
-  background-size: 1.25rem 1.25rem;
-}
-.tab-item-list li p {
-  font-weight: 400;
-  padding-top: 2.5rem;
-  padding-bottom: 0.625rem;
-  text-align: center;
-}
-.tab-item-list li:hover {
-  background-color: #F1F1F1;
-}
-.tab-item-list li:first-child a {
-  background-image: url(../assets/icon/icon-home.svg);
-}
-.highContrast .tab-item-list li:first-child a {
-  background-image: url(../assets/icon/icon-home-hc.svg);
-}
-
-.tab-item-list li:first-child a.here {
-  background-image: url("../assets/icon/icon-home-fill.svg");
-}
-.tab-item-list li:nth-child(2) a {
-  background-image: url("../assets/icon/icon-message-circle.svg");
-}
-.tab-item-list li:nth-child(2) a.here {
-  background-image: url("../assets/icon/icon-message-circle-fill.svg");
-}
-.tab-item-list li:nth-child(3) a {
-  background-image: url(../assets/icon/icon-edit.svg);
-}
-.highContrast .tab-item-list li:nth-child(3) a {
-  background-image: url(../assets/icon/icon-edit-hc.svg);
-}
-
-.tab-item-list li:nth-child(4) a {
-  background-image: url(../assets/icon/icon-user.svg);
-}
-.highContrast .tab-item-list li:nth-child(4) a {
-  background-image: url(../assets/icon/icon-user-hc.svg);
-}
-
-.tab-item-list li:nth-child(4) a.here {
-  background-image: url("../assets/icon/icon-user-fill.svg");
 }
 
 .skip-nav {

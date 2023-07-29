@@ -14,9 +14,8 @@ async function search(userInp) {
     const frag = document.createDocumentFragment();
 
     for (let i = 0; i < userData.length; i++) {
-        // const accountName = json[i].accountname;
+
         const userName = userData[i].username;
-        // const sameAccountName = accountName.substr(accountName.indexOf(userInp),userInp.length);
         const sameUserName = userName.substr(userName.indexOf(userInp), userInp.length);
 
         if (i == 10) {
@@ -24,20 +23,39 @@ async function search(userInp) {
         }
 
         const liNode = document.createElement('li');
-        liNode.innerHTML = `<article class="user-follow">
-        <a class="profile-img img-cover" href="./profile_info.html?accountName=${userData[i].accountname}">
-             <span class="a11y-hidden">${userData[i].username}의 프로필 보기</span>
-            <img src="${checkImageUrl(userData[i].image, 'profile')}" alt="">
-        </a>
-        <a class="user-info" href="./profile_info.html?accountName=${userData[i].accountname}">
-            ${userName.indexOf(userInp) != -1 ? `<h3 class="user-name">${userName.split(userInp)[0]}<strong>${sameUserName}</strong>${userName.split(userInp)[1]}</h3>` : `<p class="user-name">${userData[i].username}</p>`}
-            <span class="a11y-hidden">${userData[i].username}의 프로필 보기</span>
-            <p class="user-id">${userData[i].accountname}</p>
-        </a>
-        </article>`
-        frag.appendChild(liNode);
-    }
+        const template = document.getElementById('search-template');
 
+        const content = template.content.cloneNode(true);
+
+        const profileImageLink = content.querySelector(".profile-img");
+        profileImageLink.href=`./profile_info.html?accountName=${userData[i].accountname}`;
+        const userInfoLink = content.querySelector(".user-info");
+        userInfoLink.href=`./profile_info.html?accountName=${userData[i].accountname}`;
+
+        //검색어 일치부분 강조 기능
+        if(userName.indexOf(userInp) != -1) {
+            const name = content.querySelector(".user-name");
+            const parent = name.parentElement;
+            parent.removeChild(name);
+            parent.insertAdjacentHTML('afterbegin', `<h3 class="user-name">${userName.split(userInp)[0]}<strong>${sameUserName}</strong>${userName.split(userInp)[1]}</h3>`);
+        }
+        else {
+            const name = content.querySelector(".user-name");
+            const parent = name.parentElement;
+            parent.removeChild(name);
+            parent.insertAdjacentHTML('afterbegin', `<p class="user-name">${userData[i].username}</p>`);
+        }
+
+
+        const account = content.querySelector(".user-id");
+        account.textContent = userData[i].accountname;
+        const profileImage = content.getElementById("profile-image");
+        profileImage.src = checkImageUrl(userData[i].image, 'profile');
+
+
+        ulNode.appendChild(liNode);
+        liNode.appendChild(content);
+    }
     ulNode.append(frag);
 }
 //키보드 값을 다시 입력 받을 때 마다 리스트 삭제

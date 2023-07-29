@@ -16,10 +16,10 @@ btnOption.addEventListener('click', () => {
 });
 
 // 띄어진 모달이 아닌 배경을 클릭하면 모달창 닫기
-  postModal.addEventListener('click', (event) => {
-    const targetElement = event.target;
-  
-    if (targetElement.classList.contains('post-modal-background')) {
-      postModal.style.display = 'none';
-    }
-  });
+postModal.addEventListener('click', (event) => {
+  const targetElement = event.target;
+
+  if (targetElement.classList.contains('post-modal-background')) {
+    postModal.style.display = 'none';
+  }
+});

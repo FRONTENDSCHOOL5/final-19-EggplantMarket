@@ -85,50 +85,22 @@
                             <button class="btn-post-album"><span class="a11y-hidden">앨범형</span></button>
                         </div>
                     </section>
-                    <!-- // 게시글 보기 탭 -->
                     <!-- 게시글 보기 -->
                     <section class="post-sec">
                         <h2 class="a11y-hidden">게시글</h2>
                         <!-- 목록형 -->
                         <ul class="post-list">
+                            <!-- 컴포넌트 post 탬플릿이 들어갑니다. -->
                         </ul>
-                        <!-- // 목록형 -->
                         <!-- 앨범형 -->
                         <ul class="post-album hidden">
                         </ul>
-                        <!-- // 앨범형 -->
-
                     </section>
                 </section>
             </div>
-
         </main>
+        <!-- footer 컴포넌트화 적용 -->
         <footer id="footer">
-            <nav class="tab-menu">
-                <p class="a11y-hidden">하단 탭 메뉴</p>
-                <ul class="tab-item-list">
-                    <li class="tab-item-home">
-                        <a href="./home.html">
-                            <p>홈<span class="a11y-hidden">으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-chat">
-                        <a href="./chat_list.html">
-                            <p>채팅<span class="a11y-hidden">으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-follow">
-                        <a href="./post_upload.html">
-                            <p>게시물 작성<span class="a11y-hidden">으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-more">
-                        <a class="here" href="./profile_info.html">
-                            <p>프로필<span class="a11y-hidden">로 이동</span></p>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
         </footer>
         <!-- 하단 모달창 - 더보기 버튼 클릭 시 보이도록 -->
         <article class="post-modal-background">
@@ -154,7 +126,7 @@
     <script src="../js/common.js" type="module"></script>
     <script src="../js/modal.js" type="module"></script>
     <script src="../js/profile_info.js" type="module"></script>
+    <script src="../js/component.js"></script>
     <script src="../js/scrollFetch.js"></script>
 </body>
-
 </html>

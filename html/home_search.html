@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>사용자 검색 | 가지마켙</title>
     <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/component.css">
     <link rel="stylesheet" href="../css/home_search.css">
+    <link rel="stylesheet" href="../css/component.css">
 </head>
 
 <body>
@@ -28,39 +28,29 @@
             <ul class="search-user-list">
             </ul>
         </main>
+        <!-- 검색된 유저 탬플릿 -->
+        <template id="search-template">
+            <article class="user-follow">
+                <a class="profile-img img-cover" href="./profile_info.html?accountName=${userData[i].accountname}">
+                    <span class="a11y-hidden">${userData[i].username}의 프로필 보기</span>
+                    <img id="profile-image" src="../assets/basic-profile.png" alt="">
+                </a>
+                <a class="user-info" href="./profile_info.html?accountName=${userData[i].accountname}">
+                    <p class="user-name">애월읍 위니브 가지밭</p>
+                    <span class="a11y-hidden">의 프로필 보기</span>
+                    <p class="user-id">weniv_Eggplant</p>
+                </a>
+            </article>
+        </template>
+        <!-- footer 컴포넌트화 적용 -->
         <footer id="footer">
-            <nav class="tab-menu">
-                <p class="a11y-hidden">하단 탭 메뉴</p>
-                <ul class="tab-item-list">
-                    <li class="tab-item-home">
-                        <a class="here" href="./home.html">
-                            <p>홈<span class="a11y-hidden">으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-chat">
-                        <a href="./chat_list.html">
-                            <p>채팅<span class="a11y-hidden">으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-follow">
-                        <a href="./post_upload.html">
-                            <p>게시물 작성<span class="a11y-hidden">으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-more">
-                        <a>
-                            <p>프로필<span class="a11y-hidden">로 이동</span></p>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
         </footer>
     </div>
 
     
     <script src="../js/common.js" type="module"></script>
     <script src="../js/home_search.js" type="module"></script>
-
+    <script src="../js/component.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +10,6 @@
     <link rel="stylesheet" href="../css/home_withfollowers.css">
     <link rel="stylesheet" href="../css/component.css">
 </head>
-
 <body>
     <div class="home-wrapper theme-wrapper">
         <div class="skip-nav">
@@ -20,7 +18,6 @@
             <a href="#footer" class="skip-link">하단 탭으로 가기</a>
         </div>
         <header id="header" class="top nav-main">
-            <!-- <h1 class="a11y-hidden">홈상단</h1> -->
             <h1 class="title-main">가지마켙 피드</h1>
             <a href="./home_search.html"><img id="search-icon" src="../assets/icon/icon-search.svg"
                     alt="검색 아이콘 클릭 시 검색페이지로 이동"></a>
@@ -28,7 +25,6 @@
         <main id="main">
             <!-- home-withoutfollower -->
             <section class="home-withoutfollower" style="display: none;">
-                <!-- heading -->
                 <div class="main-container">
                     <div class="home-background"></div>
                     <p>유저를 검색해 팔로우 해보세요!</p>
@@ -36,43 +32,15 @@
                             이동</span></a>
                 </div>
             </section>
-            <!-- // home-withoutfollower -->
-
             <!-- home-withfollower -->
             <section class="home-withfollower" style="display : none">
-                <!-- heading -->
                 <ul class="home-post-list">
+                    <!-- 컴포넌트 post 탬플릿이 들어갑니다. -->
                 </ul>
             </section>
-            <!-- // home-withfollower -->
-
         </main>
+        <!-- footer 컴포넌트화 적용 -->
         <footer id="footer">
-            <nav class="tab-menu">
-                <p class="a11y-hidden">하단 탭 메뉴</p>
-                <ul class="tab-item-list">
-                    <li class="tab-item-home">
-                        <a class="here" href="./home.html">
-                            <p>홈<span class="a11y-hidden">으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-chat">
-                        <a href="./chat_list.html">
-                            <p>채팅<span class="a11y-hidden">으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-follow">
-                        <a href="./post_upload.html">
-                            <p>게시물 작성<span class="a11y-hidden">으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-more">
-                        <a href="./profile_info.html">
-                            <p>프로필<span class="a11y-hidden">로 이동</span></p>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
         </footer>
         <article class="post-modal-background">
             <h2 class="a11y-hidden">모달창</h2>
@@ -93,11 +61,10 @@
             </div>
         </article>
     </div>
+    <script src="../js/component.js"></script>
     <script src="../js/scrollFetch.js"></script>
-    
     <script src="../js/modal.js" type="module"></script>
     <script src="../js/common.js" type="module"></script>
     <script src="../js/home.js" type="module"></script>
 </body>
-
 </html>

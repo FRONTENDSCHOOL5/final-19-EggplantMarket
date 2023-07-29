@@ -264,10 +264,19 @@ function displayPosts(post_data) {
     albumUl.appendChild(albumfragment);
 }
 
+
 async function run() {
+    await fetch('./component/footer.html')
+        .then(res => res.text())
+        .then(data => footer.innerHTML = data);
+
+    const iconname = document.querySelector(".more-link");
+    iconname.className = 'here';
+
     const isMyProfile = (myAccountName !== profileAccountName)
     document.querySelector('.btn-wrap-your').style.display = isMyProfile ? 'flex' : 'none'
     document.querySelector('.btn-wrap-my').style.display = isMyProfile ? 'none' : 'block'
+
     document.querySelector('li.tab-item-more a').classList.toggle('here', !isMyProfile)
     document.querySelector('li.tab-item-home a').classList.toggle('here', isMyProfile)
     const getPostData = fetchPostData();

@@ -41,6 +41,9 @@ async function postFeed(postsData) {
             const template = document.getElementById('post-template');
             const content = template.content.cloneNode(true);
 
+            //테스트 중입니다.
+            console.log(content);
+
             const profileImageLink = content.querySelector(".profile-img");
             profileImageLink.href = `./profile_info.html?accountName=${item.author.accountname}`;
             const profileImage = content.getElementById("profile-image");
@@ -64,6 +67,7 @@ async function postFeed(postsData) {
             const commentIconSvg = content.querySelector('.btn-like svg');
             commentIconSvg.setAttribute('fill', 'transparent');
             const comment = content.querySelector(".btn-comment .cnt");
+            
             comment.textContent = item.commentCount;
             const date = content.querySelector(".post-date");
             date.textContent = dateProcess(item.createdAt);
@@ -96,5 +100,7 @@ async function run() {
     if (document.querySelector('.home-post-list').childNodes.length === 0) {
         document.querySelector('.home-withoutfollower').style.display = '';
     }
+    const iconname = document.querySelector(".home-icon");
+    iconname.className = 'here';
 }
 run()

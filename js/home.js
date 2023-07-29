@@ -2,7 +2,10 @@ import {checkImageUrl, dateProcess, handleLike} from "./common.js"
 import { fetchClosure } from "./fetch/fetchRefact.js";
 import { handleModal } from "./modal.js";
 
-const getFeedData = fetchClosure(`/post/feed/`,10)
+const getFeedData = fetchClosure({
+    reqpath: `/post/feed/`,
+    cnt: 10
+})
 
 //post 컴포넌트 불러옵니다.
 const homePostList = document.querySelector(".home-post-list");

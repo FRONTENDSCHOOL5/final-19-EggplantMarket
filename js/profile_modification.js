@@ -1,5 +1,5 @@
 import { checkImageUrl, checkImageExtension } from "./common.js";
-import { fetchApi, PostImage } from "./fetch/fetchRefact.js";
+import { fetchApi, postImage } from "./fetch/fetchRefact.js";
 
 const submitButton = document.querySelector('.btn-save');
 const inpsProfile = document.querySelectorAll('.profile-setting input');
@@ -35,12 +35,17 @@ async function saveProfile() {
         updatedData.user.image = currentImageSrc;
     }
 
-    await fetchApi("/user", "PUT", updatedData, false)
+    await fetchApi({
+        reqPath : "/user",
+        method : "PUT",
+        bodyData : updatedData,
+        toJson : false
+    })
 }
 
 async function postImg() {
     if (document.querySelector('#btn-upload').files[0]) {
-        return PostImage(document.querySelector('#btn-upload').files[0])
+        return postImage(document.querySelector('#btn-upload').files[0])
     }
 }
 
@@ -49,7 +54,7 @@ imgInp.addEventListener('change', async (e) => {
     
     const imageFile = e.target.files[0];
     if (checkImageExtension(imageFile)) {
-        const filename = await PostImage(imageFile)
+        const filename = await postImage(imageFile)
         const imageURL = "https://api.mandarin.weniv.co.kr/" + filename;
 
         // 보여지는 이미지 업데이트
@@ -119,7 +124,10 @@ submitButton.addEventListener('click', async (e) => {
 
 // 프로필 정보 가져오기
 async function Load_userinfo(accountName) {
-    return fetchApi(`/profile/${accountName}`, "GET");
+    return fetchApi({
+        reqPath : `/profile/${accountName}`,
+        method : "GET"
+    });
 }
 
 // 가져온 프로필 정보 화면에 보여주기

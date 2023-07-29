@@ -1,5 +1,5 @@
 import { checkImageUrl } from "./common.js";
-import { fetchApi, PostImage } from "./fetch/fetchRefact.js";
+import { fetchApi, postImage } from "./fetch/fetchRefact.js";
 
 const submitButton = document.querySelector('#submit-btn');
 const inpsProfile = document.querySelectorAll('.profile-setting input');
@@ -82,7 +82,12 @@ async function validateUserId() {
         }
     }
     
-    return fetchApi("/user/accountnamevalid", "POST", accountNameData, true, false)
+    return fetchApi({
+        reqPath : "/user/accountnamevalid",
+        method : "POST",
+        bodyData : accountNameData,
+        needToken : false
+    })
 }
 
 
@@ -101,12 +106,18 @@ async function SubmitJoinForm() {
         }
     }
 
-    await fetchApi("/user", "POST", data, false, false)
+    await fetchApi({
+        reqPath : "/user", 
+        method : "POST",
+        bodyData : data,
+        toJson : false,
+        needToken : false
+    })
 }
 
 async function postImg() {
     if (document.querySelector('#btn-upload').files[0]) {
-        return PostImage(document.querySelector('#btn-upload').files[0])
+        return postImage(document.querySelector('#btn-upload').files[0])
     } else {
         return "1687141773353.png";
         // 기본 이미지

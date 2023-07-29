@@ -6,7 +6,10 @@ const ulNode = document.querySelector('.search-user-list');
 
 // api 연동 
 async function getData(userInp) {
-    return fetchApi(`/user/searchuser/?keyword=${userInp}`, "GET");
+    return fetchApi({
+        reqPath : `/user/searchuser/?keyword=${userInp}`,
+        method : "GET"
+    });
 }
 
 async function search(userInp) {

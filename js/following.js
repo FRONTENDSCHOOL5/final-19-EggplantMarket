@@ -7,7 +7,11 @@ const accountname = new URLSearchParams(location.search).get('accountName'),
 const $followings = document.querySelector('.follow-list');
 
 (async function () {
-    const getFollowingList = fetchClosure(`/profile/${accountname}/following`,12); // 클로저 함수 반환
+    const getFollowingList = fetchClosure({
+
+    reqpath: `/profile/${accountname}/following`,
+    cnt: 12
+    }); // 클로저 함수 반환
     makeList(await getFollowingList());
 
     // 무한 스크롤 
@@ -115,11 +119,18 @@ $followings.addEventListener('click', async (e) => {
 
 // POST 팔로우
 async function postFollow(accountName) {
-    fetchApi(`/profile/${accountName}/follow`, "POST", null, false)
+    fetchApi({
+        reqPath :`/profile/${accountName}/follow`, 
+        method : "POST", 
+        toJson :false
+    })
 }
-
 
 // DELETE 팔로우
 async function deleteFollow(accountName) {
-    fetchApi(`/profile/${accountName}/unfollow`, "DELETE", null, false)
+    fetchApi({
+        reqPath : `/profile/${accountName}/unfollow`, 
+        method : "DELETE", 
+        toJson: false
+    })
 }

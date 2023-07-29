@@ -1,7 +1,13 @@
 const url = "https://api.mandarin.weniv.co.kr",
     token = localStorage.getItem('user-token');
 
-async function fetchApi(reqPath, method, bodyData, toJson=true, needToken=true){
+async function fetchApi({
+    reqPath, 
+    method, 
+    bodyData=null, 
+    toJson=true, 
+    needToken=true
+}){
     try{
         const option = {
             method: method,
@@ -21,15 +27,21 @@ async function fetchApi(reqPath, method, bodyData, toJson=true, needToken=true){
     }
 }
 
-function fetchClosure(reqpath, cnt){
+function fetchClosure({
+    reqpath, 
+    cnt
+}){
     let reqCnt = 0;
     const getData = async () => {
-       return fetchApi(reqpath + `?limit=${cnt}&skip=${reqCnt++ * cnt}`, "GET");
+        return fetchApi({
+            reqPath: reqpath + `?limit=${cnt}&skip=${reqCnt++ * cnt}`,
+            method : "GET"
+        });
     }
     return getData
 }
 
-async function PostImage(item){
+async function postImage(item){
     const formData = new FormData();
     formData.append("image", item);
     
@@ -42,4 +54,4 @@ async function PostImage(item){
     return json.filename;
 }
 
-export {fetchApi, fetchClosure, PostImage};
+export {fetchApi, fetchClosure, postImage};

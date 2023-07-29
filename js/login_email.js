@@ -72,5 +72,9 @@ async function login() {
         }
     }
     
-    return fetchApi("/user/login/", "POST", loginData, true, false)
+    return fetchApi({
+        reqPath : "/user/login/", 
+        method : "POST",
+        bodyData : loginData,
+        needToken : false})
 }

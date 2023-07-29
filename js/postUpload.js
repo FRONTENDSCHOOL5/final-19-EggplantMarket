@@ -1,5 +1,5 @@
 import { checkImageUrl, checkImageExtension } from "./common.js";
-import { PostImage, fetchApi } from "./fetch/fetchRefact.js";
+import { postImage, fetchApi } from "./fetch/fetchRefact.js";
 
 
 const $uploadButton = document.querySelector('#upload-btn'),
@@ -20,7 +20,7 @@ const tempImgUrls = []; // 이미지 미리보기에서 임시URL 생성 및 해
     if (POSTID) {
         $uploadButton.textContent = '수정';
         $uploadButton.disabled = false; // 내용 수정 안해도 제출 가능
-        displayExistingContent((await getPostData(POSTID)).post);
+        displayExistingContent((await getPostData()).post);
     }
 
     // 작성자 프로필 이미지 가져오기
@@ -71,7 +71,7 @@ function displayExistingContent(data) {
 // 업로드/수정 버튼 클릭시
 $uploadButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    if (await submitPostForm(METHOD)) {
+    if (await submitPostForm()) {
         e.target.disabled = true;
         tempImgUrls.forEach(item => URL.revokeObjectURL(item));
         location.href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
@@ -172,17 +172,23 @@ function previewImg(input) {
 
 // GET 프로필 이미지
 async function getMyImg() {
-    const json = await fetchApi("/user/myinfo", "GET");
+    const json = await fetchApi({
+        reqPath : "/user/myinfo", 
+        method : "GET"
+    });
     return json.user.image;
 }
 
 // GET 기존 게시글 내용
-async function getPostData(POSTID) {
-    return fetchApi(`/post/${POSTID}`,"GET");
+async function getPostData() {
+    return fetchApi({
+        reqPath : `/post/${POSTID}`,
+        method : "GET"
+    });
 }
 
 // POST/PUT 작성 완료된 게시글 내용
-async function submitPostForm(METHOD) {
+async function submitPostForm() {
 
     // 1. 이미지는 3개까지 업로드 가능함
     if ($imglist.children.length <= 3) {
@@ -199,7 +205,7 @@ async function submitPostForm(METHOD) {
         }
         if ($imgInp.files[0]) {
             // 추가된 이미지가 있으면 새롭게 서버에 이미지 저장하고 가져오기
-            const newImg = Array.from(dataTransfer.files).map(item => PostImage(item));
+            const newImg = Array.from(dataTransfer.files).map(item => postImage(item));
             const newImgs = await Promise.all(newImg);
             fileName.push(...newImgs);
         }
@@ -212,7 +218,12 @@ async function submitPostForm(METHOD) {
                 "image": fileName.join(',')
             }
         }
-        await fetchApi(reqPath, METHOD, data, false)
+        await fetchApi({
+            reqPath : reqPath,
+            method : METHOD,
+            bodyData : data,
+            toJson : false
+        })
 
         return true;
     } else {

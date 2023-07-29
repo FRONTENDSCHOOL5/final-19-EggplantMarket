@@ -17,7 +17,7 @@ const $postViewSec = document.querySelector('.home-post'),
     $commentSubmitButton = document.querySelector('.btn-comment');
 
 (async function () {
-    const [profileImg, dataPost, dataComments] = await Promise.all([getMyImg(), getOnePost(postId), getComments(postId)]);
+    const [profileImg, dataPost, dataComments] = await Promise.all([getMyImg(), getOnePost(), getComments()]);
     $profileImg.src = profileImg;
     displayPost(dataPost.post);
     displayComment(dataComments.comments);
@@ -33,7 +33,7 @@ $commentSubmitButton.addEventListener('click', async (e) => {
     await postComment($commentInp.value)
     $commentInp.value = '';
     // 댓글 다시 뿌리기
-    const dataComments = await getComments(postId);
+    const dataComments = await getComments();
     displayComment(dataComments.comments);
     document.querySelector('.btn-comment .cnt').textContent = document.querySelector('.comment-list').childNodes.length
 });
@@ -219,18 +219,27 @@ function displayComment(comments) {
 
 // GET 프로필 이미지
 async function getMyImg() {
-    const json = await fetchApi("/user/myinfo", "GET");
+    const json = await fetchApi({
+        reqPath : "/user/myinfo", 
+        method : "GET"
+    });
     return json.user.image;
 }
 
 // GET 게시글 데이터
-async function getOnePost(POSTID) {
-    return fetchApi(`/post/${POSTID}`,"GET")
+async function getOnePost() {
+    return fetchApi({
+        reqPath : `/post/${postId}`,
+        method : "GET"
+    })
 }
 
 // GET 댓글 데이터 
-async function getComments(POSTID) {
-    return fetchApi(`/post/${POSTID}/comments`,"GET")
+async function getComments() {
+    return fetchApi({
+        reqPath : `/post/${postId}/comments`,
+        method : "GET"
+    })
 }
 
   // POST 댓글
@@ -240,7 +249,12 @@ async function postComment(content) {
             "content": content
         }
     }
-    await fetchApi(`/post/${postId}/comments`, "POST", data, false)
+    await fetchApi({
+        reqPath : `/post/${postId}/comments`,
+        method : "POST",
+        bodyData : data,
+        toJson : false
+    })
 }
 
 // --- ---

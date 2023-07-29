@@ -16,20 +16,32 @@ const url = "https://api.mandarin.weniv.co.kr",
     profileAccountName = pageUrl.searchParams.get('accountName');
 
 async function getProfileData() { 
-    return fetchApi(`/profile/${profileAccountName}`, "GET")
+    return fetchApi({
+        reqPath : `/profile/${profileAccountName}`,
+        method : "GET"
+    })
 }
 
 async function getProductData() { 
-    return fetchApi(`/product/${profileAccountName}`, "GET")
+    return fetchApi({
+        reqPath : `/product/${profileAccountName}`,
+        method : "GET"
+    })
 }
 // api 연동 
 
 async function postFollow() {
-    return fetchApi(`/profile/${profileAccountName}/follow`, "POST");
+    return fetchApi({
+        reqPath : `/profile/${profileAccountName}/follow`,
+        method : "POST"
+    });
 }
 
 async function deletefollow() {
-    return fetchApi(`/profile/${profileAccountName}/unfollow`,"DELETE")
+    return fetchApi({
+        reqPath : `/profile/${profileAccountName}/unfollow`,
+        method : "DELETE"
+    })
 }
 
 function displayProfileInfo(profile_data) {
@@ -228,7 +240,10 @@ async function run() {
     document.querySelector('li.tab-item-more a').classList.toggle('here',!isMyProfile)    
     document.querySelector('li.tab-item-home a').classList.toggle('here',isMyProfile)
 
-    const getPostData = fetchClosure(`/post/${profileAccountName}/userpost`,6);
+    const getPostData = fetchClosure({
+        reqpath: `/post/${profileAccountName}/userpost`,
+        cnt: 6
+    });
 
     // 동시에 호출할 비동기 함수들을 배열로 준비
     const fetchPromises = [

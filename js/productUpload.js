@@ -1,4 +1,4 @@
-import { fetchApi, PostImage } from "./fetch/fetchRefact.js";
+import { fetchApi, postImage } from "./fetch/fetchRefact.js";
 import { checkImageExtension, checkImageUrl } from "./common.js";
 
 const submitButton = document.querySelector(".btn-save"),
@@ -72,7 +72,7 @@ function validateProduct(target) {
 
 // productUpload
 // 입력된 정보 저장하기
-async function saveProduct(METHOD) {
+async function saveProduct() {
     // 가격
     const price = parseInt(productPrice.value);
     // 이미지 저장
@@ -96,7 +96,12 @@ async function saveProduct(METHOD) {
     }
     const reqPath = (METHOD === "POST") ? "/product" : `/product/${productID}`
 
-    await fetchApi(reqPath, METHOD, updatedData, false)
+    await fetchApi({
+        reqPath : reqPath,
+        method : METHOD,
+        bodyData : updatedData,
+        toJson : false
+    })
 }
 
 imgInput.addEventListener("change", async (e) => {
@@ -112,7 +117,7 @@ imgInput.addEventListener("change", async (e) => {
 submitButton.addEventListener("click", async (e) => {
     e.preventDefault();
     e.target.disabled = true
-    await saveProduct(METHOD);
+    await saveProduct();
     location.href = `./profile_info.html?accountName=${localStorage.getItem(
         "user-accountname"
     )}`;
@@ -121,11 +126,11 @@ submitButton.addEventListener("click", async (e) => {
 // productID가 있는 경우
 if(productID){
     submitButton.disabled = false; // 수정을 잘못 누른 경우 고려 - 수정사항 없어도 바로 저장 가능하도록
-    getProduct(productID); // 저장된 데이터 불러오기
+    getProduct(); // 저장된 데이터 불러오기
 }
 
-async function getProduct(productID) {
-    const productData = await loadProduct(productID);
+async function getProduct() {
+    const productData = await loadProduct();
     updateProductInfo(productData.product);
 }
 
@@ -209,19 +214,22 @@ function validateFalseField(input, warningMsg, warningMsgText){
 }
 
 // ======== API 함수들 ========
-async function loadProduct(productID) { // 저장된 데이터 가져오기
-    return fetchApi(`/product/detail/${productID}`, "GET");
+async function loadProduct() { // 저장된 데이터 가져오기
+    return fetchApi({
+        reqPath : `/product/detail/${productID}`, 
+        method : "GET"
+    });
 }
 
 async function saveImage() {
     const file = imgInput.files[0];
     if (file) {
-        return PostImage(file)
+        return postImage(file)
     }
 }
 
 async function postImg(imageFile){
-    const filename = await PostImage(imageFile);
+    const filename = await postImage(imageFile);
     const imageURL = "https://api.mandarin.weniv.co.kr" + `/${filename}`;
 
     // 보여지는 이미지 업데이트

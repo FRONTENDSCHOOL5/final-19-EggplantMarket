@@ -10,7 +10,10 @@ const $followers = document.querySelector('.follow-list');
 const viewMyFollowerList = accountname === myAccountname ? true : false;
 
 (async function () {
-    const getFollowerList = fetchClosure(`/profile/${accountname}/follower`,12); // 클로저 함수 반환
+    const getFollowerList = fetchClosure({
+        reqpath:`/profile/${accountname}/follower`,
+        cnt:12
+    }); 
     const data = await getFollowerList();
     displayFollowerList(data);
 
@@ -110,11 +113,19 @@ $followers.addEventListener('click', async (e) => {
 
 // POST 팔로우
 async function postFollow(accountName) {
-    fetchApi(`/profile/${accountName}/follow`, "POST", null, false)
+    fetchApi({
+        reqPath :`/profile/${accountName}/follow`, 
+        method : "POST", 
+        toJson :false
+    })
 }
 
 
 // DELETE 팔로우
 async function deleteFollow(accountName) {
-    fetchApi(`/profile/${accountName}/unfollow`, "DELETE", null, false)
+    fetchApi({
+        reqPath : `/profile/${accountName}/unfollow`, 
+        method : "DELETE", 
+        toJson: false
+    })
 }

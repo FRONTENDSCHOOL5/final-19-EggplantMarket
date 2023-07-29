@@ -104,7 +104,10 @@ export async function handleLike(event){
 }
 
 async function requestLike(postId,action,method){
-    return fetchApi(`/post/${postId}/${action}`,method)
+    return fetchApi({
+        reqPath:`/post/${postId}/${action}`,
+        method: method
+    })
 }
 
 function setProfileLink(){

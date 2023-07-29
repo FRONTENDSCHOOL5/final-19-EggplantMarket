@@ -363,7 +363,11 @@ async function deleteItem(targetType, targetId, targetCommentId) {
     ? `/post/${targetId}`
     : `/product/${targetId}`; // 순서대로 댓글 주소, 게시글 주소, 상품 주소
 
-  await fetchApi(reqPath,"DELETE",null,false)
+  await fetchApi({
+    reqPath : reqPath,
+    method : "DELETE",
+    toJson : false
+  })
   if (targetType === "게시글" && window.location.href.includes("detail")) {
     // 게시글이면서 detail을 포함한 것을 삭제했을 경우 전화면으로 이동하면서 새로 로딩
     location.href = document.referrer;
@@ -376,7 +380,11 @@ async function deleteItem(targetType, targetId, targetCommentId) {
 // 신고 api
 async function reportItem(targetId, targetCommentId) {
   const reqPath = targetCommentId ? `/post/${targetId}/comments/${targetCommentId}/report` : `/post/${targetId}/report`;
-  await fetchApi(reqPath,"POST",null,false)
+  await fetchApi({
+    reqPath : reqPath,
+    method : "POST",
+    toJson : false
+  })
 }
 
 handleModal(); // 모달 실행

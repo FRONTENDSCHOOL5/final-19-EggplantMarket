@@ -74,7 +74,12 @@ async function validateEmail() {
             "email": email.value.trim()
         }
     }
-    return fetchApi("/user/emailvalid", "POST", emailData, true, false)
+    return fetchApi({
+        reqPath: "/user/emailvalid", 
+        method: "POST",
+        bodyData: emailData,
+        needToken: false
+    })
 }
 
 // // SUCCESS

@@ -166,7 +166,6 @@ function displayPosts(post_data) {
 
         const postEdit = content.querySelector('.post-edit');
 
-        ulNode.appendChild(listLi);
         listLi.appendChild(content);
 
         //게시물 종류에 따라서 추가해주는 기능
@@ -205,9 +204,11 @@ function displayPosts(post_data) {
             });
             postEdit.querySelector('a').appendChild(postfragment);
         }
+        fragment.appendChild(listLi);
     });
     document.querySelector('.post-container').style.display = 'block';
 
+    ulNode.appendChild(fragment);
     ulNode.addEventListener('click', handleLike);
     albumUl.appendChild(albumfragment);
 }

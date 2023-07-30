@@ -1,3 +1,6 @@
+import { checkImageUrl, checkImageExtension } from "./common.js";
+import { fetchApi, postImage } from "./fetch/fetchRefact.js";
+
 const submitButton = document.querySelector('.btn-save');
 const inpsProfile = document.querySelectorAll('.profile-setting input');
 const imgInp = document.querySelector('#btn-upload');
@@ -9,19 +12,14 @@ const introInp = document.querySelector('#userinfo');
 acNameInp.readOnly = true;
 
 // 프로필 정보 불러오기
-const url = "https://api.mandarin.weniv.co.kr",
-    token = localStorage.getItem("user-token"),
-    userID = localStorage.getItem("user-accountname");
+const userID = localStorage.getItem("user-accountname");
 
-
-    // 프로필 정보 저장
-async function saveProfile(url, token) {
-    // 수정된 프로필 정보 가져오기
-    const reqPath = "/user";
-
+// 프로필 정보 저장
+async function saveProfile() {
+    const currentImageSrc = document.querySelector('.img-cover img').src;
     // 이미지 넣기
     const fileName = await postImg();
-    const imageURL = 'https://mandarin.api.weniv.co.kr/' + fileName;
+    const imageURL = `https://api.mandarin.weniv.co.kr/${fileName}`
 
     const data = {
         "user": {
@@ -31,73 +29,33 @@ async function saveProfile(url, token) {
             "image": imageURL,
         }
     };
-
-    try {
-        const currentImageSrc = document.querySelector('.img-cover img').src;
-
-        // 이미지 데이터 저장할 변수 선언
-        let updatedData;
-
-        // 현재 이미지 소스와 다른 경우 데이터의 이미지 URL을 업데이트
-        if (currentImageSrc !== imageURL) {
-            updatedData = { ...data };
-            updatedData.user.image = currentImageSrc;
-        }
-
-        const res = await fetch(url + reqPath, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-            body: JSON.stringify(updatedData || data)
-        });
-
-        const json = await res.json();
-        console.log(json);
-        // 성공적으로 저장되었을 때 추가적인 처리 가능
-    } catch (err) {
-        console.error(err);
-        location.href='./404.html'
-        // 저장 실패 시 에러 처리
+    
+    const updatedData = { ...data };
+    if (currentImageSrc !== imageURL) {
+        updatedData.user.image = currentImageSrc;
     }
+
+    await fetchApi({
+        reqPath : "/user",
+        method : "PUT",
+        bodyData : updatedData,
+        toJson : false
+    })
 }
 
 async function postImg() {
-    const file = imgInp.files[0];
-    const formData = new FormData();
-    formData.append('file', file);
-
-    const reqPath = "/image/uploadfile";
     if (document.querySelector('#btn-upload').files[0]) {
-        formData.append("image", document.querySelector('#btn-upload').files[0])
-        const res = await fetch("https://api.mandarin.weniv.co.kr" + reqPath, {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-Type": "multipart/form-data"
-            },
-            body: formData
-        });
-        const json = await res.json();
-
-        return json.filename;
+        return postImage(document.querySelector('#btn-upload').files[0])
     }
 }
 
 // 프로필 이미지 버튼
 imgInp.addEventListener('change', async (e) => {
-    const formData = new FormData();
+    
     const imageFile = e.target.files[0];
     if (checkImageExtension(imageFile)) {
-
-        formData.append("image", imageFile);
-        const res = await fetch("https://api.mandarin.weniv.co.kr/image/uploadfile", {
-            method: "POST",
-            body: formData
-        });
-        const json = await res.json();
-        const imageURL = "https://api.mandarin.weniv.co.kr/" + json.filename;
+        const filename = await postImage(imageFile)
+        const imageURL = "https://api.mandarin.weniv.co.kr/" + filename;
 
         // 보여지는 이미지 업데이트
         const imageInput = document.querySelector('.img-cover img');
@@ -109,7 +67,6 @@ imgInp.addEventListener('change', async (e) => {
 });
 
 // 이메일 비밀번호 입력 후 포커스 잃으면 형식 및 유효성 검사
-let validAccountName = false;
 let validUserName = true;
 let validInfo = false;
 let validImage = false;
@@ -121,8 +78,7 @@ inpsProfile.forEach(item => {
         }
         await validateProfile(item);
 
-        if (validAccountName || validUserName || validInfo || validImage) {
-            console.log('다 통과했는디');
+        if (validUserName || validInfo || validImage) {
             submitButton.disabled = false;
         } else {
             submitButton.disabled = true;
@@ -158,48 +114,20 @@ async function validateProfile(target) {
 // 다음버튼 누르면 프로필설정 폼으로 변경
 submitButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    await saveProfile(url, token);
-    console.log('프로필 수정 완료');
+    e.target.disabled = true;
+    await saveProfile();
     location.href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
 });
 
 
 // api 연동 
-async function validateUserId() {
-    const url = "https://api.mandarin.weniv.co.kr";
-    const reqPath = "/user/accountnamevalid";
-    const accountNameData = {
-        "user": {
-            "accountname": acNameInp.value
-        }
-    };
-    const res = await fetch(url + reqPath, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(accountNameData)
-    });
-    const json = await res.json();
-    return json;
-}
 
 // 프로필 정보 가져오기
-async function Load_userinfo(url, token, accountName) {
-    try {
-        const res = await fetch(url + `/profile/${accountName}`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        });
-        const resJson = await res.json();
-        console.log(resJson);
-        return resJson
-    } catch (err) {
-        console.error(err);
-        location.href='./404.html'
-    }
+async function Load_userinfo(accountName) {
+    return fetchApi({
+        reqPath : `/profile/${accountName}`,
+        method : "GET"
+    });
 }
 
 // 가져온 프로필 정보 화면에 보여주기
@@ -211,7 +139,6 @@ function introUpdate(profileData) {
 
     // 프로필 이미지 보여주기
     const imageSrc = profileData.image;
-    console.log(imageSrc)
     if(imageSrc) {
         imageInput.insertAdjacentHTML('beforeend',`<img src="${checkImageUrl(imageSrc,'profile')}" alt="기본 프로필 이미지">`)
     }
@@ -220,9 +147,9 @@ function introUpdate(profileData) {
     introInput.value = profileData.intro;
 }
 
-async function run(url, token, accountName) {
-    const profileData = await Load_userinfo(url, token, accountName);
+async function run(accountName) {
+    const profileData = await Load_userinfo(accountName);
     introUpdate(profileData.profile);
 }
 
-run(url, token, userID);
+run(userID);

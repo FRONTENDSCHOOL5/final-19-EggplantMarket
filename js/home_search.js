@@ -1,18 +1,15 @@
+import { fetchApi } from "./fetch/fetchRefact.js";
+import { checkImageUrl } from "./common.js";
+
+//피드백 반영
 const ulNode = document.querySelector('.search-user-list');
 
 // api 연동 
 async function getData(userInp) {
-    const url = "https://api.mandarin.weniv.co.kr";
-    const reqPath = "/user/searchuser/?keyword=";
-    const res = await fetch(url + reqPath + userInp, {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem("user-token")}`,
-            "Content-Type": "application/json"
-        },
-    })
-    const json = await res.json();
-    return json;
+    return fetchApi({
+        reqPath : `/user/searchuser/?keyword=${userInp}`,
+        method : "GET"
+    });
 }
 
 async function search(userInp) {
@@ -70,12 +67,11 @@ function delInput() {
 }
 
 //입력된 값 하나씩 받아오기(O)
-function filter() {
-    console.log(window.event.key)
+
+document.querySelector("#inp-search").addEventListener("keypress",()=>{
     const inp = document.getElementById("inp-search").value;
     if (window.event.key === 'Enter') {
         delInput();
         search(inp);
     }
-    console.log(inp);
-}
+})

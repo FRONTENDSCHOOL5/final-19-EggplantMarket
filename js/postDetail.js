@@ -1,9 +1,8 @@
-const postId = new URLSearchParams(location.search).get('postId');
+import { fetchApi } from './fetch/fetchRefact.js';
+import { handleModal, handleCommentOptionModal } from './modal.js';
+import {checkImageUrl, dateProcess, handleLike} from './common.js'
 
-const url = "https://api.mandarin.weniv.co.kr",
-    token = localStorage.getItem("user-token"),
-    myAccountName = localStorage.getItem("user-accountname");
-let userAccountName = '';
+const postId = new URLSearchParams(location.search).get('postId');
 
 //post 컴포넌트 불러옵니다.
 const templateNode = document.querySelector('.template');
@@ -26,7 +25,6 @@ const $postViewSec = document.querySelector('.home-post'),
 })();
 
 $commentInp.addEventListener('input', (e) => {
-    console.log(e.target.value.trim());
     $commentSubmitButton.disabled = e.target.value.trim() !== '' ? false : true;
 })
 
@@ -221,66 +219,42 @@ function displayComment(comments) {
 
 // GET 프로필 이미지
 async function getMyImg() {
-    const res = await fetch(url + "/user/myinfo", {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${token}`
-        }
+    const json = await fetchApi({
+        reqPath : "/user/myinfo", 
+        method : "GET"
     });
-    const json = await res.json();
     return json.user.image;
 }
 
 // GET 게시글 데이터
 async function getOnePost() {
-    try {
-        const res = await fetch(url + `/post/${postId}`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-type": "application/json"
-            }
-        });
-        return res.json();
-    } catch (err) {
-        location.href = './404.html'
-    }
+    return fetchApi({
+        reqPath : `/post/${postId}`,
+        method : "GET"
+    })
 }
 
 // GET 댓글 데이터 
 async function getComments() {
-    try {
-        const res = await fetch(url + `/post/${postId}/comments`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-type": "application/json"
-            }
-        });
-        return res.json();
-    } catch (err) {
-        location.href = './404.html'
-    }
+    return fetchApi({
+        reqPath : `/post/${postId}/comments`,
+        method : "GET"
+    })
 }
 
-// POST 댓글
+  // POST 댓글
 async function postComment(content) {
-    try {
-        await fetch(url + `/post/${postId}/comments`, {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify({
-                "comment": {
-                    "content": content
-                }
-            })
-        });
-    } catch (err) {
-        location.href = './404.html'
+    const data = {
+        "comment": {
+            "content": content
+        }
     }
+    await fetchApi({
+        reqPath : `/post/${postId}/comments`,
+        method : "POST",
+        bodyData : data,
+        toJson : false
+    })
 }
 
 // --- ---

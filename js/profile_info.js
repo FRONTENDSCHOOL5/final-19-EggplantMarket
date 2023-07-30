@@ -1,3 +1,7 @@
+import { fetchApi, fetchClosure } from "./fetch/fetchRefact.js";
+import { checkImageUrl, dateProcess, handleLike } from "./common.js";
+import { handleModal, handlePostOptionModal } from './modal.js';
+
 const pageUrl = new URL(window.location.href);
 
 //post 컴포넌트 불러옵니다.
@@ -11,77 +15,33 @@ const url = "https://api.mandarin.weniv.co.kr",
     myAccountName = localStorage.getItem("user-accountname"),
     profileAccountName = pageUrl.searchParams.get('accountName');
 
-async function fetchData(url, options) {
-    try {
-        const response = await fetch(url, options);
-        return response.json();
-    } catch (err) {
-        location.href = './404.html'
-    }
+async function getProfileData() { 
+    return fetchApi({
+        reqPath : `/profile/${profileAccountName}`,
+        method : "GET"
+    })
 }
 
-async function getProfileData() {
-    const fullUrl = `${url}/profile/${profileAccountName}`;
-    const options = {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json"
-        }
-    };
-    return fetchData(fullUrl, options);
+async function getProductData() { 
+    return fetchApi({
+        reqPath : `/product/${profileAccountName}`,
+        method : "GET"
+    })
 }
-
-async function getProductData() {
-    const fullUrl = `${url}/product/${profileAccountName}`;
-    const options = {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json"
-        }
-    };
-    return fetchData(fullUrl, options);
-}
-
-function fetchPostData() {
-    const url = "https://api.mandarin.weniv.co.kr";
-    const reqPath = `/post/${profileAccountName}/userpost?limit=6&skip=`
-    let reqCnt = 0;
-    const options = {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${token}`,
-            "Content-type": "application/json"
-        }
-    }
-    const getPostData = async () => await fetchData(url + reqPath + reqCnt++ * 6, options)
-
-    return getPostData
-}
+// api 연동 
 
 async function postFollow() {
-    const fullUrl = `${url}/profile/${profileAccountName}/follow`,
-        options = {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-type": "application/json"
-            }
-        };
-    return fetchData(fullUrl, options);
+    return fetchApi({
+        reqPath : `/profile/${profileAccountName}/follow`,
+        method : "POST"
+    });
 }
 
 async function deletefollow() {
-    const fullUrl = `${url}/profile/${profileAccountName}/unfollow`,
-        options = {
-            method: "DELETE",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-type": "application/json"
-            }
-        };
-    return fetchData(fullUrl, options);
+    return fetchApi({
+        reqPath : `/profile/${profileAccountName}/unfollow`,
+        method : "DELETE"
+    })
 }
 
 function displayProfileInfo(profile_data) {
@@ -277,10 +237,13 @@ async function run() {
     const isMyProfile = (myAccountName !== profileAccountName)
     document.querySelector('.btn-wrap-your').style.display = isMyProfile ? 'flex' : 'none'
     document.querySelector('.btn-wrap-my').style.display = isMyProfile ? 'none' : 'block'
+    document.querySelector('li.tab-item-more a').classList.toggle('here',!isMyProfile)    
+    document.querySelector('li.tab-item-home a').classList.toggle('here',isMyProfile)
 
-    document.querySelector('li.tab-item-more a').classList.toggle('here', !isMyProfile)
-    document.querySelector('li.tab-item-home a').classList.toggle('here', isMyProfile)
-    const getPostData = fetchPostData();
+    const getPostData = fetchClosure({
+        reqpath: `/post/${profileAccountName}/userpost`,
+        cnt: 6
+    });
 
     // 동시에 호출할 비동기 함수들을 배열로 준비
     const fetchPromises = [
@@ -336,7 +299,7 @@ run();
     followBtns.forEach((item, idx, buttonTypes) => {
         item.addEventListener('click', async () => {
             const isCancel = item.classList.contains('cancle');
-            const resJson = isCancel ? await fetchUnfollow() : await fetchFollow();
+            const resJson = isCancel ? await deletefollow() : await postFollow();
 
             document.querySelector('.follower').textContent = resJson.profile.followerCount;
             buttonTypes[idx].classList.add('hidden')
@@ -346,7 +309,7 @@ run();
 }());
 
 // 무한 스크롤 
-function touchScroll() {
+function touchScroll(){
     const list = document.querySelector('.product-list')
     const listScrollWidth = list.scrollWidth;
     const listClientWidth = list.clientWidth;

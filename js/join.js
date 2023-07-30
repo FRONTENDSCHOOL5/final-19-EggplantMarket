@@ -1,3 +1,5 @@
+import { fetchApi } from "./fetch/fetchRefact.js";
+
 const nextButton = document.querySelector('#next-btn');
 const inps = document.querySelectorAll('.join-email input');
 const email = document.querySelector('#email');
@@ -13,7 +15,6 @@ inps.forEach(item => {
 
         // email 형식에 맞고 가입 가능한 이메일 && pw 길이 맞으면 => 버튼 활성화
         if (validEmail && validPw) {
-            console.log('다 통과했는디')
             nextButton.disabled = false;
         } else {
             nextButton.disabled = true;
@@ -29,7 +30,6 @@ async function validateJoin(target) {
     if (target.type === 'email') {
         const msg = await validateEmail();
 
-        console.log(msg);
         document.querySelector('.warning-msg-email').textContent = '*' + msg.message;
         document.querySelector('.warning-msg-email').style.display = 'block';
         if (msg.status == 422 || msg.message === '이미 가입된 이메일 주소 입니다.') {
@@ -69,43 +69,18 @@ nextButton.addEventListener('click', (e) => {
 
 // api 연동 
 async function validateEmail() {
-    const url = "https://api.mandarin.weniv.co.kr";
-    const reqPath = "/user/emailvalid";
     const emailData = {
         "user": {
             "email": email.value.trim()
         }
     }
-    const res = await fetch(url + reqPath, {
+    return fetchApi({
+        reqPath: "/user/emailvalid", 
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(emailData)
+        bodyData: emailData,
+        needToken: false
     })
-    const json = await res.json();
-    return json;
 }
-
-
-//테마 작업 진행중.
-// const wrapper = document.querySelector('.join');
-// const theme = window.localStorage.getItem('theme');
-// if (theme === 'highContrast') {
-//     wrapper.classList.add('highContrast');
-//     document.body.style.backgroundColor = '#000000';
-// } else {
-//     wrapper.classList.remove('highContrast');
-//     document.body.style.backgroundColor = '#ffffff'; 
-// }
-
-
-
-
-
-
-
-
 
 // // SUCCESS
 // // 사용 가능한 이메일인 경우

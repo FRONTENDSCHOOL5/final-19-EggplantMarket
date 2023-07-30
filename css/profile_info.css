@@ -205,28 +205,31 @@ main > section {
           justify-content: center;
 }
 .profile-container .btn-wrap-your .circle {
-  border: 1px solid #767676;
+  border: 1px solid #dbdbdb;
   border-radius: 50%;
   width: 2.125rem;
   height: 2.125rem;
-  background: no-repeat center center;
+  background-repeat: no-repeat;
+  background-size: 90px 30px;
 }
 .theme-wrapper.highContrast .profile-container .btn-wrap-your .circle {
-  border: 1px solid #f2f2f2;
+  border: 1px solid #dbdbdb;
 }
 
 .profile-container .btn-wrap-your .btn-chat {
-  background-image: url(../assets//icon/icon-message-circle.svg);
+  background-image: url(../assets/icon-sprites.png);
+  background-position: -29px 0;
 }
 .theme-wrapper.highContrast .profile-container .btn-wrap-your .btn-chat {
-  background-image: url(../assets//icon/icon-message-circle-hc.svg);
+  background-image: url(../assets/icon-sprites-hc.png);
 }
 
 .profile-container .btn-wrap-your .btn-share {
-  background-image: url(../assets//icon/icon-share.svg);
+  background-image: url(../assets/icon-sprites.png);
+  background-position: -60px 0;
 }
 .theme-wrapper.highContrast .profile-container .btn-wrap-your .btn-share {
-  background-image: url(../assets//icon/icon-share-hc.svg);
+  background-image: url(../assets/icon-sprites-hc.png);
 }
 
 .profile-container .btn-wrap-your .size-m {

@@ -22,11 +22,11 @@ export function applyTheme() {
             document.body.style.backgroundColor = '#000000'; 
         }
 
-        if (imgBtn) imgBtn.src = "../assets/upload-file-hc.svg";
-        if(imgUploadBtn) imgUploadBtn.src = "../assets/upload-file-hc.svg";
+        if (imgBtn) imgBtn.src = "../assets/icon/upload-file-hc.svg";
+        if(imgUploadBtn) imgUploadBtn.src = "../assets/icon/upload-file-hc.svg";
         if (symbol) symbol.src = "../assets/symbol/hc-basic.svg";
         if(logo) logo.src = "../assets/logo/logo-hc.svg"
-        if(search) search.src = "../assets/icon/icon-search-highContrast.svg";
+        if(search) search.src = "../assets/icon/icon-search-hc.svg";
         
         document.querySelectorAll('img').forEach(item=>{
             if(item.src === LightProfile) item.src=ContrastProfile
@@ -42,8 +42,8 @@ export function applyTheme() {
             document.body.style.backgroundColor = '#ffffff'; 
         }
 
-        if(imgBtn) imgBtn.src = "../assets/img-button.svg";
-        if(imgUploadBtn) imgUploadBtn.src = "../assets/upload-file.svg";
+        if(imgBtn) imgBtn.src = "../assets/icon/img-button.svg";
+        if(imgUploadBtn) imgUploadBtn.src = "../assets/icon/upload-file.svg";
         if(symbol) symbol.src = "../assets/symbol/light-basic.svg";
         if(logo) logo.src = "../assets/logo/logo.svg";
         if(search) search.src = "../assets/icon/icon-search.svg";

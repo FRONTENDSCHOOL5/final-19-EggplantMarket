@@ -30,6 +30,7 @@ body{
     border-radius: 2.75rem;
     font-size: map-get($font-sizes, "size14");
     padding: 0.8125rem;
+    position: relative;
 
     + .domain {
         margin-top: 0.625rem;

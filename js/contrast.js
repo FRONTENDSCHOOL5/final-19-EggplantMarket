@@ -24,8 +24,8 @@ export function applyTheme() {
 
         if (imgBtn) imgBtn.src = "../assets/upload-file-hc.svg";
         if(imgUploadBtn) imgUploadBtn.src = "../assets/upload-file-hc.svg";
-        if (symbol) symbol.src = "../assets/symbol-logo-hc.svg";
-        if(logo) logo.src = "../assets/logo-hc.svg"
+        if (symbol) symbol.src = "../assets/symbol/hc-basic.svg";
+        if(logo) logo.src = "../assets/logo/logo-hc.svg"
         if(search) search.src = "../assets/icon/icon-search-highContrast.svg";
         
         document.querySelectorAll('img').forEach(item=>{
@@ -44,8 +44,8 @@ export function applyTheme() {
 
         if(imgBtn) imgBtn.src = "../assets/img-button.svg";
         if(imgUploadBtn) imgUploadBtn.src = "../assets/upload-file.svg";
-        if(symbol) symbol.src = "../assets/symbol-logo.svg";
-        if(logo) logo.src = "../assets/logo.svg";
+        if(symbol) symbol.src = "../assets/symbol/light-basic.svg";
+        if(logo) logo.src = "../assets/logo/logo.svg";
         if(search) search.src = "../assets/icon/icon-search.svg";
 
         document.querySelectorAll('img').forEach(item=>{

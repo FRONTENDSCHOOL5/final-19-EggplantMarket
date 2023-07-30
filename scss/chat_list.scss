@@ -54,25 +54,8 @@
     }
 }
 
-.tab-item-list{
-    li:nth-child(2) {
-        a{
-            @include get-color(background-image, chat-fill-image);
-        }
-    }    
-}
-
 .img-cover {
     @include image-cover;
     @include width-height(3.125rem, 3.125rem);
     @include profile-img-tag;
-}
-
-.tab-item-chat{
-    a {
-        p {
-            @include get-color(color, gray-color);
-        }
-        @include get-color(background-image, chat-fill-image);
-    }
 }

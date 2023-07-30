@@ -39,12 +39,12 @@ body {
 
 .back {
   height: calc(100vh - 19.375rem);
-  background-image: url(../assets/symbol-logo.svg);
+  background-image: url(../assets/symbol/light-basic.svg);
   background-repeat: no-repeat;
   background-position: 98% 98%;
 }
 .theme-wrapper.highContrast .back {
-  background-image: url(../assets/symbol-logo-highContrast.svg);
+  background-image: url(../assets/symbol/hc-basic.svg);
 }
 
 .login {
@@ -66,6 +66,7 @@ body {
   border-radius: 2.75rem;
   font-size: 0.875rem;
   padding: 0.8125rem;
+  position: relative;
 }
 .domain + .domain {
   margin-top: 0.625rem;

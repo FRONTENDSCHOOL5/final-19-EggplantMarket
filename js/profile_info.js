@@ -10,9 +10,7 @@ fetch('./component/post.html')
     .then(res => res.text())
     .then(data => profilePostList.innerHTML = data);
 
-const url = "https://api.mandarin.weniv.co.kr",
-    token = localStorage.getItem("user-token"),
-    myAccountName = localStorage.getItem("user-accountname"),
+const myAccountName = localStorage.getItem("user-accountname"),
     profileAccountName = pageUrl.searchParams.get('accountName');
 
 async function getProfileData() { 

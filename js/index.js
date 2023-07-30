@@ -1,7 +1,10 @@
-setTimeout(() => {
-    if (localStorage.getItem("user")) {
-        location.href = "./html/home.html";
-    } else {
-        location.href = "./html/login.html"
-    }
-}, 2000)
+import { applyTheme } from "./contrast.js"
+applyTheme();
+
+// setTimeout(() => {
+//     if (localStorage.getItem("user")) {
+//         location.href = "./html/home.html";
+//     } else {
+//         location.href = "./html/login.html"
+//     }
+// }, 2000)

@@ -1,5 +1,11 @@
-const url = "https://api.mandarin.weniv.co.kr";
-const myAccountName = localStorage.getItem("user-accountname");
+import {checkImageUrl, dateProcess, handleLike} from "./common.js"
+import { fetchClosure } from "./fetch/fetchRefact.js";
+import { handleModal } from "./modal.js";
+
+const getFeedData = fetchClosure({
+    reqpath: `/post/feed/`,
+    cnt: 10
+})
 
 //post 컴포넌트 불러옵니다.
 const homePostList = document.querySelector(".home-post-list");
@@ -9,29 +15,16 @@ fetch('./component/post.html')
 
 // 무한 스크롤 
 window.addEventListener("scroll", async () => {
-    if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
-        postFeed(await getData())
+    if (Math.ceil(getScrollTop()) >= getDocumentHeight() - window.innerHeight) {
+        postFeed((await getFeedData()).posts)
     };
 })
-
-let reqCnt = 0;
-async function getData() {
-    console.log(reqCnt)
-    const res = await fetch(url + `/post/feed/?limit=10&skip=${reqCnt++ * 10}`, {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem("user-token")}`,
-            "Content-Type": "application/json"
-        },
-    });
-    const resJson = await res.json();
-    return resJson.posts;
-}
 
 async function postFeed(postsData) {
     //팔로잉이 있으면서 게시글이 1개 이상인 경우
     if (postsData.length > 0) {
         document.querySelector('.home-withfollower').style.display = '';
+
         const ulNode = document.querySelector('.home-post-list');
         const frag = document.createDocumentFragment();
 
@@ -92,8 +85,8 @@ async function postFeed(postsData) {
 }
 
 async function run() {
-    await postFeed(await getData());
-    if (document.querySelector('.home-post-list').childNodes.length === 0) {
+    await postFeed((await getFeedData()).posts);
+    if(document.querySelector('.home-post-list').childNodes.length === 0){
         document.querySelector('.home-withoutfollower').style.display = '';
     }
     const iconname = document.querySelector(".home-icon");

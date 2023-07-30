@@ -3,11 +3,7 @@ const commentInput = document.getElementById('commemt-input');
 const submitButton = document.querySelector('.btn-comment');
 
 commentInput.addEventListener('input', function () {
-    if (commentInput.value.trim() !== '') {
-         submitButton.disabled = false;	
-    } else {
-         submitButton.disabled = true;	
-    }
+    submitButton.disabled = commentInput.value.trim() !== '' ? false : true;
 });
 
 // 모달창
@@ -20,10 +16,10 @@ btnOption.addEventListener('click', () => {
 });
 
 // 띄어진 모달이 아닌 배경을 클릭하면 모달창 닫기
-  postModal.addEventListener('click', (event) => {
-    const targetElement = event.target;
-  
-    if (targetElement.classList.contains('post-modal-background')) {
-      postModal.style.display = 'none';
-    }
-  });
+postModal.addEventListener('click', (event) => {
+  const targetElement = event.target;
+
+  if (targetElement.classList.contains('post-modal-background')) {
+    postModal.style.display = 'none';
+  }
+});

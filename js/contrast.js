@@ -1,6 +1,6 @@
 // profile_modification
 // colorchange render함수
-function colorChange() {
+export function applyTheme() {
     const LightProfile = 'https://api.mandarin.weniv.co.kr/1687141773353.png'
     const LightPost = 'https://api.mandarin.weniv.co.kr/1687742174893.png'
     const ContrastProfile = 'https://api.mandarin.weniv.co.kr/1687827693364.png'
@@ -14,15 +14,7 @@ function colorChange() {
 
     if ( localStorage.getItem('theme') === 'highContrast' ) {
         window.localStorage.setItem('theme', 'highContrast');
-        if(!document.querySelector('.login-wrapper') && !document.querySelector('.join') && !document.querySelector('main.login')){
-            document.querySelector('[class *= "wrapper"]').classList.add('highContrast');
-        }else if (document.querySelector('.login-wrapper')){
-            document.querySelector('.login-wrapper').classList.add('highContrast');
-        }else if(document.querySelector('main.login')){
-            document.querySelector('main.login').classList.add('highContrast');
-        }else{
-            document.querySelector('.join').classList.add('highContrast');
-        }
+        document.querySelector('.theme-wrapper').classList.add('highContrast');
 
         if(document.querySelector('.login-wrapper')){
             document.body.style.backgroundColor = '#E4D6FF';
@@ -30,44 +22,33 @@ function colorChange() {
             document.body.style.backgroundColor = '#000000'; 
         }
 
-        if(imgBtn) imgBtn.src = "../assets/img-btn-hc.svg";
-        if(imgUploadBtn) imgUploadBtn.src = "../assets/upload-file-hc.svg";
-        if(symbol) symbol.src = "../assets/symbol-logo-hc.svg";
-        if(logo) logo.src = "../assets/logo-hc.svg"
-        if(search) search.src = "../assets/icon/icon-search-highContrast.svg";
+        if (imgBtn) imgBtn.src = "../assets/icon/upload-file-hc.svg";
+        if(imgUploadBtn) imgUploadBtn.src = "../assets/icon/upload-file-hc.svg";
+        if (symbol) symbol.src = "../assets/symbol/hc-basic.svg";
+        if(logo) logo.src = "../assets/logo/logo-hc.svg"
+        if(search) search.src = "../assets/icon/icon-search-hc.svg";
         
         document.querySelectorAll('img').forEach(item=>{
             if(item.src === LightProfile) item.src=ContrastProfile
             if(item.src === LightPost) item.src=ContrastPost
         })
     } else {
-        console.log('키키')
         window.localStorage.setItem('theme', 'light');
-        if(!document.querySelector('.login-wrapper') && !document.querySelector('.join') && !document.querySelector('main.login')){
-            document.querySelector('[class *= "wrapper"]').classList.remove('highContrast'); 
-        }else if (document.querySelector('.login-wrapper')){
-            document.querySelector('.login-wrapper').classList.remove('highContrast');
-        }else if(document.querySelector('main.login')){
-            document.querySelector('main.login').classList.remove('highContrast');
-        }else{
-            document.querySelector('.join').classList.remove('highContrast');
-        }
+        document.querySelector('.theme-wrapper').classList.remove('highContrast'); 
 
         if(document.querySelector('.login-wrapper')){
             document.body.style.backgroundColor = '#635CA5'; 
         } else{
-            document.body.style.backgroundColor = '#fff'; 
+            document.body.style.backgroundColor = '#ffffff'; 
         }
 
-        if(imgBtn) imgBtn.src = "../assets/img-button.svg";
-        if(imgUploadBtn) imgUploadBtn.src = "../assets/upload-file.svg";
-        if(symbol) symbol.src = "../assets/symbol-logo.svg";
-        if(logo) logo.src = "../assets/logo.svg";
+        if(imgBtn) imgBtn.src = "../assets/icon/img-button.svg";
+        if(imgUploadBtn) imgUploadBtn.src = "../assets/icon/upload-file.svg";
+        if(symbol) symbol.src = "../assets/symbol/light-basic.svg";
+        if(logo) logo.src = "../assets/logo/logo.svg";
         if(search) search.src = "../assets/icon/icon-search.svg";
 
-        console.log(document.querySelectorAll('img'))
         document.querySelectorAll('img').forEach(item=>{
-            console.log('변경',item)
             if(item.src === ContrastProfile) item.src= LightProfile
             if(item.src === ContrastPost) item.src= LightPost
         })

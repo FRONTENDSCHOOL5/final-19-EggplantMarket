@@ -2,9 +2,25 @@
 <html lang="ko-KR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/favicon.ico">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="바자회, 플리마켓, 환경, 재활용, 나눔, 기부, 중고거래">
+    <meta name="description" content="'가치를 지켜라'라는 의미를 담은 가지마켓은 바자회와 같은 나눔과 기부 관련 정보를 공유하는 SNS입니다. 가지마켓을 활용하여 물건들을 재활용하면서 환경과 경제적으로도 유익함을 누릴 수 있습니다. 함께 가치를 지켜가며 더 나은 세상을 만들어가보세요.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="가지마켓">
+    <meta property="og:description" content="'가치를 지켜라'라는 의미를 담은 가지마켓은 바자회와 같은 나눔과 기부 관련 정보를 공유하는 SNS입니다. 가지마켓을 활용하여 물건들을 재활용하면서 환경과 경제적으로도 유익함을 누릴 수 있습니다. 함께 가치를 지켜가며 더 나은 세상을 만들어가보세요.">
+    <meta property="og:image" content="https://eggplant-market.netlify.app/assets/og(800x400).png">
+    <meta property="og:url" content="https://eggplant-market.netlify.app/">
+
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="가지마켓">
+    <meta property="twitter:description" content="'가치를 지켜라'라는 의미를 담은 가지마켓은 바자회와 같은 나눔과 기부 관련 정보를 공유하는 SNS입니다. 가지마켓을 활용하여 물건들을 재활용하면서 환경과 경제적으로도 유익함을 누릴 수 있습니다. 함께 가치를 지켜가며 더 나은 세상을 만들어가보세요.">
+    <meta property="twitter:image" content="https://eggplant-market.netlify.app/assets/og(1400x630).png">
+    <meta property="twitter:url" content="https://eggplant-market.netlify.app/">
+    
     <title>게시물 상세보기 | 가지마켙</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/component.css">
@@ -12,7 +28,7 @@
 </head>
 
 <body>
-    <div class="post-detail-wrapper">
+    <div class="post-detail theme-wrapper">
         <div class="skip-nav">
             <a href="#header" class="skip-link">상단 탭으로 가기</a>
             <a href="#post" class="skip-link">게시글로 가기</a>
@@ -25,11 +41,9 @@
             <button class="btn-back"><span class="a11y-hidden">뒤로가기</span></button>
         </header>
         <main>
-
-            <section id=post class="home-post">
-                <h2 class="a11y-hidden">게시글 내용</h2>
-            </section>
-
+            <div class="template">
+                <!-- 컴포넌트 post 탬플릿이 들어갑니다. -->
+            </div>
             <section id="comment" class="comment-sec">
                 <h2 class="a11y-hidden">게시물에 대한 답변</h2>
                 <ul class="comment-list">
@@ -37,7 +51,7 @@
             </section>
         </main>
 
-        <footer id="footer"">
+        <footer id="footer">
             <section class="comment">
                 <h2 class="a11y-hidden">댓글 입력하기</h2>
                 <label for="commemt-input" class="a11y-hidden">게시물에 대한 댓글 입력</label>
@@ -68,10 +82,10 @@
             </div>
         </article>
     </div>
-    <script src="../js/contrast.js"></script>
-    <script src="../js/common.js"></script>
-    <script src="../js/modal.js"></script>
-    <script src="../js/postDetail.js"></script>
+    
+    <script src="../js/common.js" type="module"></script>
+    <script src="../js/modal.js" type="module"></script>
+    <script src="../js/postDetail.js" type="module"></script>
     <!-- - 게시글 우측 상단에 위치한 버튼을 클릭했을 경우
     - 내가 작성한 게시글일 경우 : 삭제, 수정 버튼이 나타납니다.
     - 다른 사용자가 작성한 게시글일 경우 : 신고하기 버튼이 나타납니다.
@@ -81,5 +95,4 @@
     -->
     <script></script>
 </body>
-
 </html>

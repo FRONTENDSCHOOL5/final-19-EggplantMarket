@@ -1,70 +1,76 @@
-// 모달
-const postModal = document.querySelector('.post-modal-background');
-const popUpModal = document.querySelector('.modal-background');
-const modalContent = document.querySelector('.modal-content');
-const modalActions = popUpModal.querySelector('.modal-content .modal-actions');
+import {applyTheme} from "./contrast.js"
+import { fetchApi } from "./fetch/fetchRefact.js";
 
-function handleModal() {
-    const headerBtnOption = document.querySelector('header .btn-option');
-    const postBtnOption = document.querySelectorAll('main .btn-option');
-    const productBtn = document.querySelectorAll('main .product');
-    const commentBtnOption = document.querySelectorAll('.btn-more');
+const myAccountName = localStorage.getItem("user-accountname")
 
-    console.log(postBtnOption)
+const openPostModal = document.querySelector(".post-modal-background"),
+  openPopUpModal = document.querySelector(".modal-background"),
+  displayModal = document.querySelector(".modal-content"),
+  performModalActions = openPopUpModal.querySelector(".modal-content .modal-actions");
 
-    if(headerBtnOption){
-        handleHeaderModal(headerBtnOption)
-        btnOptionFocus(headerBtnOption);
-    }
-    if(postBtnOption.length !== 0){
-        handlePostOptionModal(postBtnOption)
-    }
-    if(commentBtnOption.length !== 0){
-        handleCommentOptionModal(commentBtnOption)
-    }
-    if(productBtn.length !== 0){
-        handleProductOptionModal(productBtn)
-    }
-    // if(mainBtnOption){}
+export function handleModal() {
+  const openHeaderOptions = document.querySelector("header .btn-option"),
+    openPostOptions = document.querySelectorAll("main .btn-option"),
+    openProductOptions = document.querySelectorAll("main .product"),
+    openCommentOptions = document.querySelectorAll(".btn-more");
 
-}
-
-// 코드 수정
-let lastFocusedElement;
-function btnOptionFocus(nodes) {
-    nodes.addEventListener('keydown', event => {
-      if (event.key === 'Tab' && !event.shiftKey) {
-        if (lastFocusedElement) {
-          lastFocusedElement.focus();
-          lastFocusedElement = null;
-        }
-      } else if (event.key === 'Enter') {
-        setTimeout(()=> modalContent.querySelector('.modal-description').focus())
-      }
-    });
+  if (openHeaderOptions) {
+    handleHeaderModal(openHeaderOptions);
+    focusOnOptionButton(openHeaderOptions);
   }
-
-function setFocusOnModalActions() {
-    const focusableElements = Array.from(modalActions.getElementsByTagName('button'));
-      focusableElements[0].focus();
-      focusableElements[1].addEventListener('click', () => {
-        popUpModal.style.visibility = 'hidden';
-        const btnCancel = modalContent.querySelector('.btn-cancel');
-        btnCancel.focus();
-    });
+  if (openPostOptions.length !== 0) {
+    handlePostOptionModal(openPostOptions);
+  }
+  if (openCommentOptions.length !== 0) {
+    handleCommentOptionModal(openCommentOptions);
+  }
+  if (openProductOptions.length !== 0) {
+    handleProductOptionModal(openProductOptions, myAccountName);
+  }
 }
 
-function handleCancelClick(item) {
-    postModal.style.display = 'none';
-    const focusableElements = Array.from(document.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
-    const currentItemIndex = focusableElements.findIndex(element => element === item);
-    const currentElement = focusableElements[currentItemIndex];
-    if (currentElement) {
-        currentElement.focus();
+let lastFocusedElement;
+// tab으로 focus 이동
+function focusOnOptionButton(nodes) {
+  nodes.addEventListener("keydown", (event) => {
+    if (event.key === "Tab" && !event.shiftKey) {
+      if (lastFocusedElement) {
+        lastFocusedElement.focus();
+        lastFocusedElement = null;
+      }
+    } else if (event.key === "Enter") {
+      setTimeout(() => displayModal.querySelector(".modal-description").focus());
+    }
+  });
+}
+
+// tab focus
+function setFocusOnModalActions() {
+  const focusableElements = Array.from(performModalActions.getElementsByTagName("button"));
+  modalTab(focusableElements);
+  focusableElements[0].focus();
+  focusableElements[1].addEventListener("click", () => {
+    openPopUpModal.style.visibility = "hidden";
+    const cancelButton = displayModal.querySelector(".btn-cancel");
+    cancelButton.focus();
+  });
+}
+
+function changeTheme(inputs) {
+    modalTab(inputs); // tab 이동
+    for(let i = 0; i < inputs.length; i++){ // 테마 변경
+        inputs[i].addEventListener('click', function (e) {
+            if(!inputs[i].classList.contains('btn-cancel')){
+                inputs[i].click();
+                localStorage.setItem('theme',e.target.id);
+                applyTheme();
+            }
+        });
     }
 }
 
-function themeChange(inputs) {
+// tab으로 이동
+function modalTab(inputs){
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].addEventListener('keydown', function (e) {
             if (e.key === 'Tab' && !e.shiftKey) {
@@ -74,383 +80,311 @@ function themeChange(inputs) {
             } else if (e.key === 'Enter') {
                 e.preventDefault();
                 inputs[i].click();
-                localStorage.setItem('theme',e.target.id)
             } else if (e.key === 'Tab' && e.shiftKey){
                 e.preventDefault();
-                const prevInput = inputs[i - 1] || inputs[inputs.length - 1]
+                const prevInput = inputs[i - 1] || inputs[inputs.length - 1];
                 prevInput.focus();
             }
         });
-        inputs[i].addEventListener('click', function (e) {
-            if(!inputs[i].classList.contains('btn-cancel')){
-                inputs[i].click();
-                localStorage.setItem('theme',e.target.id)
-                colorChange()
-            }
-        });
     }
 }
 
-function handleHeaderModal(node){
-    node.addEventListener('click',() => {
-        modalContent.innerHTML = `
-            <button class="modal-description btn-theme" >테마 변경</button>
-            <button class="modal-description btn-logout" >로그아웃</button>
-            <button class="modal-description btn-cancel" >취소</button>
-        `
-        const btnCancel = modalContent.querySelector('.btn-cancel');
+// 모달창 기능 - 상단 option 모달창
+function handleHeaderModal(node) {
+  node.addEventListener("click", () => {
+    displayModal.textContent = ""; //displayModal 요소의 내부 내용이 누적되어 초기화하기 위해 사용
+    const changeThemeBtn = createModalButton("테마 변경", "btn-theme"),
+      logoutBtn = createModalButton("로그아웃", "btn-logout"),
+      cancelBtn = createModalButton("취소", "btn-cancel");
 
-         btnCancel.addEventListener('click', () => {
-              postModal.style.display = 'none';
-              node.focus();
-            });
-
-        modalContent.querySelectorAll('.modal-description').forEach(item => {item.addEventListener('click', (e) => {
-
-            const currtheme = localStorage.getItem('theme')
-
-            if(e.currentTarget.classList.contains('btn-theme')){
-                modalContent.innerHTML = `
-                  <div class="mode_select">
-                    <label for="light" class='modal-description'>
-                      <input type="radio" name="colorSet" id="light" ${currtheme==='light' ? 'checked' : ''} class="theme">LIGHT
-                    </label>
-                    <label for="highContrast" class='modal-description'>
-                      <input type="radio" name="colorSet" id="highContrast" ${currtheme==='highContrast' ? 'checked' : ''} class="theme">highContrast
-                    </label>
-                    <button class="modal-description btn-cancel theme">취소</button>
-                  </div>
-                `;
-
-                const inputs = document.querySelectorAll('.theme');
-                themeChange(inputs);
-
-                const btnCancel = modalContent.querySelector('.btn-cancel');
-
-                btnCancel.addEventListener('click', () => {
-                    postModal.style.display = 'none';
-                    node.focus();
-                  });
-            }else if(e.currentTarget.classList.contains('btn-cancel')){
-                postModal.style.display = 'none';
-            }  
-            else {
-                editPopUp(popUpModal,'로그아웃하시겠어요?','로그아웃',logOut)
-                popUpModal.style.visibility = 'visible';
-                setFocusOnModalActions(); 
-            }
-        })})
-
-        postModal.style.display = 'block';
-        // popUpModalFocus(popUpModal);
+    cancelBtn.addEventListener("click", () => {
+      openPostModal.style.display = "none";
+      node.focus();
     });
+    // 테마 변경 클릭 시 새로 생성되는 하단 모달창
+    changeThemeBtn.addEventListener("click", () => {
+      displayModal.textContent = "";
+
+      const modeSelectContainer = document.createElement("div");
+      modeSelectContainer.classList.add("mode_select");
+
+      const lightRadio = createModalRadio("colorSet", "light", "LIGHT", localStorage.getItem("theme") === "light"),
+        highContrastRadio = createModalRadio("colorSet", "highContrast", "highContrast", localStorage.getItem("theme") === "highContrast"),
+        cancelThemeBtn = createModalButton("취소", "btn-cancel", "theme");
+
+      const inputs = [lightRadio, highContrastRadio, cancelThemeBtn];
+      changeTheme(inputs);
+
+      cancelThemeBtn.addEventListener("click", () => {
+        openPostModal.style.display = "none";
+        node.focus();
+      });
+      modeSelectContainer.append(lightRadio, highContrastRadio, cancelThemeBtn);
+      displayModal.appendChild(modeSelectContainer);
+    });
+    logoutBtn.addEventListener("click", () => {
+      editPopUp(openPopUpModal, "로그아웃하시겠어요?", "로그아웃", logOut);
+      openPopUpModal.style.visibility = "visible";
+      setFocusOnModalActions();
+    });
+    displayModal.append(changeThemeBtn, logoutBtn, cancelBtn);
+    const inputs = [changeThemeBtn, logoutBtn, cancelBtn];
+    modalTab(inputs);
+    openPostModal.style.display = "block";
+  });
 }
 
-function handlePostOptionModal(nodes) {
-    // option 버튼 클릭 시 모달창 나타나기
-    nodes.forEach(item => {item.addEventListener('click', (e) => {
+// 게시물 option 모달창
+export function handlePostOptionModal(nodes) {
+  nodes.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      const targetButton = e.currentTarget,
+        targetPostId = targetButton.closest(".home-post").dataset.postid,
+        postAccountName = targetButton.parentNode.querySelector("a").href.split("accountName=")[1] || window.location.href.split("accountName=")[1];
 
-        const targetBtn = e.currentTarget
-        let targetPostId = targetBtn.closest('.home-post').dataset.postid
-        console.log(targetPostId)
-        
-        // if(targetPostId === undefined) {
-        //     targetPostId = targetBtn.parentNode.querySelector('.post-edit a').href.split('postId=')[1] 
-        // }
-        
-        // 내 글인지 다른 사람 글인지.
-        const postAccountName = targetBtn.parentNode.querySelector('a').href.split('accountName=')[1] || window.location.href.split('accountName=')[1]
-        if(myAccountName === postAccountName){
-            modalContent.innerHTML = `
-                <button class="modal-description btn-edit" >수정</button>
-                <button class="modal-description btn-delete" >삭제</button>
-                <button class="modal-description btn-cancel" >취소</button>
-            `
-        } else {
-            modalContent.innerHTML = `<button class="modal-description btn-report" >신고하기</button>
-            <button class="modal-description btn-cancel" >취소</button>`
-        }
+      const options = [
+        { text: "수정", class: "btn-edit" },
+        { text: "삭제", class: "btn-delete" },
+        { text: "신고", class: "btn-report" },
+        { text: "취소", class: "btn-cancel" },
+      ];
 
-        const btnCancel = modalContent.querySelector('.btn-cancel');
-
-        btnCancel.addEventListener('click', () => {
-            handleCancelClick(item);
-        });
-
-        modalContent.querySelectorAll('.modal-description').forEach(item => {item.addEventListener('click', (e) => {
-            if(e.currentTarget.classList.contains('btn-edit')){
-                location.href=`./post_upload.html?postId=${targetPostId}`
-            }
-            if(e.currentTarget.classList.contains('btn-delete')){
-                editPopUp(popUpModal,'게시글을 삭제할까요?','삭제',()=>{postDelete(targetPostId)})
-                popUpModal.style.visibility = 'visible';
-                setFocusOnModalActions();
-            }
-            if(e.currentTarget.classList.contains('btn-report')){
-                editPopUp(popUpModal,'게시글을 신고할까요?','신고', ()=>{postReport(targetPostId)})
-                popUpModal.style.visibility = 'visible';
-                setFocusOnModalActions();
-            }
-            popUpModal.style.visibility = 'visible';
-            if(e.currentTarget.classList.contains('btn-cancel')){
-                postModal.style.display = 'none';
-                popUpModal.style.visibility = 'hidden'
-            }
-        })})
-
-        postModal.style.display = 'block';
-    })
-    btnOptionFocus(item);
-});
+      if (myAccountName === postAccountName) {
+        options.splice(2, 1); // options에서 '신고하기' 없애기
+      } else {
+        options.splice(0, 2); // options에서 '수정', '삭제' 없애기
+      }
+      createOptionModal(options, targetPostId, handlePostOptionClick);
+    });
+    focusOnOptionButton(item);
+  });
 }
 
-function handleCommentOptionModal(nodes){
-    nodes.forEach(item=>{item.addEventListener('click', (e) => {
-        const targetBtn = e.currentTarget
-        const postAccountName = targetBtn.parentNode.querySelector('a').href.split('accountName=')[1]
-        const targetCommentId = targetBtn.dataset.commentid
+// 댓글 option 모달창
+export function handleCommentOptionModal(nodes) {
+  nodes.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      const targetButton = e.currentTarget,
+        targetCommentId = targetButton.dataset.commentid,
+        postAccountName = targetButton.parentNode.querySelector("a").href.split("accountName=")[1];
 
-        const pageUrl = new URL(window.location.href);
-        const targetPostId = pageUrl.searchParams.get('postId');
+      const pageUrl = new URL(window.location.href);
+      const targetPostId = pageUrl.searchParams.get("postId");
 
-        if(myAccountName === postAccountName){
-            modalContent.innerHTML = `<button class="modal-description btn-delete" >삭제</button>
-            <button class="modal-description btn-cancel" >취소</button>`
-        } else {
-            modalContent.innerHTML = `<button class="modal-description btn-report" >신고하기</button>
-            <button class="modal-description btn-cancel" >취소</button>`
-        }
+      const options = [
+        { text: "삭제", class: "btn-delete" },
+        { text: "신고", class: "btn-report" },
+        { text: "취소", class: "btn-cancel" },
+      ];
 
-        const btnCancel = modalContent.querySelector('.btn-cancel');
-
-        btnCancel.addEventListener('click', () => {
-            handleCancelClick(item);
-        });
-
-        modalContent.querySelector('.modal-description').addEventListener('click', (e) => {
-            if(e.currentTarget.classList.contains('btn-delete')){
-                editPopUp(popUpModal,'댓글을 삭제할까요?','삭제',() => commentDelete(targetPostId,targetCommentId))
-                popUpModal.style.visibility = 'visible';
-                setFocusOnModalActions();
-            }
-            if(e.currentTarget.classList.contains('btn-report')){
-                editPopUp(popUpModal,'댓글을 신고할까요?','신고',() => commentReport(targetPostId,targetCommentId))
-                popUpModal.style.visibility = 'visible';
-                setFocusOnModalActions();
-            }
-            popUpModal.style.visibility = 'visible';
-            if(e.currentTarget.classList.contains('btn-cancel')){
-                postModal.style.display = 'none';
-                popUpModal.style.visibility = 'hidden'
-            }
-        })
-
-        postModal.style.display = 'block';
-    })
-    btnOptionFocus(item);
-});
+      if (myAccountName === postAccountName) {
+        options.splice(1, 1); // options에서 '신고하기' 없애기
+      } else {
+        options.splice(0, 1); // options에서 '삭제' 없애기
+      }
+      createOptionModal(options, targetPostId, handleCommentOptionClick, targetCommentId);
+    });
+    focusOnOptionButton(item);
+  });
 }
 
-function handleProductOptionModal(nodes){
-    nodes.forEach(item=>{item.addEventListener('click',(e)=>{
-        const productId = e.currentTarget.dataset.productid;
-
-        console.log(productId)
-
-        const AccountName = window.location.href.split('accountName=')[1]
-
-        if(AccountName === myAccountName){
-            modalContent.innerHTML = `<button class="modal-description btn-product-delete" >삭제</button>
-                                        <button class="modal-description btn-product-edit" >수정</button>
-                                        <button class="modal-description btn-product-link" >웹사이트에서 상품 보기</button>
-                                        <button class="modal-description btn-cancel" >취소</button>`
-        } else{
-            modalContent.innerHTML = `<button class="modal-description btn-product-link" >웹사이트에서 상품 보기</button>
-            <button class="modal-description btn-cancel" >취소</button>`
-        }
-
-        const btnCancel = modalContent.querySelector('.btn-cancel');
-
-        btnCancel.addEventListener('click', () => {
-            handleCancelClick(item);
-        });
-
-        modalContent.querySelectorAll('.modal-description').forEach(item=>{item.addEventListener('click', (e) => {
-            if(e.currentTarget.classList.contains('btn-product-delete')){
-                editPopUp(popUpModal,'상품을 삭제할까요?','삭제',() => productDelete(productId))
-                popUpModal.style.visibility = 'visible';
-                setFocusOnModalActions();
-            }
-            if(e.currentTarget.classList.contains('btn-product-edit')){
-                location.href = `./product_upload.html?productId=${productId}`
-            }
-            if(e.currentTarget.classList.contains('btn-product-link')){
-                location.href='./404.html'
-            }
-            if(e.currentTarget.classList.contains('btn-cancel')){
-                postModal.style.display = 'none';
-                popUpModal.style.visibility = 'hidden'
-            }
-            })
-            postModal.style.display = 'block';
-            })
-        })
-        btnOptionFocus(item);
-    })
+// 상품 option 모달창
+function handleProductOptionModal(nodes, myAccountName) {
+  nodes.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      const productId = e.currentTarget.dataset.productid,
+        accountName = window.location.href.split("accountName=")[1];
+      const options = [
+        { text: "삭제", class: "btn-product-delete" },
+        { text: "수정", class: "btn-product-edit" },
+        { text: "웹사이트에서 상품 보기", class: "btn-product-link" },
+        { text: "취소", class: "btn-cancel" },
+      ];
+      if (accountName !== myAccountName) {
+        options.splice(0, 2); // options에서 '삭제', '수정' 없애기
+      }
+      createOptionModal(options, productId, handleProductOptionClick);
+    });
+    focusOnOptionButton(item);
+  });
 }
 
-async function postDelete(targetPostId){
-    console.log(targetPostId)
-    const fullUrl = `https://api.mandarin.weniv.co.kr/post/${targetPostId}`
-    const options = {
-        method: "DELETE", 
-        headers: {
-            "Authorization" : `Bearer ${localStorage.getItem('user-token')}`,
-	        "Content-type" : "application/json"
-        }
-    };
-    try {
-        await fetch(fullUrl, options)
-        if(window.location.href.includes('detail')){
-            location.href = document.referrer
-        } else{
-            location.reload()
-        }
-    } catch(err){
-        console.error(err);
-        location.href='./404.html'
-    }
+// Option 모달창 생성 및 이벤트 처리
+function createOptionModal(options, targetId, clickEvent, commentId) {
+  lastFocusedElement = document.activeElement; // 하단 모달을 생성하기 전에 focus인 요소
+
+  displayModal.textContent = "";
+  options.forEach((option) => {
+    const button = createModalButton(option.text, option.class);
+    button.addEventListener("click", () => {
+      commentId ? clickEvent(option.text, option.class, targetId, commentId) : clickEvent(option.text, option.class, targetId);
+    });
+    displayModal.appendChild(button);
+  });
+  const cancelButton = displayModal.querySelector(".btn-cancel");
+  cancelButton.addEventListener("click", () => {
+    handleCancelClick(lastFocusedElement);
+  });
+  displayModal.appendChild(cancelButton);
+  const inputs = document.querySelectorAll('[class^="modal-description btn-"]');
+  modalTab(inputs);
+  openPostModal.style.display = "block";
 }
 
-async function postReport(targetPostId){
-    const fullUrl = `https://api.mandarin.weniv.co.kr/post/${targetPostId}/report`;
-    const options = {
-        method: "POST",
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem('user-token')}`,
-            "Content-type" : "application/json"
-        }
-    };
-    try{
-        await fetch(fullUrl,options)
-    } catch (err){
-        console.error(err)
-        location.href='./404.html'
-    }
+// 취소 버튼 기능
+function handleCancelClick(lastFocusedElement) {
+  openPostModal.style.display = "none";
+  if (lastFocusedElement) {
+    lastFocusedElement.focus();
+    lastFocusedElement = null;
+  }
 }
 
-async function commentDelete(targetPostId, targetCommentId){
-    const fullUrl = `https://api.mandarin.weniv.co.kr/post/${targetPostId}/comments/${targetCommentId}`;
-    const options = {
-        method: "DELETE",
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem('user-token')}`,
-            "Content-type" : "application/json"
-        }
-    };
-    try{
-        await fetch(fullUrl,options)
-        
-        // const commentList = document.querySelector('.comment-list')
-        // const targetComment = commentList.querySelector(`[data-commentid="${targetCommentId}"]`);
-
-        // if (targetComment) {
-        //     const targetCommentElement = targetComment.closest('li');
-        //     commentList.removeChild(targetCommentElement);
-        // }
-        await fetch(fullUrl,options)
-        
-        // if(!alert('댓글이 삭제되었습니다.')){
-            location.reload()
-        // }
-    } catch (err){
-        console.error(err)
-        // location.href='./404.html'
-    }
+// 하단 모달창 option 생성
+function createModalButton(text, className) {
+  const button = document.createElement("button");
+  button.textContent = text;
+  button.classList.add("modal-description");
+  if (className) {
+    button.classList.add(className);
+  }
+  return button;
 }
 
-async function commentReport(targetPostId, targetCommentId){
-    const fullUrl = `https://api.mandarin.weniv.co.kr/post/${targetPostId}/comments/${targetCommentId}/report`;
-    const options = {
-        method: "POST",
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem('user-token')}`,
-            "Content-type" : "application/json"
-        }
-    };
-    try{
-        await fetch(fullUrl,options)
-    } catch (err){
-        console.error(err)
-        location.href='./404.html'
-    }
+// 고대비 테마 radio 설정
+function createModalRadio(name, id, label, checked) {
+  const labelElem = document.createElement("label"),
+    inputElem = document.createElement("input");
+  inputElem.type = "radio";
+  inputElem.name = name;
+  inputElem.id = id;
+  inputElem.checked = checked;
+  inputElem.classList.add("theme");
+  labelElem.setAttribute("for", id);
+  labelElem.classList.add("modal-description");
+  const labelText = document.createElement("span");
+  labelText.textContent = label;
+  labelElem.append(inputElem, labelText);
+  return labelElem;
 }
 
-async function productDelete(productId){
-    const fullUrl = `https://api.mandarin.weniv.co.kr/product/${productId}`
-    const options = {
-        method: "DELETE",
-        headers: {
-            "Authorization" : `Bearer ${localStorage.getItem('user-token')}`,
-	        "Content-type" : "application/json"
-        }
-    };
-
-    try {
-        await fetch(fullUrl, options)
-        location.reload()
-    } catch(err){
-        console.error(err);
-        location.href='./404.html'
-    }
+// 게시물 삭제 및 신고 클릭 시
+function handlePostOptionClick(optionText, optionClass, postId) {
+  if (optionClass === "btn-edit") {
+    location.href = `./post_upload.html?postId=${postId}`;
+  } else if (optionClass === "btn-delete") {
+    deletePopup("게시글", optionText, postId);
+  } else if (optionClass === "btn-report") {
+    reportPopup("게시글", optionText, postId);
+  }
 }
 
-function editPopUp(parent, desc, btnText, action){
-    parent.querySelector('.modal-description').textContent = desc
-    parent.querySelector('.right-button').textContent = btnText;
-    const rightButton = parent.querySelector('.right-button');
-    const clickHandler = async () => {
-        await action();
-        console.log('Done');
-        postModal.style.display = 'none';
-        popUpModal.style.visibility = 'hidden';
-        rightButton.removeEventListener('click', clickHandler);
-    };
-    
-    rightButton.addEventListener('click', clickHandler);
+// 댓글 삭제 및 신고 클릭 시
+function handleCommentOptionClick(optionText, optionClass, postId, commentId) {
+  if (optionClass === "btn-delete") {
+    deletePopup("댓글", optionText, postId, commentId);
+  } else if (optionClass === "btn-report") {
+    reportPopup("댓글", optionText, postId, commentId);
+  }
 }
 
-// 기능
+// 상품 삭제 및 신고 클릭 시
+function handleProductOptionClick(optionText, optionClass, productId) {
+  if (optionClass === "btn-product-delete") {
+    deletePopup("상품", optionText, productId);
+  } else if (optionClass === "btn-product-edit") {
+    location.href = `./product_upload.html?productId=${productId}`;
+  } else if (optionClass === "btn-product-link") {
+    location.href = "./404.html";
+  }
+}
 
-function logOut(){
-    localStorage.removeItem('user-token')
-    localStorage.removeItem('user-accountname')
-    location.href = './login.html'
+// 삭제 선택 시 popup 생성
+function deletePopup(popupCase, optionText, productId, commentId) {
+  editPopUp(openPopUpModal, `${popupCase}을 ${optionText}할까요?`, optionText, () => {
+    commentId ? deleteItem(popupCase, productId, commentId) : deleteItem(popupCase, productId);
+  });
+  openPopUpModal.style.visibility = "visible";
+  setFocusOnModalActions();
+}
+
+// 신고 선택 시 popup 생성
+function reportPopup(popupCase, optionText, productId, commentId) {
+  editPopUp(openPopUpModal, `${popupCase}을 ${optionText}할까요?`, optionText, () => {
+    commentId ? reportItem(productId) : reportItem(productId, commentId);
+  });
+  openPopUpModal.style.visibility = "visible";
+  setFocusOnModalActions();
+}
+
+// 화면에 뜨는 팝업
+function editPopUp(parent, description, buttonText, action) {
+  parent.querySelector(".modal-description").textContent = description;
+  parent.querySelector(".right-button").textContent = buttonText;
+  const rightButton = parent.querySelector(".right-button");
+  const clickHandler = async () => {
+    await action();
+    openPostModal.style.display = "none";
+    openPopUpModal.style.visibility = "hidden";
+    rightButton.removeEventListener("click", clickHandler);
+  };
+  rightButton.addEventListener("click", clickHandler);
+}
+
+// 로그아웃 시 localStorage 내용 삭제
+function logOut() {
+  localStorage.removeItem("user-token");
+  localStorage.removeItem("user-accountname");
+  location.href = "./login.html";
 }
 
 // 하단에 띄어진 모달이 아닌 배경을 클릭하면 모달창 닫기
-postModal.addEventListener('click', (event) => {
-    const targetElement = event.target;
-
-    if (targetElement.classList.contains('post-modal-background')) {
-        postModal.style.display = 'none';
-    }
+openPostModal.addEventListener("click", (event) => {
+  const targetElement = event.target;
+  if (targetElement.classList.contains("post-modal-background")) {
+    openPostModal.style.display = "none";
+  }
 });
 
 // 팝업으로 띄어진 모달이 아닌 배경을 클릭하면 모달창 닫기
-popUpModal.addEventListener('click', (event) => {
-    const targetElement = event.target;
-
-    if (targetElement.classList.contains('modal-background') || targetElement.classList.contains('left-button')) {
-        popUpModal.style.visibility = 'hidden';
-    }
+openPopUpModal.addEventListener("click", (event) => {
+  const targetElement = event.target;
+  if (targetElement.classList.contains("modal-background") || targetElement.classList.contains("left-button")) {
+    openPopUpModal.style.visibility = "hidden";
+  }
 });
 
+// ============== API 함수들 ==========
+// 삭제 api
+async function deleteItem(targetType, targetId, targetCommentId) {
+  const reqPath = targetCommentId
+    ? `/post/${targetId}/comments/${targetCommentId}`
+    : targetType !== "상품"
+    ? `/post/${targetId}`
+    : `/product/${targetId}`; // 순서대로 댓글 주소, 게시글 주소, 상품 주소
 
+  await fetchApi({
+    reqPath : reqPath,
+    method : "DELETE",
+    toJson : false
+  })
+  if (targetType === "게시글" && window.location.href.includes("detail")) {
+    // 게시글이면서 detail을 포함한 것을 삭제했을 경우 전화면으로 이동하면서 새로 로딩
+    location.href = document.referrer;
+  } else {
+    // 그 외의 경우에는 위치한 페이지에서 바로 reload()
+    location.reload();
+  }
+}
 
+// 신고 api
+async function reportItem(targetId, targetCommentId) {
+  const reqPath = targetCommentId ? `/post/${targetId}/comments/${targetCommentId}/report` : `/post/${targetId}/report`;
+  await fetchApi({
+    reqPath : reqPath,
+    method : "POST",
+    toJson : false
+  })
+}
 
-// /////
-
-// profile_modification
-
-// colorchange render함수
+handleModal(); // 모달 실행

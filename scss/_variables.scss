@@ -1,5 +1,13 @@
 // 변수
-$font-sizes: ("size18": 1.125rem, "size16": 1rem, "size14": .875rem, "size12": .75rem, "size10": .625rem);
+$font-sizes: (
+    "size24": 1.5rem,
+    "size18": 1.125rem,
+    "size16": 1rem,
+    "size14": .875rem,
+    "size12": .75rem,
+    "size10": .625rem,
+    "size8": .5rem
+);
 
 // 색상
 $enabled-color: #635CA5;
@@ -8,10 +16,111 @@ $highlight-color: #9747FF;
 $active-color: #9C85C5;
 $price-color: #BF8DFF;
 $warning-color-text: #EB5757;
-$white-color : #fff;
+$white-color : #ffffff;
 $gray50-color : #f2f2f2;
 $gray100-color: #dbdbdb;
-$gray200-color: #C4C4C4;
+$gray200-color: #c4c4c4;
+$gray250-color: #bdbdbd;
 $gray300-color: #767676;
-$black-color: #000;
+$black-color: #000000;
+$purple100-color: #E4D6FF;
+$purple200-color: #C5A8FF;
+$highContrast-point-color: #FFEB32;
 
+// border-line
+$border-gray100-1px: 0.0625rem solid $gray100-color;
+
+// 테마
+$theme: (
+    light: (bg-color:$white-color,
+        root-color: $gray50-color,
+        btn-color: $enabled-color,
+        btn-back-color: $white-color,
+        btn-font:$gray300-color,
+        enabled-btn-color: $enabled-color,
+        disabled-btn-color: $disabled-color,
+        font-color: $black-color,
+        btn-font-color: $white-color,
+        gray-color: $gray300-color,
+        box-shadow : none,
+        border: none,
+        profile-border : 1px solid $gray50-color,
+        icon-border : 1px solid $gray100-color,
+        price-color: $price-color,
+        placeholder-color:$gray200-color,
+        warning-color: $warning-color-text,
+        bg-logo:url(../assets/symbol/light-basic.svg),
+        footer-icon-sprites : url(../assets/footer-sprites.png),
+        btn-post-view: url('../assets/post-view-sprites.png'),
+        input-color: $gray50-color,
+        icon-sprites : url(../assets/icon-sprites.png),
+        image-btn: $gray200-color,
+        border-bottom: 1px solid $warning-color-text,
+        background-color: rgba(0, 0, 0, 0.5),
+        send-color:$highlight-color,
+        mychat-color: $enabled-color,
+        mychat-border: none,
+        mychat-font:$white-color,
+        point-color: $highlight-color,
+        bg-image: url(../assets/symbol/light-gray.svg),
+        kakao-color : #F2C94C,
+        google-color : $gray300-color,
+        facebook-color : #2D9CDB,
+        following-btn-bg:$white-color,
+        following-btn-color:$gray300-color,
+        following-btn-border:1px solid $gray50-color,
+        profile-image-btn: $active-color,
+        comment-placeholder :$gray200-color,
+        comment-btn:$enabled-color,
+        img-icon: $enabled-color,
+        profile-border-bottom:1px solid $highlight-color,
+        cancle-btn-color: $gray300-color,
+        cancle-btn-border: $border-gray100-1px,
+    ),
+    highContrast: (bg-color:$black-color,
+        root-color: $black-color,
+        btn-color: $purple100-color,
+        btn-back-color: $purple100-color,
+        btn-font: $black-color,
+        enabled-btn-color: $purple100-color,
+        disabled-btn-color: transparent,
+        font-color: $white-color,
+        btn-font-color: $black-color,
+        gray-color: $gray50-color,
+        box-shadow: 0 0 0 2px $purple100-color inset,
+        border: 2px solid $purple100-color,
+        profile-border : none,
+        icon-border : 1px solid $gray100-color,
+        price-color: $purple200-color,
+        placeholder-color:$highContrast-point-color,
+        search-placeholder-color:$black-color,
+        warning-color: $highContrast-point-color,
+        bg-logo:url(../assets/symbol/hc-basic.svg),
+        footer-icon-sprites : url(../assets/footer-sprites-hc.png),
+        btn-post-view: url('../assets/post-view-sprites-hc.png'),
+        input-color: $gray250-color,
+        icon-sprites : url(../assets/icon-sprites-hc.png),
+        image-btn: $black-color,
+        border-bottom: 1px solid $highContrast-point-color,
+        background-color: rgb(236 236 236 / 34%),
+        send-color:$highContrast-point-color,
+        mychat-color: $black-color,
+        mychat-border: 1px solid $purple200-color,
+        mychat-font:$purple200-color,
+        point-color: $highContrast-point-color,
+        bg-image: url(../assets/symbol/hc-basic.svg),
+        kakao-color : $highContrast-point-color,
+        google-color : #65FB76,
+        facebook-color : #B3E3FF,
+        following-btn-bg:transparent,
+        following-btn-color:$purple100-color,
+        following-btn-border:2px solid $purple100-color,
+        profile-image-btn: $purple100-color,
+        comment-placeholder :$gray250-color,
+        comment-btn:$highContrast-point-color,
+        img-icon: $purple100-color,
+        profile-border-bottom:1px solid $highContrast-point-color,
+        cancle-btn-color: $purple100-color,
+        cancle-btn-border: 2px solid $purple100-color,
+    )
+);

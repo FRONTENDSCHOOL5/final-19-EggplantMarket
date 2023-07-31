@@ -1,61 +1,14 @@
 @import 'global';
-@import 'variables';
+@import 'mixin';
 
-$theme: (
-    light: (bg-color:#fff,
-        btn-color: #ffffff,
-        btn-font:#767676,
-        background-color: rgba(0, 0, 0, 0.5),
-        font-color: #000000,
-        btn-font-color: #ffffff,
-        gray-color: #767676,
-        point-color: #9747FF,
-        send-color:#9747FF,
-        warning-color:#EB5757,
-        img-icon: #635CA5,
-        border-bottom:1px solid #9747FF,
-    ),
-    highContrast: (bg-color:#000000,
-        btn-color: #E4D6FF,
-        btn-font: #000000,
-        background-color: rgb(236 236 236 / 34%),
-        font-color: #ffffff,
-        btn-font-color: #000000,
-        gray-color: #dbdbdb,
-        point-color: #FFEB32,
-        send-color:#FFEB32,
-        warning-color:#FFEB32,
-        img-icon: #E4D6FF,
-        border-bottom:1px solid #FFEB32,
-    )
-);
-
-@function get-color($key, $type: 'light') {
-
-    @each $name,
-    $color in map-get($theme, $type) {
-        @if($key ==$name) {
-            @return $color
-        }
-    }
-}
-
-@mixin get-color($property, $color) {
-
-    #{$property}: get-color($color);
-
-    @at-root .profile-modif-wrapper.highContrast & {
-        #{$property}: get-color($color, highContrast);
-    }
-}
 
 .profile-setting {
     form {
-        margin-top: 30px;
+        margin-top: 1.875rem;
     }
 
     .title {
-        margin-bottom: 12px;
+        margin-bottom: 0.75rem;
     }
 }
 
@@ -66,34 +19,27 @@ form {
     margin: 0 auto;
 
     color: $gray300-color;
-    font-size: .75rem;
+    font-size: map-get($font-sizes, "size12");
 
     .profile-img {
         position: relative;
-        width: 110px;
-        margin: 0 auto 30px;
+        width: 6.875rem;
+        margin: 0 auto 1.875rem;
 
         .img-cover {
-            width: 110px;
-            border-radius: 50%;
-            overflow: hidden;
-            img {
-                    width: 100%;
-                    aspect-ratio: 1/1;
-                    object-fit: cover;
-                }
+            width: 6.875rem;
+            @include image-cover;
+            @include profile-img-tag;
         }
     }
 
     &>fieldset {
-        margin-bottom: 16px;
+        margin-bottom: 1rem;
     }
 
     label {
-        display: block;
-        margin-bottom: 2px;
+        @include label-tag;
         text-align: start;
-        @include get-color(color, gray-color);
     }
 
     label.btn-upload {
@@ -118,8 +64,8 @@ form {
         display: block;
         width: 100%;
         border: none;
-        border-bottom: 1px solid $gray100-color;
-        padding: 8px 0;
+        border-bottom: $border-gray100-1px;
+        padding: 0.5rem 0;
         @include get-color(background-color, bg-color);
         @include get-color(color, font-color);
     }
@@ -129,23 +75,20 @@ form {
     }
 
     input::placeholder {
-        font-size: .875rem;
+        font-size: map-get($font-sizes, "size14");
         @include get-color(color, gray-color);
     }
 
     input:focus {
-        @include get-color(border-bottom, border-bottom);
+        @include get-color(border-bottom, profile-border-bottom);
         outline: none;
     }
 
 [class^=warning-msg] {
-        @include get-color(color, warning-color);
-        font-size: 12px;
-        margin-top: 6px;
-        display: none;
+        @include warning-message(color, warning-color);
+        margin-top: 0.375rem;
     }
 }
-
 
 // button
 .btn-upload {

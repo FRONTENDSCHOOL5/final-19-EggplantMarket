@@ -19,7 +19,7 @@
 button {
   border: none;
   background-color: initial;
-  padding: 0px;
+  padding: 0;
 }
 
 input {
@@ -38,95 +38,112 @@ body {
 }
 
 .back {
-  height: calc(100vh - 310px);
-  background-image: url(../assets/symbol-logo.svg);
+  height: calc(100vh - 19.375rem);
+  background-image: url(../assets/symbol/light-basic.svg);
   background-repeat: no-repeat;
   background-position: 98% 98%;
 }
-.login-wrapper.highContrast .back {
-  background-image: url(../assets/symbol-logo-highContrast.svg);
+.theme-wrapper.highContrast .back {
+  background-image: url(../assets/symbol/hc-basic.svg);
 }
 
 .login {
-  background-color: #fff;
-  border-radius: 20px 20px 0 0;
-  padding: 50px 34px 82px;
-  min-width: 390px;
+  background-color: #ffffff;
+  border-radius: 1.25rem 1.25rem 0 0;
+  padding: 3.125rem 2.125rem 5.125rem;
+  min-width: 24.375rem;
   width: 100%;
   position: fixed;
   bottom: 0;
 }
-.login-wrapper.highContrast .login {
+.theme-wrapper.highContrast .login {
   background-color: #000000;
 }
 
 .domain {
   display: block;
-  border: 1px solid #767676;
-  border-radius: 44px;
+  border: 0.0625rem solid #767676;
+  border-radius: 2.75rem;
   font-size: 0.875rem;
-  padding: 13px;
-  background-repeat: no-repeat;
-  background-position: 10px center;
+  padding: 0.8125rem;
+  position: relative;
 }
 .domain + .domain {
-  margin-top: 10px;
+  margin-top: 0.625rem;
+}
+.domain::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  top: 50%;
+  left: 10px;
 }
 .domain.kakao {
   border-color: #F2C94C;
-  background-image: url(../assets/message-circle.svg);
   color: #767676;
 }
-.login-wrapper.highContrast .domain.kakao {
+.theme-wrapper.highContrast .domain.kakao {
   border-color: #FFEB32;
 }
 
-.login-wrapper.highContrast .domain.kakao {
-  color: #dbdbdb;
+.theme-wrapper.highContrast .domain.kakao {
+  color: #f2f2f2;
 }
 
+.domain.kakao::before {
+  background: no-repeat url(../assets/sns-logo-sprites.png) -10px -10px/132px 44px;
+}
 .domain.google {
   border-color: #767676;
-  background-image: url(../assets/Google__G__Logo\ 2.svg);
   color: #767676;
 }
-.login-wrapper.highContrast .domain.google {
+.theme-wrapper.highContrast .domain.google {
   border-color: #65FB76;
 }
 
-.login-wrapper.highContrast .domain.google {
-  color: #dbdbdb;
+.theme-wrapper.highContrast .domain.google {
+  color: #f2f2f2;
 }
 
+.domain.google::before {
+  background: no-repeat url(../assets/sns-logo-sprites.png) -54px -10px/132px 44px;
+}
 .domain.facebook {
   border-color: #2D9CDB;
-  background-image: url(../assets/facebook.svg);
   color: #767676;
 }
-.login-wrapper.highContrast .domain.facebook {
+.theme-wrapper.highContrast .domain.facebook {
   border-color: #B3E3FF;
 }
 
-.login-wrapper.highContrast .domain.facebook {
-  color: #dbdbdb;
+.theme-wrapper.highContrast .domain.facebook {
+  color: #f2f2f2;
+}
+
+.domain.facebook::before {
+  background: no-repeat url(../assets/sns-logo-sprites.png) -98px -10px/132px 44px;
 }
 
 .email {
   font-size: 0.75rem;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   color: #767676;
 }
-.login-wrapper.highContrast .email {
-  color: #dbdbdb;
+.theme-wrapper.highContrast .email {
+  color: #f2f2f2;
 }
 
 .email a {
   color: #767676;
 }
-.login-wrapper.highContrast .email a {
-  color: #dbdbdb;
+.theme-wrapper.highContrast .email a {
+  color: #f2f2f2;
 }
 
 .email span {
-  margin: 0 12px;
+  margin: 0 0.75rem;
 }

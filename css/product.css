@@ -19,7 +19,7 @@
 button {
   border: none;
   background-color: initial;
-  padding: 0px;
+  padding: 0;
 }
 
 input {
@@ -32,13 +32,13 @@ a {
 }
 
 body {
-  min-width: 390px;
+  min-width: 24.375rem;
 }
 
 main {
   width: inherit;
-  padding: 0 34px;
-  margin-top: 30px;
+  padding: 0 2.125rem;
+  margin-top: 1.875rem;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -52,156 +52,174 @@ form {
 }
 form > label {
   color: #767676;
+  margin-bottom: 0.125rem;
   display: block;
-  margin-bottom: 2px;
 }
-.product-upload-wrapper.highContrast form > label {
-  color: #dbdbdb;
+.theme-wrapper.highContrast form > label {
+  color: #f2f2f2;
 }
 
 form > input {
   display: block;
   width: 100%;
-  background-color: #fff;
+  background-color: #ffffff;
   color: #000000;
-  margin-bottom: 6px;
+  margin-bottom: 0.375rem;
   border: none;
-  border-bottom: 1px solid #dbdbdb;
-  padding: 8px 0;
+  border-bottom: 0.0625rem solid #dbdbdb;
+  padding: 0.5rem 0;
 }
-.product-upload-wrapper.highContrast form > input {
+.theme-wrapper.highContrast form > input {
   background-color: #000000;
 }
 
-.product-upload-wrapper.highContrast form > input {
+.theme-wrapper.highContrast form > input {
   color: #ffffff;
 }
 
 form > input::-webkit-input-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #c4c4c4;
 }
 
 form > input::-moz-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #c4c4c4;
 }
 
 form > input:-ms-input-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #c4c4c4;
 }
 
 form > input::-ms-input-placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #c4c4c4;
 }
 
 form > input::placeholder {
   font-size: 0.875rem;
-  color: #dbdbdb;
+  color: #c4c4c4;
 }
-.product-upload-wrapper.highContrast form > input::-webkit-input-placeholder {
+.theme-wrapper.highContrast form > input::-webkit-input-placeholder {
   color: #FFEB32;
 }
-.product-upload-wrapper.highContrast form > input::-moz-placeholder {
+.theme-wrapper.highContrast form > input::-moz-placeholder {
   color: #FFEB32;
 }
-.product-upload-wrapper.highContrast form > input:-ms-input-placeholder {
+.theme-wrapper.highContrast form > input:-ms-input-placeholder {
   color: #FFEB32;
 }
-.product-upload-wrapper.highContrast form > input::-ms-input-placeholder {
+.theme-wrapper.highContrast form > input::-ms-input-placeholder {
   color: #FFEB32;
 }
-.product-upload-wrapper.highContrast form > input::placeholder {
+.theme-wrapper.highContrast form > input::placeholder {
   color: #FFEB32;
 }
 
 form label[for=product-price] {
-  margin-top: 16px;
+  margin-top: 1rem;
 }
 form label[for=purchase-link] {
-  margin-top: 16px;
+  margin-top: 1rem;
 }
 
 .product-img {
-  border-radius: 20px;
+  border-radius: 1.25rem;
   background: #f2f2f2;
   position: relative;
   aspect-ratio: 5/3;
-  margin-top: 18px;
-  margin-bottom: 30px;
+  margin-top: 1.125rem;
+  margin-bottom: 1.875rem;
 }
 .product-img .btn-upload {
   position: absolute;
-  right: 12px;
-  bottom: 12px;
+  right: 0.75rem;
+  bottom: 0.75rem;
 }
 
 #product-img-upload {
   display: none;
 }
 
+.upload-img {
+  cursor: pointer;
+}
 .upload-img circle {
   fill: #c4c4c4;
 }
-.product-upload-wrapper.highContrast .upload-img circle {
+.theme-wrapper.highContrast .upload-img circle {
   fill: #000000;
 }
 
 .btn-upload .upload-img circle:hover {
+  fill: #635CA5;
+}
+.theme-wrapper.highContrast .btn-upload .upload-img circle:hover {
   fill: #E4D6FF;
 }
 
 .warning-msg-productname {
   color: #EB5757;
-  font-size: 12px;
+  font-size: 0.75rem;
   display: none;
+}
+.theme-wrapper.highContrast .warning-msg-productname {
+  color: #FFEB32;
+}
+
+.warning-msg-productprice {
+  color: #EB5757;
+  font-size: 0.75rem;
+  display: none;
+}
+.theme-wrapper.highContrast .warning-msg-productprice {
+  color: #FFEB32;
 }
 
 .warning-msg-purchaselink {
   color: #EB5757;
-  font-size: 12px;
+  font-size: 0.75rem;
   display: none;
 }
-.product-upload-wrapper.highContrast .warning-msg-purchaselink {
+.theme-wrapper.highContrast .warning-msg-purchaselink {
   color: #FFEB32;
 }
 
 .size-ms:disabled {
   background-color: #BCADDC;
+  color: #767676;
   -webkit-box-shadow: none;
           box-shadow: none;
-  color: #767676;
 }
-.product-upload-wrapper.highContrast .size-ms:disabled {
+.theme-wrapper.highContrast .size-ms:disabled {
   background-color: transparent;
 }
 
-.product-upload-wrapper.highContrast .size-ms:disabled {
-  -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
-          box-shadow: 0 0 0 2px #E4D6FF inset;
+.theme-wrapper.highContrast .size-ms:disabled {
+  color: #f2f2f2;
 }
 
-.product-upload-wrapper.highContrast .size-ms:disabled {
-  color: #dbdbdb;
+.theme-wrapper.highContrast .size-ms:disabled {
+  -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
+          box-shadow: 0 0 0 2px #E4D6FF inset;
 }
 
 .size-ms {
   background-color: #635CA5;
   color: #ffffff;
 }
-.product-upload-wrapper.highContrast .size-ms {
+.theme-wrapper.highContrast .size-ms {
   background-color: #E4D6FF;
 }
 
-.product-upload-wrapper.highContrast .size-ms {
+.theme-wrapper.highContrast .size-ms {
   color: #000000;
 }
 
 h2 {
   color: #767676;
 }
-.product-upload-wrapper.highContrast h2 {
-  color: #dbdbdb;
+.theme-wrapper.highContrast h2 {
+  color: #f2f2f2;
 }

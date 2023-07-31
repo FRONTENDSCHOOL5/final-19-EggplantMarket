@@ -19,7 +19,7 @@
 button {
   border: none;
   background-color: initial;
-  padding: 0px;
+  padding: 0;
 }
 
 input {
@@ -32,11 +32,11 @@ a {
 }
 
 .chat-list {
-  padding: 24px 16px;
+  padding: 1.5rem 1rem;
 }
 
 .user-chat-content {
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -51,7 +51,7 @@ a {
   -webkit-box-ordinal-group: 1;
       -ms-flex-order: 0;
           order: 0;
-  margin-right: 12px;
+  margin-right: 0.75rem;
   -ms-flex-negative: 0;
       flex-shrink: 0;
 }
@@ -62,23 +62,23 @@ a {
   width: calc(100% - 130px);
   -ms-flex-negative: 1;
       flex-shrink: 1;
-  margin-right: 13px;
+  margin-right: 0.8125rem;
 }
 .user-chat-content .user-info .user-name {
   font-size: 0.875rem;
   font-weight: 500;
-  line-height: 18px;
-  margin-bottom: 4px;
+  line-height: 1.125rem;
+  margin-bottom: 0.25rem;
 }
 .user-chat-content .user-info .chat-content {
   display: block;
   color: #767676;
   font-size: 0.75rem;
   font-weight: 400;
-  margin-top: 2px;
+  margin-top: 0.125rem;
 }
-.chat-list-wrapper.highContrast .user-chat-content .user-info .chat-content {
-  color: #dbdbdb;
+.theme-wrapper.highContrast .user-chat-content .user-info .chat-content {
+  color: #f2f2f2;
 }
 
 .user-chat-content .chat-date {
@@ -95,42 +95,25 @@ a {
 }
 .new-chat .profile-dot {
   position: absolute;
-  left: 2px;
-  width: 12px;
-  height: 12px;
+  left: 0.125rem;
+  width: 0.75rem;
+  height: 0.75rem;
   background-color: #635CA5;
   border-radius: 50%;
   z-index: 1;
 }
 
-.tab-item-list li:nth-child(2) a {
-  background-image: url("../assets/icon/icon-message-circle-fill.svg");
-}
-
 .img-cover {
   display: inline-block;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
   overflow: hidden;
+  border-radius: 50%;
+  width: 3.125rem;
+  height: 3.125rem;
 }
 .img-cover img {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
-}
-
-.tab-item-chat a {
-  background-image: url("../assets/icon/icon-message-circle-fill.svg");
-}
-.tab-item-chat a p {
-  color: #767676;
-}
-.chat-list-wrapper.highContrast .tab-item-chat a p {
-  color: #dbdbdb;
-}
-
-.chat-list-wrapper.highContrast .tab-item-chat a {
-  background-image: url("../assets/icon/icon-message-circle-fill-hc.svg");
 }

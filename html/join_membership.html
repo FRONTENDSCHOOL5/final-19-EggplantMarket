@@ -2,17 +2,32 @@
 <html lang="ko-KR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입 | 가지마켙</title>
+    <link rel="icon" href="https://eggplant-market.netlify.app/assets/favicon.ico">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="keywords" content="바자회, 플리마켓, 환경, 재활용, 나눔, 기부, 중고거래">
+    <meta name="description" content="'가치를 지켜라!' 가지마켓은 바자회와 같은 나눔과 기부 관련 정보를 공유하는 SNS입니다. 중고거래를 하면서 환경과 경제적으로도 유익함을 누릴 수 있습니다. 함께 가치를 지켜가며 더 나은 세상을 만들어가보세요.">
 
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="가지마켓">
+    <meta property="og:description" content="'가치를 지켜라!' 가지마켓은 바자회와 같은 나눔과 기부 관련 정보를 공유하는 SNS입니다. 중고거래를 하면서 환경과 경제적으로도 유익함을 누릴 수 있습니다. 함께 가치를 지켜가며 더 나은 세상을 만들어가보세요.">
+    <meta property="og:image" content="https://eggplant-market.netlify.app/assets/og(800x400).png">
+    <meta property="og:url" content="https://eggplant-market.netlify.app/">
+
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="가지마켓">
+    <meta property="twitter:description" content="'가치를 지켜라!' 가지마켓은 바자회와 같은 나눔과 기부 관련 정보를 공유하는 SNS입니다. 중고거래를 하면서 환경과 경제적으로도 유익함을 누릴 수 있습니다. 함께 가치를 지켜가며 더 나은 세상을 만들어가보세요.">
+    <meta property="twitter:image" content="https://eggplant-market.netlify.app/assets/og(1400x630).png">
+    <meta property="twitter:url" content="https://eggplant-market.netlify.app/">
+
+    <title>회원가입 | 가지마켓</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/join_membership.css">
 </head>
 
 <body>
-    <main class="join">
+    <main class="join theme-wrapper">
         <h1 class="a11y-hidden">회원가입</h1>
         
         <!-- join-email -->
@@ -43,7 +58,7 @@
                 <section class="profile-img">
                     <h3 class="a11y-hidden">프로필 이미지 설정</h3>
                     <div class="img-cover">
-                        <img src="../assets/basic-profile-img.png" alt="기본 프로필 이미지">
+                        <img src="../assets/basic-profile.png" alt="기본 프로필 이미지">
                     </div>
                     <label class="btn-upload" for="btn-upload">
                         <svg class="upload-img" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,16 +92,16 @@
                     <label for="userinfo">소개</label>
                     <input type="text" id="userinfo" placeholder="자신과 판매할 상품에 대해 소개해 주세요!">
                 </fieldset>
-                <button id="submit-btn" class='size-l btn-next' type="submit" disabled>가지마켙
+                <button id="submit-btn" class='size-l btn-next' type="submit" disabled>가지마켓
                     시작하기</button>
             </form>
         </section>
         <!-- // profile-setting -->
     </main>
-    <script src="../js/contrast.js"></script>
-    <script src="../js/common.js"></script>
-    <script src="../js/join.js"></script>
-    <script src="../js/setProfile.js"></script>
+    
+    <script src="../js/common.js" type="module"></script>
+    <script src="../js/join.js" type="module"></script>
+    <script src="../js/setProfile.js" type="module"></script>
 </body>
 
 </html>

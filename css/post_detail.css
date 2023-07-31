@@ -19,7 +19,7 @@
 button {
   border: none;
   background-color: initial;
-  padding: 0px;
+  padding: 0;
 }
 
 input {
@@ -33,42 +33,42 @@ a {
 
 main {
   margin: 0 0.9375rem;
-  margin-bottom: 61px;
+  margin-bottom: 3.8125rem;
 }
 
 .home-post {
-  border-bottom: 1px solid #DBDBDB;
+  border-bottom: 0.0625rem solid #dbdbdb;
 }
 
 .comment-list {
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 .comment-list .comment-item {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   position: relative;
 }
 .comment-list .comment-item .comment-time {
   display: inline-block;
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #767676;
-  line-height: 18px;
+  line-height: 1.125rem;
   vertical-align: top;
-  margin-top: 6px;
-  padding-left: 12px;
+  margin-top: 0.375rem;
+  padding-left: 0.75rem;
 }
-.post-detail-wrapper.highContrast .comment-list .comment-item .comment-time {
-  color: #dbdbdb;
+.theme-wrapper.highContrast .comment-list .comment-item .comment-time {
+  color: #f2f2f2;
 }
 
 .comment-list .comment-item .comment-text {
-  margin-left: 54px;
-  margin-right: 24px;
+  margin-left: 3.375rem;
+  margin-right: 1.5rem;
   line-height: 1.5;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #000000;
 }
-.post-detail-wrapper.highContrast .comment-list .comment-item .comment-text {
+.theme-wrapper.highContrast .comment-list .comment-item .comment-text {
   color: #ffffff;
 }
 
@@ -85,12 +85,10 @@ main {
 }
 .comment-user-info .img-cover {
   display: inline-block;
-  width: 36px;
-  height: 36px;
   overflow: hidden;
   border-radius: 50%;
-  -webkit-box-shadow: 0 0 0px 1px #DBDBDB;
-          box-shadow: 0 0 0px 1px #DBDBDB;
+  width: 2.25rem;
+  height: 2.25rem;
 }
 .comment-user-info .img-cover img {
   width: 100%;
@@ -101,27 +99,25 @@ main {
 }
 .comment-user-info .user-name {
   display: inline-block;
-  line-height: 19px;
+  line-height: 1.1875rem;
   vertical-align: top;
-  margin-top: 6px;
-  margin-left: 12px;
+  margin-top: 0.375rem;
+  margin-left: 0.75rem;
   font-weight: 500;
   font-size: 0.875rem;
   color: #000000;
 }
-.post-detail-wrapper.highContrast .comment-user-info .user-name {
+.theme-wrapper.highContrast .comment-user-info .user-name {
   color: #ffffff;
 }
 
 .comment .img-cover {
   display: inline-block;
-  width: 36px;
-  height: 36px;
   overflow: hidden;
   border-radius: 50%;
-  -webkit-box-shadow: 0 0 0px 1px #DBDBDB;
-          box-shadow: 0 0 0px 1px #DBDBDB;
-  margin-right: 10px;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-right: 0.625rem;
 }
 .comment .img-cover img {
   width: 100%;
@@ -131,23 +127,23 @@ main {
      object-fit: cover;
 }
 .comment #commemt-input {
-  padding: 8px;
-  margin-right: 10px;
+  padding: 0.5rem;
+  margin-right: 0.625rem;
   color: #000000;
-  background-color: #fff;
+  background-color: #ffffff;
 }
-.post-detail-wrapper.highContrast .comment #commemt-input {
+.theme-wrapper.highContrast .comment #commemt-input {
   color: #ffffff;
 }
 
-.post-detail-wrapper.highContrast .comment #commemt-input {
+.theme-wrapper.highContrast .comment #commemt-input {
   background-color: #000000;
 }
 
 .comment button:not(:disabled) {
   color: #635CA5;
 }
-.post-detail-wrapper.highContrast .comment button:not(:disabled) {
+.theme-wrapper.highContrast .comment button:not(:disabled) {
   color: #FFEB32;
 }
 
@@ -170,32 +166,32 @@ main {
 #comment-input::placeholder {
   color: #c4c4c4;
 }
-.post-detail-wrapper.highContrast #comment-input::-webkit-input-placeholder {
+.theme-wrapper.highContrast #comment-input::-webkit-input-placeholder {
   color: #bdbdbd;
 }
-.post-detail-wrapper.highContrast #comment-input::-moz-placeholder {
+.theme-wrapper.highContrast #comment-input::-moz-placeholder {
   color: #bdbdbd;
 }
-.post-detail-wrapper.highContrast #comment-input:-ms-input-placeholder {
+.theme-wrapper.highContrast #comment-input:-ms-input-placeholder {
   color: #bdbdbd;
 }
-.post-detail-wrapper.highContrast #comment-input::-ms-input-placeholder {
+.theme-wrapper.highContrast #comment-input::-ms-input-placeholder {
   color: #bdbdbd;
 }
-.post-detail-wrapper.highContrast #comment-input::placeholder {
+.theme-wrapper.highContrast #comment-input::placeholder {
   color: #bdbdbd;
 }
 
 .post-icon path {
   stroke: #767676;
 }
-.post-detail-wrapper.highContrast .post-icon path {
-  stroke: #dbdbdb;
+.theme-wrapper.highContrast .post-icon path {
+  stroke: #f2f2f2;
 }
 
 .post-icon span {
   color: #767676;
 }
-.post-detail-wrapper.highContrast .post-icon span {
-  color: #dbdbdb;
+.theme-wrapper.highContrast .post-icon span {
+  color: #f2f2f2;
 }

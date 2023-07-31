@@ -1,84 +1,34 @@
 @import 'global';
-@import 'variables';
-
-//테마 적용 시도중
-$colors: (
-    light: (bg-color:#fff,
-    enabled-btn-color: #635CA5,
-    disabled-btn-color: #BCADDC,
-    font-color: #000000,
-    btn-font-color: #ffffff,
-    gray-color: #767676,
-    box-shadow : none,
-    border: none,
-    warning-color: #EB5757,
-    ),
-    highContrast: (bg-color:#000000,
-    enabled-btn-color: #E4D6FF,
-    disabled-btn-color: transparent ,
-    font-color: #ffffff,
-    btn-font-color: #000000,
-    gray-color: #dbdbdb,
-    box-shadow: 0 0 0 2px #E4D6FF inset,
-    border: 2px solid #E4D6FF,
-    warning-color: #FFEB32,
-    )
-);
-
-//function의 특징은 return을 통해 값을 반환.
-@function get-color($key, $type: 'light') {
-    //each 는 map데이터를 반복할때 사용.
-    //@each $key변수, $value변수 in 데이터
-    //아래의 map-get 의미는 map $coloers 변수에서 입력받은 light 혹은 dark 를 넣어서 해당값을 말함. 예를들어 bg-color 를 key 에 입력 받으면 그 값과 컬러값의 키값이 일치한다면 해당 값을 출력해준다는 의미.
-    @each $name,
-    $color in map-get($colors, $type) {
-        @if($key ==$name) {
-            @return $color
-        }
-    }
-}
-
-@mixin get-color($property, $color) {
-    
-    #{$property}: get-color($color); //보간법
-
-    @at-root .login.highContrast & {
-        #{$property}: get-color($color, highContrast);
-    }
-} //mixin은 재사용할 css 스타일을 선언한다고 생각하면 된다.
-
-
+@import 'mixin';
 
 .login {
-    padding: 30px;
+    padding: 1.875rem;
 }
 .title {
     text-align: center;
-    font-size: 24px;
+    font-size: map-get($font-sizes, "size24");
     @include get-color(color, font-color);
 }
 
 .join {
     color: $gray300-color;
-    font-size: .75rem;
+    font-size: map-get($font-sizes, "size12");
     display: inline-block;
-    margin: 20px auto 0;
+    margin: 1.25rem auto 0;
 }
 
 form {
     min-width: calc(390px - 30px * 2);
     max-width: 40%;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 2.5rem;
 
     @include get-color(color, gray-color);
-    font-size: .75rem;
+    font-size: map-get($font-sizes, "size12");
 
     &>label {
-        @include get-color(color, gray-color);
-        display: block;
-        margin-bottom: 2px;
-        margin-top: 16px
+        @include label-tag;
+        margin-top: 1rem
     }
 
     &>input {
@@ -87,44 +37,28 @@ form {
         @include get-color(background-color, bg-color);
         @include get-color(color, font-color);
         border: none;
-        border-bottom: 1px solid $gray100-color;
-        padding: 8px 0;
-        margin-bottom: 16p;
+        border-bottom: $border-gray100-1px;
+        padding: 0.5rem 0;
+        margin-bottom: 1rem;
     }
 
 
     &>input::placeholder {
-        font-size: .875rem;
+        font-size: map-get($font-sizes, "size14");
         color: $gray100-color;
     }
 }
 
 // button
-.size-l {
-    margin-top: 30px;
-    background-color: $enabled-color;
-    @include get-color(background-color, enabled-btn-color);
-    @include get-color(color, btn-font-color);
-    font-weight: 500;
-    width: 100%;
-    padding: 13px 0px;
-    border-radius: 44px;
-    font-size: map-get($font-sizes, "size14");
-}
+@include join-btn-size-l; //size-l button
 
 .size-l:disabled {
-    @include get-color(background-color, disabled-btn-color);
-    @include get-color(color, font-color);
-    @include get-color(box-shadow, box-shadow);
-    color: #FFFFFF;
+    @include btn-disabled(color, font-color);
 }
 
 [class^="warning-msg"] {
-    @include get-color(color, warning-color);
-    font-size: 12px;
-    display: block;
-    margin-top: 6px;
-    display: none;
+    @include warning-message(color, warning-color);
+    margin-top: 0.375rem;
 }
 
 .email-join {
@@ -136,7 +70,7 @@ form {
 }
 
 input:focus {
-    border-bottom: 1px solid $highlight-color;
+    border-bottom: 0.0625rem solid $highlight-color;
     outline: none;
 }
 

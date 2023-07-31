@@ -2,17 +2,33 @@
 <html lang="ko-KR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사용자 검색 | 가지마켙</title>
+    <link rel="icon" href="https://eggplant-market.netlify.app/assets/favicon.ico">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="keywords" content="바자회, 플리마켓, 환경, 재활용, 나눔, 기부, 중고거래">
+    <meta name="description" content="'가치를 지켜라!' 가지마켓은 바자회와 같은 나눔과 기부 관련 정보를 공유하는 SNS입니다. 중고거래를 하면서 환경과 경제적으로도 유익함을 누릴 수 있습니다. 함께 가치를 지켜가며 더 나은 세상을 만들어가보세요.">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="가지마켓">
+    <meta property="og:description" content="'가치를 지켜라!' 가지마켓은 바자회와 같은 나눔과 기부 관련 정보를 공유하는 SNS입니다. 중고거래를 하면서 환경과 경제적으로도 유익함을 누릴 수 있습니다. 함께 가치를 지켜가며 더 나은 세상을 만들어가보세요.">
+    <meta property="og:image" content="https://eggplant-market.netlify.app/assets/og(800x400).png">
+    <meta property="og:url" content="https://eggplant-market.netlify.app/">
+    
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="가지마켓">
+    <meta property="twitter:description" content="'가치를 지켜라!' 가지마켓은 바자회와 같은 나눔과 기부 관련 정보를 공유하는 SNS입니다. 중고거래를 하면서 환경과 경제적으로도 유익함을 누릴 수 있습니다. 함께 가치를 지켜가며 더 나은 세상을 만들어가보세요.">
+    <meta property="twitter:image" content="https://eggplant-market.netlify.app/assets/og(1400x630).png">
+    <meta property="twitter:url" content="https://eggplant-market.netlify.app/">
+    
+    <title>사용자 검색 | 가지마켓</title>
     <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/component.css">
     <link rel="stylesheet" href="../css/home_search.css">
+    <link rel="stylesheet" href="../css/component.css">
 </head>
 
 <body>
-    <div class="search-wrapper">
+    <div class="search theme-wrapper">
         <div class="skip-nav">
             <a href="#header" class="skip-link">상단 탭으로 가기</a>
             <a href="#footer" class="skip-link">하단 탭으로 가기</a>
@@ -20,7 +36,7 @@
         <header id="header" class="top nav-search">
             <h1 class="a11y-hidden">검색</h1>
             <label for="inp-search" class="a11y-hidden">이름 혹은 계정으로 사용자 검색하기</label>
-            <input onkeypress="filter(this)" type="text" id="inp-search" placeholder="이름 혹은 계정으로 사용자 검색하기">
+            <input type="text" id="inp-search" placeholder="이름 혹은 계정으로 사용자 검색하기">
             <button class="btn-back"><span class="a11y-hidden">뒤로가기</span></button>
         </header>
         <main>
@@ -28,39 +44,29 @@
             <ul class="search-user-list">
             </ul>
         </main>
+        <!-- 검색된 유저 탬플릿 -->
+        <template id="search-template">
+            <article class="user-follow">
+                <a class="profile-img img-cover" href="./profile_info.html?accountName=${userData[i].accountname}">
+                    <span class="a11y-hidden">${userData[i].username}의 프로필 보기</span>
+                    <img id="profile-image" src="../assets/basic-profile.png" alt="">
+                </a>
+                <a class="user-info" href="./profile_info.html?accountName=${userData[i].accountname}">
+                    <p class="user-name">애월읍 위니브 가지밭</p>
+                    <span class="a11y-hidden">의 프로필 보기</span>
+                    <p class="user-id">weniv_Eggplant</p>
+                </a>
+            </article>
+        </template>
+        <!-- footer 컴포넌트화 적용 -->
         <footer id="footer">
-            <nav class="tab-menu">
-                <p class="a11y-hidden">하단 탭 메뉴</p>
-                <ul class="tab-item-list">
-                    <li class="tab-item-home">
-                        <a class="here" href="./home.html">
-                            <p>홈<span class="a11y-hidden">으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-chat">
-                        <a href="./chat_list.html">
-                            <p>채팅<span class="a11y-hidden">으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-follow">
-                        <a href="./post_upload.html">
-                            <p>게시물 작성<span class="a11y-hidden">으로 이동</span></p>
-                        </a>
-                    </li>
-                    <li class="tab-item-more">
-                        <a>
-                            <p>프로필<span class="a11y-hidden">로 이동</span></p>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
         </footer>
     </div>
 
-    <script src="../js/contrast.js"></script>
-    <script src="../js/common.js"></script>
-    <script src="../js/home_search.js"></script>
-
+    
+    <script src="../js/common.js" type="module"></script>
+    <script src="../js/home_search.js" type="module"></script>
+    <script src="../js/component.js"></script>
 </body>
 
 </html>

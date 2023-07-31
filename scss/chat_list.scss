@@ -1,79 +1,37 @@
 @import 'global';
-@import 'variables';
-
-$theme: (
-    light: (bg-color:#fff,
-        btn-color: #ffffff,
-        btn-font:#767676,
-        background-color: rgba(0, 0, 0, 0.5),
-        font-color: #000000,
-        btn-font-color: #ffffff,
-        gray-color: #767676,
-        point-color: #9747FF,
-        chat-image: url("../assets/icon/icon-message-circle-fill.svg"),
-    ),
-    highContrast: (bg-color:#000000,
-        btn-color: #E4D6FF,
-        btn-font: #000000,
-        background-color: rgb(236 236 236 / 34%),
-        font-color: #ffffff,
-        btn-font-color: #000000,
-        gray-color: #dbdbdb,
-        point-color: #FFEB32,
-        chat-image: url("../assets/icon/icon-message-circle-fill-hc.svg"),
-    )
-);
-
-@function get-color($key, $type: 'light') {
-
-    @each $name,
-    $color in map-get($theme, $type) {
-        @if($key ==$name) {
-            @return $color
-        }
-    }
-}
-
-@mixin get-color($property, $color) {
-
-    #{$property}: get-color($color);
-
-    @at-root .chat-list-wrapper.highContrast & {
-        #{$property}: get-color($color, highContrast);
-    }
-}
+@import 'mixin';
 
 .chat-list{
-    padding: 24px 16px;
+    padding: 1.5rem 1rem;
 }
 
 .user-chat-content{
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     .user-img{
         order: 0;
-        margin-right: 12px;
+        margin-right: 0.75rem;
         flex-shrink: 0;
     }
     .user-info{
         order: 1;
         width: calc(100% - 130px);
         flex-shrink: 1;
-        margin-right: 13px;
+        margin-right: 0.8125rem;
         .user-name{
             font-size: map-get($font-sizes, "size14" );
             font-weight: 500;
-            line-height: 18px;
-            margin-bottom: 4px;
+            line-height: 1.125rem;
+            margin-bottom: 0.25rem;
         }
         .chat-content{
             display: block;
             @include get-color(color, gray-color);
             font-size: map-get($font-sizes, "size12" );
             font-weight: 400;
-            margin-top: 2px;
+            margin-top: 0.125rem;
         }
     }
     .chat-date{
@@ -88,42 +46,16 @@ $theme: (
     position: relative;
     .profile-dot {
         position: absolute;
-        left: 2px;
-        width: 12px;
-        height: 12px;
+        left: 0.125rem;
+        @include width-height(0.75rem, 0.75rem);
         background-color: $enabled-color;
         border-radius: 50%;
         z-index: 1;
     }
 }
 
-.tab-item-list{
-    li:nth-child(2) {
-        a{
-            background-image: url("../assets/icon/icon-message-circle-fill.svg");
-        }
-    }    
-}
-
 .img-cover {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-}
-
-.tab-item-chat{
-    a {
-        p {
-            @include get-color(color, gray-color);
-        }
-        @include get-color(background-image, chat-image);
-    }
+    @include image-cover;
+    @include width-height(3.125rem, 3.125rem);
+    @include profile-img-tag;
 }

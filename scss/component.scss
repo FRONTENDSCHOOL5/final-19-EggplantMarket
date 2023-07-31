@@ -1,61 +1,5 @@
 @import 'global';
-@import 'variables';
-
-$theme: (
-    light: (bg-color:#fff,
-        btn-color: #ffffff,
-        btn-font:#767676,
-        background-color: rgba(0, 0, 0, 0.5),
-        font-color: #000000,
-        btn-font-color: #ffffff,
-        gray-color: #767676,
-        point-color: #9747FF,
-        enabled-color : #635CA5,
-        disabled-color : #BCADDC,
-        border : none,
-        home-icon: url("../assets/icon/icon-home.svg"),
-        message-icon: url("../assets/icon/icon-message-circle.svg"),
-        message-fill:url("../assets/icon/icon-message-circle-fill.svg"),
-        edit-icon:url("../assets/icon/icon-edit.svg"),
-        profile-icon:url("../assets/icon/icon-user.svg"),
-    ),
-    highContrast: (bg-color:#000000,
-        btn-color: #E4D6FF,
-        btn-font: #000000,
-        background-color: rgb(236 236 236 / 34%),
-        font-color: #ffffff,
-        btn-font-color: #000000,
-        gray-color: #dbdbdb,
-        point-color: #FFEB32,
-        enabled-color : #E4D6FF,
-        disabled-color : transparent,
-        border : 2px solid #E4D6FF,
-        home-icon: url("../assets/icon/icon-home-hc.svg"),
-        message-icon: url("../assets/icon/icon-message-circle-hc.svg"),
-        message-fill:url("../assets/icon/icon-message-circle-fill-hc.svg"),
-        edit-icon:url("../assets/icon/icon-edit-hc.svg"),
-        profile-icon:url("../assets/icon/icon-user-hc.svg"),
-    )
-);
-
-@function get-color($key, $type: 'light') {
-
-    @each $name,
-    $color in map-get($theme, $type) {
-        @if($key ==$name) {
-            @return $color
-        }
-    }
-}
-
-@mixin get-color($property, $color) {
-
-    #{$property}: get-color($color);
-
-    @at-root .highContrast & {
-        #{$property}: get-color($color, highContrast);
-    }
-}
+@import 'mixin';
 
 .home-post, .home-post-onlytext{
     margin-top: 1.25rem;
@@ -64,32 +8,30 @@ $theme: (
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: .0625rem solid $gray100-color;
+    border-bottom: $border-gray100-1px;
 }
 .nav{
     &-main {
-            padding: 13px 1rem;
+            padding: 0.8125rem 1rem;
     }
     &-search{
         padding: .5625rem 1rem;
     }
         &-basic,
         &-chat {
-        padding: 3px 5px;
+        padding: 0.1875rem 0.3125rem;
     }
         &-upload {
-            padding: 3px 1rem 5px 3px;
+            padding: 0.1875rem 1rem 0.3125rem 0.1875rem;
         }
 }
 
 .btn-back{
-    height: 44px;
-    width: 44px;
+    @include width-height(2.75rem, 2.75rem);
     background: url('../assets/icon/icon-arrow-left.svg') no-repeat center;
 }
 .btn-option, .btn-more{
-    height: 44px;
-    width: 44px;
+    @include width-height(2.75rem, 2.75rem);
     background: url('../assets/icon/icon-more-vertical.svg') no-repeat center;
 }
 
@@ -163,70 +105,23 @@ $theme: (
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: .0625rem solid #dbdbdb;
-    border-bottom: .0625rem solid $gray100-color;
-    padding: 3px 5px;
+    border-top: $border-gray100-1px;
+    border-bottom: $border-gray100-1px;
+    padding: 0.1875rem 0.3125rem;
     button{
-        font-size: .875rem;
+        font-size: map-get($font-sizes, "size14" );
     }
     input::placeholder{
         color: $gray200-color;
     }
 }
 
-// .modal-background{
-//     // 모달창 완성 후
-//     position: fixed;
-//     /* top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     background-color: rgba(0, 0, 0, 0.5);
-//     display: flex;
-//     justify-content: center;
-//     align-items: center; */
-//     .modal-content{
-//         width: 15.75rem;
-//         background-color: $white-color;
-//         border-radius: .625rem;
-//         text-align: center;
-//         .modal-description {
-//             padding: 1.375rem 3.8125rem;
-//             font-size: map-get($font-sizes, "size16");
-//             border-bottom: .0313rem solid $gray100-color;
-//             font-weight: 500;
-//         }
-//     }
-// }
-
-// .modal-actions {
-//     display: flex;
-//     justify-content: center;
-//     font-weight: 400;
-//     .left-button {
-//         order: 0;
-//         width: 7.875rem;
-//         padding: .875rem 3rem;
-//         font-size: map-get($font-sizes, "size14");
-//         border-right: .0313rem solid $gray100-color;
-//     }
-//     .right-button {
-//         order: 1;
-//         width: 7.875rem;
-//         padding: .875rem 3.0625rem;
-//         color: $highlight-color;
-//         font-size: map-get($font-sizes, "size14");
-//     }
-// }
-
-
 // 모달창
 // 하단 모달창 부분
 .post-modal-background{
     display: none;
     position: fixed;
-    width: 100%;
-    height: 100%;
+    @include width-height(100%, 100%);
     bottom: 0;
     @include get-color(background-color, background-color);
     .post-modal-content{
@@ -245,8 +140,7 @@ $theme: (
     }
     .post-modal-bar{
         background-color: $gray100-color;
-        width: 3.125rem;
-        height: .25rem;
+        @include width-height(3.125rem, 0.25rem);
         margin: 1rem auto;
     }
     .modal-description{
@@ -258,15 +152,21 @@ $theme: (
     }
 }
 
+footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: $white-color;
+}
+
 // 삭제 모달창
 .modal-background{
     visibility: hidden;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    @include width-height(100%, 100%);
+    @include get-color(background-color, background-color);
     display: flex;
     .modal-content{
         width: 15.75rem;
@@ -338,19 +238,10 @@ $theme: (
     align-items: center;
 
     .img-cover {
-        display: inline-block;
-            width: 2.25rem;
-            height: 2.25rem;
-        overflow: hidden;
-        border-radius: 50%;
-        box-shadow: 0 0 0px 1px #DBDBDB;
-    
-        img {
-            width: 100%;
-            height: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-        }
+        @include image-cover;
+        @include width-height(2.25rem, 2.25rem);
+        @include profile-img-tag;
+        border: $border-gray100-1px;
     }
     .profile-img{
         order: 0;
@@ -368,7 +259,7 @@ $theme: (
         width: 1.5rem;
         position: absolute;
         top: 0;
-        right: -12px;
+        right: -0.75rem;
             transform: translateX(-25%);
         img{
             width: 100%;
@@ -406,8 +297,9 @@ $theme: (
     margin: 1rem auto 1rem 3.375rem;
     padding-bottom: .3125rem;
     a:first-child {
-            display: block;
-        }
+        display: block;
+    }
+
     .post-text{
         @include get-color(color, font-color);
         margin-bottom: 1rem;
@@ -415,16 +307,16 @@ $theme: (
         word-break: break-all;
         white-space: pre-line;
     }
-.img-cover {
-    max-width: 19rem;
-    margin-bottom: .75rem;
-    border-radius: .625rem;
-    overflow: hidden;
-    box-shadow: 0 0 0px 1px #DBDBDB;
+    
+    .img-cover {
+        max-width: 19rem;
+        margin-bottom: .75rem;
+        border-radius: 0.625rem;
+        overflow: hidden;
+        border: $border-gray100-1px;
 
         .post-img {
-            width: 100%;
-            height: 100%;
+            @include width-height(100%, 100%);
             object-fit: cover;
         }
     }
@@ -432,14 +324,14 @@ $theme: (
 .post-icon{
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 16px;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
     color: $gray300-color;
     font-size: map-get( $font-sizes, "size12" );
     &>*{
         display: flex;
         align-items: center; 
-        gap: 4px;
+        gap: 0.25rem;
         color: inherit;
     }
 }
@@ -451,13 +343,11 @@ $theme: (
 
 /* button */
 .size-l, .size-m, .size-ms, .size-s {
-    @include get-color(background-color, enabled-color);
+    @include get-color(background-color, enabled-btn-color);
     @include get-color(color, btn-font-color);
 }
 .size-l:disabled, .size-m:disabled, .size-ms:disabled, .size-s:disabled {
-    @include get-color(background-color, disabled-color);
-    @include get-color(border, border);
-    color: $white-color;
+    @include btn-disabled(background-color, disabled-btn-color);
 }
 
 .size{
@@ -492,116 +382,44 @@ $theme: (
 }
 
 .cancle{
-    background: $white-color;
-    color: $gray300-color;
-    border: .0625rem solid $gray100-color;
-}
-
-// 푸터 - 하단 탭 메뉴
-footer{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: $white-color;
-}
-
-.tab-item-list{
-    border-top: .0313rem solid $gray100-color;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
     @include get-color(background-color, bg-color);
-    li{
-        flex-grow: 1;
-        display: flex;
-        justify-content: center;
-        a{  
-            flex-grow: 1;
-            top: 0;
-            width: 5.25rem;
-            display: inline-block;
-            font-size: map-get($font-sizes, "size10");
-            color: $gray300-color;
-            text-align: center;
-            background-repeat: no-repeat;
-            background-position: 50% 40%;
-            background-size: 1.25rem 1.25rem;
-        }
-        p {
-            font-weight: 400;
-            padding-top: 2.5rem;
-            padding-bottom: .625rem;
-            text-align: center;
-        }
-        &:hover{
-            background-color: #F1F1F1;
-        }
-    }
-    li:first-child { //여기하는중
-        a{
-            @include get-color(background-image, home-icon);
-        }
-        a.here{
-            background-image: url("../assets/icon/icon-home-fill.svg");
-        }
-    }
-    li:nth-child(2) {
-        a{
-            background-image: url("../assets/icon/icon-message-circle.svg");
-        }
-        a.here{
-            background-image: url("../assets/icon/icon-message-circle-fill.svg");
-        }
-    }
-    li:nth-child(3) {
-        a{
-            @include get-color(background-image, edit-icon);
-        }
-    }
-    li:nth-child(4) {
-        a{
-            @include get-color(background-image, profile-icon);
-        }
-        a.here{
-            background-image: url("../assets/icon/icon-user-fill.svg");
-        }
-    }
+    @include get-color(color, cancle-btn-color);
+    @include get-color(border, cancle-btn-border);
 }
+
+
 
 .skip-nav{
     position:absolute;
-    width:100%;
-    height:0;
+    @include width-height(100%, 0);
     z-index:10000;
     a {
         display:block;
-        width:1px;
-        height:1px;
-        margin-bottom:-1px;  
+        @include width-height(0.0625rem, 0.0625rem);
+        margin-bottom:-0.0625rem;  
         font-weight:bold;
-        font-size:14px;
+        font-size: map-get($font-sizes, "size14" );
         text-align:center;
         white-space:nowrap;
         background:#1c1c1c;
-        color:#fff;
+        color:$white-color;
         overflow:hidden;
 
         &:focus, &:active{
-            width:fit-content;
-            height:auto;
-            padding:15px;
-            font-size:16px;
+            @include width-height(fit-content, auto);
+            padding:0.9375rem;
+            font-size: map-get($font-sizes, "size16" );
         }
     }
 }
 
 .highContrast .skip-nav a{
-    background: #fff;
+    background: $white-color;
     color: #1c1c1c;
 }
 
 .mode_select{
     label > input{
-        margin-right: 15px;
+        margin-right: 0.9375rem;
     }
 }

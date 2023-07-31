@@ -76,13 +76,13 @@ a {
 }
 
 .home-background {
-  background-image: url(../assets/symbol-logo-gray.svg);
+  background-image: url(../assets/symbol/light-gray.svg);
   background-size: contain;
   width: 4.5rem;
   height: 6.25rem;
 }
 .home-wrapper.highContrast .home-background {
-  background-image: url(../assets/symbol-logo-theme.svg);
+  background-image: url(../assets/symbol/hc-basic.svg);
 }
 
 .search-btn {

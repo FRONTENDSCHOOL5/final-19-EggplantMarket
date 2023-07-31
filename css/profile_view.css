@@ -53,33 +53,24 @@ a {
   background-color: inherit;
   margin-left: 1rem;
   background-repeat: no-repeat;
+  background-size: 124px 31px;
+  background-image: url("../assets/post-view-sprites.png");
 }
+.theme-wrapper.highContrast .tab-btn-wrap button {
+  background-image: url("../assets/post-view-sprites-hc.png");
+}
+
 .tab-btn-wrap .btn-post-list {
-  background-image: url("../assets/icon/icon-post-list-off.svg");
+  background-position: -64.5px -2.5px;
 }
-.theme-wrapper.highContrast .tab-btn-wrap .btn-post-list {
-  background-image: url("../assets/icon/icon-post-list-off-hc.svg");
-}
-
 .tab-btn-wrap .btn-post-list.on {
-  background-image: url("../assets/icon/icon-post-list-on.svg");
+  background-position: -95.5px -2.5px;
 }
-.theme-wrapper.highContrast .tab-btn-wrap .btn-post-list.on {
-  background-image: url("../assets/icon/icon-post-list-on-hc.svg");
-}
-
 .tab-btn-wrap .btn-post-album {
-  background-image: url("../assets/icon/icon-post-album-off.svg");
+  background-position: -2.5px -2.5px;
 }
-.theme-wrapper.highContrast .tab-btn-wrap .btn-post-album {
-  background-image: url("../assets/icon/icon-post-album-off-hc.svg");
-}
-
 .tab-btn-wrap .btn-post-album.on {
-  background-image: url("../assets/icon/icon-post-album-on.svg");
-}
-.theme-wrapper.highContrast .tab-btn-wrap .btn-post-album.on {
-  background-image: url("../assets/icon/icon-post-album-on-hc.svg");
+  background-position: -33.5px -2.5px;
 }
 
 .post-sec {

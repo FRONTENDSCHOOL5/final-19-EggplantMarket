@@ -69,6 +69,7 @@ form{
 }
 
 .upload-img{
+    cursor: pointer;
     circle {
         @include get-color(fill, image-btn);
     }

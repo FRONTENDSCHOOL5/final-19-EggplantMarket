@@ -138,17 +138,20 @@ main {
             @include get-color(border, icon-border);
             border-radius: 50%;
             @include width-height(2.125rem, 2.125rem);
-            background: no-repeat center center;;
+            background-repeat: no-repeat;
+            background-size: 90px 30px;
         }
 
         display: flex;
         justify-content: center;
         
         .btn-chat{
-            @include get-color(background-image, chat-btn);
+            @include get-color(background-image, icon-sprites);
+            background-position: -29px 0; 
         }
         .btn-share{
-            @include get-color(background-image, share-btn);
+            @include get-color(background-image, icon-sprites);
+            background-position: -60px 0; 
         }
         .size-m {
             margin: 0 0.75rem;

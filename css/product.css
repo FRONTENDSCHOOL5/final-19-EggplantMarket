@@ -142,6 +142,9 @@ form label[for=purchase-link] {
   display: none;
 }
 
+.upload-img {
+  cursor: pointer;
+}
 .upload-img circle {
   fill: #c4c4c4;
 }

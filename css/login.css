@@ -39,12 +39,12 @@ body {
 
 .back {
   height: calc(100vh - 19.375rem);
-  background-image: url(../assets/symbol-logo.svg);
+  background-image: url(../assets/symbol/light-basic.svg);
   background-repeat: no-repeat;
   background-position: 98% 98%;
 }
 .theme-wrapper.highContrast .back {
-  background-image: url(../assets/symbol-logo-highContrast.svg);
+  background-image: url(../assets/symbol/hc-basic.svg);
 }
 
 .login {
@@ -66,15 +66,24 @@ body {
   border-radius: 2.75rem;
   font-size: 0.875rem;
   padding: 0.8125rem;
-  background-repeat: no-repeat;
-  background-position: 0.625rem center;
+  position: relative;
 }
 .domain + .domain {
   margin-top: 0.625rem;
 }
+.domain::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  top: 50%;
+  left: 10px;
+}
 .domain.kakao {
   border-color: #F2C94C;
-  background-image: url(../assets/message-circle.svg);
   color: #767676;
 }
 .theme-wrapper.highContrast .domain.kakao {
@@ -85,9 +94,11 @@ body {
   color: #f2f2f2;
 }
 
+.domain.kakao::before {
+  background: no-repeat url(../assets/sns-logo-sprites.png) -10px -10px/132px 44px;
+}
 .domain.google {
   border-color: #767676;
-  background-image: url(../assets/Google__G__Logo\ 2.svg);
   color: #767676;
 }
 .theme-wrapper.highContrast .domain.google {
@@ -98,9 +109,11 @@ body {
   color: #f2f2f2;
 }
 
+.domain.google::before {
+  background: no-repeat url(../assets/sns-logo-sprites.png) -54px -10px/132px 44px;
+}
 .domain.facebook {
   border-color: #2D9CDB;
-  background-image: url(../assets/facebook.svg);
   color: #767676;
 }
 .theme-wrapper.highContrast .domain.facebook {
@@ -109,6 +122,10 @@ body {
 
 .theme-wrapper.highContrast .domain.facebook {
   color: #f2f2f2;
+}
+
+.domain.facebook::before {
+  background: no-repeat url(../assets/sns-logo-sprites.png) -98px -10px/132px 44px;
 }
 
 .email {

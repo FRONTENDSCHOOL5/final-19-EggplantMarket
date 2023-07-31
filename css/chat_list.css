@@ -103,13 +103,6 @@ a {
   z-index: 1;
 }
 
-.tab-item-list li:nth-child(2) a {
-  background-image: url(../assets/icon/icon-message-circle-fill.svg);
-}
-.theme-wrapper.highContrast .tab-item-list li:nth-child(2) a {
-  background-image: url(../assets/icon/icon-message-circle-fill-hc.svg);
-}
-
 .img-cover {
   display: inline-block;
   overflow: hidden;
@@ -123,18 +116,4 @@ a {
   aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
-}
-
-.tab-item-chat a {
-  background-image: url(../assets/icon/icon-message-circle-fill.svg);
-}
-.tab-item-chat a p {
-  color: #767676;
-}
-.theme-wrapper.highContrast .tab-item-chat a p {
-  color: #f2f2f2;
-}
-
-.theme-wrapper.highContrast .tab-item-chat a {
-  background-image: url(../assets/icon/icon-message-circle-fill-hc.svg);
 }

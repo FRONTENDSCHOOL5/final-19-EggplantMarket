@@ -1,15 +1,6 @@
 @import 'global';
 @import 'mixin';
 
-@mixin get-color($property, $color) {
-
-    #{$property}: get-color($color);
-
-    @at-root .highContrast & {
-        #{$property}: get-color($color, highContrast);
-    }
-}
-
 .home-post, .home-post-onlytext{
     margin-top: 1.25rem;
 }
@@ -391,9 +382,9 @@ footer{
 }
 
 .cancle{
-    background: $white-color;
-    color: $gray300-color;
-    border: $border-gray100-1px;
+    @include get-color(background-color, bg-color);
+    @include get-color(color, cancle-btn-color);
+    @include get-color(border, cancle-btn-border);
 }
 
 

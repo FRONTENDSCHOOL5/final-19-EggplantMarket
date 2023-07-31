@@ -30,29 +30,42 @@ body{
     border-radius: 2.75rem;
     font-size: map-get($font-sizes, "size14");
     padding: 0.8125rem;
+    position: relative;
 
     + .domain {
         margin-top: 0.625rem;
     }
-    background: {
-        repeat : no-repeat;
-        position: 0.625rem center;
-    };
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            transform: translateY(-50%);
+            top: 50%;
+            left: 10px;
+        }
 
     &.kakao{
         @include get-color(border-color, kakao-color);
-        background-image: url(../assets/message-circle.svg);
         @include get-color(color, gray-color);
+        &::before {
+                background: no-repeat url(../assets/sns-logo-sprites.png) -10px -10px / 132px 44px;
+            }
     }
     &.google{
         @include get-color(border-color, google-color);
-        background-image: url(../assets/Google__G__Logo\ 2.svg);
         @include get-color(color, gray-color);
+        &::before {
+                background: no-repeat url(../assets/sns-logo-sprites.png) -54px -10px / 132px 44px;
+            }
     }
     &.facebook{
         @include get-color(border-color, facebook-color);
-        background-image: url(../assets/facebook.svg);
         @include get-color(color, gray-color);
+        &::before {
+                background: no-repeat url(../assets/sns-logo-sprites.png) -98px -10px / 132px 44px;
+            }
     }
 }
 

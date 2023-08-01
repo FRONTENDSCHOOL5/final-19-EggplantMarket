@@ -50,21 +50,21 @@ body{
         @include get-color(border-color, kakao-color);
         @include get-color(color, gray-color);
         &::before {
-                background: no-repeat url(../assets/sns-logo-sprites.png) -10px -10px / 132px 44px;
+                background: no-repeat url(../assets/sprites/sns-logo-sprites.png) -10px -10px / 132px 44px;
             }
     }
     &.google{
         @include get-color(border-color, google-color);
         @include get-color(color, gray-color);
         &::before {
-                background: no-repeat url(../assets/sns-logo-sprites.png) -54px -10px / 132px 44px;
+                background: no-repeat url(../assets/sprites/sns-logo-sprites.png) -54px -10px / 132px 44px;
             }
     }
     &.facebook{
         @include get-color(border-color, facebook-color);
         @include get-color(color, gray-color);
         &::before {
-                background: no-repeat url(../assets/sns-logo-sprites.png) -98px -10px / 132px 44px;
+                background: no-repeat url(../assets/sprites/sns-logo-sprites.png) -98px -10px / 132px 44px;
             }
     }
 }

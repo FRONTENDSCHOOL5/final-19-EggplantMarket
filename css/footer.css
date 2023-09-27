@@ -79,10 +79,10 @@ a {
   left: 50%;
   background-repeat: no-repeat;
   background-size: 352px 44px;
-  background-image: url(../assets/footer-sprites.png);
+  background-image: url(../assets/sprites/footer-sprites.png);
 }
 .theme-wrapper.highContrast .tab-item-list li a::before {
-  background-image: url(../assets/footer-sprites-hc.png);
+  background-image: url(../assets/sprites/footer-sprites-hc.png);
 }
 
 .tab-item-list li a.here {

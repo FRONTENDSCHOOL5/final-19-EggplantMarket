@@ -95,7 +95,7 @@ body {
 }
 
 .domain.kakao::before {
-  background: no-repeat url(../assets/sns-logo-sprites.png) -10px -10px/132px 44px;
+  background: no-repeat url(../assets/sprites/sns-logo-sprites.png) -10px -10px/132px 44px;
 }
 .domain.google {
   border-color: #767676;
@@ -110,7 +110,7 @@ body {
 }
 
 .domain.google::before {
-  background: no-repeat url(../assets/sns-logo-sprites.png) -54px -10px/132px 44px;
+  background: no-repeat url(../assets/sprites/sns-logo-sprites.png) -54px -10px/132px 44px;
 }
 .domain.facebook {
   border-color: #2D9CDB;
@@ -125,7 +125,7 @@ body {
 }
 
 .domain.facebook::before {
-  background: no-repeat url(../assets/sns-logo-sprites.png) -98px -10px/132px 44px;
+  background: no-repeat url(../assets/sprites/sns-logo-sprites.png) -98px -10px/132px 44px;
 }
 
 .email {

@@ -13,7 +13,7 @@ fetch('./component/post.html')
     .then(res => res.text())
     .then(data => homePostList.innerHTML = data);
 
-(async function () {
+async function run() {
     const iconname = document.querySelector(".home-icon");
     iconname.className = 'here';
 
@@ -29,7 +29,8 @@ fetch('./component/post.html')
     } else {
         document.querySelector('.home-withoutfollower').style.display = '';
     }
-})();
+};
+run();
 
 // 무한 스크롤 
 window.addEventListener("scroll", async () => {

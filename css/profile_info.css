@@ -217,19 +217,19 @@ main > section {
 }
 
 .profile-container .btn-wrap-your .btn-chat {
-  background-image: url(../assets/icon-sprites.png);
+  background-image: url(../assets/sprites/icon-sprites.png);
   background-position: -29px 0;
 }
 .theme-wrapper.highContrast .profile-container .btn-wrap-your .btn-chat {
-  background-image: url(../assets/icon-sprites-hc.png);
+  background-image: url(../assets/sprites/icon-sprites-hc.png);
 }
 
 .profile-container .btn-wrap-your .btn-share {
-  background-image: url(../assets/icon-sprites.png);
+  background-image: url(../assets/sprites/icon-sprites.png);
   background-position: -60px 0;
 }
 .theme-wrapper.highContrast .profile-container .btn-wrap-your .btn-share {
-  background-image: url(../assets/icon-sprites-hc.png);
+  background-image: url(../assets/sprites/icon-sprites-hc.png);
 }
 
 .profile-container .btn-wrap-your .size-m {

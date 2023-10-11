@@ -69,8 +69,14 @@ async function validateProfile(target) {
 // 가지마켓시작하기버튼 누르면 회원가입 완료 및 로그인 화면으로 이동
 submitButton.addEventListener('click', async (e) => {
     e.preventDefault()
-    await SubmitJoinForm();
-    location.href = './login.html';
+    const result = await SubmitJoinForm();
+    
+    if(result.status === 422 && result.message === '잘못된 이메일 형식입니다.'){
+        alert(result.message);
+        location.href = './join_membership.html';
+    } else {
+        location.href = './login.html';
+    }
 })
 
 
@@ -106,11 +112,10 @@ async function SubmitJoinForm() {
         }
     }
 
-    await fetchApi({
+    return await fetchApi({
         reqPath : "/user", 
         method : "POST",
         bodyData : data,
-        toJson : false,
         needToken : false
     })
 }

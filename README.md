@@ -1,6 +1,6 @@
 # EggplantMarket
 
->배포 URL: 추후 예정</br>
+>배포 URL: https://eggplant-market.netlify.app</br>id: eggplant@market.com <br>pw: 123123123
 <br />
 
 ## 팀원 소개
@@ -22,15 +22,14 @@
 7. [페이지 기능](#pageFunction)
 8. [개선사항](#improvements)
 9. [느낀점](#impression)
+10. [리팩토링 *](#refatoring)
 
 <br />
 
 ## <span id = "intro">1. 프로젝트 주제 및 목표<span>
 ### [프로젝트 설명]
 
-- 가지마켓 서비스는 자신의 스토어에서 판매하고 있는 상품(가지)을 등록하여 홍보할 수 있는 SNS입니다. 오직 가지만 상품으로 업로드할 수 있습니다.
-
-- 상품을 등록하지 않아도 일상을 공유하며 즐거운 SNS 활동을 할 수 있습니다. 글과 사진과 함께 게시물을 작성하여 자신의 일상을 공유할 수 있습니다. 다른 사용자를 팔로우하면 유저가 올린 게시물을 홈 피드에서 소식을 확인할 수도 있습니다. 또한 다른 사용자와 메시지를 주고 받을 수 있습니다.
+- ...
 
 ### [프로젝트 목표]
 
@@ -82,6 +81,7 @@
 
 ### [작업 관리]
 - [ 🔗issues ](https://github.com/FRONTENDSCHOOL5/final-19-EggplantMarket/issues)를 사용하여 진행도와 상황을 꾸준히 공유
+<img width="450" src="https://user-images.githubusercontent.com/121578822/249673691-ddf9959e-bb98-467e-a98d-1cb0831304f2.png">
 
 ### [프로젝트 기간]
 - 총 개발 기간 : 2023.06.01 ~ 2023.06.27
@@ -93,10 +93,11 @@
 <br />
 
 ### [Git flow]
-<img width="450" src="https://user-images.githubusercontent.com/121578822/249664354-ded53ca2-78d9-46b7-8359-c0503be4350c.png">
-
 [놀고먹고십구 협업플로우.pdf](https://github.com/FRONTENDSCHOOL5/final-19-EggplantMarket/files/11902046/default.pdf)
 
+<img width="450" src="https://user-images.githubusercontent.com/121578822/249664354-ded53ca2-78d9-46b7-8359-c0503be4350c.png">
+
+<img width="450" src="https://github.com/FRONTENDSCHOOL5/final-19-EggplantMarket/assets/90684277/707d808d-1c19-4a61-9b4f-4489e4a5d2fb">
 
 <br />
 
@@ -115,6 +116,7 @@
 - test : 테스트 관련 코드 추가 및 삭제 등
 - comment : 필요한 주석 추가 및 변경
 ```
+<img width="450" src="https://user-images.githubusercontent.com/121578822/249673654-77ff2d0d-7617-4bcd-b0b9-09211d2d143b.png">
 
 <br />
 
@@ -125,11 +127,6 @@
 - JS : 변수 ⇒ 카멜 케이스 / 클래스 ⇒ 파스칼 케이스
 - 의미 있는 변수명 사용하기, 함수명은 동사로 시작하기,  class명은 형태 + 의미 + 상태
 
-<br />
-- 이슈 관리
-<img width="450" src="https://user-images.githubusercontent.com/121578822/249673691-ddf9959e-bb98-467e-a98d-1cb0831304f2.png">
-- 커밋 컨벤션
-<img width="450" src="https://user-images.githubusercontent.com/121578822/249673654-77ff2d0d-7617-4bcd-b0b9-09211d2d143b.png">
 
 <br />
 
@@ -186,93 +183,88 @@
 
 ```bash
 기본포맷
-│  README.md
-│  index.html
-├── assets
-│    ├── eggplants
-│    ├── icon
-│    └── profile_imgs
-├── css
-│    ├── 404.css
-│    ├── chat_list.css
-│    ├── chat_room.css
-│    ├── component.css
-│    ├── home_search.css
-│    ├── home_withfollowers.css
-│    ├── home_withoutfollowers.css
-│    ├── join_membership.css
-│    ├── login_email.css
-│    ├── login.css
-│    ├── post_detail.css
-│    ├── post_upload.css
-│    ├── product.css
-│    ├── profile_follow.css
-│    ├── profile_info.css
-│    ├── profile_modification.css
-│    ├── profile_productlist.css
-│    ├── profile_view.css
-│    ├── reset.css
-│    └── splash.scss
-├── font
-├── html
-│    ├── component
-│    ├── 404.html
-│    ├── chat_list.html
-│    ├── chat_room.html
-│    ├── home_search.html
-│    ├── home.html
-│    ├── join_membership.html
-│    ├── login_email.html
-│    ├── login.html
-│    ├── post_detail.html
-│    ├── post_upload.html
-│    ├── product_upload.html
-│    ├── profile_follower.html
-│    ├── profile_following.html
-│    ├── profile_info.html
-│    └── profile_modification.html
-├── js
-│    ├── chat_room.js
-│    ├── common.js
-│    ├── contrast.js
-│    ├── follower.js
-│    ├── following.js
-│    ├── home_search.js
-│    ├── home.js
-│    ├── index.js
-│    ├── join.js
-│    ├── login_email.js
-│    ├── modal.js
-│    ├── postDetail.js
-│    ├── postUpload.js
-│    ├── product_add.js
-│    ├── product_modification.js
-│    ├── profile_info.js
-│    ├── profile_modification.js
-│    ├── scrollFetch.js
-│    └── setProfile.js
-└── scss
-     ├── _global.scss
-     ├── _mixin.scss 
-     ├── _variable.scss
-     ├── 404.scss
-     ├── chat_list.scss
-     ├── chat_room.scss
-     ├── component.scss
-     ├── home_search.scss
-     ├── home_withfollowers.scss
-     ├── home_withoutfollowers.scss
-     ├── join_membership.scss
-     ├── login_email.scss
-     ├── login.scss
-     ├── post_detail.scss
-     ├── post_upload.scss
-     ├── product.scss
-     ├── profile_follow.scss
-     ├── profile_info.scss
-     ├── profile_modification.scss
-     ├── profile_productlist.scss
-     └── profile_view.scss
+├── README.md
+├── 📁 assets
+│   ├── basic-profile.png
+│   ├── favicon.ico
+│   ├── 📁 icon 
+│   ├── 📁 logo
+│   ├── og(1400x630).png
+│   ├── og(800x400).png
+│   ├── 📁 sprites
+│   └── 📁 symbol
+├── 📁 css
+│   ├── ...
+│   ├── reset.css
+│   └── splash.css
+├── 📁 font
+├── 📁 html
+│   ├── 404.html
+│   ├── chat_list.html
+│   ├── chat_room.html
+│   ├── 📁 component
+│   │   ├── footer.html
+│   │   └── post.html
+│   ├── home.html
+│   ├── home_search.html
+│   ├── join_membership.html
+│   ├── login.html
+│   ├── login_email.html
+│   ├── post_detail.html
+│   ├── post_upload.html
+│   ├── product_upload.html
+│   ├── profile_follower.html
+│   ├── profile_following.html
+│   ├── profile_info.html
+│   └── profile_modification.html
+├── index.html
+├── 📁 js
+│   ├── chat_list.js
+│   ├── chat_room.js
+│   ├── common.js
+│   ├── component.js
+│   ├── contrast.js
+│   ├── 📁 fetch
+│   │   └── fetchRefact.js
+│   ├── follower.js
+│   ├── following.js
+│   ├── home.js
+│   ├── home_search.js
+│   ├── index.js
+│   ├── join.js
+│   ├── login_email.js
+│   ├── modal.js
+│   ├── postDetail.js
+│   ├── postUpload.js
+│   ├── productUpload.js
+│   ├── profile_info.js
+│   ├── profile_modification.js
+│   ├── scrollFetch.js
+│   └── setProfile.js
+├── naver58620a79d9c9b9f251caee0753f0748c.html
+├── robots.txt
+└── 📁 scss
+    ├── 404.scss
+    ├── _global.scss
+    ├── _mixin.scss
+    ├── _variables.scss
+    ├── chat_list.scss
+    ├── chat_room.scss
+    ├── component.scss
+    ├── footer.scss
+    ├── home_search.scss
+    ├── home_withoutfollowers.scss
+    ├── join_membership.scss
+    ├── login.scss
+    ├── login_email.scss
+    ├── post_detail.scss
+    ├── post_upload.scss
+    ├── product.scss
+    ├── profile_follow.scss
+    ├── profile_info.scss
+    ├── profile_modification.scss
+    ├── profile_productlist.scss
+    └── profile_view.scss
 ```
 <br />
 
@@ -326,17 +318,24 @@
 <br />
 
 ## <span id = "improvements">8. 개선사항</span>
-- 시멘틱마크업
-- 처음부터 3개 업로드를 고려하지 않아서 코드 복잡
-- 코드 리팩토링
-- 터치스크롤
-- 키보드 접근성 tab 마무리 
+- 시멘틱 마크업 추가개선
+- 성능보다 구현을 중심으로 짠 코드
+- 반복되는 api 통신 코드 통합
+- 터치스크롤 개선
+- 게시글 수정시 이미지 여러개 첨부 기능 버그
+- 키보드 접근성 tab 버그 
 - sass 공동작업 시간 부족해서 못함
 - css 사용하듯이에서 그친 느낌 
-- api 통신 코드 통합
 - 이미지 최적화
 - meta tag 사용
 
 <br />
 
 ## <span id = "impression">9. 느낀점</span>
+<br />
+
+## <span id = "refatoring">10. 리팩토링</span>
+
+[기간]
+
+[리팩토링 목표]

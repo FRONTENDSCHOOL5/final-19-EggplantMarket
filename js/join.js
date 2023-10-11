@@ -32,16 +32,16 @@ async function validateJoin(target) {
 
         document.querySelector('.warning-msg-email').textContent = '*' + msg.message;
         document.querySelector('.warning-msg-email').style.display = 'block';
-        if (msg.status == 422 || msg.message === '이미 가입된 이메일 주소 입니다.') {
+        if (msg.message === '이미 가입된 이메일 주소 입니다.') {
             email.style.borderBottom = `1px solid ${borderColor}`;
             validEmail = false;
-        } else if (msg.message === '잘못된 접근입니다.') {
+        } else if (msg.message === '사용 가능한 이메일 입니다.') {
+            email.style.borderBottom = '1px solid #DBDBDB';
+            validEmail = true;
+        } else { // 잘못된 접근
             document.querySelector('.warning-msg-email').style.display = 'none';
             email.style.borderBottom = `1px solid #DBDBDB`;
             validEmail = false;
-        } else {
-            email.style.borderBottom = '1px solid #DBDBDB';
-            validEmail = true;
         }
     }
 
@@ -91,12 +91,6 @@ async function validateEmail() {
 // // 가입한 이메일이 있는 경우
 // {
 //     "message": "이미 가입된 이메일 주소 입니다."
-// }
-
-// 이메일 형식에 맞지 않는 경우
-// {
-//     "message": "잘못된 이메일 형식입니다.",
-//     "status" : 422
 // }
 
 // // FAIL

@@ -27,7 +27,7 @@ async function run() {
         document.querySelector('.home-withoutfollower').style.display = '';
     }
 };
-window.addEventListener('DOMContentLoaded', run);
+run();
 
 // 무한 스크롤 
 window.addEventListener("scroll", async () => {

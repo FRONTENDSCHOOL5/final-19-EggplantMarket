@@ -110,13 +110,6 @@ async function requestLike(postId,action,method){
     })
 }
 
-function setProfileLink(){
-    document.querySelector('.tab-item-more a').href = `./profile_info.html?accountName=${localStorage.getItem('user-accountname')}`
-}
-if(document.querySelector('.tab-item-more') !== null){
-    setProfileLink()
-}
-
 export function dateProcess(createdAt) {
     const itemDate = new Date(createdAt)
     const YEAR = itemDate.getFullYear()

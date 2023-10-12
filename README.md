@@ -219,10 +219,9 @@
 │   └── profile_modification.html
 ├── index.html
 ├── 📁 js
-│   ├── chat_list.js
 │   ├── chat_room.js
 │   ├── common.js
-│   ├── component.js
+│   ├── footer.js
 │   ├── contrast.js
 │   ├── 📁 fetch
 │   │   └── fetchRefact.js

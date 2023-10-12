@@ -14,9 +14,6 @@ fetch('./component/post.html')
     .then(data => homePostList.innerHTML = data);
 
 async function run() {
-    const iconname = document.querySelector(".home-icon");
-    iconname.className = 'here';
-
     const existFollowing = (await fetchApi({
         reqPath: `/profile/${localStorage.getItem('user-accountname')}`,
         method: "GET"

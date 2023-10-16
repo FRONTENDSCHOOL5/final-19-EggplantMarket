@@ -2,7 +2,7 @@ import { applyTheme } from "./contrast.js"
 applyTheme();
 
 setTimeout(() => {
-    if (localStorage.getItem("user")) {
+    if (localStorage.getItem("user-token")) {
         location.href = "./html/home.html";
     } else {
         location.href = "./html/login.html"

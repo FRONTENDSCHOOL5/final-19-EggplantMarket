@@ -79,7 +79,7 @@ function displayPost(post) {
     const comment = document.querySelector(".btn-comment .cnt");
     comment.textContent = post.comments.length;
     const date = document.querySelector(".post-date");
-    date.textContent = dateProcess(post.updatedAt);
+    date.textContent = dateProcess(post.createdAt);
 
     hd.parentNode.setAttribute('data-postid', post.id);
     const headingContent = post.content ? post.content : '사진만 있는 게시글';

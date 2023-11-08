@@ -67,7 +67,12 @@ body {
   font-size: 0.875rem;
   padding: 0.8125rem;
   position: relative;
+  color: #767676;
 }
+.theme-wrapper.highContrast .domain {
+  color: #f2f2f2;
+}
+
 .domain + .domain {
   margin-top: 0.625rem;
 }
@@ -81,51 +86,39 @@ body {
           transform: translateY(-50%);
   top: 50%;
   left: 10px;
+  background-repeat: no-repeat;
+  background-size: 132px 44px;
+  background-image: url(../assets/sprites/sns-logo-sprites.png);
 }
 .domain.kakao {
   border-color: #F2C94C;
-  color: #767676;
 }
 .theme-wrapper.highContrast .domain.kakao {
   border-color: #FFEB32;
 }
 
-.theme-wrapper.highContrast .domain.kakao {
-  color: #f2f2f2;
-}
-
 .domain.kakao::before {
-  background: no-repeat url(../assets/sprites/sns-logo-sprites.png) -10px -10px/132px 44px;
+  background-position: -10px -10px;
 }
 .domain.google {
   border-color: #767676;
-  color: #767676;
 }
 .theme-wrapper.highContrast .domain.google {
   border-color: #65FB76;
 }
 
-.theme-wrapper.highContrast .domain.google {
-  color: #f2f2f2;
-}
-
 .domain.google::before {
-  background: no-repeat url(../assets/sprites/sns-logo-sprites.png) -54px -10px/132px 44px;
+  background-position: -54px -10px;
 }
 .domain.facebook {
   border-color: #2D9CDB;
-  color: #767676;
 }
 .theme-wrapper.highContrast .domain.facebook {
   border-color: #B3E3FF;
 }
 
-.theme-wrapper.highContrast .domain.facebook {
-  color: #f2f2f2;
-}
-
 .domain.facebook::before {
-  background: no-repeat url(../assets/sprites/sns-logo-sprites.png) -98px -10px/132px 44px;
+  background-position: -98px -10px;
 }
 
 .email {

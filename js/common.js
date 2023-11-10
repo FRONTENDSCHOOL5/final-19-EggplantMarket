@@ -1,5 +1,5 @@
 import { fetchApi } from "./fetch/fetchRefact.js"
-import { applyTheme } from "./contrast.js"
+import { applyTheme } from "./theme.js"
 
 applyTheme()
 

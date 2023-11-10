@@ -1,4 +1,4 @@
-import {applyTheme} from "./contrast.js"
+import {applyTheme} from "./theme.js"
 import { fetchApi } from "./fetch/fetchRefact.js";
 
 const myAccountName = localStorage.getItem("user-accountname")

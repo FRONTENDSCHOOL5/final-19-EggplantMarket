@@ -43,24 +43,33 @@ main {
   margin-right: auto;
 }
 .user-info .user-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.125rem;
   color: #000000;
 }
 .theme-wrapper.highContrast .user-info .user-name {
   color: #ffffff;
 }
 
-.user-info .user-name strong {
-  color: #9747FF;
-}
-.theme-wrapper.highContrast .user-info .user-name strong {
-  color: #FFEB32;
-}
-
 .user-info .user-id {
   color: #767676;
+  font-size: 0.75rem;
+  font-weight: 400;
+  margin-top: 0.125rem;
 }
 .theme-wrapper.highContrast .user-info .user-id {
   color: #f2f2f2;
+}
+
+.user-info .user-id:before {
+  content: "@ ";
+}
+.user-info .user-name strong, .user-info .user-id strong {
+  color: #9747FF;
+}
+.theme-wrapper.highContrast .user-info .user-name strong, .theme-wrapper.highContrast .user-info .user-id strong {
+  color: #FFEB32;
 }
 
 .search-user-list {

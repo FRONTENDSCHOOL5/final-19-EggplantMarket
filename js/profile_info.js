@@ -145,6 +145,7 @@ function displayPosts(post_data) {
 
         const userImgImg = document.createElement('img');
         userImgImg.src = checkImageUrl(item.author.image, 'profile');
+        userImgImg.setAttribute('alt', '');
         userImg.appendChild(userImgImg);
         const userInfoDiv = document.createElement('div');
         userInfoDiv.classList.add('user-info');

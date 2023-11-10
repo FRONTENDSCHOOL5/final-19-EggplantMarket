@@ -50,6 +50,7 @@ async function postFeed(postsData) {
         profileImageLink.href = `./profile_info.html?accountName=${item.author.accountname}`;
         const profileImage = content.getElementById("profile-image");
         profileImage.src = `${checkImageUrl(item.author.image, 'profile')}`;
+        profileImage.setAttribute('alt', '');
 
         const account = content.querySelector(".user-id");
         account.textContent = item.author.accountname;

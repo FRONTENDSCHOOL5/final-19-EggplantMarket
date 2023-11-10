@@ -1,0 +1,54 @@
+@import '../mixin';
+
+main{
+    padding-bottom: 4.0625rem;
+}
+
+.user-follow{
+  height: 2.625rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .img-cover {
+      @include image-cover;
+      @include width-height(2.25rem, 2.25rem);
+      @include profile-img-tag;
+      border: $border-gray100-1px;
+  }
+  .profile-img{
+      order: 0;
+      margin-right: .75rem;
+  }
+}
+
+.user-info{
+  order: 1;
+  margin-right: auto;
+
+    .user-name {
+        @include get-color(color, font-color);
+        strong {
+            @include get-color(color, point-color);
+        }
+    }
+    .user-id {
+        @include get-color(color, gray-color);
+    }
+}
+
+.search-user-list {
+    li {
+        margin-bottom: 1rem;
+    }
+    margin-left: 1rem;
+    margin-top: 1.25rem;
+}
+
+#inp-search{
+    @include get-color(background-color, input-color);
+}
+
+#inp-search::placeholder {
+    @include get-color(color, search-placeholder-color);
+}

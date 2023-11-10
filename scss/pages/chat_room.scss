@@ -1,5 +1,4 @@
-@import 'global';
-@import 'mixin';
+@import '../mixin';
 
 .top{
     @include get-color(background-color, bg-color);

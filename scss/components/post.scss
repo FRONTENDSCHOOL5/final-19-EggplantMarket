@@ -1,0 +1,115 @@
+
+@import '../mixin';
+
+.home-post, .home-post-onlytext{
+  margin-top: 1.25rem;
+}
+
+.user-follow{
+  height: 2.625rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .img-cover {
+      @include image-cover;
+      @include width-height(2.25rem, 2.25rem);
+      @include profile-img-tag;
+      border: $border-gray100-1px;
+  }
+  .profile-img{
+      order: 0;
+      margin-right: .75rem;
+  }
+  .user-info{
+      order: 1;
+      margin-right: auto;
+  }
+}
+
+.home-post{
+  position: relative;
+  .btn-option {
+      width: 1.5rem;
+      position: absolute;
+      top: 0;
+      right: -0.75rem;
+          transform: translateX(-25%);
+      img{
+          width: 100%;
+      }
+  }
+  .btn-like.like{
+      svg {
+          fill : $highlight-color;
+          path {
+              stroke :$highlight-color;
+          }
+      }
+  }
+}
+
+.user-info{
+  .user-name{
+      font-size: map-get($font-sizes, "size14" );
+      font-weight: 500;
+      line-height: 1.125rem;
+      @include get-color(color, font-color);
+  }
+  .user-id{
+      @include get-color(color, gray-color);
+      font-size: map-get($font-sizes, "size12" );
+      font-weight: 400;
+      margin-top: .125rem;
+      &:before{
+          content : '@ '
+      }
+  }
+}
+
+.post-edit{
+  margin: 1rem auto 1rem 3.375rem;
+  padding-bottom: .3125rem;
+  a:first-child {
+      display: block;
+  }
+
+  .post-text{
+      @include get-color(color, font-color);
+      margin-bottom: 1rem;
+      line-height: 1.125rem;
+      word-break: break-all;
+      white-space: pre-line;
+  }
+  
+  .img-cover {
+      max-width: 19rem;
+      margin-bottom: .75rem;
+      border-radius: 0.625rem;
+      overflow: hidden;
+      border: $border-gray100-1px;
+
+      .post-img {
+          @include width-height(100%, 100%);
+          object-fit: cover;
+      }
+  }
+}
+.post-icon{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: $gray300-color;
+  font-size: map-get( $font-sizes, "size12" );
+  &>*{
+      display: flex;
+      align-items: center; 
+      gap: 0.25rem;
+      color: inherit;
+  }
+}
+.post-date{
+  @include get-color(color, gray-color);
+  font-size: map-get( $font-sizes, "size10" );
+}

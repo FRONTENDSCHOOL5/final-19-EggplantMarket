@@ -1,5 +1,4 @@
-@import "global";
-@import "mixin";
+@import "../mixin";
 
 @mixin get-color($property, $color) {
 

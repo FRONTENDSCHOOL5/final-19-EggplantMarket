@@ -1,5 +1,4 @@
-@import 'global';
-@import 'mixin';
+@import '../mixin';
 
 .title-chat {
     @include get-color(color, font-color);

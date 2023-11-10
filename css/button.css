@@ -1,0 +1,76 @@
+.size-l, .size-m, .size-ms, .size-s {
+  background-color: #635CA5;
+  color: #ffffff;
+}
+.theme-wrapper.highContrast .size-l, .theme-wrapper.highContrast .size-m, .theme-wrapper.highContrast .size-ms, .theme-wrapper.highContrast .size-s {
+  background-color: #E4D6FF;
+}
+
+.theme-wrapper.highContrast .size-l, .theme-wrapper.highContrast .size-m, .theme-wrapper.highContrast .size-ms, .theme-wrapper.highContrast .size-s {
+  color: #000000;
+}
+
+.size-l:disabled, .size-m:disabled, .size-ms:disabled, .size-s:disabled {
+  background-color: #BCADDC;
+  background-color: #BCADDC;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.theme-wrapper.highContrast .size-l:disabled, .theme-wrapper.highContrast .size-m:disabled, .theme-wrapper.highContrast .size-ms:disabled, .theme-wrapper.highContrast .size-s:disabled {
+  background-color: transparent;
+}
+
+.theme-wrapper.highContrast .size-l:disabled, .theme-wrapper.highContrast .size-m:disabled, .theme-wrapper.highContrast .size-ms:disabled, .theme-wrapper.highContrast .size-s:disabled {
+  background-color: transparent;
+}
+
+.theme-wrapper.highContrast .size-l:disabled, .theme-wrapper.highContrast .size-m:disabled, .theme-wrapper.highContrast .size-ms:disabled, .theme-wrapper.highContrast .size-s:disabled {
+  -webkit-box-shadow: 0 0 0 2px #E4D6FF inset;
+          box-shadow: 0 0 0 2px #E4D6FF inset;
+}
+
+.size-l {
+  font-weight: 500;
+  width: 20.125rem;
+  padding: 0.8125rem 0rem;
+  border-radius: 2.75rem;
+  font-size: 0.875rem;
+}
+.size-m {
+  font-weight: 500;
+  width: 7.5rem;
+  padding: 0.5rem 0rem;
+  border-radius: 1.875rem;
+  font-size: 0.875rem;
+}
+.size-ms {
+  font-weight: 500;
+  width: 5.625rem;
+  padding: 0.4375rem 0rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+}
+.size-s {
+  font-weight: 400;
+  width: 3.5rem;
+  padding: 0.4375rem 0rem;
+  border-radius: 1.625rem;
+  font-size: 0.75rem;
+}
+
+.cancle {
+  background-color: #ffffff;
+  color: #767676;
+  border: 0.0625rem solid #dbdbdb;
+}
+.theme-wrapper.highContrast .cancle {
+  background-color: #000000;
+}
+
+.theme-wrapper.highContrast .cancle {
+  color: #E4D6FF;
+}
+
+.theme-wrapper.highContrast .cancle {
+  border: 2px solid #E4D6FF;
+}

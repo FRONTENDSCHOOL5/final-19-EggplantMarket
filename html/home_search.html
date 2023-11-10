@@ -24,7 +24,8 @@
     <title>사용자 검색 | 가지마켓</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/home_search.css">
-    <link rel="stylesheet" href="../css/component.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/skip_nav.css">
 </head>
 
 <body>
@@ -44,25 +45,24 @@
             <ul class="search-user-list">
             </ul>
         </main>
-        <!-- 검색된 유저 탬플릿 -->
-        <template id="search-template">
-            <article class="user-follow">
-                <a class="profile-img img-cover" href="./profile_info.html?accountName=${userData[i].accountname}">
-                    <span class="a11y-hidden">${userData[i].username}의 프로필 보기</span>
-                    <img id="profile-image" src="../assets/basic-profile.png" alt="">
-                </a>
-                <a class="user-info" href="./profile_info.html?accountName=${userData[i].accountname}">
-                    <p class="user-name">애월읍 위니브 가지밭</p>
-                    <span class="a11y-hidden">의 프로필 보기</span>
-                    <p class="user-id">weniv_Eggplant</p>
-                </a>
-            </article>
-        </template>
         <!-- footer 컴포넌트화 적용 -->
         <footer id="footer">
         </footer>
+        <!-- 검색된 유저 탬플릿 -->
+        <template id="search-template">
+          <article class="user-follow">
+              <a class="profile-img img-cover" href="./profile_info.html?accountName=${userData[i].accountname}">
+                  <span class="a11y-hidden">의 프로필 보기</span>
+                  <img id="profile-image" src="../assets/basic-profile.png" alt="">
+              </a>
+              <a class="user-info" href="./profile_info.html?accountName=${userData[i].accountname}">
+                  <p class="user-name"></p>
+                  <span class="a11y-hidden">의 프로필 보기</span>
+                  <p class="user-id"></p>
+              </a>
+          </article>
+      </template>
     </div>
-
     
     <script src="../js/common.js" type="module"></script>
     <script src="../js/footer.js"></script>

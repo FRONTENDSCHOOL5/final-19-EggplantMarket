@@ -1,5 +1,11 @@
-@import 'global';
-@import 'mixin';
+@import '../mixin';
+
+footer{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: $white-color;
+}
 
 .tab-item-list {
     border-top: .0313rem solid $gray100-color;

@@ -1,0 +1,30 @@
+@import '../mixin';
+
+.skip-nav{
+  position:absolute;
+  @include width-height(100%, 0);
+  z-index:10000;
+  a {
+      display:block;
+      @include width-height(0.0625rem, 0.0625rem);
+      margin-bottom:-0.0625rem;  
+      font-weight:bold;
+      font-size: map-get($font-sizes, "size14" );
+      text-align:center;
+      white-space:nowrap;
+      background:#1c1c1c;
+      color:$white-color;
+      overflow:hidden;
+
+      &:focus, &:active{
+          @include width-height(fit-content, auto);
+          padding:0.9375rem;
+          font-size: map-get($font-sizes, "size16" );
+      }
+  }
+}
+
+.highContrast .skip-nav a{
+  background: $white-color;
+  color: #1c1c1c;
+}

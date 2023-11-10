@@ -1,0 +1,37 @@
+.comment {
+  background-color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-top: 0.0625rem solid #dbdbdb;
+  border-bottom: 0.0625rem solid #dbdbdb;
+  padding: 0.1875rem 0.3125rem;
+}
+.theme-wrapper.highContrast .comment {
+  background-color: #000000;
+}
+
+.comment button {
+  font-size: 0.875rem;
+}
+.comment input::-webkit-input-placeholder {
+  color: #c4c4c4;
+}
+.comment input::-moz-placeholder {
+  color: #c4c4c4;
+}
+.comment input:-ms-input-placeholder {
+  color: #c4c4c4;
+}
+.comment input::-ms-input-placeholder {
+  color: #c4c4c4;
+}
+.comment input::placeholder {
+  color: #c4c4c4;
+}

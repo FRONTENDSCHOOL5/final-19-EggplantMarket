@@ -1,6 +1,24 @@
-@import 'global';
-@import 'mixin';
+@import '../mixin';
 
+.join {
+    padding: 2.125rem;
+}
+
+h2,
+p {
+    @include get-color(color, gray-color);
+    text-align: center;
+    font-size: map-get($font-sizes, "size14" );
+}
+
+.title {
+    font-size: map-get($font-sizes, "size24");
+    @include get-color(color, font-color);
+}
+
+.join-email form {
+    margin-top: 2.5rem;
+}
 
 .profile-setting {
     form {
@@ -17,7 +35,7 @@ form {
     min-width: calc(390px - 30px * 2);
     max-width: 40%;
     margin: 0 auto;
-
+    @include get-color(color, gray-color);
     color: $gray300-color;
     font-size: map-get($font-sizes, "size12");
 
@@ -32,6 +50,16 @@ form {
             @include profile-img-tag;
         }
     }
+
+    .upload-img{
+        circle {
+            @include get-color(fill, profile-image-btn);
+        }
+        path {
+            @include get-color(stroke, btn-font-color);
+        }
+    }
+
 
     &>fieldset {
         margin-bottom: 1rem;
@@ -51,23 +79,22 @@ form {
         margin: 0;
 
         svg>circle {
-            @include get-color(fill, img-icon);
-        }
-        svg{
-            path {
-                @include get-color(stroke, bg-color);
-            }
+            fill: $active-color;
         }
     }
 
     input {
         display: block;
+        @include get-color(background-color, bg-color);
+        @include get-color(color, font-color);
         width: 100%;
         border: none;
         border-bottom: $border-gray100-1px;
         padding: 0.5rem 0;
-        @include get-color(background-color, bg-color);
-        @include get-color(color, font-color);
+    }
+
+    input::placeholder{
+        @include get-color(color, placeholder-color);
     }
 
     input.btn-upload {
@@ -76,21 +103,40 @@ form {
 
     input::placeholder {
         font-size: map-get($font-sizes, "size14");
-        @include get-color(color, gray-color);
+        color: $gray100-color;
     }
 
     input:focus {
-        @include get-color(border-bottom, profile-border-bottom);
+        border-bottom: 0.0625rem solid $highlight-color;
         outline: none;
     }
 
-[class^=warning-msg] {
+    [class^=warning-msg] {
         @include warning-message(color, warning-color);
         margin-top: 0.375rem;
     }
 }
 
 // button
+button {
+    display: block;
+    border: solid 0.0625rem;
+    border-radius: 2.75rem;
+    margin: 0 auto;
+}
+
+@include join-btn-size-l; //size-l button
+
+.btn-next {
+    border: none;
+    margin-top: 1.875rem;
+    padding: 0.8125rem;
+}
+
+.btn-next:disabled {
+    @include btn-disabled(color, font-color);
+}
+
 .btn-upload {
     cursor: pointer;
 }

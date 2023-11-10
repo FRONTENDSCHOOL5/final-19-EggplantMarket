@@ -160,25 +160,26 @@
 
 ## <span id = "tree">6. 프로젝트 구조</span>
 - assets/ : 이미지, 파비콘, 아이콘 등
-	- icon : 아이콘만 따로 보관
+	- sprites : 이미지 스프라이트만 따로 보관
 
 - css/ : 컴파일된 scss 및 css 디렉토리
+  - reset.css : 기본 리셋과 공통으로 사용되는 스타일 모음 파일
 
 - html/ : html 디렉토리
+  - component : 버튼, 헤더, 푸터 등 컴포넌트 마크업 모음 파일
   - "htmlname".html 으로 작성
 
 - js/ : html 디렉토리의 html과 매칭되는 JS 디렉토리. 
-  - common.js는 공통으로 사용되는 함수가 등록된 파일
+  - common.js : 공통으로 사용되는 함수가 등록된 파일
   - modal.js : 모달 관련 js 파일
-  - contrast.js : 고대비 전환 관련 js 파일
+  - theme.js : 기본/고대비 테마 전환관련 js 파일
   - "htmlname".js 으로 작성
 
 - scss/ : html 디렉토리의 html과 매칭되는 scss
   - _mixin.scss : 믹스인 모아두기
-  - _global.scss : 공통으로 사용되는 부분 모으기
   - _variable.scss : 변수들 모아두기
   - "htmlname".scss 로 작성
-    - 필요시 mixin, global, variable 임포트
+    - 필요시 mixin, variable 임포트
     - ex) @import "mixin";
 
 ```bash
@@ -189,27 +190,30 @@
 │   ├── favicon.ico
 │   ├── 📁 icon 
 │   ├── 📁 logo
-│   ├── og(1400x630).png
-│   ├── og(800x400).png
 │   ├── 📁 sprites
 │   └── 📁 symbol
+│   ├── og(1400x630).png
+│   ├── og(800x400).png
 ├── 📁 css
 │   ├── ...
 │   ├── reset.css
 │   └── splash.css
 ├── 📁 font
 ├── 📁 html
+│   ├── 📁 component
+│   │   ├── button.html
+│   │   ├── component.html
+│   │   ├── footer.html
+│   │   └── header.html
+│   │   └── post.html
 │   ├── 404.html
 │   ├── chat_list.html
 │   ├── chat_room.html
-│   ├── 📁 component
-│   │   ├── footer.html
-│   │   └── post.html
-│   ├── home.html
 │   ├── home_search.html
+│   ├── home.html
 │   ├── join_membership.html
-│   ├── login.html
 │   ├── login_email.html
+│   ├── login.html
 │   ├── post_detail.html
 │   ├── post_upload.html
 │   ├── product_upload.html
@@ -243,27 +247,31 @@
 ├── naver58620a79d9c9b9f251caee0753f0748c.html
 ├── robots.txt
 └── 📁 scss
-    ├── 404.scss
-    ├── _global.scss
-    ├── _mixin.scss
     ├── _variables.scss
-    ├── chat_list.scss
-    ├── chat_room.scss
-    ├── component.scss
-    ├── footer.scss
-    ├── home_search.scss
-    ├── home_withoutfollowers.scss
-    ├── join_membership.scss
-    ├── login.scss
-    ├── login_email.scss
-    ├── post_detail.scss
-    ├── post_upload.scss
-    ├── product.scss
-    ├── profile_follow.scss
-    ├── profile_info.scss
-    ├── profile_modification.scss
-    ├── profile_productlist.scss
-    └── profile_view.scss
+    ├── _mixin.scss
+    ├── 📁 components
+    │   ├── button.scss
+    │   ├── comment.scss
+    │   ├── footer.scss
+    │   ├── modal.scss
+    │   ├── skip_nav.scss
+    ├── 📁 pages
+    │   ├── 404.scss
+    │   ├── chat_list.scss
+    │   ├── chat_room.scss
+    │   ├── home_search.scss
+    │   ├── home_withoutfollowers.scss
+    │   ├── join_membership.scss
+    │   ├── login_email.scss
+    │   ├── login.scss
+    │   ├── post_detail.scss
+    │   ├── post_upload.scss
+    │   ├── product.scss
+    │   ├── profile_follow.scss
+    │   ├── profile_info.scss
+    │   ├── profile_modification.scss
+    │   ├── profile_productlist.scss
+    │   └── profile_view.scss
 ```
 <br />
 

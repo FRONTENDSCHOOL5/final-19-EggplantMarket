@@ -1,0 +1,17 @@
+@import '../mixin';
+
+.comment{
+  @include get-color(background-color, bg-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: $border-gray100-1px;
+  border-bottom: $border-gray100-1px;
+  padding: 0.1875rem 0.3125rem;
+  button{
+      font-size: map-get($font-sizes, "size14");
+  }
+  input::placeholder{
+      color: $gray200-color;
+  }
+}

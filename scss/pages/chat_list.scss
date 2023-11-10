@@ -1,5 +1,4 @@
-@import 'global';
-@import 'mixin';
+@import '../mixin';
 
 .chat-list{
     padding: 1.5rem 1rem;
@@ -10,11 +9,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     .user-img{
         order: 0;
         margin-right: 0.75rem;
         flex-shrink: 0;
     }
+    .img-cover {
+        @include image-cover;
+        @include width-height(3.125rem, 3.125rem);
+        @include profile-img-tag;
+    }
+
     .user-info{
         order: 1;
         width: calc(100% - 130px);
@@ -25,6 +31,7 @@
             font-weight: 500;
             line-height: 1.125rem;
             margin-bottom: 0.25rem;
+            @include get-color(color, font-color);
         }
         .chat-content{
             display: block;
@@ -34,6 +41,7 @@
             margin-top: 0.125rem;
         }
     }
+
     .chat-date{
         order: 2;
         margin-left: auto;
@@ -52,10 +60,4 @@
         border-radius: 50%;
         z-index: 1;
     }
-}
-
-.img-cover {
-    @include image-cover;
-    @include width-height(3.125rem, 3.125rem);
-    @include profile-img-tag;
 }

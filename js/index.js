@@ -1,4 +1,4 @@
-import { applyTheme } from "./contrast.js"
+import { applyTheme } from "./theme.js"
 applyTheme();
 
 setTimeout(() => {

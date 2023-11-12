@@ -1,6 +1,7 @@
 import {checkImageUrl, dateProcess, handleLike} from "./common.js"
 import { fetchClosure, fetchApi } from "./fetch/fetchRefact.js";
 import { handleModal } from "./modal.js";
+import { observer } from "./observer.js";
 
 const getFeedData = fetchClosure({
     reqpath: `/post/feed/`,
@@ -85,7 +86,18 @@ async function postFeed(postsData) {
         }
         if (item.image) {
             item.image.split(',').forEach(item => {
-                liNode.querySelector('.post-edit a').insertAdjacentHTML('beforeend', `<div class="img-cover"><img class="post-img" src="${checkImageUrl(item, 'post')}" alt="게시물 사진"></img></div>`)
+              const imgCoverDiv = document.createElement('div');
+              imgCoverDiv.classList.add('img-cover');
+
+              const postImg = document.createElement('img');
+              postImg.classList.add('post-img');
+              postImg.setAttribute('data-src', checkImageUrl(item, 'post'));
+              postImg.setAttribute('alt', '게시물 사진');
+
+              imgCoverDiv.appendChild(postImg); 
+
+              liNode.querySelector('.post-edit a').appendChild(imgCoverDiv);
+              observer.observe(postImg);
             })
         }
         liNode.querySelector('.home-post').setAttribute('data-postid', item.id)

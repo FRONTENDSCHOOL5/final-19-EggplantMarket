@@ -1,0 +1,29 @@
+@import '../variables';
+
+.error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &>* {
+        display: block;
+        margin: auto;
+        text-align: center;
+    }
+
+    .desc {
+        margin-bottom: 1.25rem;
+        color: $gray300-color;
+        padding-top: 15.625rem;
+        background: url(../assets/icon/icon-404.svg) no-repeat center/contain;
+    }
+
+    .btn-back {
+        padding: 0.8125rem 1.625rem;
+        background-color: $enabled-color;
+        border: none;
+        border-radius: 2.75rem;
+        color: $white-color;
+    }
+}

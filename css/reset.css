@@ -134,6 +134,9 @@ table {
 }
 button {
   cursor: pointer;
+  border: none;
+  background-color: initial;
+  padding: 0;
 }
 button:disabled {
     cursor: default;
@@ -144,12 +147,6 @@ img {
 *:focus{
   outline: 2px solid #9747FF;
 }
-/* .light *:focus{
-  outline-color: #9747FF;
-}
-.highContrast *:focus{
-  outline-color: #FFEB32;
-} */
 
 /* font */
 @font-face {
@@ -180,4 +177,30 @@ img {
 
 body{
   font-family: 'Spoqa Han Sans Neo';
+}
+
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+input{
+  border: none;
+}
+
+a{
+  color: initial;
+  text-decoration: initial;
 }

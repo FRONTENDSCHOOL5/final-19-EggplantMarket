@@ -1,0 +1,106 @@
+@import '../mixin';
+
+main {
+    padding: 1.25rem 1rem;
+    display: flex;
+    justify-content: center;
+    max-width: 50rem;
+    margin: auto;
+}
+
+form {
+    width: 100%;
+    max-height: 31.25rem;
+    overflow: hidden;
+
+    &>* {
+        display: block;
+    }
+
+    textarea {
+        @include get-color(background-color, bg-color);
+        @include get-color(color, font-color);
+        @include width-height(calc(100% - 24px), fit-content);
+        min-height: 9.375rem;
+        margin: 0.75rem;
+        border: none;
+        resize: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    textarea::placeholder {
+        @include get-color(color, gray-color);
+    }
+
+    .img-cover {
+        width: 30vw;
+        max-width: 19rem;
+        min-width: 10.5rem;
+        aspect-ratio: 304/228;
+        border-radius: 0.625rem;
+        overflow: hidden;
+
+        position: relative;
+        box-shadow: rgba(99, 99, 99, 0.2) 0 0.125rem 0.5rem 0;
+        
+        @include profile-img-tag;
+
+        button {
+            position: absolute;
+            top: 0.625rem;
+            right: 0.625rem;
+        }
+    }
+}
+
+.user-profile {
+    @include image-cover;
+    @include width-height(2.625rem, 2.625rem);
+    @include profile-img-tag;
+}
+
+
+.input-file-btn {
+    img {
+        @include width-height(3.125rem, 3.125rem);
+    }
+    @include width-height(3.125rem, 3.125rem);
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.upload-imgs-list {
+    white-space: nowrap;
+    overflow-x: scroll;
+
+    margin: {
+        top: 1rem;
+        left: 0.75rem;
+        bottom: 0.625rem;
+    }
+
+    &>li {
+        display: inline-block;
+        margin-right: 0.5rem;
+    }
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.btn-remove {
+    background-image: url('../assets/icon/x.svg');
+    @include width-height(1.375rem, 1.375rem);
+}
+
+.size-ms:disabled{
+    @include btn-disabled(color, gray-color);
+}
+
+.size-ms{
+    @include get-color(background-color, btn-color);
+    @include get-color(color, btn-font-color);
+}

@@ -1,0 +1,95 @@
+@import '../mixin';
+
+
+.profile-setting {
+    form {
+        margin-top: 1.875rem;
+    }
+
+    .title {
+        margin-bottom: 0.75rem;
+    }
+}
+
+// form
+form {
+    min-width: calc(390px - 30px * 2);
+    max-width: 40%;
+    margin: 0 auto;
+
+    color: $gray300-color;
+    font-size: map-get($font-sizes, "size12");
+
+    .profile-img {
+        position: relative;
+        width: 6.875rem;
+        margin: 0 auto 1.875rem;
+
+        .img-cover {
+            width: 6.875rem;
+            @include image-cover;
+            @include profile-img-tag;
+        }
+    }
+
+    &>fieldset {
+        margin-bottom: 1rem;
+    }
+
+    label {
+        @include label-tag;
+        text-align: start;
+    }
+
+    label.btn-upload {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        border: none;
+        background-color: transparent;
+        margin: 0;
+
+        svg>circle {
+            @include get-color(fill, img-icon);
+        }
+        svg{
+            path {
+                @include get-color(stroke, bg-color);
+            }
+        }
+    }
+
+    input {
+        display: block;
+        width: 100%;
+        border: none;
+        border-bottom: $border-gray100-1px;
+        padding: 0.5rem 0;
+        @include get-color(background-color, bg-color);
+        @include get-color(color, font-color);
+    }
+
+    input.btn-upload {
+        display: none;
+    }
+
+    input::placeholder {
+        font-size: map-get($font-sizes, "size14");
+        @include get-color(color, gray-color);
+    }
+
+    input:focus {
+        @include get-color(border-bottom, profile-border-bottom);
+        outline: none;
+    }
+
+[class^=warning-msg] {
+        @include warning-message(color, warning-color);
+        margin-top: 0.375rem;
+    }
+}
+
+// button
+.btn-upload {
+    cursor: pointer;
+}

@@ -1,0 +1,112 @@
+@import '../mixin';
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: $border-gray100-1px;
+}
+.nav{
+    &-main {
+        padding: 0.8125rem 1rem;
+    }
+    &-search{
+        padding: .5625rem 1rem;
+    }
+    &-basic,
+    &-chat {
+        padding: 0.1875rem 0.3125rem;
+    }
+    &-upload {
+        padding: 0.1875rem 1rem 0.3125rem 0.1875rem;
+    }
+}
+
+.btn-back{
+    @include width-height(2.75rem, 2.75rem);
+    background: url('../assets/icon/icon-arrow-left.svg') no-repeat center;
+}
+.btn-option, .btn-more{
+    @include width-height(2.75rem, 2.75rem);
+    background: url('../assets/icon/icon-more-vertical.svg') no-repeat center;
+}
+
+.highContrast{
+    .btn-back{
+        background-image: url("../assets/icon/icon-arrow-left-hc.svg");
+    }
+    .btn-option, .btn-more{
+        background-image: url('../assets/icon/icon-more-vertical-hc.svg');
+    }
+}
+
+.nav-basic, .nav-upload{
+    .btn-back{
+        order: 0;
+    }
+    .btn-option, .btn-save, #upload-btn{
+        order: 1;
+    }
+}
+
+.nav-chat, .comment{
+    .btn-back, .profile-img{
+        order: 0;
+        margin-right: .625rem;
+    }
+    .title-chat, #commemt-input{
+        order: 1;
+        margin-right: auto;
+        flex-grow: 1;
+    }
+    .btn-comment{
+        order: 2;
+        margin-left: auto;
+        flex-basis: 8%;
+    }
+}
+.nav-search{
+    .btn-button{
+        order: 0;
+    }
+    #inp-search{
+        order: 1;
+        flex-grow: 1;
+        margin-left: 1.25rem;
+        border-radius: 2rem;
+        padding: .4375rem 0rem .4375rem 1rem;
+        background-color: $gray50-color;
+        line-height: 1.125rem;
+    }
+    input::placeholder{
+        color: $gray200-color;
+    }
+}
+.nav-main{
+    .title-main{
+        font-size: map-get($font-sizes,"size18");
+        font-weight: 500;
+    }
+}
+
+.nav-chat{
+    .title-chat{
+        font-size: map-get($font-sizes,"size14");
+        font-weight: 500;
+    }
+}
+
+.nav-chat, .comment{
+  .btn-back, .profile-img{
+      order: 0;
+      margin-right: .625rem;
+  }
+  .title-chat, #commemt-input{
+      order: 1;
+      margin-right: auto;
+  }
+  .btn-option, .btn-comment{
+      order: 2;
+      margin-left: auto;
+  }
+}

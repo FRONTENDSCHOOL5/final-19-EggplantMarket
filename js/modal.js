@@ -1,4 +1,4 @@
-import {applyTheme} from "./contrast.js"
+import {applyTheme} from "./theme.js"
 import { fetchApi } from "./fetch/fetchRefact.js";
 
 const myAccountName = localStorage.getItem("user-accountname")
@@ -99,6 +99,7 @@ function handleHeaderModal(node) {
 
     cancelBtn.addEventListener("click", () => {
       openPostModal.style.display = "none";
+      document.body.classList.remove("stop-scroll");
       node.focus();
     });
     // 테마 변경 클릭 시 새로 생성되는 하단 모달창
@@ -117,6 +118,7 @@ function handleHeaderModal(node) {
 
       cancelThemeBtn.addEventListener("click", () => {
         openPostModal.style.display = "none";
+        document.body.classList.remove("stop-scroll");
         node.focus();
       });
       modeSelectContainer.append(lightRadio, highContrastRadio, cancelThemeBtn);
@@ -131,6 +133,7 @@ function handleHeaderModal(node) {
     const inputs = [changeThemeBtn, logoutBtn, cancelBtn];
     modalTab(inputs);
     openPostModal.style.display = "block";
+    document.body.classList.add("stop-scroll");
   });
 }
 
@@ -229,11 +232,13 @@ function createOptionModal(options, targetId, clickEvent, commentId) {
   const inputs = document.querySelectorAll('[class^="modal-description btn-"]');
   modalTab(inputs);
   openPostModal.style.display = "block";
+  document.body.classList.add("stop-scroll");
 }
 
 // 취소 버튼 기능
 function handleCancelClick(lastFocusedElement) {
   openPostModal.style.display = "none";
+  document.body.classList.remove("stop-scroll");
   if (lastFocusedElement) {
     lastFocusedElement.focus();
     lastFocusedElement = null;
@@ -326,6 +331,7 @@ function editPopUp(parent, description, buttonText, action) {
     await action();
     openPostModal.style.display = "none";
     openPopUpModal.style.visibility = "hidden";
+    document.body.classList.remove("stop-scroll");
     rightButton.removeEventListener("click", clickHandler);
   };
   rightButton.addEventListener("click", clickHandler);
@@ -343,6 +349,7 @@ openPostModal.addEventListener("click", (event) => {
   const targetElement = event.target;
   if (targetElement.classList.contains("post-modal-background")) {
     openPostModal.style.display = "none";
+    document.body.classList.remove("stop-scroll");
   }
 });
 

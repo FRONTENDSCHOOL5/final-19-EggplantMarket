@@ -1,0 +1,87 @@
+@import "../mixin";
+
+@mixin get-color($property, $color) {
+
+    #{$property}: get-color($color);
+
+    @at-root .home-wrapper.highContrast & {
+        #{$property}: get-color($color, highContrast);
+    }
+}
+
+.title-main {
+    @include get-color(color, font-color);
+}
+
+.main-container {
+    p,
+    div,
+    a {
+        margin-bottom: 1.25rem;
+        text-align: center;
+    }
+
+    p {
+        font-size: map-get($font-sizes, "size14" );
+        @include get-color(color, gray-color);
+    }
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position : absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.home-post-list {
+    padding : {
+        left: 1rem;
+        right : 1rem;
+    }
+
+    margin-bottom: 4.0625rem;
+}
+
+.home-background {
+    @include get-color(background-image, bg-image);
+    background-size: contain;
+    @include width-height(4.5rem, 6.25rem);
+}
+
+.search-btn {
+    @include get-color(background-color, enabled-btn-color);
+    @include get-color(color, btn-font-color);
+    font-weight: 500;
+    text-align: center;
+    width: 7.5rem;
+    padding: 0.8125rem 0;
+    border-radius: 2.75rem;
+    font-size: map-get($font-sizes, "size14" );
+}
+
+.home-post .user-follow .user-info {
+    .user-id {
+        @include get-color(color, gray-color);
+    }
+
+    @include get-color(color, font-color);
+}
+
+.post-text {
+    @include get-color(color, font-color);
+}
+
+.cnt {
+    @include get-color(color, gray-color);
+}
+
+.btn-comment {
+    @include get-color(color, gray-color);
+}
+
+.post-date {
+    @include get-color(color, gray-color);
+}

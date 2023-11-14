@@ -1,0 +1,46 @@
+@import '../mixin';
+
+.size-l, .size-m, .size-ms, .size-s {
+  @include get-color(background-color, enabled-btn-color);
+  @include get-color(color, btn-font-color);
+}
+.size-l:disabled, .size-m:disabled, .size-ms:disabled, .size-s:disabled {
+  @include btn-disabled(background-color, disabled-btn-color);
+}
+
+.size{
+  &-l{
+      font-weight: 500;
+      width: 20.125rem;
+      padding: .8125rem 0rem;
+      border-radius: 2.75rem;
+      font-size: map-get( $font-sizes, "size14" );
+  }
+  &-m{
+      font-weight: 500;
+      width: 7.5rem;
+      padding: .5rem 0rem;
+      border-radius: 1.875rem;
+      font-size: map-get( $font-sizes, "size14" );
+  }
+  &-ms{
+      font-weight: 500;
+      width: 5.625rem;
+      padding: .4375rem 0rem;
+      border-radius: 2rem;
+      font-size: map-get( $font-sizes, "size14" );
+  }
+  &-s{
+      font-weight: 400;
+      width: 3.5rem;
+      padding: .4375rem 0rem;
+      border-radius: 1.625rem;
+      font-size: map-get( $font-sizes, "size12" );
+  }
+}
+
+.cancle{
+  @include get-color(background-color, bg-color);
+  @include get-color(color, cancle-btn-color);
+  @include get-color(border, cancle-btn-border);
+}

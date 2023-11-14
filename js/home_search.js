@@ -54,7 +54,7 @@ async function search(userInp) {
         account.textContent = userData[i].accountname;
         const profileImage = content.getElementById("profile-image");
         profileImage.src = checkImageUrl(userData[i].image, 'profile');
-
+        profileImage.setAttribute('alt', '');
 
         ulNode.appendChild(liNode);
         liNode.appendChild(content);

@@ -70,6 +70,7 @@ function displayPost(post) {
 
     const profileImage = document.getElementById("profile-image");
     profileImage.src = `${checkImageUrl(post.author.image, 'profile')}`;
+    profileImage.setAttribute('alt', '');
     const like = document.querySelector(".cnt");
     const likeBtn = document.querySelector(".btn-like");
     likeBtn.className = `btn-like ${post.hearted ? 'like' : ''}`;

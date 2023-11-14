@@ -1,0 +1,32 @@
+.skip-nav {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  z-index: 10000;
+}
+.skip-nav a {
+  display: block;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  margin-bottom: -0.0625rem;
+  font-weight: bold;
+  font-size: 0.875rem;
+  text-align: center;
+  white-space: nowrap;
+  background: #1c1c1c;
+  color: #ffffff;
+  overflow: hidden;
+}
+.skip-nav a:focus, .skip-nav a:active {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: auto;
+  padding: 0.9375rem;
+  font-size: 1rem;
+}
+
+.highContrast .skip-nav a {
+  background: #ffffff;
+  color: #1c1c1c;
+}

@@ -1,0 +1,156 @@
+@import '../mixin';
+
+.top{
+    @include get-color(background-color, bg-color);
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+body{
+    background-color: $gray50-color;
+}
+
+.title-chat {
+    @include get-color(color, font-color);
+}
+
+.img-cover {
+    @include image-cover;
+    @include width-height(2.625rem, 2.625rem);
+    @include profile-img-tag;
+}
+
+main{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    padding: 100vh 0rem 4.5625rem;
+    @include get-color(background-color, root-color);
+}
+
+.chat-content{
+    display: flex;
+    margin-top: 0.625rem;
+    .user-img {
+        flex-shrink: 0; 
+    }
+    .content-text{
+        max-width: 100%;
+        padding: 0.75rem;
+        font-weight: 400;
+        font-size: map-get($font-sizes, size14 );
+        line-height: 
+        1.0956rem;
+        @include get-color(color, font-color);
+        border: 1px solid $gray200-color;
+    }
+    .chat-time{
+        font-size: map-get($font-sizes, size10 );
+        color: $gray300-color;
+        margin-right: 1rem;
+        padding-bottom: 0.3125rem;
+        align-self: flex-end;  
+    }
+}
+
+.follow-chat{
+    .user-img{
+        margin: 0 0.75rem 0 1rem;
+    }
+    .content-text{
+        border-radius: 0 0.75rem 0.75rem 0.75rem;
+        @include get-color(background-color, bg-color);
+    }
+    .chat-time{
+        margin-left: 0.375rem;
+    }
+}
+
+.my-chat{
+    justify-content:flex-end;
+    .content-text{
+        order: 1;
+        @include get-color(color, mychat-font);
+        margin: 0 1rem 0 0.75rem;
+        border-radius: 0.75rem 0rem 0.75rem 0.75rem;
+        @include get-color(border, mychat-border);
+        @include get-color(background-color, mychat-color);
+    }
+    .chat-time{
+        order: 0;
+        margin-right: 0.375rem;
+    }
+}
+
+.my-chat-img{
+    justify-content:flex-end;
+    img{
+        order: 1;
+        max-width: 15rem;
+        margin: 0 1rem 0 0.75rem;
+    }
+    .content-text{
+        order: 0;
+    }
+}
+
+.comment{
+    background-color: $white-color;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    img{
+        width: 2.25rem;
+    }
+    #commemt-input{
+        padding: 0.5rem;
+        margin-right: 0.625rem;
+        @include get-color(color, font-color);
+        @include get-color(background-color, bg-color);
+    }
+    .btn-comment:disabled{
+        @include get-color(color, btn-color);
+    }
+    .btn-comment:not(:disabled){
+        @include get-color(color, send-color);
+    }
+}
+
+#comment-input::placeholder {
+    @include get-color(color, gray-color);
+}
+
+// 하단 모달창 부분
+.post-modal-background{
+    display: none;
+    position: fixed;
+    @include width-height(100%, 100%);
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    .post-modal-content{
+        background-color: $white-color;
+        padding-bottom: 0.625rem;
+        border-radius: 1.25rem 1.25rem 0 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    .modal-content{
+        padding: 0.875rem 1.625rem 0.875rem;
+        font-size: map-get($font-sizes, size14);
+        font-weight: 400;
+        line-height: 1.125rem;
+    }
+    .post-modal-bar{
+        background-color: $gray100-color;
+        @include width-height(3.125rem, 0.25rem);
+        margin: 1rem auto;
+    }
+    .modal-description{
+        width: 100%;
+        text-align: left;
+    }
+}

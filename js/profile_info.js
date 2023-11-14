@@ -1,6 +1,7 @@
 import { fetchApi, fetchClosure } from "./fetch/fetchRefact.js";
 import { checkImageUrl, dateProcess, handleLike } from "./common.js";
 import { handleModal, handlePostOptionModal } from './modal.js';
+import { observer } from "./observer.js";
 
 const pageUrl = new URL(window.location.href);
 
@@ -145,6 +146,7 @@ function displayPosts(post_data) {
 
         const userImgImg = document.createElement('img');
         userImgImg.src = checkImageUrl(item.author.image, 'profile');
+        userImgImg.setAttribute('alt', '');
         userImg.appendChild(userImgImg);
         const userInfoDiv = document.createElement('div');
         userInfoDiv.classList.add('user-info');
@@ -194,11 +196,13 @@ function displayPosts(post_data) {
 
                 const postImg = document.createElement('img');
                 postImg.classList.add('post-img');
-                postImg.src = checkImageUrl(i, 'post');
+                postImg.setAttribute('data-src', checkImageUrl(i, 'post'));
                 postImg.alt = '게시물 사진';
 
                 imgCover.appendChild(postImg);
                 postfragment.appendChild(imgCover);
+                
+                observer.observe(postImg);
 
                 // 앨범형 - 첫번째 사진을 섬네일로
                 if (idx === 0) {

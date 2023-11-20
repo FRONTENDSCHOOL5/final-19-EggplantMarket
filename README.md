@@ -28,7 +28,7 @@
 
 ## <span id = "intro">1. 프로젝트 주제 및 목표<span>
 ### [프로젝트 설명]
-<img width="450" src="https://github-production-user-asset-6210df.s3.amazonaws.com/90684277/284291017-33d0c168-10e4-4ae8-87fa-a4f660b3bb4b.jpg">
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/90684277/284291017-33d0c168-10e4-4ae8-87fa-a4f660b3bb4b.jpg">
 
 ‘**가치를 지켜라**'라는 의미를 담은 **가지마켓**은 바자회 또는 **나눔과 기부 관련 정보를 홍보하는 SNS**입니다. 
 - 사용자는 글과 사진을 함께 첨부하여 포스터나 행사 후기 등을 손쉽게 공유할 수 있습니다. 또한, 다른 사용자를 팔로우하면 그들이 올린 게시물을 홈 피드에서 확인할 수 있습니다.

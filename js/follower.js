@@ -86,12 +86,6 @@ async function displayFollowerList(data) {
         const btn = user.accountname !== myAccountname ? (user.isfollow ? `<button class="btn-follow opposite">팔로잉<span class="a11y-hidden">취소</span></button>` : `<button class="btn-follow">팔로우<span class="a11y-hidden">하기</span></button>`) : (``)
         li.insertAdjacentHTML('beforeend', btn);
 
-        if (viewMyFollowerList) {
-        userInfoDiv.style.width = 'calc(100% - 150px)';
-
-        li.insertAdjacentHTML('beforeend', `<button class="btn-follow-cancle" style='width: 20px;' disabled>삭제<span class="a11y-hidden">하기</span></button>`);
-        }
-
         frag.append(li);
     })
 

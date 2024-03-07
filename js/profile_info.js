@@ -233,7 +233,7 @@ async function run() {
     document.querySelector('.btn-wrap-your').style.display = isMyProfile ? 'flex' : 'none'
     document.querySelector('.btn-wrap-my').style.display = isMyProfile ? 'none' : 'block'
 
-    const getPostData = fetchClosure({
+    let getPostData = fetchClosure({
         reqpath: `/post/${profileAccountName}/userpost`,
         cnt: 6
     });
@@ -249,20 +249,32 @@ async function run() {
     const [profileData, productData, postData] = await Promise.all(fetchPromises);
 
     displayProfileInfo(profileData.profile),
-        displayProductList(productData.product, productData.data),
-        displayPosts(postData.post)
+    displayProductList(productData.product, productData.data),
+    displayPosts(postData.post)
 
     document.querySelector('body').style.display = 'block'
     handleModal()
     touchScroll()
     window.addEventListener('resize', touchScroll)
-    window.addEventListener("scroll", async () => {
+
+    async function handleScroll() {
         if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
-            displayPosts((await getPostData()).post)
+            const postData = (await getPostData()).post;
+            if (postData.length === 0) {
+                getPostData = null; // 자유변수 참조 해제
+                removeScrollEvent();
+                return;
+            }
+            displayPosts(postData);
             const postBtnOption = document.querySelectorAll('main .btn-option');
             handlePostOptionModal(postBtnOption)
-        };
-    })
+        }
+    }
+    
+    function removeScrollEvent() {
+        window.removeEventListener("scroll", handleScroll);
+    }
+    window.addEventListener("scroll", handleScroll);
 };
 
 run();

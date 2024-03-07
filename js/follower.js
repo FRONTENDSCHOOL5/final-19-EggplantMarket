@@ -10,19 +10,29 @@ const $followers = document.querySelector('.follow-list');
 const viewMyFollowerList = accountname === myAccountname ? true : false;
 
 (async function () {
-    const getFollowerList = fetchClosure({
+    let getFollowerList = fetchClosure({
         reqpath:`/profile/${accountname}/follower`,
-        cnt:12
+        cnt:3
     }); 
     const data = await getFollowerList();
     displayFollowerList(data);
 
     // 무한 스크롤 
-    window.addEventListener("scroll", async () => {
+    async function handleScroll() {
         if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
-            displayFollowerList(await getFollowerList())
-        };
-    })
+            const followerData = await getFollowerList();
+            if (followerData.length === 0) {
+                getFollowerList = null; // 자유변수 참조 해제
+                removeScrollEvent(); // 스크롤 이벤트 제거
+                return;
+            }
+            displayFollowerList(followerData);
+        }
+    }
+    function removeScrollEvent() {
+        window.removeEventListener("scroll", handleScroll);
+    }
+    window.addEventListener("scroll", handleScroll);
 })();
 
 // 팔로워 목록 뿌리기 
@@ -77,9 +87,9 @@ async function displayFollowerList(data) {
         li.insertAdjacentHTML('beforeend', btn);
 
         if (viewMyFollowerList) {
-            userInfoDiv.style.width = 'calc(100% - 150px)';
+        userInfoDiv.style.width = 'calc(100% - 150px)';
 
-            li.insertAdjacentHTML('beforeend', `<button class="btn-follow-cancle" style='width: 20px;' disabled>삭제<span class="a11y-hidden">하기</span></button>`);
+        li.insertAdjacentHTML('beforeend', `<button class="btn-follow-cancle" style='width: 20px;' disabled>삭제<span class="a11y-hidden">하기</span></button>`);
         }
 
         frag.append(li);

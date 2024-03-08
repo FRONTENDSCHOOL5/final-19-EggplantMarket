@@ -6,7 +6,6 @@ const options = {
 }
 
 const callback = (entries, observer) => {
-  console.log('entries: ', entries);
   entries.forEach(entry => {
     if(entry.isIntersecting){
       entry.target.src = entry.target.dataset.src;

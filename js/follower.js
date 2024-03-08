@@ -6,9 +6,6 @@ const accountname = new URLSearchParams(location.search).get('accountName'),
 
 const $followers = document.querySelector('.follow-list');
 
-// 1. 내가 내 팔로워 목록을 보는지, 내가 다른 사용자 팔로워 목록을 보는지
-const viewMyFollowerList = accountname === myAccountname ? true : false;
-
 (async function () {
     let getFollowerList = fetchClosure({
         reqpath:`/profile/${accountname}/follower`,

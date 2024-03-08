@@ -3,7 +3,7 @@ import { fetchClosure, fetchApi } from "./fetch/fetchRefact.js";
 import { handleModal } from "./modal.js";
 import { observer } from "./observer.js";
 
-const getFeedData = fetchClosure({
+let getFeedData = fetchClosure({
     reqpath: `/post/feed/`,
     cnt: 10
 })
@@ -31,11 +31,21 @@ async function run() {
 run();
 
 // 무한 스크롤 
-window.addEventListener("scroll", async () => {
+async function handleScroll() {
     if (Math.ceil(getScrollTop()) >= getDocumentHeight() - window.innerHeight) {
-        postFeed((await getFeedData()).posts)
-    };
-})
+        const feedData = (await getFeedData()).posts;
+        if (feedData.length === 0) {
+            getFeedData = null; // 자유변수 참조 해제
+            removeScrollEvent(); // 스크롤 이벤트 제거
+            return;
+        }
+        postFeed(feedData);
+    }
+}
+function removeScrollEvent() {
+    window.removeEventListener("scroll", handleScroll);
+}
+window.addEventListener("scroll", handleScroll);
 
 async function postFeed(postsData) {
     const ulNode = document.querySelector('.home-post-list');
@@ -86,18 +96,18 @@ async function postFeed(postsData) {
         }
         if (item.image) {
             item.image.split(',').forEach(item => {
-              const imgCoverDiv = document.createElement('div');
-              imgCoverDiv.classList.add('img-cover');
+                const imgCoverDiv = document.createElement('div');
+                imgCoverDiv.classList.add('img-cover');
 
-              const postImg = document.createElement('img');
-              postImg.classList.add('post-img');
-              postImg.setAttribute('data-src', checkImageUrl(item, 'post'));
-              postImg.setAttribute('alt', '게시물 사진');
+                const postImg = document.createElement('img');
+                postImg.classList.add('post-img');
+                postImg.setAttribute('data-src', checkImageUrl(item, 'post'));
+                postImg.setAttribute('alt', '게시물 사진');
 
-              imgCoverDiv.appendChild(postImg); 
+                imgCoverDiv.appendChild(postImg); 
 
-              liNode.querySelector('.post-edit a').appendChild(imgCoverDiv);
-              observer.observe(postImg);
+                liNode.querySelector('.post-edit a').appendChild(imgCoverDiv);
+                observer.observe(postImg);
             })
         }
         liNode.querySelector('.home-post').setAttribute('data-postid', item.id)

@@ -7,19 +7,28 @@ const accountname = new URLSearchParams(location.search).get('accountName'),
 const $followings = document.querySelector('.follow-list');
 
 (async function () {
-    const getFollowingList = fetchClosure({
-
-    reqpath: `/profile/${accountname}/following`,
-    cnt: 12
+    let getFollowingList = fetchClosure({
+        reqpath: `/profile/${accountname}/following`,
+        cnt: 12
     }); // 클로저 함수 반환
     makeList(await getFollowingList());
 
     // 무한 스크롤 
-    window.addEventListener("scroll", async () => {
+    async function handleScroll() {
         if (getScrollTop() >= getDocumentHeight() - window.innerHeight) {
-            makeList(await getFollowingList());
-        };
-    })
+            const followingData = await getFollowingList();
+            if (followingData.length === 0) {
+                getFollowingList = null; // 자유변수 참조 해제
+                removeScrollEvent(); // 스크롤 이벤트 제거
+                return;
+            }
+            makeList(followingData);
+        }
+    }
+    function removeScrollEvent() {
+        window.removeEventListener("scroll", handleScroll);
+    }
+    window.addEventListener("scroll", handleScroll);
 })();
 
 
@@ -84,7 +93,6 @@ async function makeList(data) {
         } else {
             li.append(userImgLink, userInfoDiv);
         }
-
 
         frag.append(li);
     })
